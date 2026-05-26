@@ -264,6 +264,25 @@
   }
   .vs { font-size: 14px; color: var(--text-secondary); }
 
+  .scores-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 16px 0 8px;
+  }
+  .score-card {
+    padding: 14px 20px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    flex: 1;
+    max-width: 200px;
+  }
+  .score-card-name { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+  .score-card-value { font-size: 28px; font-weight: 800; }
+  .score-card-label { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
   .results-list {
     display: flex;
     flex-direction: column;
@@ -276,8 +295,9 @@
     border-radius: 12px;
     background: rgba(255,255,255,0.03);
   }
-  .result-row.match { border-left: 3px solid var(--success); }
-  .result-row.miss { border-left: 3px solid var(--danger); }
+  .result-row.both-match { border-left: 3px solid var(--success); }
+  .result-row.one-match { border-left: 3px solid var(--warn); }
+  .result-row.no-match { border-left: 3px solid var(--danger); }
 
   .result-q {
     display: flex;
@@ -290,24 +310,35 @@
   .match-icon.no { color: var(--danger); }
   .result-q-text { font-size: 14px; font-weight: 600; line-height: 1.4; }
 
-  .result-answers {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
     padding-left: 24px;
   }
-  .result-answer {
+  .result-col-header {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .result-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .result-cell-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
   }
-  .result-label { font-size: 12px; color: #6b7280; }
+  .result-label { font-size: 11px; color: #6b7280; }
   .result-value { font-size: 13px; font-weight: 500; }
   .result-value.bold { font-weight: 600; }
   .result-value.dim { opacity: 0.7; }
-
-  .loading-dot { font-size: 24px; color: var(--accent); animation: pulse 1s ease infinite; }
+  .result-value.match-highlight { color: var(--success); }
+  .result-value.miss-highlight { color: var(--danger); }
 
   .spinner {
     width: 24px; height: 24px;
@@ -317,13 +348,36 @@
     animation: spin 0.7s linear infinite;
     margin: 20px auto;
   }
+
+  .tab-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: rgba(167,139,250,0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 </style>
 </head>
 <body>
 
 <div id="app"><div class="card"><div class="spinner"></div><p class="subtitle" style="margin-top:12px">Loading...</p></div></div>
 
-<!-- Firebase SDK (compat version for simplicity — loaded from CDN) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
@@ -341,7 +395,6 @@ firebase.initializeApp({
 
 const db = firebase.database();
 
-// ═══════════════ FIREBASE STORAGE HELPERS ═══════════════
 const fbStorage = {
   async get(key) {
     try {
@@ -442,14 +495,16 @@ const state = {
   p1Answers: [],
   p1Guesses: [],
   p2Answers: [],
+  p2Guesses: [],
   currentQ: 0,
-  phase: "own",
+  phase: "own", // "own" or "guess"
   results: null,
   p1Name: "",
   p2Name: "",
   animating: false,
   errorMsg: "",
   questions: getDailyQuestions(),
+  resultsTab: "p1", // which perspective to show in results
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -471,7 +526,7 @@ function render() {
 }
 
 function renderLoading() {
-  app().innerHTML = `<div class="card"><div class="spinner"></div><p class="subtitle" style="margin-top:12px">Loading...</p></div>`;
+  app().innerHTML = '<div class="card"><div class="spinner"></div><p class="subtitle" style="margin-top:12px">Loading...</p></div>';
 }
 
 function renderHome() {
@@ -482,9 +537,9 @@ function renderHome() {
       <p class="subtitle">10 daily questions. See how well you know each other.</p>
       <div class="date-chip">${getDateString()}</div>
       <div class="how-it-works">
-        <div class="step"><span class="step-num">1</span><span class="step-text">Answer 10 questions for yourself</span></div>
-        <div class="step"><span class="step-num">2</span><span class="step-text">Guess what your friend will pick</span></div>
-        <div class="step"><span class="step-num">3</span><span class="step-text">Share the link & compare results</span></div>
+        <div class="step"><span class="step-num">1</span><span class="step-text">Answer 10 questions & guess your friend's picks</span></div>
+        <div class="step"><span class="step-num">2</span><span class="step-text">Share the link with your friend</span></div>
+        <div class="step"><span class="step-num">3</span><span class="step-text">They answer & guess yours — then compare!</span></div>
       </div>
       <input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p1NameInput" value="${esc(state.p1Name)}">
       <button class="primary-btn" id="startBtn" ${state.p1Name.trim() ? '' : 'disabled'}>Start Today's Quiz →</button>
@@ -495,11 +550,12 @@ function renderHome() {
   btn.addEventListener("click", () => { state.screen = "play"; state.currentQ = 0; state.phase = "own"; render(); });
 }
 
+// ─── P1 Play (own answers + guesses) ───
 function renderPlay() {
   const q = state.questions[state.currentQ];
   const isGuess = state.phase === "guess";
   const phaseTransition = isGuess && state.currentQ === 0
-    ? `<div class="phase-transition">Now guess what your friend will choose!</div>` : '';
+    ? '<div class="phase-transition">Now guess what your friend will choose!</div>' : '';
 
   app().innerHTML = `
     <div class="card">
@@ -519,32 +575,10 @@ function renderPlay() {
         `).join('')}
       </div>
     </div>`;
-  bindOptions(false);
+  bindP1Options();
 }
 
-function renderP2Play() {
-  const q = state.questions[state.currentQ];
-  app().innerHTML = `
-    <div class="card">
-      <div class="top-bar">
-        <span class="phase-label">📝 Your answers</span>
-        <span class="counter">${state.currentQ + 1}/10</span>
-      </div>
-      <div class="progress-track"><div class="progress-fill" style="width:${(state.currentQ / 10) * 100}%"></div></div>
-      <h2 class="question">${esc(q.q)}</h2>
-      <div class="options">
-        ${q.opts.map((opt, i) => `
-          <button class="option-btn" style="animation-delay:${i * 60}ms" data-idx="${i}">
-            <span class="opt-letter">${["A","B","C","D"][i]}</span>
-            <span>${esc(opt)}</span>
-          </button>
-        `).join('')}
-      </div>
-    </div>`;
-  bindOptions(true);
-}
-
-function bindOptions(isP2) {
+function bindP1Options() {
   document.querySelectorAll(".option-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       if (state.animating) return;
@@ -552,14 +586,7 @@ function bindOptions(isP2) {
       const idx = parseInt(btn.dataset.idx);
       btn.classList.add("selected");
 
-      if (isP2) {
-        state.p2Answers.push(idx);
-        if (state.p2Answers.length === 10) {
-          setTimeout(() => { saveP2(); }, 400);
-        } else {
-          setTimeout(() => { state.currentQ++; state.animating = false; render(); }, 400);
-        }
-      } else if (state.phase === "own") {
+      if (state.phase === "own") {
         state.p1Answers.push(idx);
         if (state.p1Answers.length === 10) {
           setTimeout(() => { state.phase = "guess"; state.currentQ = 0; state.animating = false; render(); }, 500);
@@ -578,13 +605,68 @@ function bindOptions(isP2) {
   });
 }
 
+// ─── P2 Play (own answers + guesses) ───
+function renderP2Play() {
+  const q = state.questions[state.currentQ];
+  const isGuess = state.phase === "guess";
+  const phaseTransition = isGuess && state.currentQ === 0
+    ? `<div class="phase-transition">Now guess what ${esc(state.p1Name)} chose!</div>` : '';
+
+  app().innerHTML = `
+    <div class="card">
+      <div class="top-bar">
+        <span class="phase-label">${isGuess ? '🔮 Guess ' + esc(state.p1Name) + "'s answers" : '📝 Your answers'}</span>
+        <span class="counter">${state.currentQ + 1}/10</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:${(state.currentQ / 10) * 100}%"></div></div>
+      ${phaseTransition}
+      <h2 class="question">${esc(q.q)}</h2>
+      <div class="options">
+        ${q.opts.map((opt, i) => `
+          <button class="option-btn" style="animation-delay:${i * 60}ms" data-idx="${i}">
+            <span class="opt-letter">${["A","B","C","D"][i]}</span>
+            <span>${esc(opt)}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>`;
+  bindP2Options();
+}
+
+function bindP2Options() {
+  document.querySelectorAll(".option-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (state.animating) return;
+      state.animating = true;
+      const idx = parseInt(btn.dataset.idx);
+      btn.classList.add("selected");
+
+      if (state.phase === "own") {
+        state.p2Answers.push(idx);
+        if (state.p2Answers.length === 10) {
+          setTimeout(() => { state.phase = "guess"; state.currentQ = 0; state.animating = false; render(); }, 500);
+        } else {
+          setTimeout(() => { state.currentQ++; state.animating = false; render(); }, 400);
+        }
+      } else {
+        state.p2Guesses.push(idx);
+        if (state.p2Guesses.length === 10) {
+          setTimeout(() => { saveP2(); }, 400);
+        } else {
+          setTimeout(() => { state.currentQ++; state.animating = false; render(); }, 400);
+        }
+      }
+    });
+  });
+}
+
 function renderShare() {
   const url = `${location.origin}${location.pathname}#${state.sessionId}`;
   app().innerHTML = `
     <div class="card">
       <span class="logo-icon">🔗</span>
       <h1 class="title">You're all set!</h1>
-      <p class="subtitle">Send this link to your friend. After they answer, come back to this same link to see your results.</p>
+      <p class="subtitle">Send this link to your friend. They'll answer the same questions and guess yours too. Come back to this link to see results!</p>
       <div class="link-box"><span class="link-text">${esc(url)}</span></div>
       <button class="primary-btn" id="copyBtn">Copy Link</button>
       <p class="hint">Bookmark or save this link — you'll need it to see results!</p>
@@ -601,7 +683,7 @@ function renderP2Intro() {
     <div class="card">
       <span class="logo-icon">👋</span>
       <h1 class="title">${esc(state.p1Name)} sent you a Daily Duo!</h1>
-      <p class="subtitle">Answer 10 quick questions and see how well they know you.</p>
+      <p class="subtitle">Answer 10 questions, then guess what ${esc(state.p1Name)} picked. See how well you know each other!</p>
       <div class="date-chip">${getDateString()}</div>
       <input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p2NameInput" value="${esc(state.p2Name)}">
       <button class="primary-btn" id="p2StartBtn" ${state.p2Name.trim() ? '' : 'disabled'}>Let's Go →</button>
@@ -609,58 +691,113 @@ function renderP2Intro() {
   const inp = $("#p2NameInput");
   const btn = $("#p2StartBtn");
   inp.addEventListener("input", () => { state.p2Name = inp.value; btn.disabled = !inp.value.trim(); });
-  btn.addEventListener("click", () => { state.screen = "p2-play"; state.currentQ = 0; render(); });
+  btn.addEventListener("click", () => { state.screen = "p2-play"; state.currentQ = 0; state.phase = "own"; render(); });
 }
 
+// ─── RESULTS ───
 function renderResults() {
   const r = state.results;
   if (!r) return;
   const qs = getDailyQuestions();
-  const score = r.p1Guesses.reduce((s, g, i) => s + (g === r.p2Answers[i] ? 1 : 0), 0);
-  const scoreColor = score >= 8 ? "var(--success)" : score >= 5 ? "var(--warn)" : "var(--danger)";
-  const emoji = score >= 8 ? "🔥" : score >= 5 ? "🤝" : "😅";
-  const msg = score === 10 ? "Perfect sync!" : score >= 8 ? "Almost telepathic!" : score >= 5 ? "Not bad at all!" : score >= 3 ? "Room to grow!" : "Opposites attract?";
+  const p1Score = r.p1Guesses.reduce((s, g, i) => s + (g === r.p2Answers[i] ? 1 : 0), 0);
+  const p2Score = r.p2Guesses.reduce((s, g, i) => s + (g === r.p1Answers[i] ? 1 : 0), 0);
+  const totalScore = p1Score + p2Score;
+  const emoji = totalScore >= 16 ? "🔥" : totalScore >= 10 ? "🤝" : "😅";
+  const msg = totalScore === 20 ? "Perfect sync!" : totalScore >= 16 ? "Almost telepathic!" : totalScore >= 10 ? "Not bad at all!" : totalScore >= 6 ? "Room to grow!" : "Opposites attract?";
+
+  const p1Color = p1Score >= 8 ? "var(--success)" : p1Score >= 5 ? "var(--warn)" : "var(--danger)";
+  const p2Color = p2Score >= 8 ? "var(--success)" : p2Score >= 5 ? "var(--warn)" : "var(--danger)";
+
+  const tab = state.resultsTab;
+
+  let questionRows = "";
+  qs.forEach((q, i) => {
+    if (tab === "p1") {
+      const match = r.p1Guesses[i] === r.p2Answers[i];
+      questionRows += `
+        <div class="result-row ${match ? 'both-match' : 'no-match'}">
+          <div class="result-q">
+            <span class="match-icon ${match ? 'yes' : 'no'}">${match ? '✓' : '✗'}</span>
+            <span class="result-q-text">${esc(q.q)}</span>
+          </div>
+          <div class="result-grid" style="grid-template-columns:1fr;">
+            <div class="result-cell">
+              <div class="result-cell-row">
+                <span class="result-label">${esc(r.p1Name)} guessed</span>
+                <span class="result-value ${match ? 'match-highlight' : 'miss-highlight'}">${esc(q.opts[r.p1Guesses[i]])}</span>
+              </div>
+              <div class="result-cell-row">
+                <span class="result-label">${esc(r.p2Name)} answered</span>
+                <span class="result-value bold">${esc(q.opts[r.p2Answers[i]])}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    } else {
+      const match = r.p2Guesses[i] === r.p1Answers[i];
+      questionRows += `
+        <div class="result-row ${match ? 'both-match' : 'no-match'}">
+          <div class="result-q">
+            <span class="match-icon ${match ? 'yes' : 'no'}">${match ? '✓' : '✗'}</span>
+            <span class="result-q-text">${esc(q.q)}</span>
+          </div>
+          <div class="result-grid" style="grid-template-columns:1fr;">
+            <div class="result-cell">
+              <div class="result-cell-row">
+                <span class="result-label">${esc(r.p2Name)} guessed</span>
+                <span class="result-value ${match ? 'match-highlight' : 'miss-highlight'}">${esc(q.opts[r.p2Guesses[i]])}</span>
+              </div>
+              <div class="result-cell-row">
+                <span class="result-label">${esc(r.p1Name)} answered</span>
+                <span class="result-value bold">${esc(q.opts[r.p1Answers[i]])}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+  });
 
   app().innerHTML = `
     <div class="card wide">
       <div class="result-header">
         <span class="score-emoji">${emoji}</span>
-        <h1 class="title"><span style="color:${scoreColor};-webkit-text-fill-color:${scoreColor}">${score}</span>/10</h1>
-        <p class="subtitle">${msg}</p>
+        <p class="subtitle" style="margin-bottom:8px">${msg}</p>
         <div class="name-badges">
           <span class="badge">${esc(r.p1Name || "Player 1")}</span>
           <span class="vs">vs</span>
           <span class="badge">${esc(r.p2Name || "Player 2")}</span>
         </div>
+        <div class="scores-row">
+          <div class="score-card">
+            <div class="score-card-name">${esc(r.p1Name)}</div>
+            <div class="score-card-value" style="color:${p1Color};-webkit-text-fill-color:${p1Color}">${p1Score}/10</div>
+            <div class="score-card-label">guessing ${esc(r.p2Name)}</div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-name">${esc(r.p2Name)}</div>
+            <div class="score-card-value" style="color:${p2Color};-webkit-text-fill-color:${p2Color}">${p2Score}/10</div>
+            <div class="score-card-label">guessing ${esc(r.p1Name)}</div>
+          </div>
+        </div>
       </div>
+
+      <div class="tab-row">
+        <button class="tab-btn ${tab === 'p1' ? 'active' : ''}" data-tab="p1">${esc(r.p1Name)}'s guesses</button>
+        <button class="tab-btn ${tab === 'p2' ? 'active' : ''}" data-tab="p2">${esc(r.p2Name)}'s guesses</button>
+      </div>
+
       <div class="results-list">
-        ${qs.map((q, i) => {
-          const match = r.p1Guesses[i] === r.p2Answers[i];
-          return `
-          <div class="result-row ${match ? 'match' : 'miss'}">
-            <div class="result-q">
-              <span class="match-icon ${match ? 'yes' : 'no'}">${match ? '✓' : '✗'}</span>
-              <span class="result-q-text">${esc(q.q)}</span>
-            </div>
-            <div class="result-answers">
-              <div class="result-answer">
-                <span class="result-label">${esc(r.p1Name || "P1")} guessed</span>
-                <span class="result-value">${esc(q.opts[r.p1Guesses[i]])}</span>
-              </div>
-              <div class="result-answer">
-                <span class="result-label">${esc(r.p2Name || "P2")} answered</span>
-                <span class="result-value bold">${esc(q.opts[r.p2Answers[i]])}</span>
-              </div>
-              <div class="result-answer">
-                <span class="result-label">${esc(r.p1Name || "P1")} answered</span>
-                <span class="result-value dim">${esc(q.opts[r.p1Answers[i]])}</span>
-              </div>
-            </div>
-          </div>`;
-        }).join('')}
+        ${questionRows}
       </div>
       <button class="primary-btn" id="replayBtn">Play Again Tomorrow</button>
     </div>`;
+
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.resultsTab = btn.dataset.tab;
+      render();
+    });
+  });
   $("#replayBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
 }
 
@@ -710,6 +847,7 @@ async function saveP2() {
   }
   data.p2Name = state.p2Name;
   data.p2Answers = state.p2Answers;
+  data.p2Guesses = state.p2Guesses;
   await fbStorage.set(state.sessionId, data);
   state.results = data;
   state.screen = "results";
@@ -723,7 +861,7 @@ async function init() {
     const data = await fbStorage.get(hash);
     if (data) {
       state.sessionId = hash;
-      if (data.p2Answers) {
+      if (data.p2Answers && data.p2Guesses) {
         state.results = data;
         state.screen = "results";
       } else {
