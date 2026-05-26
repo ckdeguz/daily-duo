@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Duo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-base: #0f0f13;
+    --bg-surface: #1a1a22;
+    --text-primary: #e8e6e3;
+    --text-secondary: #9ca3af;
+    --accent: #a78bfa;
+    --accent2: #60a5fa;
+    --accent3: #34d399;
+    --success: #22c55e;
+    --warn: #f59e0b;
+    --danger: #ef4444;
+  }
+
+  body {
+    font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .card {
+    width: 100%;
+    max-width: 440px;
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: var(--bg-surface);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .card.wide { max-width: 560px; }
+
+  .logo-icon { font-size: 44px; margin-bottom: 4px; display: block; }
+
+  .title {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 8px 0 4px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 4px 0 16px;
+  }
+
+  .date-chip {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(167,139,250,0.12);
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .how-it-works {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0 24px;
+    text-align: left;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-text { font-size: 14px; color: #d1d5db; }
+
+  .name-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: var(--text-primary);
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 14px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .name-input:focus { border-color: var(--accent); }
+
+  .primary-btn {
+    width: 100%;
+    padding: 14px 0;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(96,165,250,0.3);
+  }
+  .primary-btn:hover { transform: translateY(-1px); }
+  .primary-btn:active { transform: translateY(0) scale(0.98); }
+  .primary-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .phase-label { font-size: 14px; font-weight: 600; color: var(--accent); }
+  .counter { font-size: 14px; font-weight: 700; color: var(--text-secondary); }
+
+  .progress-track {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.4s ease;
+  }
+
+  .phase-transition {
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: rgba(167,139,250,0.12);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .question {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0 0 20px;
+    animation: fadeInUp 0.35s ease both;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-primary);
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    animation: fadeInUp 0.35s ease both;
+  }
+  .option-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+  }
+  .option-btn:active { transform: translateY(0) scale(0.98); }
+  .option-btn.selected {
+    background: rgba(167,139,250,0.2);
+    border-color: var(--accent);
+  }
+
+  .opt-letter {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .link-box {
+    padding: 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 14px;
+    word-break: break-all;
+  }
+  .link-text { font-size: 13px; color: var(--accent2); font-family: monospace; }
+
+  .hint { font-size: 13px; color: #6b7280; margin-top: 12px; }
+
+  .result-header { margin-bottom: 24px; }
+  .score-emoji { font-size: 48px; display: block; }
+  .name-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .vs { font-size: 14px; color: var(--text-secondary); }
+
+  .results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  .result-row {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+  }
+  .result-row.match { border-left: 3px solid var(--success); }
+  .result-row.miss { border-left: 3px solid var(--danger); }
+
+  .result-q {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .match-icon { font-size: 16px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+  .match-icon.yes { color: var(--success); }
+  .match-icon.no { color: var(--danger); }
+  .result-q-text { font-size: 14px; font-weight: 600; line-height: 1.4; }
+
+  .result-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 24px;
+  }
+  .result-answer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .result-label { font-size: 12px; color: #6b7280; }
+  .result-value { font-size: 13px; font-weight: 500; }
+  .result-value.bold { font-weight: 600; }
+  .result-value.dim { opacity: 0.7; }
+
+  .loading-dot { font-size: 24px; color: var(--accent); animation: pulse 1s ease infinite; }
+
+  .spinner {
+    width: 24px; height: 24px;
+    border: 3px solid rgba(255,255,255,0.15);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 20px auto;
+  }
+</style>
+</head>
+<body>
+
+<div id="app"><div class="card"><div class="spinner"></div><p class="subtitle" style="margin-top:12px">Loading...</p></div></div>
+
+<!-- Firebase SDK (compat version for simplicity — loaded from CDN) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+// ═══════════════ FIREBASE CONFIG ═══════════════
+firebase.initializeApp({
+  apiKey: "AIzaSyAm4REUN9J2i4WQUuW2H7jdr6zE0kE06MM",
+  authDomain: "daily-duo-74c8d.firebaseapp.com",
+  databaseURL: "https://daily-duo-74c8d-default-rtdb.firebaseio.com",
+  projectId: "daily-duo-74c8d",
+  storageBucket: "daily-duo-74c8d.firebasestorage.app",
+  messagingSenderId: "51525045037",
+  appId: "1:51525045037:web:2135897e66de4f7cea21a4"
+});
+
+const db = firebase.database();
+
+// ═══════════════ FIREBASE STORAGE HELPERS ═══════════════
+const fbStorage = {
+  async get(key) {
+    try {
+      const snap = await db.ref("sessions/" + key).once("value");
+      return snap.exists() ? snap.val() : null;
+    } catch (e) { console.error("Firebase get error:", e); return null; }
+  },
+  async set(key, val) {
+    try {
+      await db.ref("sessions/" + key).set(val);
+      return true;
+    } catch (e) { console.error("Firebase set error:", e); return false; }
+  }
+};
+
+// ═══════════════ QUESTIONS BANK ═══════════════
+const ALL_QUESTIONS = [
+  { q: "What romantic date activity would you choose?", opts: ["Ice Skating", "Stargazing", "Making Dinner", "Walking in a Park"] },
+  { q: "Pick your ideal weekend morning:", opts: ["Sleep in forever", "Early gym session", "Brunch with friends", "Coffee & a book"] },
+  { q: "Which superpower would you actually want?", opts: ["Read minds", "Time travel", "Fly anywhere", "Be invisible"] },
+  { q: "Your go-to comfort food?", opts: ["Pizza", "Mac & Cheese", "Ramen", "Ice Cream"] },
+  { q: "Pick a travel destination:", opts: ["Tokyo", "Paris", "New York", "Bali"] },
+  { q: "How do you recharge after a long day?", opts: ["Nap immediately", "Watch a show", "Go for a walk", "Call a friend"] },
+  { q: "Choose a music vibe:", opts: ["Upbeat pop", "Chill lo-fi", "Classic rock", "R&B / Soul"] },
+  { q: "What's your ideal pet?", opts: ["Dog", "Cat", "Something exotic", "No pets"] },
+  { q: "Pick a season:", opts: ["Spring", "Summer", "Autumn", "Winter"] },
+  { q: "How do you handle conflict?", opts: ["Talk it out now", "Take space first", "Write it down", "Avoid it entirely"] },
+  { q: "Your dream house is:", opts: ["City penthouse", "Beach cottage", "Mountain cabin", "Countryside farm"] },
+  { q: "Pick a movie genre for tonight:", opts: ["Comedy", "Horror", "Romance", "Sci-Fi"] },
+  { q: "What's most important in a friendship?", opts: ["Loyalty", "Humor", "Honesty", "Shared interests"] },
+  { q: "Choose a hobby to try:", opts: ["Painting", "Rock climbing", "Cooking class", "Learning guitar"] },
+  { q: "Your ideal party is:", opts: ["Huge dance party", "Small dinner party", "Game night", "Bonfire outside"] },
+  { q: "Pick a drink:", opts: ["Coffee", "Tea", "Smoothie", "Water (hydrated king)"] },
+  { q: "What do you value most?", opts: ["Adventure", "Stability", "Freedom", "Connection"] },
+  { q: "How do you show someone you care?", opts: ["Words", "Quality time", "Gifts", "Acts of service"] },
+  { q: "Pick an era to visit:", opts: ["Ancient Rome", "Roaring 20s", "The 80s", "The future"] },
+  { q: "Your work style is:", opts: ["Early bird grind", "Night owl focus", "Bursts of energy", "Steady & slow"] },
+  { q: "What scares you most?", opts: ["Public speaking", "Spiders", "Heights", "Being alone"] },
+  { q: "Pick a random skill to master instantly:", opts: ["Cooking any cuisine", "Speaking 10 languages", "Playing piano", "Photographic memory"] },
+  { q: "Ideal way to spend a rainy day?", opts: ["Movie marathon", "Board games", "Baking", "Journaling"] },
+  { q: "What makes you laugh the hardest?", opts: ["Puns & wordplay", "Physical comedy", "Dark humor", "Inside jokes"] },
+  { q: "Pick a fictional world to live in:", opts: ["Harry Potter", "Star Wars", "Lord of the Rings", "Marvel Universe"] },
+  { q: "Your guilty pleasure?", opts: ["Reality TV", "Fast food", "Sleeping all day", "Online shopping"] },
+  { q: "Choose a way to exercise:", opts: ["Running", "Yoga", "Team sports", "Dancing"] },
+  { q: "What's your texting style?", opts: ["Rapid-fire short texts", "Long paragraphs", "Voice messages", "Memes only"] },
+  { q: "Pick a breakfast:", opts: ["Pancakes", "Avocado toast", "Cereal", "Skip it entirely"] },
+  { q: "How do you make big decisions?", opts: ["Gut feeling", "Pro/con lists", "Ask everyone", "Sleep on it"] },
+  { q: "Your phone battery dies. Reaction?", opts: ["Panic", "Relief honestly", "Find a charger ASAP", "Barely notice"] },
+  { q: "Pick an aesthetic:", opts: ["Minimalist clean", "Cozy maximalist", "Dark & moody", "Colorful chaos"] },
+  { q: "What would you do with a free Monday?", opts: ["Day trip somewhere", "Catch up on errands", "Absolutely nothing", "Start a project"] },
+  { q: "Choose a snack:", opts: ["Chips & dip", "Fruit", "Chocolate", "Cheese & crackers"] },
+  { q: "How do you feel about mornings?", opts: ["Love them", "Tolerate them", "Despise them", "Depends on the day"] },
+  { q: "Pick a way to learn something new:", opts: ["YouTube videos", "Read a book", "Take a class", "Trial & error"] },
+  { q: "Your karaoke song?", opts: ["Power ballad", "90s hit", "Current pop", "I don't do karaoke"] },
+  { q: "What keeps you up at night?", opts: ["Overthinking", "Excitement for tomorrow", "My phone", "Nothing, I sleep great"] },
+  { q: "Pick a color that represents you:", opts: ["Blue — calm", "Red — passionate", "Green — balanced", "Yellow — bright"] },
+  { q: "Ideal friend group size?", opts: ["1 best friend", "Tight crew of 3-4", "Big squad", "Mix of all"] },
+];
+
+// ═══════════════ UTILITIES ═══════════════
+function seededRandom(seed) {
+  let s = seed;
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+}
+
+function getDateSeed() {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+
+function getDailyQuestions() {
+  const rng = seededRandom(getDateSeed());
+  const shuffled = [...ALL_QUESTIONS].sort(() => rng() - 0.5);
+  return shuffled.slice(0, 10);
+}
+
+function getDateString() {
+  return new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+}
+
+function generateId() {
+  const chars = "abcdefghijkmnpqrstuvwxyz23456789";
+  let id = "";
+  for (let i = 0; i < 8; i++) id += chars[Math.floor(Math.random() * chars.length)];
+  return id;
+}
+
+function esc(str) {
+  const div = document.createElement("div");
+  div.textContent = str || "";
+  return div.innerHTML;
+}
+
+// ═══════════════ APP STATE ═══════════════
+const state = {
+  screen: "loading",
+  sessionId: null,
+  p1Answers: [],
+  p1Guesses: [],
+  p2Answers: [],
+  currentQ: 0,
+  phase: "own",
+  results: null,
+  p1Name: "",
+  p2Name: "",
+  animating: false,
+  errorMsg: "",
+  questions: getDailyQuestions(),
+};
+
+const $ = (sel) => document.querySelector(sel);
+const app = () => document.getElementById("app");
+
+// ═══════════════ RENDER ═══════════════
+function render() {
+  switch (state.screen) {
+    case "loading": return renderLoading();
+    case "home": return renderHome();
+    case "play": return renderPlay();
+    case "share": return renderShare();
+    case "p2-intro": return renderP2Intro();
+    case "p2-play": return renderP2Play();
+    case "results": return renderResults();
+    case "error": return renderError();
+    default: app().innerHTML = "";
+  }
+}
+
+function renderLoading() {
+  app().innerHTML = `<div class="card"><div class="spinner"></div><p class="subtitle" style="margin-top:12px">Loading...</p></div>`;
+}
+
+function renderHome() {
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">⚡</span>
+      <h1 class="title">Daily Duo</h1>
+      <p class="subtitle">10 daily questions. See how well you know each other.</p>
+      <div class="date-chip">${getDateString()}</div>
+      <div class="how-it-works">
+        <div class="step"><span class="step-num">1</span><span class="step-text">Answer 10 questions for yourself</span></div>
+        <div class="step"><span class="step-num">2</span><span class="step-text">Guess what your friend will pick</span></div>
+        <div class="step"><span class="step-num">3</span><span class="step-text">Share the link & compare results</span></div>
+      </div>
+      <input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p1NameInput" value="${esc(state.p1Name)}">
+      <button class="primary-btn" id="startBtn" ${state.p1Name.trim() ? '' : 'disabled'}>Start Today's Quiz →</button>
+    </div>`;
+  const inp = $("#p1NameInput");
+  const btn = $("#startBtn");
+  inp.addEventListener("input", () => { state.p1Name = inp.value; btn.disabled = !inp.value.trim(); });
+  btn.addEventListener("click", () => { state.screen = "play"; state.currentQ = 0; state.phase = "own"; render(); });
+}
+
+function renderPlay() {
+  const q = state.questions[state.currentQ];
+  const isGuess = state.phase === "guess";
+  const phaseTransition = isGuess && state.currentQ === 0
+    ? `<div class="phase-transition">Now guess what your friend will choose!</div>` : '';
+
+  app().innerHTML = `
+    <div class="card">
+      <div class="top-bar">
+        <span class="phase-label">${isGuess ? '🔮 Guess their answers' : '📝 Your answers'}</span>
+        <span class="counter">${state.currentQ + 1}/10</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:${(state.currentQ / 10) * 100}%"></div></div>
+      ${phaseTransition}
+      <h2 class="question">${esc(q.q)}</h2>
+      <div class="options">
+        ${q.opts.map((opt, i) => `
+          <button class="option-btn" style="animation-delay:${i * 60}ms" data-idx="${i}">
+            <span class="opt-letter">${["A","B","C","D"][i]}</span>
+            <span>${esc(opt)}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>`;
+  bindOptions(false);
+}
+
+function renderP2Play() {
+  const q = state.questions[state.currentQ];
+  app().innerHTML = `
+    <div class="card">
+      <div class="top-bar">
+        <span class="phase-label">📝 Your answers</span>
+        <span class="counter">${state.currentQ + 1}/10</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:${(state.currentQ / 10) * 100}%"></div></div>
+      <h2 class="question">${esc(q.q)}</h2>
+      <div class="options">
+        ${q.opts.map((opt, i) => `
+          <button class="option-btn" style="animation-delay:${i * 60}ms" data-idx="${i}">
+            <span class="opt-letter">${["A","B","C","D"][i]}</span>
+            <span>${esc(opt)}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>`;
+  bindOptions(true);
+}
+
+function bindOptions(isP2) {
+  document.querySelectorAll(".option-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (state.animating) return;
+      state.animating = true;
+      const idx = parseInt(btn.dataset.idx);
+      btn.classList.add("selected");
+
+      if (isP2) {
+        state.p2Answers.push(idx);
+        if (state.p2Answers.length === 10) {
+          setTimeout(() => { saveP2(); }, 400);
+        } else {
+          setTimeout(() => { state.currentQ++; state.animating = false; render(); }, 400);
+        }
+      } else if (state.phase === "own") {
+        state.p1Answers.push(idx);
+        if (state.p1Answers.length === 10) {
+          setTimeout(() => { state.phase = "guess"; state.currentQ = 0; state.animating = false; render(); }, 500);
+        } else {
+          setTimeout(() => { state.currentQ++; state.animating = false; render(); }, 400);
+        }
+      } else {
+        state.p1Guesses.push(idx);
+        if (state.p1Guesses.length === 10) {
+          setTimeout(() => { saveP1(); }, 400);
+        } else {
+          setTimeout(() => { state.currentQ++; state.animating = false; render(); }, 400);
+        }
+      }
+    });
+  });
+}
+
+function renderShare() {
+  const url = `${location.origin}${location.pathname}#${state.sessionId}`;
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">🔗</span>
+      <h1 class="title">You're all set!</h1>
+      <p class="subtitle">Send this link to your friend. After they answer, come back to this same link to see your results.</p>
+      <div class="link-box"><span class="link-text">${esc(url)}</span></div>
+      <button class="primary-btn" id="copyBtn">Copy Link</button>
+      <p class="hint">Bookmark or save this link — you'll need it to see results!</p>
+    </div>`;
+  $("#copyBtn").addEventListener("click", () => {
+    navigator.clipboard.writeText(url).catch(() => {});
+    $("#copyBtn").textContent = "✓ Copied!";
+    setTimeout(() => { if ($("#copyBtn")) $("#copyBtn").textContent = "Copy Link"; }, 2000);
+  });
+}
+
+function renderP2Intro() {
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">👋</span>
+      <h1 class="title">${esc(state.p1Name)} sent you a Daily Duo!</h1>
+      <p class="subtitle">Answer 10 quick questions and see how well they know you.</p>
+      <div class="date-chip">${getDateString()}</div>
+      <input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p2NameInput" value="${esc(state.p2Name)}">
+      <button class="primary-btn" id="p2StartBtn" ${state.p2Name.trim() ? '' : 'disabled'}>Let's Go →</button>
+    </div>`;
+  const inp = $("#p2NameInput");
+  const btn = $("#p2StartBtn");
+  inp.addEventListener("input", () => { state.p2Name = inp.value; btn.disabled = !inp.value.trim(); });
+  btn.addEventListener("click", () => { state.screen = "p2-play"; state.currentQ = 0; render(); });
+}
+
+function renderResults() {
+  const r = state.results;
+  if (!r) return;
+  const qs = getDailyQuestions();
+  const score = r.p1Guesses.reduce((s, g, i) => s + (g === r.p2Answers[i] ? 1 : 0), 0);
+  const scoreColor = score >= 8 ? "var(--success)" : score >= 5 ? "var(--warn)" : "var(--danger)";
+  const emoji = score >= 8 ? "🔥" : score >= 5 ? "🤝" : "😅";
+  const msg = score === 10 ? "Perfect sync!" : score >= 8 ? "Almost telepathic!" : score >= 5 ? "Not bad at all!" : score >= 3 ? "Room to grow!" : "Opposites attract?";
+
+  app().innerHTML = `
+    <div class="card wide">
+      <div class="result-header">
+        <span class="score-emoji">${emoji}</span>
+        <h1 class="title"><span style="color:${scoreColor};-webkit-text-fill-color:${scoreColor}">${score}</span>/10</h1>
+        <p class="subtitle">${msg}</p>
+        <div class="name-badges">
+          <span class="badge">${esc(r.p1Name || "Player 1")}</span>
+          <span class="vs">vs</span>
+          <span class="badge">${esc(r.p2Name || "Player 2")}</span>
+        </div>
+      </div>
+      <div class="results-list">
+        ${qs.map((q, i) => {
+          const match = r.p1Guesses[i] === r.p2Answers[i];
+          return `
+          <div class="result-row ${match ? 'match' : 'miss'}">
+            <div class="result-q">
+              <span class="match-icon ${match ? 'yes' : 'no'}">${match ? '✓' : '✗'}</span>
+              <span class="result-q-text">${esc(q.q)}</span>
+            </div>
+            <div class="result-answers">
+              <div class="result-answer">
+                <span class="result-label">${esc(r.p1Name || "P1")} guessed</span>
+                <span class="result-value">${esc(q.opts[r.p1Guesses[i]])}</span>
+              </div>
+              <div class="result-answer">
+                <span class="result-label">${esc(r.p2Name || "P2")} answered</span>
+                <span class="result-value bold">${esc(q.opts[r.p2Answers[i]])}</span>
+              </div>
+              <div class="result-answer">
+                <span class="result-label">${esc(r.p1Name || "P1")} answered</span>
+                <span class="result-value dim">${esc(q.opts[r.p1Answers[i]])}</span>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      <button class="primary-btn" id="replayBtn">Play Again Tomorrow</button>
+    </div>`;
+  $("#replayBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
+}
+
+function renderError() {
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">😕</span>
+      <h1 class="title">Oops</h1>
+      <p class="subtitle">${esc(state.errorMsg)}</p>
+      <button class="primary-btn" id="homeBtn">Go Home</button>
+    </div>`;
+  $("#homeBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
+}
+
+// ═══════════════ SAVE FUNCTIONS ═══════════════
+async function saveP1() {
+  renderLoading();
+  const id = generateId();
+  const payload = {
+    p1Name: state.p1Name,
+    p1Answers: state.p1Answers,
+    p1Guesses: state.p1Guesses,
+    dateSeed: getDateSeed(),
+    createdAt: Date.now(),
+  };
+  const ok = await fbStorage.set(id, payload);
+  state.animating = false;
+  if (ok) {
+    state.sessionId = id;
+    state.screen = "share";
+  } else {
+    state.errorMsg = "Couldn't save your answers. Please check your connection and try again.";
+    state.screen = "error";
+  }
+  render();
+}
+
+async function saveP2() {
+  renderLoading();
+  const data = await fbStorage.get(state.sessionId);
+  state.animating = false;
+  if (!data) {
+    state.errorMsg = "Session not found.";
+    state.screen = "error";
+    render();
+    return;
+  }
+  data.p2Name = state.p2Name;
+  data.p2Answers = state.p2Answers;
+  await fbStorage.set(state.sessionId, data);
+  state.results = data;
+  state.screen = "results";
+  render();
+}
+
+// ═══════════════ INIT ═══════════════
+async function init() {
+  const hash = location.hash.replace("#", "");
+  if (hash) {
+    const data = await fbStorage.get(hash);
+    if (data) {
+      state.sessionId = hash;
+      if (data.p2Answers) {
+        state.results = data;
+        state.screen = "results";
+      } else {
+        state.p1Name = data.p1Name || "Player 1";
+        state.screen = "p2-intro";
+      }
+    } else {
+      state.errorMsg = "This link doesn't seem to be valid or may have expired.";
+      state.screen = "error";
+    }
+  } else {
+    state.screen = "home";
+  }
+  render();
+}
+
+init();
+</script>
+</body>
+</html>
