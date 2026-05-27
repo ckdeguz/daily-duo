@@ -294,6 +294,38 @@
   .share-btn.native-share:hover { opacity: 0.9; }
   .share-btn.copied { color: var(--success); border-color: var(--success); }
 
+  .share-results-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .share-results-row .primary-btn {
+    flex: 1;
+  }
+  .share-results-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(167,139,250,0.3);
+    background: rgba(167,139,250,0.08);
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .share-results-btn:hover {
+    background: rgba(167,139,250,0.15);
+    border-color: var(--accent);
+  }
+  .share-results-btn:active { transform: scale(0.97); }
+  .share-results-btn svg { width: 18px; height: 18px; }
+
   .opt-letter {
     width: 30px; height: 30px;
     border-radius: 8px;
@@ -823,6 +855,175 @@ function renderP2Intro() {
 }
 
 // ─── RESULTS ───
+function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
+  const W = 1080, H = 1350; // Instagram Story size
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  // Background gradient
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, "#0f0f13");
+  bg.addColorStop(0.5, "#1a1a2e");
+  bg.addColorStop(1, "#0f0f13");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Decorative accent glow
+  ctx.save();
+  const glow = ctx.createRadialGradient(W / 2, 400, 0, W / 2, 400, 400);
+  glow.addColorStop(0, "rgba(167,139,250,0.15)");
+  glow.addColorStop(1, "rgba(167,139,250,0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+  ctx.restore();
+
+  // Helper: rounded rect
+  function roundRect(x, y, w, h, rad) {
+    ctx.beginPath();
+    ctx.moveTo(x + rad, y);
+    ctx.lineTo(x + w - rad, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + rad);
+    ctx.lineTo(x + w, y + h - rad);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - rad, y + h);
+    ctx.lineTo(x + rad, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - rad);
+    ctx.lineTo(x, y + rad);
+    ctx.quadraticCurveTo(x, y, x + rad, y);
+    ctx.closePath();
+  }
+
+  // Logo & title
+  ctx.textAlign = "center";
+  ctx.font = "80px sans-serif";
+  ctx.fillStyle = "#e8e6e3";
+  ctx.fillText("⚡", W / 2, 160);
+
+  ctx.font = "bold 56px 'DM Sans', sans-serif";
+  ctx.fillStyle = "#e8e6e3";
+  ctx.fillText("Daily Duo", W / 2, 240);
+
+  // Date
+  ctx.font = "28px 'DM Sans', sans-serif";
+  ctx.fillStyle = "#9ca3af";
+  ctx.fillText(getDateString(), W / 2, 290);
+
+  // Emoji + message
+  ctx.font = "100px sans-serif";
+  ctx.fillText(emoji, W / 2, 430);
+
+  ctx.font = "bold 42px 'DM Sans', sans-serif";
+  ctx.fillStyle = "#e8e6e3";
+  ctx.fillText(msg, W / 2, 500);
+
+  // Combined score
+  ctx.font = "bold 120px 'DM Sans', sans-serif";
+  const scoreGrad = ctx.createLinearGradient(W / 2 - 100, 560, W / 2 + 100, 680);
+  scoreGrad.addColorStop(0, "#a78bfa");
+  scoreGrad.addColorStop(1, "#60a5fa");
+  ctx.fillStyle = scoreGrad;
+  ctx.fillText(`${totalScore}/20`, W / 2, 660);
+
+  // Player score cards
+  const cardW = 440, cardH = 220, cardY = 740, gap = 40;
+  const card1X = W / 2 - cardW - gap / 2;
+  const card2X = W / 2 + gap / 2;
+
+  function drawScoreCard(x, y, name, score, otherName) {
+    const color = score >= 8 ? "#22c55e" : score >= 5 ? "#f59e0b" : "#ef4444";
+    roundRect(x, y, cardW, cardH, 24);
+    ctx.fillStyle = "rgba(255,255,255,0.04)";
+    ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.font = "bold 30px 'DM Sans', sans-serif";
+    ctx.fillStyle = "#e8e6e3";
+    ctx.fillText(name, x + cardW / 2, y + 55);
+
+    ctx.font = "bold 72px 'DM Sans', sans-serif";
+    ctx.fillStyle = color;
+    ctx.fillText(`${score}/10`, x + cardW / 2, y + 145);
+
+    ctx.font = "24px 'DM Sans', sans-serif";
+    ctx.fillStyle = "#9ca3af";
+    ctx.fillText(`guessing ${otherName}`, x + cardW / 2, y + 190);
+  }
+
+  drawScoreCard(card1X, cardY, r.p1Name, p1Score, r.p2Name);
+  drawScoreCard(card2X, cardY, r.p2Name, p2Score, r.p1Name);
+
+  // "vs" between cards
+  ctx.font = "bold 28px 'DM Sans', sans-serif";
+  ctx.fillStyle = "#9ca3af";
+  ctx.fillText("vs", W / 2, cardY + cardH / 2 + 10);
+
+  // Score bar visualization
+  const barY = 1020, barH = 40, barPad = 100;
+  roundRect(barPad, barY, W - barPad * 2, barH, barH / 2);
+  ctx.fillStyle = "rgba(255,255,255,0.06)";
+  ctx.fill();
+
+  const fillW = Math.max(barH, ((W - barPad * 2) * totalScore) / 20);
+  roundRect(barPad, barY, fillW, barH, barH / 2);
+  const barGrad = ctx.createLinearGradient(barPad, 0, barPad + fillW, 0);
+  barGrad.addColorStop(0, "#a78bfa");
+  barGrad.addColorStop(1, "#60a5fa");
+  ctx.fillStyle = barGrad;
+  ctx.fill();
+
+  // CTA at bottom
+  ctx.font = "bold 32px 'DM Sans', sans-serif";
+  ctx.fillStyle = "#a78bfa";
+  ctx.fillText("Think you know your friends?", W / 2, 1180);
+
+  ctx.font = "26px 'DM Sans', sans-serif";
+  ctx.fillStyle = "#9ca3af";
+  const shareUrl = location.origin + location.pathname;
+  ctx.fillText(shareUrl, W / 2, 1230);
+
+  return canvas;
+}
+
+function shareResultsImage() {
+  const r = state.results;
+  const p1Score = r.p1Guesses.reduce((s, g, i) => s + (g === r.p2Answers[i] ? 1 : 0), 0);
+  const p2Score = r.p2Guesses.reduce((s, g, i) => s + (g === r.p1Answers[i] ? 1 : 0), 0);
+  const totalScore = p1Score + p2Score;
+  const emoji = totalScore === 20 ? "🔥" : totalScore >= 16 ? "🔥" : totalScore >= 10 ? "🤝" : "😅";
+  const msg = totalScore === 20 ? "Perfect sync!" : totalScore >= 16 ? "Almost telepathic!" : totalScore >= 10 ? "Not bad at all!" : totalScore >= 6 ? "Room to grow!" : "Opposites attract?";
+
+  const canvas = generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg);
+
+  canvas.toBlob(async (blob) => {
+    const file = new File([blob], "daily-duo-results.png", { type: "image/png" });
+
+    // Try native share with the image (works great on mobile for IG stories)
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          title: "Daily Duo Results",
+          text: "Check out our Daily Duo score! ⚡",
+          files: [file],
+        });
+        return;
+      } catch (e) { /* user cancelled, fall through to download */ }
+    }
+
+    // Fallback: download the image
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "daily-duo-results.png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, "image/png");
+}
+
 function renderResults() {
   const r = state.results;
   if (!r) return;
@@ -917,7 +1118,13 @@ function renderResults() {
       <div class="results-list">
         ${questionRows}
       </div>
-      <button class="primary-btn" id="replayBtn">Play Again Tomorrow</button>
+      <div class="share-results-row">
+        <button class="share-results-btn" id="shareResultsBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Share Results
+        </button>
+        <button class="primary-btn" id="replayBtn">Play Again Tomorrow</button>
+      </div>
     </div>`;
 
   document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -927,6 +1134,7 @@ function renderResults() {
     });
   });
   $("#replayBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
+  $("#shareResultsBtn").addEventListener("click", shareResultsImage);
 }
 
 function renderError() {
