@@ -221,6 +221,28 @@
     border-color: var(--accent);
   }
 
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .back-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--text-primary);
+  }
+  .back-btn:active { transform: scale(0.96); }
+
   .opt-letter {
     width: 30px; height: 30px;
     border-radius: 8px;
@@ -535,6 +557,7 @@ function renderPlay() {
   const isGuess = state.phase === "guess";
   const phaseTransition = isGuess && state.currentQ === 0
     ? '<div class="phase-transition">Now guess what your friend will choose!</div>' : '';
+  const canGoBack = state.currentQ > 0;
 
   app().innerHTML = `
     <div class="card">
@@ -553,8 +576,21 @@ function renderPlay() {
           </button>
         `).join('')}
       </div>
+      ${canGoBack ? '<button class="back-btn" id="backBtn">← Go Back</button>' : ''}
     </div>`;
   bindP1Options();
+  if (canGoBack) {
+    $("#backBtn").addEventListener("click", () => {
+      if (state.animating) return;
+      if (state.phase === "own") {
+        state.p1Answers.pop();
+      } else {
+        state.p1Guesses.pop();
+      }
+      state.currentQ--;
+      render();
+    });
+  }
 }
 
 function bindP1Options() {
@@ -590,6 +626,7 @@ function renderP2Play() {
   const isGuess = state.phase === "guess";
   const phaseTransition = isGuess && state.currentQ === 0
     ? `<div class="phase-transition">Now guess what ${esc(state.p1Name)} chose!</div>` : '';
+  const canGoBack = state.currentQ > 0;
 
   app().innerHTML = `
     <div class="card">
@@ -608,8 +645,21 @@ function renderP2Play() {
           </button>
         `).join('')}
       </div>
+      ${canGoBack ? '<button class="back-btn" id="backBtn">← Go Back</button>' : ''}
     </div>`;
   bindP2Options();
+  if (canGoBack) {
+    $("#backBtn").addEventListener("click", () => {
+      if (state.animating) return;
+      if (state.phase === "own") {
+        state.p2Answers.pop();
+      } else {
+        state.p2Guesses.pop();
+      }
+      state.currentQ--;
+      render();
+    });
+  }
 }
 
 function bindP2Options() {
