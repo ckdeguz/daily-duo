@@ -380,6 +380,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="questions.js"></script>
 
 <script>
 // ═══════════════ FIREBASE CONFIG ═══════════════
@@ -410,50 +411,6 @@ const fbStorage = {
   }
 };
 
-// ═══════════════ QUESTIONS BANK ═══════════════
-const ALL_QUESTIONS = [
-  { q: "What romantic date activity would you choose?", opts: ["Ice Skating", "Stargazing", "Making Dinner", "Walking in a Park"] },
-  { q: "Pick your ideal weekend morning:", opts: ["Sleep in forever", "Early gym session", "Brunch with friends", "Coffee & a book"] },
-  { q: "Which superpower would you actually want?", opts: ["Read minds", "Time travel", "Fly anywhere", "Be invisible"] },
-  { q: "Your go-to comfort food?", opts: ["Pizza", "Mac & Cheese", "Ramen", "Ice Cream"] },
-  { q: "Pick a travel destination:", opts: ["Tokyo", "Paris", "New York", "Bali"] },
-  { q: "How do you recharge after a long day?", opts: ["Nap immediately", "Watch a show", "Go for a walk", "Call a friend"] },
-  { q: "Choose a music vibe:", opts: ["Upbeat pop", "Chill lo-fi", "Classic rock", "R&B / Soul"] },
-  { q: "What's your ideal pet?", opts: ["Dog", "Cat", "Something exotic", "No pets"] },
-  { q: "Pick a season:", opts: ["Spring", "Summer", "Autumn", "Winter"] },
-  { q: "How do you handle conflict?", opts: ["Talk it out now", "Take space first", "Write it down", "Avoid it entirely"] },
-  { q: "Your dream house is:", opts: ["City penthouse", "Beach cottage", "Mountain cabin", "Countryside farm"] },
-  { q: "Pick a movie genre for tonight:", opts: ["Comedy", "Horror", "Romance", "Sci-Fi"] },
-  { q: "What's most important in a friendship?", opts: ["Loyalty", "Humor", "Honesty", "Shared interests"] },
-  { q: "Choose a hobby to try:", opts: ["Painting", "Rock climbing", "Cooking class", "Learning guitar"] },
-  { q: "Your ideal party is:", opts: ["Huge dance party", "Small dinner party", "Game night", "Bonfire outside"] },
-  { q: "Pick a drink:", opts: ["Coffee", "Tea", "Smoothie", "Water (hydrated king)"] },
-  { q: "What do you value most?", opts: ["Adventure", "Stability", "Freedom", "Connection"] },
-  { q: "How do you show someone you care?", opts: ["Words", "Quality time", "Gifts", "Acts of service"] },
-  { q: "Pick an era to visit:", opts: ["Ancient Rome", "Roaring 20s", "The 80s", "The future"] },
-  { q: "Your work style is:", opts: ["Early bird grind", "Night owl focus", "Bursts of energy", "Steady & slow"] },
-  { q: "What scares you most?", opts: ["Public speaking", "Spiders", "Heights", "Being alone"] },
-  { q: "Pick a random skill to master instantly:", opts: ["Cooking any cuisine", "Speaking 10 languages", "Playing piano", "Photographic memory"] },
-  { q: "Ideal way to spend a rainy day?", opts: ["Movie marathon", "Board games", "Baking", "Journaling"] },
-  { q: "What makes you laugh the hardest?", opts: ["Puns & wordplay", "Physical comedy", "Dark humor", "Inside jokes"] },
-  { q: "Pick a fictional world to live in:", opts: ["Harry Potter", "Star Wars", "Lord of the Rings", "Marvel Universe"] },
-  { q: "Your guilty pleasure?", opts: ["Reality TV", "Fast food", "Sleeping all day", "Online shopping"] },
-  { q: "Choose a way to exercise:", opts: ["Running", "Yoga", "Team sports", "Dancing"] },
-  { q: "What's your texting style?", opts: ["Rapid-fire short texts", "Long paragraphs", "Voice messages", "Memes only"] },
-  { q: "Pick a breakfast:", opts: ["Pancakes", "Avocado toast", "Cereal", "Skip it entirely"] },
-  { q: "How do you make big decisions?", opts: ["Gut feeling", "Pro/con lists", "Ask everyone", "Sleep on it"] },
-  { q: "Your phone battery dies. Reaction?", opts: ["Panic", "Relief honestly", "Find a charger ASAP", "Barely notice"] },
-  { q: "Pick an aesthetic:", opts: ["Minimalist clean", "Cozy maximalist", "Dark & moody", "Colorful chaos"] },
-  { q: "What would you do with a free Monday?", opts: ["Day trip somewhere", "Catch up on errands", "Absolutely nothing", "Start a project"] },
-  { q: "Choose a snack:", opts: ["Chips & dip", "Fruit", "Chocolate", "Cheese & crackers"] },
-  { q: "How do you feel about mornings?", opts: ["Love them", "Tolerate them", "Despise them", "Depends on the day"] },
-  { q: "Pick a way to learn something new:", opts: ["YouTube videos", "Read a book", "Take a class", "Trial & error"] },
-  { q: "Your karaoke song?", opts: ["Power ballad", "90s hit", "Current pop", "I don't do karaoke"] },
-  { q: "What keeps you up at night?", opts: ["Overthinking", "Excitement for tomorrow", "My phone", "Nothing, I sleep great"] },
-  { q: "Pick a color that represents you:", opts: ["Blue — calm", "Red — passionate", "Green — balanced", "Yellow — bright"] },
-  { q: "Ideal friend group size?", opts: ["1 best friend", "Tight crew of 3-4", "Big squad", "Mix of all"] },
-];
-
 // ═══════════════ UTILITIES ═══════════════
 function seededRandom(seed) {
   let s = seed;
@@ -466,9 +423,31 @@ function getDateSeed() {
 }
 
 function getDailyQuestions() {
-  const rng = seededRandom(getDateSeed());
-  const shuffled = [...ALL_QUESTIONS].sort(() => rng() - 0.5);
-  return shuffled.slice(0, 10);
+  const totalQ = ALL_QUESTIONS.length;
+  const questionsPerDay = 10;
+  const totalCycles = Math.floor(totalQ / questionsPerDay); // full days before a repeat cycle
+  const dateSeed = getDateSeed();
+
+  // Determine which cycle we're in and which day within that cycle
+  // Use a base date so day 0 = some fixed start; each day increments
+  const baseDate = new Date(2025, 0, 1); // Jan 1, 2025
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const dayIndex = Math.floor((today - baseDate) / 86400000);
+  const cycleDay = dayIndex % totalCycles; // which day within this cycle
+  const cycleNum = Math.floor(dayIndex / totalCycles); // which cycle we're on
+
+  // Shuffle all questions using cycle number as seed (new shuffle each full cycle)
+  const rng = seededRandom(cycleNum * 99991 + 7);
+  const indices = Array.from({ length: totalQ }, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+
+  // Pick the slice for today's day within the cycle
+  const start = cycleDay * questionsPerDay;
+  return indices.slice(start, start + questionsPerDay).map(i => ALL_QUESTIONS[i]);
 }
 
 function getDateString() {
