@@ -1,10 +1,4 @@
-// Daily Duo — Question Bank
-// Each question has a prompt (q) and exactly 4 options (opts)
-// Questions are picked daily using a date-based seed
-
 const ALL_QUESTIONS = [
-
-// ═══════════════ FOOD & DRINK ═══════════════
 { q: "Pick a late-night snack:", opts: ["Cereal", "Leftover pizza", "Chips & salsa", "Ice cream"] },
 { q: "Your ideal coffee order?", opts: ["Black coffee", "Iced latte", "Cappuccino", "I don't drink coffee"] },
 { q: "Choose a cuisine for the rest of your life:", opts: ["Italian", "Japanese", "Mexican", "Indian"] },
@@ -35,8 +29,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a type of rice:", opts: ["White rice", "Fried rice", "Brown rice", "Sushi rice"] },
 { q: "Choose a holiday food:", opts: ["Turkey dinner", "Ham", "Tamales", "Cookies & pie"] },
 { q: "What do you grab at a gas station?", opts: ["Chips", "Energy drink", "Candy bar", "Nothing"] },
-
-// ═══════════════ TRAVEL & PLACES ═══════════════
 { q: "Pick a travel destination:", opts: ["Tokyo", "Paris", "New York", "Bali"] },
 { q: "Your ideal vacation type?", opts: ["Beach resort", "City exploration", "Mountain retreat", "Road trip"] },
 { q: "Choose a continent to explore:", opts: ["Europe", "Asia", "South America", "Africa"] },
@@ -57,8 +49,6 @@ const ALL_QUESTIONS = [
 { q: "How do you navigate a new city?", opts: ["Google Maps always", "Wander and explore", "Ask locals", "Follow the group"] },
 { q: "Pick a train journey:", opts: ["Japanese bullet train", "Trans-Siberian Railway", "Swiss Alps route", "UK countryside"] },
 { q: "Your souvenir style?", opts: ["Fridge magnet", "Local art", "Food or spices", "I don't buy souvenirs"] },
-
-// ═══════════════ PERSONALITY & SELF ═══════════════
 { q: "What romantic date activity would you choose?", opts: ["Ice Skating", "Stargazing", "Making Dinner", "Walking in a Park"] },
 { q: "Pick your ideal weekend morning:", opts: ["Sleep in forever", "Early gym session", "Brunch with friends", "Coffee & a book"] },
 { q: "Which superpower would you actually want?", opts: ["Read minds", "Time travel", "Fly anywhere", "Be invisible"] },
@@ -89,8 +79,6 @@ const ALL_QUESTIONS = [
 { q: "How do you handle being wrong?", opts: ["Admit it right away", "Need a moment", "Deflect with humor", "Rarely wrong"] },
 { q: "What do you do when you're bored?", opts: ["Scroll my phone", "Start a project", "Call someone", "Take a nap"] },
 { q: "Your patience level?", opts: ["Very patient", "Depends on the situation", "Working on it", "Basically zero"] },
-
-// ═══════════════ ENTERTAINMENT & CULTURE ═══════════════
 { q: "Pick a movie genre for tonight:", opts: ["Comedy", "Horror", "Romance", "Sci-Fi"] },
 { q: "Choose a music vibe:", opts: ["Upbeat pop", "Chill lo-fi", "Classic rock", "R&B / Soul"] },
 { q: "Pick a fictional world to live in:", opts: ["Harry Potter", "Star Wars", "Lord of the Rings", "Marvel Universe"] },
@@ -111,8 +99,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a fictional character to befriend:", opts: ["Sherlock Holmes", "SpongeBob", "Hermione Granger", "Iron Man"] },
 { q: "How do you discover new music?", opts: ["Friend recommendations", "Algorithm playlists", "Radio/random", "I stick to what I know"] },
 { q: "Pick a party game:", opts: ["Charades", "Cards Against Humanity", "Beer pong", "Trivia"] },
-
-// ═══════════════ LIFESTYLE & HABITS ═══════════════
 { q: "Your dream house is:", opts: ["City penthouse", "Beach cottage", "Mountain cabin", "Countryside farm"] },
 { q: "What's your ideal pet?", opts: ["Dog", "Cat", "Something exotic", "No pets"] },
 { q: "Choose a hobby to try:", opts: ["Painting", "Rock climbing", "Cooking class", "Learning guitar"] },
@@ -133,8 +119,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a Saturday night in:", opts: ["Cook a nice dinner", "Movie & pajamas", "Video games", "Fall asleep by 9"] },
 { q: "Your alarm clock situation?", opts: ["One alarm, up immediately", "10 alarms minimum", "Natural wake-up", "Someone else wakes me"] },
 { q: "How do you spend your commute?", opts: ["Music", "Podcast", "Staring into space", "Texting"] },
-
-// ═══════════════ HYPOTHETICALS & WOULD YOU RATHER ═══════════════
 { q: "Pick an era to visit:", opts: ["Ancient Rome", "Roaring 20s", "The 80s", "The future"] },
 { q: "Pick a random skill to master instantly:", opts: ["Cooking any cuisine", "Speaking 10 languages", "Playing piano", "Photographic memory"] },
 { q: "You win the lottery. First purchase?", opts: ["Dream house", "World trip", "Pay off debt", "Invest it all"] },
@@ -155,8 +139,6 @@ const ALL_QUESTIONS = [
 { q: "You can master one sport overnight:", opts: ["Tennis", "Surfing", "Basketball", "Snowboarding"] },
 { q: "Pick a dream dinner guest:", opts: ["A historical figure", "Your favorite celebrity", "Your future self", "A random stranger"] },
 { q: "If you had a clone for a day:", opts: ["Send it to work", "Finally do two things at once", "See what others see", "Existential crisis"] },
-
-// ═══════════════ SOCIAL & RELATIONSHIPS ═══════════════
 { q: "What's your go-to conversation starter?", opts: ["Compliment something", "Ask a question", "Make a joke", "Wait for them to talk first"] },
 { q: "How do you apologize?", opts: ["Words — say sorry directly", "Actions — do something nice", "Humor — lighten the mood", "Time — give space first"] },
 { q: "Your friendship dealbreaker?", opts: ["Dishonesty", "Flakiness", "Negativity", "Competitiveness"] },
@@ -172,8 +154,6 @@ const ALL_QUESTIONS = [
 { q: "Your stance on splitting the bill?", opts: ["Always split equally", "Pay for what you ordered", "Take turns treating", "Whoever offers first"] },
 { q: "What quality attracts you to someone?", opts: ["Sense of humor", "Ambition", "Kindness", "Intelligence"] },
 { q: "How do you handle a friend canceling plans?", opts: ["Totally fine", "Slightly bummed", "Relieved honestly", "Already have a backup plan"] },
-
-// ═══════════════ WORK & AMBITION ═══════════════
 { q: "Your dream work environment?", opts: ["Home office", "Busy café", "Corner office", "Outdoors somehow"] },
 { q: "Pick a career in another life:", opts: ["Chef", "Musician", "Astronaut", "Wildlife photographer"] },
 { q: "How do you handle deadlines?", opts: ["Ahead of schedule", "Right on time", "Last minute rush", "What deadline?"] },
@@ -184,8 +164,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a side hustle:", opts: ["Content creation", "Tutoring", "Selling crafts", "Freelance consulting"] },
 { q: "What motivates you most?", opts: ["Money", "Passion", "Recognition", "Helping others"] },
 { q: "Your response to constructive criticism?", opts: ["Appreciate it", "Need time to process", "Get defensive first", "Depends who it's from"] },
-
-// ═══════════════ RANDOM & FUN ═══════════════
 { q: "Pick an emoji that represents you:", opts: ["😎", "🥺", "😂", "🔥"] },
 { q: "Choose a supermarket aisle to get lost in:", opts: ["Snacks", "International food", "Bakery", "Ice cream"] },
 { q: "Your go-to lie?", opts: ["I'm on my way", "I'm fine", "I'll do it later", "I already ate"] },
@@ -206,9 +184,6 @@ const ALL_QUESTIONS = [
 { q: "Your junk drawer energy?", opts: ["Don't have one", "Mildly organized", "Complete chaos", "Multiple junk drawers"] },
 { q: "Choose a vending machine item:", opts: ["Chips", "Candy bar", "Water", "The one that gets stuck"] },
 { q: "How do you sit in a chair?", opts: ["Properly", "Cross-legged", "Sideways", "Like a pretzel"] },
-
-
-// ═══════════════ CHILDHOOD & NOSTALGIA ═══════════════
 { q: "Pick a childhood snack:", opts: ["Fruit snacks", "Goldfish crackers", "Dunkaroos", "Lunchables"] },
 { q: "Your favorite recess activity?", opts: ["Swings", "Tag/chase games", "Four square", "Sitting and talking"] },
 { q: "Choose a 90s/2000s show:", opts: ["SpongeBob", "Drake & Josh", "Kim Possible", "Avatar: The Last Airbender"] },
@@ -229,8 +204,6 @@ const ALL_QUESTIONS = [
 { q: "After-school routine as a kid?", opts: ["Snack & TV", "Homework first", "Play outside", "Video games"] },
 { q: "Pick a field trip destination:", opts: ["Zoo", "Museum", "Aquarium", "Farm"] },
 { q: "Your childhood best friend was:", opts: ["Neighbor kid", "School classmate", "Family friend", "Imaginary"] },
-
-// ═══════════════ TECHNOLOGY & INTERNET ═══════════════
 { q: "Pick a social media platform:", opts: ["Instagram", "TikTok", "Twitter/X", "I avoid social media"] },
 { q: "Your phone case style?", opts: ["Clear/minimal", "Colorful/patterned", "Heavy duty", "No case, living dangerously"] },
 { q: "How many browser tabs open right now?", opts: ["1-5, I'm organized", "6-15", "16-30", "I've lost count"] },
@@ -246,8 +219,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a first app you check in the morning:", opts: ["Messages", "Instagram/TikTok", "Email", "Weather"] },
 { q: "How do you store photos?", opts: ["Cloud backup", "Never delete anything", "Organized in albums", "My phone is full"] },
 { q: "Your Wi-Fi name would be:", opts: ["Something boring", "A pun", "FBI Surveillance Van", "My name"] },
-
-// ═══════════════ SEASONS & HOLIDAYS ═══════════════
 { q: "Favorite holiday?", opts: ["Christmas/Hanukkah", "Halloween", "Thanksgiving", "New Year's"] },
 { q: "Pick a winter activity:", opts: ["Ice skating", "Hot cocoa by the fire", "Snowball fight", "Stay inside"] },
 { q: "Your Halloween move?", opts: ["Go all out on costume", "Hand out candy", "Horror movie marathon", "Treat it like a normal day"] },
@@ -263,8 +234,6 @@ const ALL_QUESTIONS = [
 { q: "Your ideal snow day?", opts: ["Build a snowman", "Stay in bed all day", "Hot soup & movies", "Wish for no snow"] },
 { q: "Pick a summer treat:", opts: ["Ice cream cone", "Popsicle", "Snow cone", "Frozen lemonade"] },
 { q: "How early do you put up holiday decorations?", opts: ["November 1st", "After Thanksgiving", "Mid-December", "I don't decorate"] },
-
-// ═══════════════ FASHION & STYLE ═══════════════
 { q: "Your everyday style?", opts: ["Casual & comfy", "Streetwear", "Put-together classic", "Whatever's clean"] },
 { q: "Pick a shoe:", opts: ["Sneakers", "Boots", "Sandals", "Dress shoes"] },
 { q: "How long does it take you to get ready?", opts: ["15 minutes", "30 minutes", "An hour+", "Depends on the occasion"] },
@@ -280,8 +249,6 @@ const ALL_QUESTIONS = [
 { q: "How do you dress for a first date?", opts: ["Best outfit I own", "Nice but not trying too hard", "Same as always", "Agonize for hours"] },
 { q: "Pick a hat:", opts: ["Baseball cap", "Beanie", "Bucket hat", "I don't do hats"] },
 { q: "Your laundry situation?", opts: ["Wash & fold weekly", "When I run out of clothes", "Pile system", "Dry clean everything"] },
-
-// ═══════════════ MONEY & FINANCE ═══════════════
 { q: "Your spending style?", opts: ["Save everything", "Budget carefully", "Treat yourself often", "Money disappears"] },
 { q: "Pick something worth splurging on:", opts: ["Good food", "Travel", "Clothes", "Tech/gadgets"] },
 { q: "How do you feel about tipping?", opts: ["Always generous", "Standard 20%", "Depends on service", "It's complicated"] },
@@ -294,8 +261,6 @@ const ALL_QUESTIONS = [
 { q: "If you found $100 on the ground?", opts: ["Keep it", "Try to find the owner", "Donate it", "Treat a friend"] },
 { q: "Your stance on lending money to friends?", opts: ["Always help out", "Only small amounts", "Only if I can afford to lose it", "Never, it ruins friendships"] },
 { q: "Pick a financial superpower:", opts: ["Never pay rent", "Free groceries forever", "No taxes", "Free flights"] },
-
-// ═══════════════ HEALTH & WELLNESS ═══════════════
 { q: "Your sleep schedule?", opts: ["10pm-6am", "Midnight-8am", "2am-10am", "Chaotic and random"] },
 { q: "How many hours of sleep do you need?", opts: ["6 or less", "7-8", "9+", "However many I can get"] },
 { q: "Pick a wellness habit:", opts: ["Meditation", "Morning stretch", "Daily walk", "Gratitude journal"] },
@@ -308,8 +273,6 @@ const ALL_QUESTIONS = [
 { q: "Your stretch routine?", opts: ["Every morning", "Before workouts", "When something hurts", "What's stretching?"] },
 { q: "How do you feel about naps?", opts: ["Essential", "Occasional treat", "Ruin my sleep schedule", "Can never fall asleep"] },
 { q: "Pick a comfort when you're unwell:", opts: ["Soup", "A warm blanket", "Binge-watching shows", "Someone taking care of me"] },
-
-// ═══════════════ NATURE & OUTDOORS ═══════════════
 { q: "Pick an outdoor activity:", opts: ["Hiking", "Swimming", "Cycling", "Just sitting outside"] },
 { q: "Your ideal weather?", opts: ["Sunny & warm", "Cool & breezy", "Rainy & cozy", "Snowy & crisp"] },
 { q: "Choose a body of water:", opts: ["Ocean", "Lake", "River", "Pool"] },
@@ -325,8 +288,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a natural wonder to see:", opts: ["Aurora Borealis", "Grand Canyon", "Great Barrier Reef", "Victoria Falls"] },
 { q: "How do you feel about the ocean?", opts: ["Love it, always in the water", "Beautiful from the shore", "A little scared of it", "Terrified of what's below"] },
 { q: "Pick a tree:", opts: ["Cherry blossom", "Oak", "Palm tree", "Redwood"] },
-
-// ═══════════════ PET PEEVES & OPINIONS ═══════════════
 { q: "Your biggest pet peeve?", opts: ["Chewing loudly", "Being late", "Slow walkers", "Leaving lights on"] },
 { q: "Toilet paper: over or under?", opts: ["Over, obviously", "Under", "Doesn't matter", "I've never thought about this"] },
 { q: "Your stance on pineapple on pizza?", opts: ["Absolutely yes", "Absolutely not", "I'll eat it but won't order it", "Never tried it"] },
@@ -340,8 +301,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a controversial food opinion:", opts: ["Ketchup on eggs is good", "Chocolate and cheese work together", "Cold pizza > hot pizza", "Water is the best drink"] },
 { q: "Your noise tolerance?", opts: ["Need silence", "Background music", "Thrive in chaos", "Noise canceling headphones always"] },
 { q: "How do you feel about making the bed?", opts: ["Every single morning", "When I remember", "What's the point?", "Only if someone's coming over"] },
-
-// ═══════════════ CREATIVITY & EXPRESSION ═══════════════
 { q: "Pick a creative outlet:", opts: ["Writing", "Drawing/painting", "Music", "Photography"] },
 { q: "Your doodle style?", opts: ["Geometric shapes", "Flowers & nature", "Faces & people", "Random scribbles"] },
 { q: "Choose an instrument to play:", opts: ["Guitar", "Piano", "Drums", "Violin"] },
@@ -354,8 +313,6 @@ const ALL_QUESTIONS = [
 { q: "How do you express yourself best?", opts: ["Talking", "Writing", "Art/music", "Actions"] },
 { q: "Pick a museum type:", opts: ["Art museum", "Science museum", "History museum", "Interactive/hands-on"] },
 { q: "Your handwriting?", opts: ["Neat and pretty", "Only I can read it", "Depends on the day", "I type everything"] },
-
-// ═══════════════ MORNING VS NIGHT ═══════════════
 { q: "Are you a morning or night person?", opts: ["Morning all the way", "Night owl", "Depends on the day", "Neither, I'm tired always"] },
 { q: "Your ideal bedtime?", opts: ["Before 10pm", "10pm-midnight", "After midnight", "When my body gives up"] },
 { q: "First thought when your alarm goes off?", opts: ["Let's go!", "Five more minutes", "Why do I exist", "I didn't set one"] },
@@ -366,8 +323,6 @@ const ALL_QUESTIONS = [
 { q: "Your nighttime routine?", opts: ["Full skincare & wind down", "Scroll phone until I pass out", "Read before bed", "Crash immediately"] },
 { q: "Pick a sunrise or sunset:", opts: ["Sunrise — new beginnings", "Sunset — golden hour", "Both are beautiful", "I've barely seen either"] },
 { q: "Late-night energy comes from:", opts: ["Second wind", "Caffeine", "Good conversation", "Anxiety"] },
-
-// ═══════════════ LEARNING & GROWTH ═══════════════
 { q: "Pick a subject to study for fun:", opts: ["Psychology", "History", "Astronomy", "Philosophy"] },
 { q: "Your learning style?", opts: ["Visual — show me", "Hands-on — let me try", "Reading/writing", "Listening — tell me"] },
 { q: "Choose a language to learn:", opts: ["Spanish", "Japanese", "French", "Sign language"] },
@@ -380,8 +335,6 @@ const ALL_QUESTIONS = [
 { q: "Your relationship with reading?", opts: ["Read constantly", "Wish I read more", "Only specific topics", "Audiobooks count right?"] },
 { q: "Choose a random fact category:", opts: ["Space", "Ocean", "Human body", "Ancient history"] },
 { q: "How do you feel about school?", opts: ["Loved it", "It was fine", "Couldn't wait to leave", "Miss it now actually"] },
-
-// ═══════════════ TRANSPORT & DRIVING ═══════════════
 { q: "Your ideal car?", opts: ["Sports car", "SUV/truck", "Electric vehicle", "I don't want a car"] },
 { q: "Pick a road trip snack:", opts: ["Beef jerky", "Trail mix", "Gas station candy", "Fast food stop"] },
 { q: "Your driving style?", opts: ["Careful & cautious", "Confident & fast", "Distracted honestly", "I don't drive"] },
@@ -392,8 +345,6 @@ const ALL_QUESTIONS = [
 { q: "Your backseat behavior?", opts: ["DJ duties", "Navigator", "Sleeping", "Backseat driver"] },
 { q: "Pick a driving song:", opts: ["Windows-down rock anthem", "Smooth R&B cruise", "Sing-along pop hit", "Podcast instead"] },
 { q: "Your parking lot strategy?", opts: ["First spot I see", "Circle for the best one", "Park far away, easy exit", "Valet if possible"] },
-
-// ═══════════════ HOME & LIVING ═══════════════
 { q: "Pick a room to have the nicest:", opts: ["Bedroom", "Kitchen", "Living room", "Bathroom"] },
 { q: "Your ideal roommate?", opts: ["Best friend", "Someone quiet", "Lives alone thanks", "A partner"] },
 { q: "Choose a home feature:", opts: ["Huge kitchen", "Walk-in closet", "Home office", "Backyard with a fire pit"] },
@@ -406,8 +357,6 @@ const ALL_QUESTIONS = [
 { q: "Your thermostat preference?", opts: ["Warm and cozy", "Cool and crisp", "Freezing cold", "Constant thermostat war"] },
 { q: "Choose a background noise at home:", opts: ["TV on low", "Music", "Complete silence", "Window open, city/nature sounds"] },
 { q: "How do you feel about cooking?", opts: ["Love it, it's creative", "Do it because I have to", "Prefer baking", "Takeout exists for a reason"] },
-
-// ═══════════════ COMMUNICATION & LANGUAGE ═══════════════
 { q: "Your texting punctuation?", opts: ["Perfect grammar.", "no caps no periods", "Emoji heavy 😂🙏", "lol after everything lol"] },
 { q: "How do you say goodbye?", opts: ["Long drawn-out farewell", "Quick 'bye!'", "Irish exit (just leave)", "Wave and go"] },
 { q: "Pick a compliment to receive:", opts: ["You're so funny", "You're really smart", "You have great taste", "You're a good person"] },
@@ -418,8 +367,6 @@ const ALL_QUESTIONS = [
 { q: "How do you react to good news?", opts: ["Scream/yell", "Big hug", "Quiet happy tears", "Cool on the outside, exploding inside"] },
 { q: "Pick a way to end an argument:", opts: ["Apologize first", "Agree to disagree", "Hug it out", "Pretend it didn't happen"] },
 { q: "Your emoji usage?", opts: ["In every message", "Occasionally", "Only 😂 and ❤️", "Never"] },
-
-// ═══════════════ SPORTS & GAMES ═══════════════
 { q: "Pick a sport to watch:", opts: ["Basketball", "Football/soccer", "Tennis", "I don't watch sports"] },
 { q: "Your board game strategy?", opts: ["Play to win", "Play for fun", "Make alliances", "Flip the board"] },
 { q: "Choose a gym class activity:", opts: ["Dodgeball", "Kickball", "Capture the flag", "Pretend to be injured"] },
@@ -432,8 +379,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a team role:", opts: ["Captain/leader", "Star player", "Support/assist", "Cheerleader from the bench"] },
 { q: "Pick a playground game:", opts: ["Freeze tag", "Kickball", "Hopscotch", "Red rover"] },
 { q: "How do you feel about running?", opts: ["Love it, it's meditative", "Only if chased", "Prefer sprints to long runs", "Walking is underrated"] },
-
-// ═══════════════ DREAMS & FUTURE ═══════════════
 { q: "Where do you see yourself in 10 years?", opts: ["Thriving career", "Traveling the world", "Settled with family", "Honestly no idea"] },
 { q: "Pick a retirement plan:", opts: ["Beach house", "World travel", "Start a passion project", "Finally relax"] },
 { q: "Choose a life milestone you're excited about:", opts: ["Buying a home", "Starting a family", "Career dream job", "Personal freedom"] },
@@ -444,8 +389,6 @@ const ALL_QUESTIONS = [
 { q: "Your 5-year plan?", opts: ["Detailed and structured", "Vague direction", "Live in the moment", "Plans scare me"] },
 { q: "Pick a thing to achieve before 40:", opts: ["Visit 20 countries", "Run a marathon", "Learn an instrument", "Start a business"] },
 { q: "How do you feel about getting older?", opts: ["Excited for wisdom", "A little anxious", "Age is just a number", "Can we slow down?"] },
-
-// ═══════════════ QUIRKS & HABITS ═══════════════
 { q: "Your shower length?", opts: ["Quick 5 minutes", "A solid 10-15", "30+ minutes, it's therapy", "Depends on the playlist"] },
 { q: "How do you eat a cupcake?", opts: ["Top first", "Bottom first", "Make a sandwich", "One big bite"] },
 { q: "Pick a side of the bed:", opts: ["Left", "Right", "Middle starfish", "Whichever I land on"] },
@@ -458,8 +401,6 @@ const ALL_QUESTIONS = [
 { q: "Your pen clicking habit?", opts: ["Click constantly", "Chew on it", "Twirl it", "I use my phone for everything"] },
 { q: "How do you open a bag of chips?", opts: ["Carefully at the top", "Rip it open anywhere", "Use scissors like a civilized person", "Bowl it immediately"] },
 { q: "Pick a thing you always do:", opts: ["Check if the door is locked twice", "Arrive 5 minutes early", "Forget why I walked into a room", "Say 'sorry' too much"] },
-
-// ═══════════════ PHILOSOPHY & VALUES ═══════════════
 { q: "What matters more?", opts: ["Being right", "Being kind", "Being honest", "Being happy"] },
 { q: "Pick a life philosophy:", opts: ["Everything happens for a reason", "You make your own luck", "Live and let live", "Actions speak louder than words"] },
 { q: "Your stance on second chances?", opts: ["Everyone deserves one", "Depends on what they did", "Rarely", "Fool me once..."] },
@@ -472,8 +413,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a question to know the answer to:", opts: ["What happens after death?", "Is there other intelligent life?", "What's my true purpose?", "What do people really think of me?"] },
 { q: "Your view on change?", opts: ["Embrace it fully", "Cautiously open", "Prefer stability", "Depends on the change"] },
 { q: "What would you fight for?", opts: ["Family", "Justice", "Freedom", "The people I love"] },
-
-// ═══════════════ ANIMALS ═══════════════
 { q: "Pick a dog breed:", opts: ["Golden retriever", "German shepherd", "French bulldog", "Husky"] },
 { q: "Choose an exotic animal to meet:", opts: ["Elephant", "Penguin", "Red panda", "Whale"] },
 { q: "Your cat opinion?", opts: ["Love them", "They're okay", "Dog person", "Allergic"] },
@@ -486,8 +425,6 @@ const ALL_QUESTIONS = [
 { q: "Your spirit animal honestly?", opts: ["Cat napping in the sun", "Loyal golden retriever", "Curious raccoon", "Unbothered sloth"] },
 { q: "Pick an ocean creature:", opts: ["Dolphin", "Sea turtle", "Octopus", "Whale shark"] },
 { q: "How do you feel about zoos?", opts: ["Love them", "Mixed feelings", "Prefer sanctuaries", "Don't go"] },
-
-// ═══════════════ SUPERSTITIONS & BELIEFS ═══════════════
 { q: "Do you believe in luck?", opts: ["Absolutely", "Make your own luck", "Somewhat", "Not at all"] },
 { q: "Your zodiac sign matters?", opts: ["Yes, it's scarily accurate", "Fun but not serious", "Total nonsense", "I don't know my sign"] },
 { q: "Pick a superstition you follow:", opts: ["Knock on wood", "Don't walk under ladders", "Lucky number", "None of them"] },
@@ -498,8 +435,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a thing you're weirdly superstitious about:", opts: ["Breaking mirrors", "Black cats", "The number 13", "I'm not superstitious at all"] },
 { q: "Your déjà vu reaction?", opts: ["Whoa, the matrix glitched", "Happens all the time", "Barely notice", "It freaks me out"] },
 { q: "Do you believe in karma?", opts: ["What goes around comes around", "Sometimes", "Not really", "I want to but..."] },
-
-// ═══════════════ MISCELLANEOUS WOULD YOU RATHER ═══════════════
 { q: "Would you rather be too hot or too cold?", opts: ["Too hot", "Too cold", "Depends on the situation", "Neither, perfect weather always"] },
 { q: "Would you rather know the future or change the past?", opts: ["Know the future", "Change the past", "Neither, live in the present", "Both would be chaotic"] },
 { q: "Would you rather be famous or rich?", opts: ["Famous", "Rich", "Both obviously", "Neither, just comfortable"] },
@@ -510,8 +445,6 @@ const ALL_QUESTIONS = [
 { q: "Would you rather live in the city or the countryside?", opts: ["City — energy & culture", "Countryside — peace & nature", "Suburbs — best of both", "Rotate between them"] },
 { q: "Would you rather be a great cook or a great dancer?", opts: ["Great cook", "Great dancer", "I'm neither currently", "Both, I'm ambitious"] },
 { q: "Would you rather only whisper or only shout?", opts: ["Only whisper", "Only shout", "This is a nightmare", "Shout — own it"] },
-
-// ═══════════════ HYPOTHETICAL SCENARIOS ═══════════════
 { q: "You're stuck in an elevator for 3 hours with:", opts: ["Your best friend", "A celebrity crush", "A comedian", "Nobody, I want peace"] },
 { q: "You wake up as the opposite gender for a day:", opts: ["Explore everything", "Go about my normal day", "Immediately look in the mirror", "Panic"] },
 { q: "Someone hands you a mic at a party:", opts: ["Sing something", "Tell a joke", "Make a speech", "Immediately pass it"] },
@@ -524,8 +457,6 @@ const ALL_QUESTIONS = [
 { q: "Your life gets a theme song. Genre?", opts: ["Upbeat indie", "Dramatic orchestral", "Chill acoustic", "Chaotic EDM"] },
 { q: "You're writing your autobiography. The title?", opts: ["Something inspirational", "Something funny", "Something mysterious", "Still figuring it out"] },
 { q: "A genie gives you one rule-free wish:", opts: ["World peace", "Personal wealth", "Perfect health forever", "The ability to grant my own wishes"] },
-
-// ═══════════════ DEEP QUESTIONS ═══════════════
 { q: "What do you think about most?", opts: ["The future", "The past", "Other people", "Random nonsense"] },
 { q: "Your biggest fear that isn't physical:", opts: ["Failure", "Being forgotten", "Loneliness", "Not living fully"] },
 { q: "What makes you feel most alive?", opts: ["Adventure & travel", "Deep conversations", "Creative expression", "Being in nature"] },
@@ -536,8 +467,6 @@ const ALL_QUESTIONS = [
 { q: "What's your relationship with alone time?", opts: ["Need lots of it", "Enjoy it sometimes", "Don't like it much", "Terrified of it"] },
 { q: "Choose a thing that instantly makes your day better:", opts: ["A good song", "A genuine compliment", "Unexpected free time", "Good food"] },
 { q: "What do you wish people understood about you?", opts: ["I care more than I show", "I need space sometimes", "I'm trying my best", "I'm more than I seem"] },
-
-// ═══════════════ NOSTALGIA & ERAS ═══════════════
 { q: "Pick a decade to have grown up in:", opts: ["60s — counterculture", "80s — neon everything", "90s — grunge & dial-up", "2000s — early internet"] },
 { q: "Choose a retro activity:", opts: ["Roller skating rink", "Drive-in movie", "Arcade games", "Record shopping"] },
 { q: "Pick a vintage item you'd own:", opts: ["Record player", "Polaroid camera", "Typewriter", "Vintage car"] },
@@ -548,8 +477,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a discontinued snack to bring back:", opts: ["3D Doritos", "Dunkaroos", "Altoid Sours", "Jello Pudding Pops"] },
 { q: "Pick a childhood TV channel:", opts: ["Cartoon Network", "Nickelodeon", "Disney Channel", "PBS Kids"] },
 { q: "Your relationship with old photos of yourself?", opts: ["Love looking at them", "Slightly embarrassed", "Can't believe that was me", "Avoid them"] },
-
-// ═══════════════ RANDOM SCENARIOS ═══════════════
 { q: "You see a spider in your room:", opts: ["Kill it", "Catch and release", "Burn the house down", "Name it and coexist"] },
 { q: "The power goes out for 24 hours:", opts: ["Light candles, cozy vibes", "Panic about my phone dying", "Go outside and explore", "Sleep through it"] },
 { q: "You accidentally like a 3-year-old photo:", opts: ["Unlike and pray", "Leave it, own it", "Deactivate my account", "Doesn't bother me"] },
@@ -562,8 +489,6 @@ const ALL_QUESTIONS = [
 { q: "You hear your voice on a recording:", opts: ["That can't be me", "I sound okay actually", "Never record me again", "I've made peace with it"] },
 { q: "Someone holds the door but you're too far away:", opts: ["Awkward jog", "Normal pace, no guilt", "Wave them off", "Sprint"] },
 { q: "Your food order comes out wrong:", opts: ["Eat it anyway", "Politely send it back", "Suffer in silence", "Depends how wrong"] },
-
-// ═══════════════ FEAR & BRAVERY ═══════════════
 { q: "Pick a fear to conquer:", opts: ["Skydiving", "Public speaking", "Swimming in open water", "Talking to a stranger"] },
 { q: "Your bravest moment type?", opts: ["Physical challenge", "Emotional vulnerability", "Standing up for someone", "Trying something totally new"] },
 { q: "Choose a daring activity:", opts: ["Bungee jumping", "Haunted house", "Cliff diving", "Eating something unknown"] },
@@ -574,8 +499,6 @@ const ALL_QUESTIONS = [
 { q: "Choose an extreme sport:", opts: ["Rock climbing", "White water rafting", "Paragliding", "None, I choose life"] },
 { q: "What's scarier?", opts: ["Deep ocean", "Outer space", "A dark forest", "An empty building at night"] },
 { q: "Pick a horror movie role you'd play:", opts: ["The survivor", "The first to go", "The one who solves it", "I'm not in a horror movie"] },
-
-// ═══════════════ MEMORY & TIME ═══════════════
 { q: "Pick a year you'd relive:", opts: ["My best year so far", "A childhood year", "Last year", "None, keep moving forward"] },
 { q: "Your memory is best for:", opts: ["Song lyrics", "People's faces", "Random facts", "Embarrassing moments"] },
 { q: "Choose a moment to photograph forever:", opts: ["Sunset with friends", "A family gathering", "A quiet solo moment", "A once-in-a-lifetime trip"] },
@@ -586,8 +509,6 @@ const ALL_QUESTIONS = [
 { q: "How do you remember birthdays?", opts: ["Calendar reminders", "Just know them", "Social media tells me", "I forget, sorry"] },
 { q: "Pick a time capsule item:", opts: ["A photo", "A letter to future me", "A playlist", "My phone"] },
 { q: "Your relationship with the past?", opts: ["Grateful for it", "Wish I could change parts", "Don't think about it much", "Complicated"] },
-
-// ═══════════════ IMAGINATION & FANTASY ═══════════════
 { q: "Pick a magic power:", opts: ["Telekinesis", "Shape-shifting", "Healing touch", "Controlling weather"] },
 { q: "Choose a fantasy race to be:", opts: ["Elf", "Dwarf", "Wizard", "Dragon rider"] },
 { q: "Your Hogwarts house?", opts: ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"] },
@@ -598,8 +519,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a legendary weapon:", opts: ["Excalibur", "Thor's hammer", "A lightsaber", "A magic wand"] },
 { q: "If you could talk to one type of animal:", opts: ["Dogs", "Birds", "Fish", "Insects (hear me out)"] },
 { q: "Pick a portal destination:", opts: ["Narnia", "Neverland", "Oz", "The upside down (risky)"] },
-
-// ═══════════════ FOOD OPINIONS (SPICY TAKES) ═══════════════
 { q: "Breakfast for dinner?", opts: ["Always a good idea", "Occasionally", "That's weird", "Dinner for breakfast though?"] },
 { q: "Is a hot dog a sandwich?", opts: ["Yes", "No", "It's its own thing", "I refuse to engage"] },
 { q: "Crunchy or creamy peanut butter?", opts: ["Crunchy", "Creamy", "Both are fine", "Peanut butter is mid"] },
@@ -610,8 +529,6 @@ const ALL_QUESTIONS = [
 { q: "Soup: is it a meal?", opts: ["Yes, a full meal", "Only with bread", "It's a starter", "Barely qualifies as food"] },
 { q: "Your take on gas station sushi?", opts: ["I'd try it", "Absolutely not", "Depends on the gas station", "I don't eat sushi at all"] },
 { q: "Water: room temperature or cold?", opts: ["Ice cold always", "Room temperature", "Depends on the season", "Sparkling actually"] },
-
-// ═══════════════ SOCIAL MEDIA & DIGITAL LIFE ═══════════════
 { q: "Your Instagram aesthetic?", opts: ["Curated and cohesive", "Casual dumps", "I rarely post", "Don't have Instagram"] },
 { q: "Pick a TikTok side:", opts: ["Funny/comedy", "Educational", "Food/cooking", "I don't use TikTok"] },
 { q: "Your profile picture energy?", opts: ["Recent good photo", "A group photo", "Something random/funny", "Haven't changed it in years"] },
@@ -622,9 +539,6 @@ const ALL_QUESTIONS = [
 { q: "How do you feel about LinkedIn?", opts: ["Actually useful", "Performative nonsense", "I check it sometimes", "What's LinkedIn?"] },
 { q: "Your story-posting frequency?", opts: ["Multiple times a day", "A few times a week", "Rare occasions", "I just watch others'"] },
 { q: "Pick a digital pet you'd raise:", opts: ["Tamagotchi", "Neopet", "Webkinz", "I'd neglect it immediately"] },
-
-// ═══════════════ WEATHER & ENVIRONMENT ═══════════════
-{ q: "Your ideal rainy day activity?", opts: ["Read by the window", "Movie marathon", "Cook something warm", "Dance in the rain"] },
 { q: "Pick a weather phenomenon to witness:", opts: ["Lightning storm", "Snowfall in a city", "Double rainbow", "Hurricane from safety"] },
 { q: "How do you feel about winter?", opts: ["Love it — cozy season", "Tolerate it", "Hate the cold", "Only if there's snow"] },
 { q: "Your heat tolerance?", opts: ["Love the heat", "Anything below 90°F", "Melt above 75°F", "I was made for AC"] },
@@ -634,8 +548,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a perfect temperature:", opts: ["65°F / 18°C", "75°F / 24°C", "85°F / 29°C", "55°F / 13°C"] },
 { q: "How do you dress for cold weather?", opts: ["Layers on layers", "One big coat", "Refuse to dress warm enough", "Stay inside"] },
 { q: "Your favorite sky?", opts: ["Clear blue", "Pink/orange sunset", "Starry night", "Dramatic storm clouds"] },
-
-// ═══════════════ FRIENDSHIP DYNAMICS ═══════════════
 { q: "Your friend is running late. You:", opts: ["No big deal", "Text 'where are you?'", "Start without them", "I'm also late so it's fine"] },
 { q: "Pick a friend group activity:", opts: ["Road trip", "Game night", "Concert", "Potluck dinner"] },
 { q: "How do you pick a restaurant with friends?", opts: ["Someone just decides", "Group vote", "Scroll apps for 30 mins", "I'll eat anywhere"] },
@@ -646,8 +558,6 @@ const ALL_QUESTIONS = [
 { q: "Your friendship red flag?", opts: ["Only texts when they need something", "Never asks how I am", "Talks behind people's backs", "Cancels every plan"] },
 { q: "How do you make new friends as an adult?", opts: ["Through work", "Through hobbies", "Through existing friends", "I don't, it's hard"] },
 { q: "Pick the best friend quality:", opts: ["Shows up when it matters", "Makes me laugh", "Tells me the truth", "Accepts me fully"] },
-
-// ═══════════════ CAREER FANTASIES ═══════════════
 { q: "Pick a dream job regardless of money:", opts: ["Travel blogger", "National park ranger", "Music producer", "Bookshop owner"] },
 { q: "Choose a fictional workplace:", opts: ["Dunder Mifflin (The Office)", "Hogwarts staff", "Avengers HQ", "Paddy's Pub (It's Always Sunny)"] },
 { q: "Your work snack?", opts: ["Coffee runs", "Desk snack stash", "Whatever's in the break room", "I forget to eat at work"] },
@@ -658,8 +568,6 @@ const ALL_QUESTIONS = [
 { q: "Your out-of-office reply?", opts: ["Professional and helpful", "Short and direct", "Funny/witty", "I forget to set one"] },
 { q: "Dream home office feature?", opts: ["Standing desk", "Huge monitor", "Coffee bar", "A window with a view"] },
 { q: "Pick a work-from-home outfit:", opts: ["Business on top, sweats on bottom", "Full pajamas", "Actually dressed properly", "Same thing I wore yesterday"] },
-
-// ═══════════════ UNEXPECTED DILEMMAS ═══════════════
 { q: "You're at a party and don't know anyone:", opts: ["Find the snack table", "Introduce myself to someone", "Find the pet", "Leave early"] },
 { q: "You get a call from an unknown number:", opts: ["Answer it", "Let it ring", "Google the number", "Text 'who is this?'"] },
 { q: "You see your ex in public:", opts: ["Wave and be friendly", "Pretend I didn't see them", "Full conversation", "Exit the building"] },
@@ -670,8 +578,6 @@ const ALL_QUESTIONS = [
 { q: "You walk into a glass door:", opts: ["Laugh at myself", "Look around to see who noticed", "Act like it didn't happen", "Blame the door"] },
 { q: "You accidentally wave back at someone waving to someone else:", opts: ["Pretend to scratch my head", "Own it and wave bigger", "Walk faster", "Die inside"] },
 { q: "The waiter says 'enjoy your meal' and you say 'you too':", opts: ["Cringe for the rest of dinner", "Laugh it off", "Happens every time", "I've transcended caring"] },
-
-// ═══════════════ SENSORY PREFERENCES ═══════════════
 { q: "Pick a scent:", opts: ["Fresh rain", "Vanilla", "Coffee", "Ocean breeze"] },
 { q: "Choose a texture you love:", opts: ["Soft velvet", "Cool metal", "Warm sand", "Smooth stone"] },
 { q: "Your favorite sound?", opts: ["Rain on a window", "Crackling fire", "Laughter", "Waves crashing"] },
@@ -682,8 +588,6 @@ const ALL_QUESTIONS = [
 { q: "Your favorite type of light?", opts: ["Golden sunset", "Warm lamp glow", "Natural daylight", "Moonlight"] },
 { q: "Choose a satisfying feeling:", opts: ["Peeling off a screen protector perfectly", "First bite of a great meal", "Sliding into fresh sheets", "Finishing a big task"] },
 { q: "Pick an ASMR type (even if you don't like ASMR):", opts: ["Rain sounds", "Whispering", "Tapping", "Cooking sounds"] },
-
-// ═══════════════ CONVERSATION STARTERS ═══════════════
 { q: "Your go-to icebreaker question?", opts: ["What do you do for fun?", "Seen anything good lately?", "Where are you from?", "I just say hi and wing it"] },
 { q: "Pick a dinner party topic:", opts: ["Travel stories", "Conspiracy theories for fun", "Childhood memories", "Dreams and ambitions"] },
 { q: "Your small talk ranking?", opts: ["Secretly great at it", "Painfully awkward", "Can hold my own", "I skip straight to deep talk"] },
@@ -694,8 +598,6 @@ const ALL_QUESTIONS = [
 { q: "How do you exit a conversation?", opts: ["Smooth transition", "Bathroom excuse", "Just say 'well, anyway...'", "Wait for a natural end"] },
 { q: "Pick something you always bring up:", opts: ["A trip I took", "A show I'm watching", "A funny story", "Whatever I'm obsessed with that week"] },
 { q: "Your opinion sharing style?", opts: ["Bold and direct", "Thoughtful and measured", "Only when asked", "Depends on the crowd"] },
-
-// ═══════════════ PROCRASTINATION & PRODUCTIVITY ═══════════════
 { q: "Your procrastination method?", opts: ["Scroll social media", "Clean instead", "Start a different task", "Convince myself I work better under pressure"] },
 { q: "Pick a productivity tool:", opts: ["To-do list app", "Calendar blocking", "Post-it notes", "Pure willpower"] },
 { q: "How do you start a big project?", opts: ["Jump right in", "Plan everything first", "Procrastinate then panic", "Ask someone to do it with me"] },
@@ -706,8 +608,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a productivity hack:", opts: ["Pomodoro technique", "Time blocking", "Accountability partner", "Panic"] },
 { q: "How do you reward yourself after being productive?", opts: ["Good food", "Screen time guilt-free", "Take a nap", "Start the next task (help)"] },
 { q: "Your multitasking ability?", opts: ["Pro multitasker", "One thing at a time", "I think I'm multitasking but I'm not", "Context switching breaks my brain"] },
-
-// ═══════════════ GIFT GIVING & RECEIVING ═══════════════
 { q: "Your gift-giving style?", opts: ["Thoughtful & personal", "Practical & useful", "Gift card — you choose", "Last-minute scramble"] },
 { q: "Pick a gift to receive:", opts: ["Something handmade", "An experience", "Something I'd never buy myself", "Money is fine"] },
 { q: "How early do you shop for gifts?", opts: ["Months in advance", "A few weeks before", "The day before", "Day of, if I remember"] },
@@ -718,8 +618,6 @@ const ALL_QUESTIONS = [
 { q: "Your birthday wishlist approach?", opts: ["Detailed list with links", "General ideas", "Surprise me", "Please don't get me anything"] },
 { q: "Choose a way to give a gift:", opts: ["Wrapped beautifully", "In a gift bag", "Unwrapped, just hand it over", "Scavenger hunt to find it"] },
 { q: "How do you feel about Secret Santa?", opts: ["Love the game", "Stressful", "Only if I know the person", "Can we just not?"] },
-
-// ═══════════════ IDENTITY & PERSONALITY TESTS ═══════════════
 { q: "Are you more introverted or extroverted?", opts: ["Introvert", "Extrovert", "Ambivert — depends on the day", "Introvert who acts extroverted"] },
 { q: "Pick an element:", opts: ["Fire — passionate", "Water — adaptable", "Earth — grounded", "Air — free-spirited"] },
 { q: "Your energy in a group project?", opts: ["Take charge", "Do my part quietly", "The creative ideas person", "Panic about everyone else's work"] },
@@ -730,8 +628,6 @@ const ALL_QUESTIONS = [
 { q: "How do you handle compliments?", opts: ["Accept gracefully", "Deflect with humor", "Get uncomfortable", "Compliment them right back"] },
 { q: "Choose your vibe:", opts: ["Main character energy", "Side character who steals scenes", "Narrator watching from above", "Background extra by choice"] },
 { q: "How adaptable are you?", opts: ["Go with any flow", "Need a heads-up first", "Struggle with sudden change", "Depends on the stakes"] },
-
-// ═══════════════ PARTY & SOCIAL EVENTS ═══════════════
 { q: "Your party arrival time?", opts: ["Fashionably late", "Right on time", "First one there", "Decide last minute if I'm even going"] },
 { q: "Pick a party role:", opts: ["DJ/music controller", "The host", "The one in the kitchen", "The one who leaves early"] },
 { q: "Your karaoke confidence?", opts: ["Born performer", "Only with friends", "After a few drinks maybe", "Absolutely not happening"] },
@@ -742,8 +638,6 @@ const ALL_QUESTIONS = [
 { q: "Where are you at a house party?", opts: ["Center of the dance floor", "In a deep convo in the corner", "Near the food", "With the host's pet"] },
 { q: "How do you leave a party?", opts: ["Irish exit — just disappear", "Say goodbye to everyone", "One more hour... three times", "I'm the last one standing"] },
 { q: "Your dance move?", opts: ["Confident and coordinated", "Enthusiastic but messy", "Minimal sway", "I'm watching from the side"] },
-
-// ═══════════════ INNER THOUGHTS ═══════════════
 { q: "Your brain at 3am:", opts: ["Replaying conversations", "Planning the future", "Random song on loop", "Blissfully asleep"] },
 { q: "Pick a thought you have daily:", opts: ["What should I eat?", "Am I doing enough?", "I need a vacation", "What if I just... didn't?"] },
 { q: "Your inner voice is:", opts: ["Encouraging coach", "Harsh critic", "Running commentary", "Chaos"] },
@@ -754,8 +648,6 @@ const ALL_QUESTIONS = [
 { q: "How do you talk to yourself?", opts: ["Kindly", "Sarcastically", "Like a drill sergeant", "I don't think I do"] },
 { q: "Your shower thoughts are usually:", opts: ["Philosophical", "Cringe memories", "Creative ideas", "Song lyrics"] },
 { q: "Pick a thing you mentally rehearse:", opts: ["Important conversations", "Ordering at a restaurant", "Potential arguments", "Accepting an award (just in case)"] },
-
-// ═══════════════ COMFORT & COPING ═══════════════
 { q: "Your comfort show?", opts: ["A sitcom I've seen 10 times", "A cooking show", "Animated series", "Whatever's trending"] },
 { q: "Pick a bad-day remedy:", opts: ["Comfort food", "Long shower/bath", "Talking to someone", "Going to bed early"] },
 { q: "Your stress tell?", opts: ["Can't sleep", "Eat more or less", "Get quiet", "Get snappy"] },
@@ -766,8 +658,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a way to cheer up a bad mood:", opts: ["Music", "Funny videos", "Fresh air", "A good meal"] },
 { q: "What helps you feel grounded?", opts: ["Nature", "Routine", "People I trust", "Creative expression"] },
 { q: "Pick a guilty comfort habit:", opts: ["Doomscrolling", "Retail therapy", "Stress eating", "Rewatching the same show again"] },
-
-// ═══════════════ RELATIONSHIPS & DATING ═══════════════
 { q: "First date preference?", opts: ["Coffee — low pressure", "Dinner — proper effort", "Activity — mini golf, museum", "Walk — keep it casual"] },
 { q: "Your biggest green flag?", opts: ["Good listener", "Makes me laugh", "Remembers small details", "Kind to strangers"] },
 { q: "Pick a love language:", opts: ["Words of affirmation", "Physical touch", "Acts of service", "Quality time"] },
@@ -780,8 +670,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a couple costume:", opts: ["Matching outfits", "Complementary costumes", "Inside joke only we get", "We don't do couple costumes"] },
 { q: "How do you handle disagreements with a partner?", opts: ["Calm discussion", "Need time to cool down first", "Talk it out immediately", "Write them a message"] },
 { q: "Pick a date night in:", opts: ["Movie + takeout", "Board game battle", "Cook something new", "Fort + snacks"] },
-
-// ═══════════════ UNPOPULAR OPINIONS ═══════════════
 { q: "Your unpopular food take?", opts: ["Candy corn is good", "Pizza is overrated", "Ketchup goes on everything", "Salad can be a meal"] },
 { q: "An unpopular movie opinion:", opts: ["Sequels can be better", "Animated movies > live action", "Long movies are better", "I don't get the Marvel hype"] },
 { q: "Unpopular life take:", opts: ["Mornings are the best", "Cold weather > hot weather", "Being alone is underrated", "Small talk is actually nice"] },
@@ -790,8 +678,6 @@ const ALL_QUESTIONS = [
 { q: "Pick an unpopular preference:", opts: ["Window seat on planes", "I like Mondays", "Leftovers taste better", "I enjoy long drives"] },
 { q: "Your controversial comfort opinion:", opts: ["Sleeping with socks on is fine", "The toilet seat debate is pointless", "Making the bed is unnecessary", "Crocs are fashionable"] },
 { q: "An unpopular drink take:", opts: ["Room temp water is best", "Orange juice > apple juice", "Tea > coffee", "Sparkling water is great"] },
-
-// ═══════════════ EVERYDAY CHOICES ═══════════════
 { q: "Pick a lane at the grocery store:", opts: ["Self-checkout always", "Express lane", "Whatever's shortest", "Full-service, I'm chatting with the cashier"] },
 { q: "Your umbrella situation?", opts: ["Always have one", "Always forget one", "Just get wet", "Check weather obsessively"] },
 { q: "How do you eat a sandwich?", opts: ["Crust first", "Straight through", "Cut diagonally", "I don't eat sandwiches"] },
@@ -802,8 +688,6 @@ const ALL_QUESTIONS = [
 { q: "Your library vs bookstore preference?", opts: ["Library — free is free", "Bookstore — I want to own it", "E-reader honestly", "Audiobooks are superior"] },
 { q: "How do you handle a messy desk?", opts: ["Clean it immediately", "Organized chaos works for me", "Clean it when it bothers me", "What desk isn't messy?"] },
 { q: "Pick a checkout line philosophy:", opts: ["Count the items in everyone's cart", "Pick a lane and commit", "Switch lanes constantly", "Let fate decide"] },
-
-// ═══════════════ CULTURAL & WORLDVIEW ═══════════════
 { q: "Pick a world tradition to experience:", opts: ["Day of the Dead (Mexico)", "Lantern Festival (China)", "Holi (India)", "Carnival (Brazil)"] },
 { q: "Choose a historical period to learn about:", opts: ["Ancient Egypt", "Renaissance Italy", "Feudal Japan", "Viking Age"] },
 { q: "Pick a language just for how it sounds:", opts: ["Italian", "Japanese", "French", "Arabic"] },
@@ -814,8 +698,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a traditional craft to learn:", opts: ["Japanese pottery (kintsugi)", "Mexican weaving", "Italian glassblowing", "Indian block printing"] },
 { q: "Your view on traveling solo:", opts: ["Love it — total freedom", "Nervous but would try it", "Prefer company", "Sounds lonely to me"] },
 { q: "Choose a cultural value that resonates:", opts: ["Hygge (Danish coziness)", "Wabi-sabi (Japanese imperfection)", "Ubuntu (South African togetherness)", "Ikigai (Japanese purpose)"] },
-
-// ═══════════════ SPACE & SCIENCE ═══════════════
 { q: "Pick a planet to visit:", opts: ["Mars", "Saturn (for the rings)", "Jupiter's moon Europa", "Stay on Earth thanks"] },
 { q: "Your take on alien life?", opts: ["Definitely out there", "Probably microbial", "Doubt it", "They've already visited"] },
 { q: "Choose a scientific discovery to witness:", opts: ["First contact with aliens", "Cure for all disease", "Time travel proven", "Teleportation invented"] },
@@ -828,8 +710,6 @@ const ALL_QUESTIONS = [
 { q: "Your science class experience?", opts: ["Loved it", "Loved the experiments only", "Struggled but tried", "Napped through it"] },
 { q: "Pick an unsolved mystery:", opts: ["What's at the bottom of the ocean?", "Are we alone in the universe?", "What happened before the Big Bang?", "How does consciousness work?"] },
 { q: "Choose a dinosaur:", opts: ["T-Rex", "Triceratops", "Velociraptor", "Brontosaurus"] },
-
-// ═══════════════ MOVIES & TV DEEP CUTS ═══════════════
 { q: "Pick a movie snack combo:", opts: ["Popcorn + candy", "Nachos + soda", "Nothing, I just watch", "Smuggled-in snacks"] },
 { q: "Your movie watching habit?", opts: ["Full attention, no phone", "Multitask a little", "Fall asleep halfway", "Pause every 10 minutes"] },
 { q: "Choose a movie trope you love:", opts: ["Enemies to lovers", "The training montage", "Plot twist ending", "Found family"] },
@@ -840,8 +720,6 @@ const ALL_QUESTIONS = [
 { q: "Your crying-at-movies frequency?", opts: ["Every time", "Only the sad ones", "Rarely", "I'm a rock"] },
 { q: "Choose a fictional school:", opts: ["Hogwarts", "Xavier's School for Gifted Youngsters", "Monsters University", "Jedi Academy"] },
 { q: "Pick a movie era:", opts: ["Classic black & white", "80s blockbusters", "90s indie", "Modern CGI spectacles"] },
-
-// ═══════════════ MUSIC DEEPER ═══════════════
 { q: "Your concert behavior?", opts: ["Front row screaming", "Vibing in the middle", "Watching from the back", "Recording everything"] },
 { q: "Pick a music mood:", opts: ["Sad songs when I'm happy", "Happy songs when I'm sad", "Match my mood exactly", "Random shuffle chaos"] },
 { q: "Choose a decade for music:", opts: ["60s — Beatles era", "80s — synth pop", "90s — grunge & hip hop", "2010s — streaming era"] },
@@ -852,8 +730,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a music setting:", opts: ["Live concert energy", "Car with windows down", "Headphones in bed", "Background at a dinner party"] },
 { q: "Pick a karaoke strategy:", opts: ["Crowd pleaser everyone knows", "Deep cut to impress", "Duet with a friend", "Watch from the audience"] },
 { q: "Your relationship with lyrics?", opts: ["Know every word", "Mumble through most songs", "Care more about the melody", "Look them up after"] },
-
-// ═══════════════ AGING & LIFE STAGES ═══════════════
 { q: "The best age so far?", opts: ["Childhood — no worries", "Teens — pure energy", "20s — freedom", "Right now"] },
 { q: "Pick a thing you'd tell your younger self:", opts: ["Relax, it works out", "Take more risks", "Save more money", "Be kinder to yourself"] },
 { q: "How do you feel about your current age?", opts: ["Perfect timing", "Wish I was younger", "Excited to get older", "Age is just a number"] },
@@ -864,8 +740,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a milestone that matters to you:", opts: ["Career achievement", "Deep relationship", "Personal growth moment", "A trip that changed me"] },
 { q: "Your approach to aging?", opts: ["Embrace every year", "Fight it a little", "Don't think about it", "Wish time would slow down"] },
 { q: "Choose a piece of wisdom:", opts: ["Done is better than perfect", "You can't pour from an empty cup", "Comparison is the thief of joy", "This too shall pass"] },
-
-// ═══════════════ BOOKS & READING ═══════════════
 { q: "Pick a book format:", opts: ["Physical book", "E-reader", "Audiobook", "I don't read books"] },
 { q: "Your reading spot?", opts: ["In bed", "Coffee shop", "Park bench", "Bathtub"] },
 { q: "Choose a genre:", opts: ["Mystery/thriller", "Romance", "Fantasy/sci-fi", "Non-fiction"] },
@@ -876,8 +750,6 @@ const ALL_QUESTIONS = [
 { q: "Your bookshelf situation?", opts: ["Organized by genre/color", "Double-stacked chaos", "Mostly digital", "What bookshelf?"] },
 { q: "Pick a classic you've actually read:", opts: ["To Kill a Mockingbird", "1984", "Pride and Prejudice", "None of them honestly"] },
 { q: "Do you dog-ear pages?", opts: ["Yes, fight me", "Bookmark always", "Use whatever's nearby", "I lose my place every time"] },
-
-// ═══════════════ COOKING & KITCHEN ═══════════════
 { q: "Your cooking confidence?", opts: ["Chef-level", "Can follow a recipe", "Struggle but try", "Microwave expert"] },
 { q: "Pick a kitchen tool:", opts: ["Good knife", "Cast iron pan", "Air fryer", "Instant pot"] },
 { q: "Your recipe source?", opts: ["YouTube videos", "Family recipes", "Cookbook", "Wing it every time"] },
@@ -888,8 +760,6 @@ const ALL_QUESTIONS = [
 { q: "Your spice rack situation?", opts: ["Fully stocked and organized", "The basics", "Salt and pepper only", "Where do I even keep spices?"] },
 { q: "Choose a kitchen vibe:", opts: ["Music blasting, dancing", "Focused and quiet", "Cooking with someone", "Podcast playing"] },
 { q: "Pick a food to make from scratch:", opts: ["Pasta", "Pizza dough", "Soup", "Tacos"] },
-
-// ═══════════════ SCHOOL & EDUCATION ═══════════════
 { q: "Your favorite school subject?", opts: ["Math", "English/writing", "Science", "Art/music"] },
 { q: "Pick a study method:", opts: ["Flashcards", "Rewrite notes", "Teach it to someone", "Pray and hope for the best"] },
 { q: "Your school reputation?", opts: ["The smart kid", "The funny kid", "The quiet kid", "The all-rounder"] },
@@ -900,8 +770,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a school supply:", opts: ["Fresh notebook", "Colored pens", "Mechanical pencil", "Highlighters"] },
 { q: "How did you feel about group projects?", opts: ["Loved collaborating", "Did all the work myself", "Found my niche role", "Dreaded them"] },
 { q: "Pick a school memory:", opts: ["A great teacher", "A funny classroom moment", "A school trip", "Finally being done"] },
-
-// ═══════════════ CARS & MACHINES ═══════════════
 { q: "Your dream car color?", opts: ["Black — classic", "White — clean", "Red — bold", "Something unusual"] },
 { q: "Pick a vehicle feature:", opts: ["Heated seats", "Sunroof", "Great sound system", "Self-driving"] },
 { q: "Manual or automatic?", opts: ["Manual — full control", "Automatic — easy", "Never learned manual", "Don't care either way"] },
@@ -912,8 +780,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a car name (yes, people name cars):", opts: ["Something human", "Something tough", "Something cute", "I would never name my car"] },
 { q: "Pick a bumper sticker energy:", opts: ["Funny pun", "Political statement", "Band sticker", "No stickers, keep it clean"] },
 { q: "How do you handle traffic?", opts: ["Zen patience", "Podcast & chill", "Road rage rising", "I'll take the long way to avoid it"] },
-
-// ═══════════════ SLEEPING & DREAMS ═══════════════
 { q: "Your sleep position?", opts: ["Back", "Side", "Stomach", "Chaotic rotation all night"] },
 { q: "How many pillows?", opts: ["One is enough", "Two is right", "A fortress of pillows", "Just the mattress"] },
 { q: "Your dream type?", opts: ["Vivid and wild", "Rarely remember them", "Recurring themes", "Nightmares mostly"] },
@@ -924,8 +790,6 @@ const ALL_QUESTIONS = [
 { q: "Your dream vacation sleep?", opts: ["Sleep in every day", "Wake up early for adventures", "Nap midday", "Same as home honestly"] },
 { q: "Choose a pre-sleep ritual:", opts: ["Read something", "Scroll phone (bad habit)", "Meditation or breathing", "Watch TV until I pass out"] },
 { q: "What side of the bed do you face?", opts: ["Toward the wall", "Toward the door", "Changes constantly", "Face down into the pillow"] },
-
-// ═══════════════ WEEKDAY VIBES ═══════════════
 { q: "Your Monday mood?", opts: ["Fresh start energy", "Dread", "Autopilot", "Depends on Sunday night"] },
 { q: "Pick a Wednesday vibe:", opts: ["Halfway there!", "The long slog", "Most productive day", "Indistinguishable from Tuesday"] },
 { q: "Friday afternoon energy?", opts: ["Already checked out", "Finishing strong", "Making weekend plans", "Starting the party early"] },
@@ -934,8 +798,6 @@ const ALL_QUESTIONS = [
 { q: "Your typical Thursday?", opts: ["Almost Friday energy", "Still grinding", "Social plans night", "Nothing special"] },
 { q: "Saturday vs Sunday?", opts: ["Saturday — adventure day", "Sunday — rest day", "Both are sacred", "They blend together"] },
 { q: "Pick a Tuesday feeling:", opts: ["Monday 2.0", "Finding my groove", "Most forgettable day", "I like Tuesdays actually"] },
-
-// ═══════════════ ADVENTURE & THRILL ═══════════════
 { q: "Pick an adventure:", opts: ["Zip-lining through a forest", "Scuba diving a reef", "Hot air balloon ride", "Exploring abandoned buildings"] },
 { q: "Your risk tolerance?", opts: ["Thrill seeker", "Calculated risks", "Play it safe", "Risk what now?"] },
 { q: "Choose a survival scenario:", opts: ["Deserted island", "Mountain wilderness", "Urban blackout", "I'm not surviving anything"] },
@@ -946,8 +808,6 @@ const ALL_QUESTIONS = [
 { q: "Your travel buddy preference?", opts: ["Go-with-the-flow friend", "The planner", "The photographer", "Solo is fine"] },
 { q: "Choose an extreme experience:", opts: ["Walk on a glass floor over a canyon", "Sleep in an ice hotel", "Cage dive with sharks", "Zero gravity flight"] },
 { q: "How do you feel about heights?", opts: ["Love the view", "Nervous but push through", "Absolutely not", "Only in a plane"] },
-
-// ═══════════════ LANGUAGE & WORDS ═══════════════
 { q: "Pick a word you overuse:", opts: ["Literally", "Honestly", "Like", "Basically"] },
 { q: "Your grammar stance?", opts: ["Proper grammar always", "Casual is fine", "I make up rules", "Grammar is a social construct"] },
 { q: "Choose a favorite word:", opts: ["Serendipity", "Cozy", "Luminous", "Chaos"] },
@@ -956,8 +816,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a word that describes today:", opts: ["Productive", "Chaotic", "Chill", "Forgettable"] },
 { q: "Pick a phrase you say too much:", opts: ["To be honest", "You know what I mean?", "It is what it is", "That's crazy"] },
 { q: "Your texting grammar?", opts: ["Full sentences and punctuation", "Lowercase everything", "Depends who I'm texting", "Voice notes instead"] },
-
-// ═══════════════ AESTHETICS & VIBES ═══════════════
 { q: "Pick a room aesthetic:", opts: ["Scandinavian minimal", "Boho eclectic", "Industrial loft", "Cottagecore"] },
 { q: "Your desktop wallpaper:", opts: ["Nature photo", "Something minimal/abstract", "A personal photo", "Default — never changed it"] },
 { q: "Choose a font vibe:", opts: ["Clean sans-serif", "Elegant serif", "Handwritten feel", "I've never thought about fonts"] },
@@ -968,8 +826,6 @@ const ALL_QUESTIONS = [
 { q: "Your ideal Instagram feed?", opts: ["Travel photography", "Food content", "Aesthetic flat lays", "Memes and chaos"] },
 { q: "Choose a mood board theme:", opts: ["Earth tones & nature", "Neon city nights", "Pastel dreams", "Monochrome elegance"] },
 { q: "Pick a wallpaper for your room:", opts: ["Subtle texture", "Bold pattern", "Painted solid color", "Leave the walls bare"] },
-
-// ═══════════════ ADULTING ═══════════════
 { q: "Your most adult purchase?", opts: ["A nice mattress", "Groceries that weren't junk food", "Cleaning supplies, willingly", "Insurance"] },
 { q: "Pick a chore you don't mind:", opts: ["Cooking", "Vacuuming", "Laundry", "None, I mind them all"] },
 { q: "Your relationship with taxes?", opts: ["File early and organized", "Last minute scramble", "Someone else does them", "Taxes?"] },
@@ -980,8 +836,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a thing that makes you feel like an adult:", opts: ["Having a clean kitchen", "Making my own appointments", "Having opinions about appliances", "Choosing sleep over going out"] },
 { q: "Your meal prep situation?", opts: ["Sunday prep for the week", "Cook daily", "Prep intentions, takeout reality", "What's meal prep?"] },
 { q: "Choose an adult milestone:", opts: ["First job", "First apartment", "First time hosting friends", "First time choosing a vegetable over fries"] },
-
-// ═══════════════ HUMOR & COMEDY ═══════════════
 { q: "Your humor style?", opts: ["Dry & deadpan", "Loud & physical", "Witty & clever", "Self-deprecating"] },
 { q: "Pick a comedy format:", opts: ["Stand-up special", "Sitcom", "Sketch comedy", "Improv show"] },
 { q: "What makes a joke land?", opts: ["Timing", "Relatability", "Surprise factor", "Delivery"] },
@@ -992,8 +846,6 @@ const ALL_QUESTIONS = [
 { q: "Choose something that's always funny:", opts: ["Animals doing human things", "Well-timed silence", "Someone tripping (gently)", "A perfect impression"] },
 { q: "How do you handle a joke no one laughs at?", opts: ["Double down", "Laugh at my own joke", "Pretend it wasn't a joke", "Explain it (making it worse)"] },
 { q: "Pick a funny scenario:", opts: ["Autocorrect disaster", "Walking into a glass door", "Waving at the wrong person", "Forgetting someone's name mid-conversation"] },
-
-// ═══════════════ DEBATE TOPICS (LIGHT) ═══════════════
 { q: "Cats or dogs?", opts: ["Dogs forever", "Cats are superior", "Love both equally", "Neither"] },
 { q: "Summer or winter?", opts: ["Summer — sun and warmth", "Winter — cozy and cold", "Spring actually", "Fall is the real answer"] },
 { q: "City or countryside?", opts: ["City energy", "Countryside peace", "Suburbs — compromise", "Depends on my mood"] },
@@ -1004,8 +856,6 @@ const ALL_QUESTIONS = [
 { q: "Book or movie adaptation?", opts: ["Book is always better", "Movies can be better", "They're different experiences", "I only do one or the other"] },
 { q: "Cooking or eating out?", opts: ["Cooking — it's personal", "Eating out — the experience", "Both for different moods", "Takeout is the answer"] },
 { q: "Window or aisle seat?", opts: ["Window — lean and look", "Aisle — leg room and exits", "Middle (said no one)", "Wherever's cheapest"] },
-
-// ═══════════════ MORAL DILEMMAS (LIGHT) ═══════════════
 { q: "You find someone's wallet with $500:", opts: ["Turn it in immediately", "Try to find the owner myself", "Keep the cash, return the wallet", "Depends on my financial situation"] },
 { q: "Your friend's outfit looks bad. Do you say something?", opts: ["Yes, honesty is love", "Only if they ask", "Compliment something else instead", "Never, let them live"] },
 { q: "You see someone cutting in line:", opts: ["Say something", "Give them a look", "Let it go", "Cut in front of them back"] },
@@ -1016,8 +866,6 @@ const ALL_QUESTIONS = [
 { q: "A stranger's kid is misbehaving in public:", opts: ["Not my problem", "Give the parent a sympathetic look", "Gently intervene if it's dangerous", "Judge silently"] },
 { q: "You accidentally break something at a friend's house:", opts: ["Tell them immediately", "Try to fix it secretly", "Replace it before they notice", "Hope they don't notice"] },
 { q: "Someone spoils a movie you haven't seen:", opts: ["Forgive them", "Mild grudge", "It genuinely ruins my day", "I don't care about spoilers"] },
-
-// ═══════════════ COLLECTING & HOBBIES ═══════════════
 { q: "Pick something to collect:", opts: ["Vinyl records", "Sneakers", "Books", "Art prints"] },
 { q: "Your hobby commitment level?", opts: ["Obsessive deep dive", "Casual enjoyment", "New hobby every month", "I haven't found my thing yet"] },
 { q: "Choose a weekend hobby:", opts: ["Photography walks", "Thrift store hunting", "Playing music", "Building something"] },
@@ -1028,8 +876,6 @@ const ALL_QUESTIONS = [
 { q: "Your thrifting style?", opts: ["Hunt for treasures", "Go with no plan", "Only specific items", "I don't thrift"] },
 { q: "Choose a hobby you'd try if money wasn't an issue:", opts: ["Scuba diving", "Flying lessons", "Pottery studio membership", "Race car driving"] },
 { q: "Pick a collection display method:", opts: ["Shelf display", "Wall mounted", "Stored carefully in boxes", "Scattered around the house"] },
-
-// ═══════════════ NEIGHBORHOOD & COMMUNITY ═══════════════
 { q: "Your neighbor relationship?", opts: ["Best friends", "Friendly wave", "Avoid eye contact", "Don't know them at all"] },
 { q: "Pick an ideal neighborhood feature:", opts: ["Walking distance to everything", "Quiet cul-de-sac", "Near great restaurants", "Big yards and space"] },
 { q: "Your mail checking frequency?", opts: ["Every day", "Every few days", "When I remember", "It's all junk anyway"] },
@@ -1040,8 +886,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a neighbor noise tolerance:", opts: ["Music is fine", "Keep it down after 9", "Total silence preferred", "I'm probably the noisy one"] },
 { q: "Choose a local hangout:", opts: ["The corner café", "The park", "A bar with good vibes", "My own living room"] },
 { q: "Your package delivery situation?", opts: ["Track obsessively", "Forget I ordered something", "Porch pirate anxiety", "Everything goes to a locker"] },
-
-// ═══════════════ TRAVEL PACKING & LOGISTICS ═══════════════
 { q: "Your packing philosophy?", opts: ["Minimalist — one bag", "Prepared for everything", "Overpack every time", "Throw stuff in last minute"] },
 { q: "Pick a travel essential:", opts: ["Neck pillow", "Noise-canceling headphones", "Portable charger", "Snacks"] },
 { q: "Your airport food move?", opts: ["Eat before arriving", "Overpriced sit-down meal", "Grab and go sandwich", "Wait until the flight"] },
@@ -1052,8 +896,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a layover activity:", opts: ["Explore the airport", "Find a lounge", "Camp at the gate", "Try to sleep anywhere"] },
 { q: "Your travel photo habit?", opts: ["Photo of everything", "Only the highlights", "Forget to take photos", "Video person actually"] },
 { q: "Pick a travel nightmare:", opts: ["Lost luggage", "Missed connection", "No WiFi for a week", "Bad travel companion"] },
-
-// ═══════════════ FAMILY DYNAMICS ═══════════════
 { q: "Your role in the family?", opts: ["The responsible one", "The funny one", "The black sheep", "The peacemaker"] },
 { q: "Pick a family gathering vibe:", opts: ["Loud and chaotic", "Warm and cozy", "Slightly tense", "I skip them honestly"] },
 { q: "Your relationship with family traditions?", opts: ["Love and keep them", "Create new ones", "Find them outdated", "Go along with them"] },
@@ -1064,8 +906,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a thing you got from your parents:", opts: ["My humor", "My work ethic", "My stubbornness", "My taste in music"] },
 { q: "Your family photo situation?", opts: ["Too many to count", "A few treasured ones", "Scattered across phones", "We don't take many"] },
 { q: "Pick a family tradition to start:", opts: ["Weekly dinners", "Annual trip", "Birthday traditions", "Holiday movie marathon"] },
-
-// ═══════════════ TEXTING CULTURE ═══════════════
 { q: "Double texting: acceptable?", opts: ["Absolutely, I do it all the time", "Only with close friends", "It's desperate", "Depends on the context"] },
 { q: "Your text tone indicator?", opts: ["Haha", "Lol", "😂", "I just say things plainly"] },
 { q: "Pick a texting red flag:", opts: ["One-word replies always", "'K'", "Left on read for days", "Never initiates conversation"] },
@@ -1076,8 +916,6 @@ const ALL_QUESTIONS = [
 { q: "Your voice note stance?", opts: ["Love them", "Only send to close friends", "Refuse to listen to them", "Too much effort"] },
 { q: "How many unread texts do you have?", opts: ["Zero", "A few", "Dozens", "My badge number scares people"] },
 { q: "Pick a reason to leave someone on read:", opts: ["Got busy and forgot", "Don't know what to say", "The conversation was over", "I'm petty sometimes"] },
-
-// ═══════════════ FOOD RITUALS ═══════════════
 { q: "Your pizza eating method?", opts: ["Fold it", "Flat, tip first", "Crust first (chaotic)", "Fork and knife"] },
 { q: "How do you eat fries?", opts: ["With ketchup obviously", "Plain", "With every sauce available", "Steal them from someone else's plate"] },
 { q: "Pick a food ritual:", opts: ["Always smell food before eating", "Eat around the edges first", "Save the best bite for last", "I just eat, no ritual"] },
@@ -1088,8 +926,6 @@ const ALL_QUESTIONS = [
 { q: "How do you eat wings?", opts: ["Hands, embrace the mess", "As neatly as possible", "One specific technique I've perfected", "Boneless to avoid the chaos"] },
 { q: "Pick a food combination:", opts: ["Fries dipped in milkshake", "Peanut butter and banana", "Chips in a sandwich", "Pizza dipped in ranch"] },
 { q: "Your leftovers philosophy?", opts: ["Eat them for the next three meals", "They taste better the next day", "Forget them until they're science experiments", "Cook only what I'll eat"] },
-
-// ═══════════════ FITNESS CULTURE ═══════════════
 { q: "Your workout preference?", opts: ["Weights", "Cardio", "Group classes", "Walking (it counts)"] },
 { q: "Pick a gym time:", opts: ["Early morning", "Lunch break", "After work", "Late night empty gym"] },
 { q: "Your workout motivation:", opts: ["Health goals", "Stress relief", "Looking good", "The post-workout feeling"] },
@@ -1100,8 +936,6 @@ const ALL_QUESTIONS = [
 { q: "Your stretching commitment?", opts: ["Always before and after", "Sporadic at best", "Only when something hurts", "Flexibility isn't my thing"] },
 { q: "Choose a workout outfit vibe:", opts: ["Matching set", "Whatever's clean", "Old concert tee and shorts", "Invested in good gear"] },
 { q: "Pick a fitness trend:", opts: ["Yoga", "CrossFit", "Pilates", "Trends come and go, I walk"] },
-
-// ═══════════════ OFFICE LIFE ═══════════════
 { q: "Your desk situation?", opts: ["Organized and minimal", "Creative chaos", "Covered in sticky notes", "I don't have a desk"] },
 { q: "Pick a meeting type:", opts: ["Quick stand-up", "Collaborative workshop", "Could've been an email", "Cancel all meetings"] },
 { q: "Your lunch break?", opts: ["At my desk", "Out with coworkers", "Solo walk", "What lunch break?"] },
@@ -1112,8 +946,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a work from home perk:", opts: ["No commute", "Pajama dress code", "My own fridge", "Control my own music"] },
 { q: "Pick an office personality:", opts: ["Always has snacks to share", "Remembers everyone's birthday", "Master of small talk", "Headphones-in, focused"] },
 { q: "Your video call camera?", opts: ["Always on", "On when required", "Off whenever possible", "Background more impressive than me"] },
-
-// ═══════════════ SHOPPING HABITS ═══════════════
 { q: "Online or in-store?", opts: ["Online for everything", "In-store, I like to see things", "Mix of both", "Depends on what I'm buying"] },
 { q: "Your cart abandonment rate?", opts: ["Low — I buy what I add", "Save for later, buy never", "30 tabs open, buy nothing", "Forget what I was shopping for"] },
 { q: "Pick a shopping guilty pleasure:", opts: ["Home decor", "New tech", "Clothes I don't need", "Fancy groceries"] },
@@ -1124,8 +956,6 @@ const ALL_QUESTIONS = [
 { q: "How do you feel about Black Friday?", opts: ["Love the deals", "Online only", "Not worth the chaos", "Avoid it entirely"] },
 { q: "Your Amazon Prime usage?", opts: ["Could not live without it", "Occasional use", "Had it, cancelled it", "Don't have it"] },
 { q: "Pick a shopping companion:", opts: ["Someone with similar taste", "Someone honest", "I shop alone", "Anyone who has patience"] },
-
-// ═══════════════ PETS & ANIMALS (EXTENDED) ═══════════════
 { q: "Your pet parenting style?", opts: ["They run the house", "Structured with lots of love", "Spoiled beyond reason", "I don't have pets"] },
 { q: "Pick a first pet for a kid:", opts: ["Goldfish", "Hamster", "Dog", "Cat"] },
 { q: "Your dog walking philosophy?", opts: ["The dog leads", "I set the route", "We explore together", "Someone else walks them"] },
@@ -1136,8 +966,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a pet talent:", opts: ["Knows tons of tricks", "Perfectly behaved", "Does one impressive thing", "Is just cute, that's the talent"] },
 { q: "Pick a pet-related opinion:", opts: ["All dogs are good dogs", "Cats are misunderstood", "Reptile owners are brave", "Fish are underrated pets"] },
 { q: "Your reaction to seeing a puppy?", opts: ["Immediate meltdown", "Must approach and pet", "Smile from a distance", "I'm not a dog person"] },
-
-// ═══════════════ SEASONS EXTENDED ═══════════════
 { q: "Pick a spring scent:", opts: ["Fresh-cut grass", "Rain on warm pavement", "Blooming flowers", "Clean laundry on the line"] },
 { q: "Your summer anthem vibe?", opts: ["Upbeat and danceable", "Chill beach vibes", "Road trip rock", "Nostalgic throwback"] },
 { q: "Choose a fall comfort:", opts: ["Pumpkin spice anything", "Flannel and boots", "Crisp morning walks", "Football/tailgate season"] },
@@ -1146,8 +974,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a seasonal drink:", opts: ["Summer iced tea", "Fall apple cider", "Winter hot cocoa", "Spring lemonade"] },
 { q: "Pick a weather dealbreaker:", opts: ["Humidity", "Wind", "Freezing cold", "I adapt to anything"] },
 { q: "Your favorite seasonal light?", opts: ["Long summer evenings", "Golden fall afternoons", "Cozy winter candlelight", "Fresh spring mornings"] },
-
-// ═══════════════ NOSTALGIA TECHNOLOGY ═══════════════
 { q: "Pick a tech you miss:", opts: ["Disposable cameras", "CD burners", "AIM away messages", "T9 texting"] },
 { q: "Your first phone was:", opts: ["A flip phone", "A slide phone", "A brick Nokia", "Straight to smartphone"] },
 { q: "Choose a retro game:", opts: ["Snake on Nokia", "Oregon Trail", "Pac-Man", "Tetris"] },
@@ -1156,8 +982,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a media format you're nostalgic for:", opts: ["VHS tapes", "CDs", "Cassette tapes", "None, streaming is better"] },
 { q: "Pick a childhood tech memory:", opts: ["Blowing into a game cartridge", "Waiting for a song to download", "Tangled headphone wires", "Rewinding a VHS tape"] },
 { q: "Your Y2K experience?", opts: ["Too young to remember", "Mildly concerned", "My family prepped", "I wasn't born yet"] },
-
-// ═══════════════ CONSPIRACY & MYSTERY ═══════════════
 { q: "Pick a mystery you want solved:", opts: ["What happened to Amelia Earhart?", "Is Bigfoot real?", "What's in Area 51?", "The Bermuda Triangle"] },
 { q: "Your stance on the simulation theory?", opts: ["We're definitely in one", "Interesting thought experiment", "Probably not", "Doesn't change my life either way"] },
 { q: "Choose a 'what if':", opts: ["What if we could breathe underwater?", "What if gravity turned off for a day?", "What if animals could vote?", "What if sleep wasn't necessary?"] },
@@ -1166,8 +990,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a conspiracy theory to be true:", opts: ["Aliens walk among us", "Time travelers exist", "Cats are secretly in charge", "Mattress stores are all money laundering"] },
 { q: "Pick a 'what really happened':", opts: ["The lost city of Atlantis", "Egyptian pyramid construction", "The Wow! signal", "The Voynich manuscript"] },
 { q: "Your Bermuda Triangle theory?", opts: ["Something supernatural", "Natural scientific explanation", "Just coincidence", "I've never thought about it"] },
-
-// ═══════════════ WELLNESS TRENDS ═══════════════
 { q: "Pick a wellness practice:", opts: ["Cold showers", "Journaling", "Breathwork", "Digital detox"] },
 { q: "Your smoothie bowl opinion?", opts: ["Love them", "Overrated", "Too much effort", "Give me a regular smoothie"] },
 { q: "Choose a mental health practice:", opts: ["Therapy", "Meditation", "Exercise", "Talking to friends"] },
@@ -1178,8 +1000,6 @@ const ALL_QUESTIONS = [
 { q: "Your stance on essential oils?", opts: ["Love them", "Skeptical but they smell nice", "Don't care for them", "Lavender specifically yes"] },
 { q: "Choose a daily habit:", opts: ["Morning walk", "Evening journaling", "Afternoon stretch break", "Midday screen break"] },
 { q: "Pick a wellness goal:", opts: ["More sleep", "Less phone time", "More movement", "Better eating habits"] },
-
-// ═══════════════ COOKING OPINIONS ═══════════════
 { q: "Cooking shows: helpful or entertainment?", opts: ["Actually follow the recipes", "Pure entertainment", "Both depending on mood", "I don't watch them"] },
 { q: "Your spice tolerance?", opts: ["Bring on the heat", "Medium is my max", "Mild please", "I think salt is spicy"] },
 { q: "Pick a kitchen disaster you've had:", opts: ["Over-salted something", "Burned dinner badly", "Mixed up sugar and salt", "I once started a small fire"] },
@@ -1188,8 +1008,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a food you pretend to like:", opts: ["Sushi", "Wine", "Salad", "I'm honest about what I like"] },
 { q: "Your grocery store strategy?", opts: ["In and out, list only", "Explore every aisle", "Go for one thing, leave with twenty", "Delivery app instead"] },
 { q: "Choose a food challenge:", opts: ["Extremely spicy challenge", "Eat an unusual food", "Cook with mystery ingredients", "Eat something I've never tried"] },
-
-// ═══════════════ INTERNET CULTURE ═══════════════
 { q: "Pick a meme era:", opts: ["Early internet rage comics", "Vine era", "TikTok era", "I don't follow memes"] },
 { q: "Your internet rabbit hole?", opts: ["Wikipedia deep dives", "Reddit threads", "YouTube at 3am", "Online shopping I won't buy"] },
 { q: "Choose an internet personality type:", opts: ["Commenter on everything", "Silent scroller", "Occasional poster", "Creator/influencer energy"] },
@@ -1200,8 +1018,6 @@ const ALL_QUESTIONS = [
 { q: "Your online shopping cart status right now?", opts: ["Empty", "One or two things", "A wish list in disguise", "Full and abandoned"] },
 { q: "Choose a streaming habit:", opts: ["Watch one show start to finish", "Three shows at once", "Rewatch comfort shows", "Browse for 30 min, watch nothing"] },
 { q: "Pick an internet argument topic to avoid:", opts: ["Politics", "The best pizza topping", "Music taste", "All internet arguments"] },
-
-// ═══════════════ HOME COOKING DISASTERS ═══════════════
 { q: "Your biggest baking fail?", opts: ["Forgot an ingredient", "Oven too hot, burned it", "It didn't rise", "Turned out surprisingly great actually"] },
 { q: "Pick a cooking shortcut:", opts: ["Jarred pasta sauce", "Pre-cut vegetables", "Rotisserie chicken for everything", "Meal kits"] },
 { q: "Your microwave relationship?", opts: ["Essential appliance", "Only for reheating", "Guilty pleasure", "I don't own one"] },
@@ -1210,8 +1026,6 @@ const ALL_QUESTIONS = [
 { q: "Your pan situation?", opts: ["One good nonstick", "Full set, organized", "Whatever came with the apartment", "Does a microwave plate count?"] },
 { q: "Choose a cooking confession:", opts: ["I taste-test too much while cooking", "I never follow recipes exactly", "I've served something burnt to guests", "I've pretended takeout was homemade"] },
 { q: "Pick a food you burn every time:", opts: ["Toast", "Grilled cheese", "Garlic (it's so quick)", "I have great kitchen instincts actually"] },
-
-// ═══════════════ NIGHTLIFE & GOING OUT ═══════════════
 { q: "Your ideal night out?", opts: ["Dinner and drinks", "Dancing somewhere", "Live music", "A chill bar or lounge"] },
 { q: "Pick a drink order:", opts: ["Beer or wine", "Cocktail", "Non-alcoholic option", "Whatever's on special"] },
 { q: "Your going-out energy?", opts: ["Pre-game enthusiast", "Fashionably late arrival", "Leave by midnight", "Second wind at 1am"] },
@@ -1222,8 +1036,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a post-night-out meal:", opts: ["Pizza slice", "Tacos", "Diner breakfast", "Whatever's in the fridge at home"] },
 { q: "Your next-morning-after move?", opts: ["Wake up fresh somehow", "Couch and comfort shows all day", "Brunch to recap", "Regret everything"] },
 { q: "Choose a low-key night out:", opts: ["Board game café", "Trivia night", "Movie and dessert", "Bookstore browsing then dinner"] },
-
-// ═══════════════ DECISION MAKING ═══════════════
 { q: "How do you pick a restaurant?", opts: ["Check reviews first", "Ask friends", "Walk in somewhere random", "Always go to my usual spot"] },
 { q: "Your menu ordering speed?", opts: ["Know what I want immediately", "Narrow to two, struggle to pick", "Ask what everyone else is getting", "Ask the server to decide"] },
 { q: "Pick a decision-making method:", opts: ["Pros and cons list", "Gut feeling", "Flip a coin", "Ask everyone I know"] },
@@ -1234,8 +1046,6 @@ const ALL_QUESTIONS = [
 { q: "How do you choose a movie?", opts: ["Read reviews", "Trailer only", "Someone recommends it", "Scroll for 40 minutes, pick nothing"] },
 { q: "Choose a life motto for decisions:", opts: ["When in doubt, don't", "What's the worst that could happen?", "Go with your gut", "Choose the option that scares you"] },
 { q: "Your commitment to plans?", opts: ["Locked in once I say yes", "Flexible until the day of", "Likely to cancel", "Depends entirely on my mood"] },
-
-// ═══════════════ UNEXPECTED TALENTS ═══════════════
 { q: "Pick a hidden talent to have:", opts: ["Perfect pitch", "Speed reading", "Photographic memory", "Can fix anything mechanical"] },
 { q: "Your actual hidden talent?", opts: ["Remembering random facts", "Making people laugh", "Reading a room", "I don't think I have one"] },
 { q: "Choose a party trick:", opts: ["Card trick", "Can name any song in 3 seconds", "Impressions of people", "A weirdly good dance move"] },
@@ -1246,8 +1056,6 @@ const ALL_QUESTIONS = [
 { q: "Your trivia category?", opts: ["Pop culture", "History", "Science", "Geography"] },
 { q: "Choose a survival skill:", opts: ["Starting a fire", "Finding water", "Building shelter", "Staying calm under pressure"] },
 { q: "Pick a talent you'd learn in a day:", opts: ["Juggling", "Solving a Rubik's cube", "Origami", "A magic trick"] },
-
-// ═══════════════ SOCIAL ENERGY ═══════════════
 { q: "Your social battery life?", opts: ["All-day charge", "A few hours max", "Depletes fast in groups", "Depends on the people"] },
 { q: "Pick a recharge activity after socializing:", opts: ["Alone time at home", "A quiet walk", "Decompress with one person", "I don't need to recharge"] },
 { q: "How do you feel after a party?", opts: ["Energized", "Pleasantly tired", "Completely drained", "Already planning the next one"] },
@@ -1258,8 +1066,6 @@ const ALL_QUESTIONS = [
 { q: "Your phone call preference?", opts: ["Schedule it in advance", "Call anytime", "Text first to see if I can talk", "Don't call me ever"] },
 { q: "Choose a social media break length:", opts: ["A day", "A week", "A month", "I could never"] },
 { q: "Pick a gathering you'd host:", opts: ["Dinner party", "Movie night", "Game night", "I don't host things"] },
-
-// ═══════════════ WEATHER PREFERENCES ═══════════════
 { q: "Pick a weather to drive in:", opts: ["Sunny and clear", "Light rain", "Snow (adventure)", "Night driving, any weather"] },
 { q: "Your ideal beach weather?", opts: ["Hot and sunny", "Warm with a breeze", "Overcast (fewer people)", "I don't do beaches"] },
 { q: "Choose a weather for sleeping:", opts: ["Cool and rainy", "Cold enough for heavy blankets", "Warm with a fan", "AC blasting, freezing room"] },
@@ -1268,8 +1074,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a fog vibe:", opts: ["Cozy and mysterious", "Driving hazard", "Perfect for a movie scene", "Makes me sleepy"] },
 { q: "Pick a perfect weather day:", opts: ["72°F, sunny, light breeze", "Snowy and sparkling", "Warm rain in summer", "Crisp 50°F autumn morning"] },
 { q: "How do you feel about wind?", opts: ["Love a strong breeze", "Annoying mostly", "Only at the beach", "It ruins my hair, so no"] },
-
-// ═══════════════ BUCKET LIST ═══════════════
 { q: "Pick a bucket list destination:", opts: ["Northern Lights in Iceland", "Cherry blossoms in Japan", "Safari in Kenya", "Pyramids of Egypt"] },
 { q: "Choose a bucket list experience:", opts: ["Skydiving", "Running a marathon", "Learning to surf", "Writing a book"] },
 { q: "Your bucket list length?", opts: ["Short and realistic", "Long and dreamy", "In my head only", "I don't have one"] },
@@ -1280,8 +1084,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a creative bucket list item:", opts: ["Learn pottery", "Write a song", "Take a painting class", "Act in something"] },
 { q: "Pick a bucket list challenge:", opts: ["Cold plunge", "Public speaking to a big crowd", "Solo travel to a new country", "Start a business"] },
 { q: "Your ultimate bucket list item?", opts: ["See every continent", "Create something lasting", "Have a life-changing adventure", "Find complete inner peace"] },
-
-// ═══════════════ LIFE PHILOSOPHIES ═══════════════
 { q: "Pick a motto:", opts: ["No regrets", "Everything in moderation", "Be the energy you want to attract", "It'll work out"] },
 { q: "Your view on fate:", opts: ["Everything is meant to be", "We make our own destiny", "A mix of both", "Life is random"] },
 { q: "Choose a guiding quote:", opts: ["Be yourself, everyone else is taken", "The journey is the destination", "Fortune favors the bold", "Less is more"] },
@@ -1292,8 +1094,6 @@ const ALL_QUESTIONS = [
 { q: "Your relationship with perfection?", opts: ["Perfectionist", "Good enough is fine", "Recovering perfectionist", "What's perfection?"] },
 { q: "Pick a mindset:", opts: ["Growth mindset", "Gratitude mindset", "Present-moment mindset", "Hustle mindset"] },
 { q: "How do you measure a good day?", opts: ["Got something done", "Felt happy", "Connected with someone", "Learned something new"] },
-
-// ═══════════════ RANDOM PREFERENCES ═══════════════
 { q: "Pick a direction:", opts: ["Left", "Right", "Straight ahead", "Turn around"] },
 { q: "Your default pen color?", opts: ["Blue", "Black", "Red", "Whatever I grab"] },
 { q: "Choose a random number:", opts: ["7", "3", "13", "42"] },
@@ -1304,8 +1104,6 @@ const ALL_QUESTIONS = [
 { q: "Your sock situation?", opts: ["All matching pairs", "Mixed but close enough", "Who cares, nobody sees them", "Specifically no-show socks"] },
 { q: "Choose a towel habit:", opts: ["Fresh towel every time", "A few uses then wash", "One towel for a week", "What's the question again?"] },
 { q: "Pick a toothpaste squeeze method:", opts: ["From the bottom, neatly", "Middle squeeze", "Wherever my hand lands", "I didn't know people cared about this"] },
-
-// ═══════════════ PERSONAL GROWTH ═══════════════
 { q: "Pick a habit you're building:", opts: ["Reading more", "Exercising regularly", "Better sleep routine", "Mindfulness practice"] },
 { q: "Your reaction to constructive feedback?", opts: ["Grateful — help me improve", "Sting at first, then appreciate it", "Defensive initially", "Depends on the delivery"] },
 { q: "Choose a personal challenge:", opts: ["30 days of something new", "No phone for a weekend", "Talk to a stranger daily", "Journal every day for a month"] },
@@ -1316,8 +1114,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a skill that changed your life:", opts: ["Cooking for myself", "Managing money", "Setting boundaries", "Being comfortable alone"] },
 { q: "How do you handle setbacks?", opts: ["Dust off and try again", "Reflect on what went wrong", "Need time to recover", "Question everything"] },
 { q: "Your self-talk is mostly:", opts: ["Encouraging", "Realistic", "Critical but working on it", "Depends on the day"] },
-
-// ═══════════════ FUTURE TECHNOLOGY ═══════════════
 { q: "Pick a future invention you want:", opts: ["Teleportation", "Universal translator", "Memory backup device", "Time-pause button"] },
 { q: "Your self-driving car stance?", opts: ["Can't wait", "Need more trust first", "I like driving myself", "Sounds terrifying"] },
 { q: "Choose a robot assistant job:", opts: ["Clean my house", "Cook my meals", "Handle my emails", "Be my personal trainer"] },
@@ -1328,8 +1124,6 @@ const ALL_QUESTIONS = [
 { q: "Your AI opinion?", opts: ["Exciting future tool", "Slightly concerned", "Both excited and worried", "I try not to think about it"] },
 { q: "Choose a health tech breakthrough:", opts: ["Cure for aging", "Instant diagnostics", "Personalized medicine", "Mental health scanner"] },
 { q: "Pick a transportation future:", opts: ["Hyperloop trains", "Flying taxis", "Underground tunnels", "Better public transit honestly"] },
-
-// ═══════════════ SENTIMENTAL ═══════════════
 { q: "Pick something you'd save in a fire:", opts: ["Photo albums", "A sentimental object", "My phone", "My pet (above all)"] },
 { q: "Your most treasured possession?", opts: ["A gift from someone special", "Something from childhood", "Photos/memories", "Nothing material"] },
 { q: "Choose a letter you'd write:", opts: ["To my future self", "To a loved one", "To my younger self", "A thank-you to someone important"] },
@@ -1340,8 +1134,6 @@ const ALL_QUESTIONS = [
 { q: "Your relationship with sentimental objects?", opts: ["I keep too many things", "A few special items only", "Memories matter more than objects", "I'm a minimalist about it"] },
 { q: "Choose a memory you'd frame:", opts: ["A trip with friends", "A family moment", "An achievement I'm proud of", "A quiet peaceful moment"] },
 { q: "Pick something you wish you'd kept:", opts: ["Old photos", "A letter or note", "A childhood item", "Nothing, I keep what matters"] },
-
-// ═══════════════ ENERGY & MOTIVATION ═══════════════
 { q: "What energizes you most?", opts: ["Good music", "Good company", "A clear plan", "A new idea"] },
 { q: "Your motivation type?", opts: ["Intrinsic — self-driven", "External — deadlines & rewards", "Competitive — want to be best", "Fear-based — avoid failure"] },
 { q: "Pick a morning motivation:", opts: ["An exciting plan for the day", "Coffee", "Music in the shower", "Sunlight through the window"] },
@@ -1352,8 +1144,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a post-work energy move:", opts: ["Workout", "Collapse on the couch", "Social plans", "A creative hobby"] },
 { q: "Your weekend energy pattern?", opts: ["Active Saturday, lazy Sunday", "Both days packed", "Both days relaxed", "Unpredictable"] },
 { q: "Pick a thing that kills your motivation:", opts: ["Criticism", "Monotony", "Comparison to others", "Being tired"] },
-
-// ═══════════════ COLORS & SYMBOLISM ═══════════════
 { q: "Pick a sunset color:", opts: ["Pink", "Orange", "Purple", "Gold"] },
 { q: "Your favorite color to wear?", opts: ["Black", "White", "Blue", "Earth tones"] },
 { q: "Choose a color for your front door:", opts: ["Red — bold", "Blue — calm", "Yellow — cheerful", "Black — classic"] },
@@ -1362,8 +1152,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a gemstone:", opts: ["Diamond — timeless", "Emerald — rich", "Sapphire — deep", "Amethyst — mysterious"] },
 { q: "Pick a metallic:", opts: ["Gold — warm", "Silver — cool", "Rose gold — modern", "Bronze — vintage"] },
 { q: "Your car color preference?", opts: ["Black", "White", "Gray/silver", "Something with personality"] },
-
-// ═══════════════ TRADITIONS & RITUALS ═══════════════
 { q: "Pick a daily ritual you'd adopt:", opts: ["Morning meditation", "Evening walk", "Tea time at 4pm", "Gratitude journal before bed"] },
 { q: "Your birthday tradition?", opts: ["Dinner with friends", "Solo treat-yourself day", "Party", "Whatever happens, happens"] },
 { q: "Choose a New Year's tradition:", opts: ["Big party countdown", "Quiet reflection", "Dinner with loved ones", "Asleep before midnight"] },
@@ -1374,18 +1162,13 @@ const ALL_QUESTIONS = [
 { q: "Your coffee/tea ritual?", opts: ["Same order every day", "Change it up", "Brew at home", "Depends on my mood"] },
 { q: "Choose a travel tradition:", opts: ["Buy a magnet from every place", "Try a local dish first thing", "Postcard home", "Sunrise on the first morning"] },
 { q: "Pick a gratitude practice:", opts: ["Write three things daily", "Say it out loud", "Think it before sleep", "I should start doing this"] },
-
-// ═══════════════ GUILTY PLEASURES ═══════════════
 { q: "Pick a guilty pleasure show:", opts: ["Reality dating show", "True crime docuseries", "Trashy drama", "Kids' cartoon as an adult"] },
 { q: "Your midnight snack guilt level?", opts: ["No guilt ever", "Mild guilt, eat anyway", "Major guilt", "I don't snack at midnight"] },
 { q: "Choose a guilty pleasure activity:", opts: ["Online shopping spree", "Binge a whole season in one sitting", "Gossip session", "A really long shower"] },
 { q: "Pick a guilty pleasure food:", opts: ["Fast food at midnight", "An entire pint of ice cream", "Gas station snacks", "Instant ramen when I could cook"] },
-{ q: "Your guilty pleasure music?", opts: ["Cheesy pop", "Musical theater soundtrack", "Song I'd never admit to liking", "I have no music guilt"] },
 { q: "Choose a guilty pleasure purchase:", opts: ["Something I definitely don't need", "Fancy coffee daily", "Subscription I barely use", "Another book when I have unread ones"] },
 { q: "Pick a guilty pleasure habit:", opts: ["Staying in bed way too long", "Rewatching the same comfort movie", "Taking extra-long showers", "Scrolling social media for hours"] },
 { q: "Your guilty pleasure drink?", opts: ["Sugary coffee drink", "Soda", "Wine on a Tuesday", "Juice box (no age limit)"] },
-
-// ═══════════════ NEIGHBORS & LIVING SITUATIONS ═══════════════
 { q: "Your ideal living situation?", opts: ["Solo apartment", "With a partner", "With good roommates", "With family"] },
 { q: "Pick an apartment feature:", opts: ["In-unit laundry", "A balcony", "Lots of natural light", "Good closet space"] },
 { q: "Your move-in day strategy?", opts: ["Organized and labeled boxes", "Throw everything in bags", "One trip or die trying", "Hire someone else to do it"] },
@@ -1394,8 +1177,6 @@ const ALL_QUESTIONS = [
 { q: "Your lease situation?", opts: ["Long-term settled", "Year-to-year flexibility", "Month-to-month freedom", "Homeowner or want to be"] },
 { q: "Choose a home improvement project:", opts: ["New paint", "Better lighting", "Organized storage", "A cozy reading nook"] },
 { q: "Pick a thing you notice first in someone's home:", opts: ["Cleanliness", "Decor and style", "Books or media", "How it smells"] },
-
-// ═══════════════ PHILOSOPHICAL WHAT-IFS ═══════════════
 { q: "If you could know one truth about the universe:", opts: ["Is there life after death?", "What's outside the universe?", "Why are we here?", "Are we alone?"] },
 { q: "You can erase one memory:", opts: ["Something embarrassing", "A heartbreak", "A bad decision", "I wouldn't erase any"] },
 { q: "You wake up 100 years in the future:", opts: ["Explore everything immediately", "Find out what happened to my people", "Try to find something familiar", "Hope they have good food"] },
@@ -1406,8 +1187,6 @@ const ALL_QUESTIONS = [
 { q: "If you could hear everyone's thoughts for a day:", opts: ["Exciting — let's go", "Terrifying — hard pass", "Only for select people", "Curious but scared"] },
 { q: "You're the last person on Earth for a week:", opts: ["Enjoy the peace", "Explore everywhere", "Panic immediately", "Go to a grocery store and eat everything"] },
 { q: "Pick a superpower with a catch — you glow when you use it:", opts: ["Still worth it — flight", "Invisibility (ironic)", "Super strength", "I'd skip the power to avoid glowing"] },
-
-// ═══════════════ MINI GAMES & PREFERENCES ═══════════════
 { q: "Rock, paper, or scissors?", opts: ["Rock", "Paper", "Scissors", "I always go rock first"] },
 { q: "Pick a card suit:", opts: ["Hearts", "Spades", "Diamonds", "Clubs"] },
 { q: "Your Monopoly strategy?", opts: ["Buy everything", "Focus on key properties", "Negotiate and trade", "I flip the board before it ends"] },
@@ -1418,8 +1197,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a carnival game:", opts: ["Ring toss", "Water gun race", "Claw machine", "Basketball shootout"] },
 { q: "Your charades style?", opts: ["Dramatic actor", "Minimal gestures", "Break the rules and talk", "I refuse to play"] },
 { q: "Choose a playground game:", opts: ["Four square", "Jump rope", "Tag", "Wall ball"] },
-
-// ═══════════════ CINEMA OPINIONS ═══════════════
 { q: "Subtitles: on or off?", opts: ["Always on", "Only for foreign films", "Distracting, off", "On but I forget to read them"] },
 { q: "Your movie rating generosity?", opts: ["Generous — most get 4+ stars", "Tough critic", "Average — rarely extreme", "I don't rate movies"] },
 { q: "Pick a movie scene type you love:", opts: ["The big twist reveal", "An emotional reunion", "An epic battle", "A perfectly timed joke"] },
@@ -1428,8 +1205,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a movie to watch on a plane:", opts: ["Action blockbuster", "Light comedy", "Something I've seen before", "Whatever's offered first"] },
 { q: "Your post-credits scene patience?", opts: ["Always wait", "Only for Marvel", "Check online later", "Leave when credits roll"] },
 { q: "Choose a movie format:", opts: ["Theater IMAX experience", "Home projector", "Laptop in bed", "Drive-in theater"] },
-
-// ═══════════════ GEOGRAPHY & MAPS ═══════════════
 { q: "Pick a country shaped interestingly:", opts: ["Italy — the boot", "Japan — the archipelago", "Chile — the ribbon", "Australia — the continent"] },
 { q: "Your map skills?", opts: ["Great sense of direction", "GPS dependent", "Can read a paper map", "I get lost everywhere"] },
 { q: "Choose a geography fact to be true:", opts: ["An undiscovered island exists", "A hidden underground city", "A lost civilization ruins", "A new mountain forming"] },
@@ -1438,8 +1213,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a desert:", opts: ["Sahara", "Atacama", "Gobi", "I prefer no deserts"] },
 { q: "Pick a mountain range:", opts: ["Himalayas", "Alps", "Rockies", "Andes"] },
 { q: "Your timezone preference?", opts: ["Early timezone — ahead of everyone", "Late timezone — behind everyone", "UTC — center of the world", "I don't care about timezones"] },
-
-// ═══════════════ SCENTS & SMELLS ═══════════════
 { q: "Pick a nostalgic scent:", opts: ["Sunscreen", "Freshly baked cookies", "A specific perfume/cologne", "Old books"] },
 { q: "Choose a morning scent:", opts: ["Fresh coffee", "Clean linen", "Morning air", "Toast or breakfast cooking"] },
 { q: "Your perfume/cologne style?", opts: ["Something subtle", "A signature scent", "Changes with my mood", "I don't wear fragrance"] },
@@ -1448,8 +1221,6 @@ const ALL_QUESTIONS = [
 { q: "Your candle collection?", opts: ["Extensive", "A few favorites", "One that I love", "I don't burn candles"] },
 { q: "Pick a smell you hate:", opts: ["Artificial air freshener", "Burnt popcorn", "Strong perfume in an elevator", "Wet dog"] },
 { q: "Choose a car air freshener:", opts: ["New car smell", "Pine tree classic", "Something vanilla", "Windows down instead"] },
-
-// ═══════════════ DINNER TABLE TOPICS ═══════════════
 { q: "Pick a dinner debate:", opts: ["Best decade for music", "Is cereal a soup?", "Nature vs nurture", "Best season of the year"] },
 { q: "Your dinner party seating preference?", opts: ["Next to someone I know well", "Next to someone new", "At the head of the table", "Wherever there's food access"] },
 { q: "Choose a dinner party contribution:", opts: ["I'll cook the main course", "I'll bring wine", "I'll make dessert", "I'll bring the vibes"] },
@@ -1458,8 +1229,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a dinner table rule:", opts: ["No phones at the table", "Everyone tries everything", "Go around and share highlights", "No rules, just enjoy"] },
 { q: "Pick a cuisine for a dinner party:", opts: ["Italian family-style", "Mexican taco bar", "Japanese sushi spread", "Indian curry feast"] },
 { q: "Your dinner guest from history?", opts: ["Leonardo da Vinci", "Cleopatra", "Einstein", "Shakespeare"] },
-
-// ═══════════════ FIRST IMPRESSIONS ═══════════════
 { q: "What do people notice first about you?", opts: ["My smile", "My energy", "My style", "My quietness"] },
 { q: "Pick a first impression you give off:", opts: ["Friendly and approachable", "Confident and put-together", "Quiet and mysterious", "Funny and relaxed"] },
 { q: "Your handshake style?", opts: ["Firm and confident", "Gentle", "I go for a hug", "Awkward wave instead"] },
@@ -1468,8 +1237,6 @@ const ALL_QUESTIONS = [
 { q: "Your first impression accuracy?", opts: ["Usually spot on", "Hit or miss", "I reserve judgment", "Often wrong initially"] },
 { q: "Choose a compliment style:", opts: ["Specific and genuine", "Casual and quick", "Thoughtful but rare", "I show it more than say it"] },
 { q: "How do you act in a new group?", opts: ["Jump right in", "Observe first", "Find one person to connect with", "Wait to be included"] },
-
-// ═══════════════ BOARD GAMES & TABLETOP ═══════════════
 { q: "Pick a board game genre:", opts: ["Strategy (Catan, Risk)", "Party (Codenames, Apples to Apples)", "Cooperative (Pandemic)", "Classic (Clue, Life)"] },
 { q: "Your game night snack?", opts: ["Pizza delivery", "Chip spread", "Themed snacks", "Whatever the host provides"] },
 { q: "Choose a game night length:", opts: ["Quick games, many rounds", "One long strategic game", "Mix of both", "Until someone flips the board"] },
@@ -1478,8 +1245,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a player type:", opts: ["Strategic mastermind", "Lucky roller", "Alliance builder", "Chaotic wildcard"] },
 { q: "Pick a game to introduce to anyone:", opts: ["Uno", "Codenames", "Ticket to Ride", "Bananagrams"] },
 { q: "Your Scrabble strategy?", opts: ["Long impressive words", "Short high-scoring plays", "Challenge everyone's words", "I don't play Scrabble"] },
-
-// ═══════════════ SOCIAL SITUATIONS ═══════════════
 { q: "You show up overdressed to an event:", opts: ["Own it confidently", "Try to dress down somehow", "Feel awkward all night", "This is just how I dress"] },
 { q: "Someone remembers your name but you forgot theirs:", opts: ["Ask casually", "Avoid using names entirely", "Check their social media secretly", "Introduce them to someone else to hear it"] },
 { q: "You laugh at the wrong moment:", opts: ["Laugh harder and apologize", "Try to disguise it as a cough", "Explain myself", "Die of embarrassment"] },
@@ -1488,8 +1253,6 @@ const ALL_QUESTIONS = [
 { q: "Someone asks 'what do you do?' at a party:", opts: ["Give a genuine answer", "Make a joke about it", "Deflect and ask them first", "Dread this question"] },
 { q: "You run into a coworker in public:", opts: ["Chat like friends", "Quick hello and move on", "Pretend I didn't see them", "Depends which coworker"] },
 { q: "A stranger starts talking to you:", opts: ["Engage fully", "Polite but brief", "Look for an exit", "Match their energy"] },
-
-// ═══════════════ PRODUCTIVITY TOOLS & SYSTEMS ═══════════════
 { q: "Pick a planning method:", opts: ["Physical planner", "Digital calendar", "Bullet journal", "Notes app chaos"] },
 { q: "Your notification strategy?", opts: ["See everything immediately", "Batch check at certain times", "Most things muted", "All off, I'll check when I check"] },
 { q: "Choose a file organization style:", opts: ["Folders within folders", "One big dump folder", "Desktop is my filing system", "Search bar is my organization"] },
@@ -1498,16 +1261,12 @@ const ALL_QUESTIONS = [
 { q: "Choose a note-taking app approach:", opts: ["One app for everything", "Different apps for different things", "Physical notebook", "The back of my hand"] },
 { q: "Pick a daily planner section:", opts: ["Today's priorities", "Time blocks", "Mood/energy tracker", "Gratitude section"] },
 { q: "Your backup system?", opts: ["Cloud everything", "External hard drive", "Multiple backups", "Living dangerously with none"] },
-
-// ═══════════════ COMPLIMENTS & VALIDATION ═══════════════
 { q: "Pick a compliment that means the most:", opts: ["You're really thoughtful", "You always make me laugh", "I trust you completely", "You inspire me"] },
 { q: "Your compliment style?", opts: ["Specific and detailed", "Quick and casual", "Through actions not words", "Rarely verbal, but I mean it"] },
 { q: "Choose a way to be recognized:", opts: ["Public acknowledgment", "Private sincere thank-you", "A gift or gesture", "Just knowing I helped is enough"] },
 { q: "Pick something you need to hear more:", opts: ["You're enough", "It's okay to rest", "I'm proud of you", "You don't have to do it all"] },
 { q: "How do you validate a friend?", opts: ["Specific praise", "Just being present", "A heartfelt text message", "Hyping them up to others"] },
 { q: "Choose a recognition love language:", opts: ["Words of praise", "A thoughtful gift", "Quality time spent together", "Someone remembering a detail about me"] },
-
-// ═══════════════ COZY VIBES ═══════════════
 { q: "Pick a cozy activity:", opts: ["Reading by the fire", "Baking something warm", "Blanket fort movie marathon", "Hot drink by the window"] },
 { q: "Your cozy drink?", opts: ["Hot chocolate", "Tea", "Warm apple cider", "Coffee with extra cream"] },
 { q: "Choose a cozy outfit:", opts: ["Oversized hoodie", "Fuzzy socks and pajamas", "Robe life", "Sweats and a blanket"] },
@@ -1516,8 +1275,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a cozy weather:", opts: ["Steady rain all day", "First snowfall", "Overcast with a breeze", "Cold but sunny"] },
 { q: "Pick a cozy food:", opts: ["Soup and fresh bread", "Mac and cheese", "Grilled cheese and tomato soup", "Something baked from scratch"] },
 { q: "Your blanket preference?", opts: ["Weighted blanket", "Fluffy duvet", "Knitted throw", "Whatever's closest"] },
-
-// ═══════════════ CAREER REFLECTIONS ═══════════════
 { q: "Your relationship with your career?", opts: ["It's my passion", "It pays the bills", "Work in progress", "Figuring it out still"] },
 { q: "Pick a career value:", opts: ["Flexibility", "Purpose", "Growth", "Stability"] },
 { q: "How do you feel on Sunday night about Monday?", opts: ["Excited to get back at it", "Neutral", "Dreading it", "Depends on the week ahead"] },
@@ -1526,8 +1283,6 @@ const ALL_QUESTIONS = [
 { q: "Your networking style?", opts: ["Natural connector", "Strategic and intentional", "Awkward but trying", "I let my work speak for me"] },
 { q: "Choose a professional development:", opts: ["Attend a conference", "Take an online course", "Get a mentor", "Read industry books"] },
 { q: "Pick a retirement fantasy:", opts: ["Open a small café", "Write and teach", "Travel and volunteer", "Farm and garden"] },
-
-// ═══════════════ IMAGINATION SCENARIOS ═══════════════
 { q: "You can live in any building:", opts: ["Castle", "Treehouse", "Houseboat", "Skyscraper penthouse"] },
 { q: "Pick a mode of transportation that doesn't exist:", opts: ["Personal teleporter", "Flying skateboard", "Underwater car", "Cloud surfing"] },
 { q: "You get to design a theme park ride:", opts: ["Something terrifyingly fast", "A beautiful scenic ride", "An immersive story experience", "A zero-gravity simulator"] },
@@ -1538,8 +1293,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a new sense to have:", opts: ["Sense direction like a compass", "Feel weather changes coming", "Detect emotions of others", "Sense time perfectly"] },
 { q: "Pick a magical garden feature:", opts: ["A fountain that plays music", "Trees that glow at night", "Flowers that change color with mood", "A pond you can breathe underwater in"] },
 { q: "You can rename any day of the week:", opts: ["Delete Monday entirely", "Make Friday last two days", "Add an 8th day for rest", "Rename Wednesday to something pronounceable"] },
-
-// ═══════════════ TRUST & HONESTY ═══════════════
 { q: "How honest are you on a daily basis?", opts: ["Brutally honest", "Honest with tact", "White lies occasionally", "Depends on the situation"] },
 { q: "Pick a trust-building action:", opts: ["Keep secrets sacred", "Follow through on promises", "Show up when it matters", "Be vulnerable first"] },
 { q: "Your lie detection ability?", opts: ["Can always tell", "Usually pick up on it", "50/50", "I trust everyone too easily"] },
@@ -1548,8 +1301,6 @@ const ALL_QUESTIONS = [
 { q: "Your secret-keeping ability?", opts: ["Take them to the grave", "Usually good", "Struggle if it's juicy", "I tell one trusted person"] },
 { q: "How do you build trust?", opts: ["Consistency over time", "Big gestures", "Open communication", "Showing up in hard moments"] },
 { q: "Pick a white lie you tell:", opts: ["'I'm almost there'", "'I'll think about it'", "'I'm doing great'", "I never lie (lying)"] },
-
-// ═══════════════ RANDOM INTERNET QUESTIONS ═══════════════
 { q: "Is water wet?", opts: ["Yes obviously", "No, it makes things wet", "I refuse to participate", "It's both wet and not wet"] },
 { q: "Would you rather fight 100 duck-sized horses or 1 horse-sized duck?", opts: ["100 duck-sized horses", "1 horse-sized duck", "Neither, I'm running", "Can I befriend them instead?"] },
 { q: "What color is the dress?", opts: ["Blue and black", "White and gold", "I see both", "Not this again"] },
@@ -1558,8 +1309,6 @@ const ALL_QUESTIONS = [
 { q: "Toilet paper: fold or scrunch?", opts: ["Fold — civilized", "Scrunch — efficient", "Never thought about it", "I'm not answering this"] },
 { q: "Does pineapple belong on pizza?", opts: ["Yes, it's delicious", "It's an abomination", "I'll eat it but not order it", "I'm tired of this debate"] },
 { q: "What came first: chicken or egg?", opts: ["Chicken", "Egg", "Neither, evolution is gradual", "Depends on your definition"] },
-
-// ═══════════════ SOUND PREFERENCES ═══════════════
 { q: "Pick a sound to fall asleep to:", opts: ["Rain", "Ocean waves", "White noise machine", "Complete silence"] },
 { q: "Your alarm sound?", opts: ["Gentle chime", "Classic alarm buzz", "A song", "I don't use an alarm"] },
 { q: "Choose a sound that annoys you:", opts: ["Chewing", "Pen clicking", "Alarm clock", "A fly buzzing"] },
@@ -1568,8 +1317,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a nature sound:", opts: ["Thunderstorm", "Birdsong at dawn", "Wind through trees", "A flowing stream"] },
 { q: "Pick a sound that makes you happy:", opts: ["Laughter", "A favorite song's opening notes", "A dog's excited bark", "Rain starting while I'm inside"] },
 { q: "Your TV volume:", opts: ["Barely audible", "Normal", "Subtitles because I can't hear", "Neighbors can hear it too"] },
-
-// ═══════════════ CHILDHOOD GAMES & PLAY ═══════════════
 { q: "Pick a childhood imagination game:", opts: ["Floor is lava", "Pretend cooking show", "Building blanket forts", "Playing house/school"] },
 { q: "Your childhood outdoor activity?", opts: ["Climbing trees", "Riding bikes", "Playing in sprinklers", "Catching bugs"] },
 { q: "Choose a childhood art project:", opts: ["Finger painting", "Macaroni art", "Drawing comics", "Play-Doh sculptures"] },
@@ -1578,8 +1325,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a school dance memory:", opts: ["Actually had fun", "Awkward wallflower", "Slow dance moment", "Didn't go"] },
 { q: "Pick a childhood skill:", opts: ["Could ride a bike no-hands", "Could climb anything", "Could hold my breath forever", "Could eat the most pizza"] },
 { q: "Your childhood sleepover activity?", opts: ["Truth or dare", "Scary stories", "Video games all night", "Midnight snack raid"] },
-
-// ═══════════════ FRIENDSHIP TYPES ═══════════════
 { q: "Pick a friendship origin:", opts: ["Childhood friends", "Met through shared interests", "Work friends turned real friends", "Random encounter friendship"] },
 { q: "Your friend breakup recovery?", opts: ["Grieve it like a relationship", "Move on quickly", "Never fully get over it", "What friend breakup?"] },
 { q: "Choose a friendship era:", opts: ["Childhood besties", "College crew", "Adult friendships", "Online friends I've never met"] },
@@ -1588,8 +1333,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a friendship green flag:", opts: ["Celebrates your wins genuinely", "Checks in without needing a reason", "Can sit in silence comfortably", "Tells you the truth even when hard"] },
 { q: "Pick a friendship tradition you love:", opts: ["Annual reunion", "Regular dinner dates", "Shared playlist", "Inside jokes that never get old"] },
 { q: "Your friendship style?", opts: ["Ride or die for a few", "Social butterfly with many", "Different friends for different things", "A loner who treasures rare connections"] },
-
-// ═══════════════ FOOD AROUND THE WORLD ═══════════════
 { q: "Pick a street food:", opts: ["Tacos al pastor (Mexico)", "Pad Thai (Thailand)", "Crepes (France)", "Kebab (Turkey)"] },
 { q: "Choose a breakfast from abroad:", opts: ["Full English breakfast", "Japanese miso soup & rice", "French croissant & coffee", "Mexican chilaquiles"] },
 { q: "Pick a dessert from around the world:", opts: ["Tiramisu (Italy)", "Mochi (Japan)", "Baklava (Middle East)", "Churros (Spain)"] },
@@ -1600,8 +1343,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a noodle dish:", opts: ["Italian pasta carbonara", "Thai pad see ew", "Chinese lo mein", "Japanese udon"] },
 { q: "Pick a bread from around the world:", opts: ["Naan (India)", "Baguette (France)", "Pita (Middle East)", "Tortilla (Mexico)"] },
 { q: "Your curry preference?", opts: ["Creamy tikka masala", "Spicy Thai green curry", "Rich Japanese curry", "I'm not a curry person"] },
-
-// ═══════════════ SELF-AWARENESS ═══════════════
 { q: "Your biggest strength in one word?", opts: ["Empathy", "Determination", "Adaptability", "Humor"] },
 { q: "Pick a flaw you're working on:", opts: ["Overthinking", "Procrastination", "Being too hard on myself", "Impatience"] },
 { q: "How well do you know yourself?", opts: ["Very well", "Getting there", "Still figuring it out", "I surprise myself often"] },
@@ -1612,8 +1353,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a thing you're proud of:", opts: ["Who I've become", "Something I built or created", "A relationship I've maintained", "How I handled a tough situation"] },
 { q: "Pick a growth area:", opts: ["Being more assertive", "Letting go of control", "Being more present", "Accepting imperfection"] },
 { q: "How do you respond to stress?", opts: ["Get organized and take action", "Shut down and withdraw", "Talk it out with someone", "Stress-eat or stress-clean"] },
-
-// ═══════════════ MUSIC MOMENTS ═══════════════
 { q: "Pick a song moment:", opts: ["Windows down on a highway", "First dance at a wedding", "Last song of a concert", "Alone in headphones at night"] },
 { q: "Your most-played song right now is:", opts: ["A new discovery", "An old favorite", "Something recommended", "I have no idea honestly"] },
 { q: "Choose a music memory:", opts: ["A song that defined a summer", "First concert ever", "A song tied to a person", "Learning to play something"] },
@@ -1622,8 +1361,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a road trip album:", opts: ["Something everyone knows", "A full album, start to finish", "Curated playlist", "Let the passengers pick"] },
 { q: "Pick a music-related skill:", opts: ["Can play an instrument", "Can sing well", "Have impeccable taste", "Can DJ/mix music"] },
 { q: "Your concert etiquette?", opts: ["Sing every word", "Dance without caring", "Record key moments", "Just absorb the experience"] },
-
-// ═══════════════ SLEEP HABITS EXTENDED ═══════════════
 { q: "Your bedtime procrastination?", opts: ["Phone scroll for hours", "One more episode", "Suddenly creative at midnight", "I go to bed on time actually"] },
 { q: "Pick a dream type:", opts: ["Adventure dreams", "Anxiety dreams", "Bizarre random dreams", "I rarely dream"] },
 { q: "Your sleep environment?", opts: ["Pitch black silence", "Some ambient noise", "TV on low", "Whatever, I sleep anywhere"] },
@@ -1632,8 +1369,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a sleep luxury:", opts: ["Silk pillowcase", "Weighted blanket", "White noise machine", "Memory foam mattress"] },
 { q: "Your relationship with the snooze button?", opts: ["Hit it multiple times", "Never — first alarm is final", "Set my alarm 30 min early to snooze", "I don't use alarms"] },
 { q: "Choose a sleeping position compromise:", opts: ["Big spoon", "Little spoon", "Each to their own side", "Separate blankets, same bed"] },
-
-// ═══════════════ HOME COOKING EXTENDED ═══════════════
 { q: "Your signature dish?", opts: ["Pasta of some kind", "Stir fry", "Something baked", "Reservations"] },
 { q: "Pick a cooking challenge:", opts: ["Make something with 5 ingredients", "Cook a full meal in 20 minutes", "Recreate a restaurant dish", "Cook something from another culture"] },
 { q: "Your grocery store time?", opts: ["Under 30 minutes", "A leisurely hour", "As fast as humanly possible", "I browse like it's entertainment"] },
@@ -1642,8 +1377,6 @@ const ALL_QUESTIONS = [
 { q: "Your apron situation?", opts: ["Always wear one", "Own one but forget", "Use a towel", "Stains are character"] },
 { q: "Choose a kitchen upgrade:", opts: ["A bigger fridge", "A gas stove", "More counter space", "A dishwasher that actually works"] },
 { q: "Pick a cooking mistake you keep making:", opts: ["Not reading the full recipe first", "Overcrowding the pan", "Underseasoning", "Impatient with cook times"] },
-
-// ═══════════════ PERSONAL STYLE EXTENDED ═══════════════
 { q: "Your getting-ready playlist?", opts: ["Hype-up anthems", "Chill background vibes", "Podcast or YouTube", "Silence — I need to focus"] },
 { q: "Pick a fashion era:", opts: ["70s bohemian", "90s grunge", "2000s Y2K", "Current trends"] },
 { q: "Your jewelry style?", opts: ["Minimal and dainty", "Statement pieces", "None at all", "Same pieces every day"] },
@@ -1652,8 +1385,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a fashion risk you'd take:", opts: ["A bold color", "Pattern mixing", "Vintage thrift find", "I play it safe"] },
 { q: "Your winter vs summer style?", opts: ["Better in layers (winter)", "Better in summer clothes", "Both equally", "I look the same year-round"] },
 { q: "Choose a closet organization:", opts: ["By color", "By type", "By frequency of wear", "It's a pile"] },
-
-// ═══════════════ EMOTIONAL RESPONSES ═══════════════
 { q: "What makes you cry?", opts: ["Movies/shows", "Music", "Real conversations", "I rarely cry"] },
 { q: "Pick an emotional trigger:", opts: ["Seeing someone else cry", "A sentimental song", "Nostalgia hitting unexpectedly", "Acts of unexpected kindness"] },
 { q: "Your anger style?", opts: ["Quick flash, then over it", "Slow burn", "Silent treatment", "I rarely get angry"] },
@@ -1662,8 +1393,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a happy trigger:", opts: ["Seeing a dog", "A sunny day after rain", "Getting a genuine compliment", "A song I love coming on shuffle"] },
 { q: "Your jealousy level?", opts: ["Very low", "Occasionally", "More than I'd like", "I'm working on it"] },
 { q: "Choose a way you show excitement:", opts: ["Jump/dance/scream", "Big smile and eyes", "Tell everyone immediately", "Quiet internal joy"] },
-
-// ═══════════════ TIME MANAGEMENT ═══════════════
 { q: "Your on-time track record?", opts: ["Always early", "Exactly on time", "Consistently 5 min late", "Fashionably late by default"] },
 { q: "Pick a time zone you'd live in:", opts: ["EST — East Coast energy", "PST — West Coast vibes", "GMT — European access", "JST — Tokyo time"] },
 { q: "Your weekend time split?", opts: ["50/50 fun and errands", "All fun, errands Monday", "All errands, relax later", "No structure at all"] },
@@ -1672,8 +1401,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a time of year you're most productive:", opts: ["January — fresh start energy", "Spring — new motivation", "Fall — back to routine", "It doesn't change for me"] },
 { q: "Your deadline relationship?", opts: ["Best friends — I need them", "Enemies — they stress me out", "Neutral — I manage fine", "What deadline? (already past)"] },
 { q: "Choose a time luxury:", opts: ["An extra hour of sleep", "Longer lunch breaks", "Short work days", "Time moving slower on vacation"] },
-
-// ═══════════════ DREAM HOMES ═══════════════
 { q: "Pick a dream home style:", opts: ["Modern minimalist", "Cozy cottage", "Industrial loft", "Spanish villa"] },
 { q: "Your dream home location?", opts: ["Overlooking the ocean", "In the mountains", "City skyline view", "Surrounded by forest"] },
 { q: "Choose a dream home feature:", opts: ["Rooftop deck", "Library room", "Indoor pool", "Secret room"] },
@@ -1682,8 +1409,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a dream home luxury:", opts: ["Home theater", "Wine cellar", "Sauna/steam room", "Greenhouse"] },
 { q: "Pick a dream neighborhood:", opts: ["Beachfront community", "Mountain village", "Historic city center", "Suburban with great neighbors"] },
 { q: "Your dream home priority?", opts: ["Space and size", "Location", "Design and aesthetics", "Privacy"] },
-
-// ═══════════════ CREATIVE WRITING PROMPTS ═══════════════
 { q: "If your life was a book genre:", opts: ["Comedy", "Adventure", "Drama", "Mystery"] },
 { q: "Pick a character trait for your protagonist:", opts: ["Brave but impulsive", "Smart but awkward", "Kind but naive", "Funny but hiding pain"] },
 { q: "Choose your story's setting:", opts: ["A small coastal town", "A big chaotic city", "A magical kingdom", "A space station"] },
@@ -1692,8 +1417,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a plot twist for your life:", opts: ["Long-lost sibling appears", "Win an unexpected award", "Discover a hidden talent at 40", "A stranger changes your life"] },
 { q: "Pick a movie adaptation of your life:", opts: ["Indie dramedy", "Action-packed thriller", "Romantic comedy", "Documentary style"] },
 { q: "Your narrator voice?", opts: ["Morgan Freeman", "The person themselves", "A sarcastic best friend", "An omniscient mysterious voice"] },
-
-// ═══════════════ DAILY ROUTINE DETAILS ═══════════════
 { q: "First thing you do when you wake up?", opts: ["Check my phone", "Use the bathroom", "Stretch/get up immediately", "Lie there rethinking my life choices"] },
 { q: "Pick a commute soundtrack:", opts: ["Podcast", "Music playlist", "Audiobook", "Silence and thoughts"] },
 { q: "Your lunch routine?", opts: ["Same thing most days", "Something different daily", "Skip lunch sometimes", "Whatever's fastest"] },
@@ -1702,8 +1425,6 @@ const ALL_QUESTIONS = [
 { q: "Your morning beverage:", opts: ["Coffee, non-negotiable", "Tea — calmer start", "Water first", "Nothing until later"] },
 { q: "Choose a daily highlight:", opts: ["Morning coffee moment", "Midday break", "Coming home", "Getting into bed at night"] },
 { q: "Pick a weekend morning tradition:", opts: ["Sleep in", "Farmer's market", "Big breakfast", "Gym or exercise"] },
-
-// ═══════════════ UNLIKELY SCENARIOS ═══════════════
 { q: "You find out you're royalty:", opts: ["Embrace it immediately", "Decline the throne", "Use the wealth for good", "Move to the castle"] },
 { q: "A movie is being made about you:", opts: ["I pick my actor", "I'm nervous about the plot", "I'd want it to be accurate", "I'd want it to be funnier than reality"] },
 { q: "You can bring one cancelled show back:", opts: ["My all-time favorite", "Something that ended on a cliffhanger", "A childhood classic", "None, let things end"] },
@@ -1714,8 +1435,6 @@ const ALL_QUESTIONS = [
 { q: "You get to relive one meal:", opts: ["Best restaurant experience", "A family holiday meal", "First time trying my favorite food", "A meal on a trip abroad"] },
 { q: "Everyone has to wear a uniform:", opts: ["Athleisure for all", "Business casual", "Pajamas", "Each person picks their own"] },
 { q: "You can master one household task instantly:", opts: ["Cooking gourmet meals", "Keeping everything spotless", "Fixing anything that breaks", "Interior decorating"] },
-
-// ═══════════════ OPINION SPEED ROUND ═══════════════
 { q: "Pockets or no pockets?", opts: ["Pockets in everything", "Don't care", "Fake pockets should be illegal", "That's why I carry a bag"] },
 { q: "Crunchy or soft tacos?", opts: ["Crunchy", "Soft", "Both at once", "Depends on the filling"] },
 { q: "Wrapping paper or gift bag?", opts: ["Wrapping paper — the effort shows", "Gift bag — efficient", "Newspaper wrapping — eco move", "Hand it to them unwrapped"] },
@@ -1728,8 +1447,6 @@ const ALL_QUESTIONS = [
 { q: "Cake or pie?", opts: ["Cake", "Pie", "Both, don't make me choose", "Neither — cookies"] },
 { q: "Socks to bed or no?", opts: ["Socks on — my feet get cold", "Never — that's unhinged", "Start with, kick off eventually", "Depends on the season"] },
 { q: "Spoon or fork for mac and cheese?", opts: ["Fork obviously", "Spoon for maximum scooping", "Either works", "I eat it out of the pot"] },
-
-// ═══════════════ ROOMMATE STORIES ═══════════════
 { q: "Your ideal roommate quality?", opts: ["Clean and tidy", "Fun and social", "Quiet and respectful", "Cooks and shares food"] },
 { q: "Pick a roommate dealbreaker:", opts: ["Never cleans up", "Brings people over constantly", "Eats my labeled food", "Passive-aggressive notes"] },
 { q: "Your shared bathroom situation?", opts: ["Spotless, I clean it", "We take turns", "It's a warzone", "I need my own bathroom"] },
@@ -1738,8 +1455,6 @@ const ALL_QUESTIONS = [
 { q: "Your thermostat battle stance?", opts: ["I control it", "Compromise on a number", "Wear layers if you're cold", "Space heater in my room"] },
 { q: "Choose a roommate perk:", opts: ["Split rent", "Always someone to talk to", "Built-in dinner buddy", "Someone to watch the place"] },
 { q: "Pick a passive-aggressive roommate move you've seen:", opts: ["Stacking dirty dishes on their side", "Labeling every food item", "Timing shower lengths", "I've been the passive-aggressive one"] },
-
-// ═══════════════ OUTDOOR FESTIVALS ═══════════════
 { q: "Pick a festival type:", opts: ["Music festival", "Food festival", "Art/culture festival", "Film festival"] },
 { q: "Your festival survival essential?", opts: ["Comfortable shoes", "Portable phone charger", "Sunscreen", "Water bottle"] },
 { q: "Choose a festival food:", opts: ["Funnel cake", "BBQ on a stick", "Gourmet food truck", "Whatever's cheapest"] },
@@ -1748,8 +1463,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a festival group size:", opts: ["Just me and one friend", "Small crew of 4-5", "Big group energy", "Solo festival goer"] },
 { q: "Pick a festival time:", opts: ["All day, open to close", "Show up for the headliner", "Leave before it gets too crowded", "Depends on the lineup"] },
 { q: "Your festival camping stance?", opts: ["Part of the experience", "Nearby hotel instead", "Day trip only", "I'm not that committed"] },
-
-// ═══════════════ ELEVATOR PITCH LIFE ═══════════════
 { q: "Describe your life in one word:", opts: ["Chaotic", "Evolving", "Blessed", "Interesting"] },
 { q: "Pick a tagline for yourself:", opts: ["Work in progress", "Quietly confident", "Chaos coordinator", "Just vibing"] },
 { q: "Your life's theme song genre?", opts: ["Upbeat indie pop", "Dramatic movie score", "Chill acoustic", "Constantly changing"] },
@@ -1758,8 +1471,6 @@ const ALL_QUESTIONS = [
 { q: "Your autobiography's first line?", opts: ["It wasn't supposed to go like this.", "Let me start from the beginning.", "You're not going to believe this.", "I was running late, as usual."] },
 { q: "Choose a season that represents your personality:", opts: ["Spring — optimistic and fresh", "Summer — energetic and social", "Fall — reflective and cozy", "Winter — calm and introspective"] },
 { q: "Pick your life's director:", opts: ["Someone who makes comedies", "A dramatic storyteller", "A documentary filmmaker", "Me — nobody else gets it right"] },
-
-// ═══════════════ TRAVEL COMPANIONS ═══════════════
 { q: "Your ideal travel companion?", opts: ["The planner who has everything organized", "The spontaneous one", "Someone exactly like me", "Solo travel is underrated"] },
 { q: "Pick a travel companion quality:", opts: ["Easygoing about food", "Good with directions", "Great photographer", "Always in a good mood"] },
 { q: "Your travel conflict resolution?", opts: ["Talk it out calmly", "Take some space", "Compromise quickly", "Pretend it didn't happen and keep exploring"] },
@@ -1768,8 +1479,6 @@ const ALL_QUESTIONS = [
 { q: "Your travel friendship test?", opts: ["A 2-week trip", "Navigating a foreign city", "A delayed flight together", "Sharing a tiny hotel room"] },
 { q: "Choose a celebrity travel buddy:", opts: ["Someone hilarious", "Someone adventurous", "Someone who knows food", "Someone I can learn from"] },
 { q: "Pick a group travel role:", opts: ["The navigator", "The social director", "The photographer", "The one who goes with the flow"] },
-
-// ═══════════════ PET PEEVES EXTENDED ═══════════════
 { q: "Pick a texting pet peeve:", opts: ["'K' as a full response", "Excessive ellipsis...", "Voice messages with no warning", "Taking days to respond then acting normal"] },
 { q: "Your restaurant pet peeve?", opts: ["Loud tables next to me", "Slow service", "Wrong order", "Being seated near the bathroom"] },
 { q: "Choose an office pet peeve:", opts: ["Reply-all abuse", "Eating smelly food at desk", "Unnecessary meetings", "Loud speakerphone calls"] },
@@ -1778,8 +1487,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a social pet peeve:", opts: ["Interrupting mid-sentence", "One-upping every story", "Phone out during conversation", "Never asking about my life"] },
 { q: "Pick a home pet peeve:", opts: ["Leaving cabinet doors open", "Wet towels on the bed", "Empty containers back in the fridge", "Shoes on inside the house"] },
 { q: "Your public transport pet peeve?", opts: ["Manspreading", "Loud music without headphones", "Eating on the train", "Standing in front of doors"] },
-
-// ═══════════════ ALTERNATE REALITY ═══════════════
 { q: "In an alternate universe you're a:", opts: ["Rock star", "Chef at a Michelin restaurant", "Park ranger", "Novelist"] },
 { q: "Pick an era to be born in:", opts: ["Ancient Rome at its peak", "1920s jazz age", "1960s counterculture", "200 years in the future"] },
 { q: "You're a character in a sitcom. Your catchphrase?", opts: ["Something sarcastic", "Something wholesome", "Something that doesn't make sense", "I don't have one, I'm the straight man"] },
@@ -1788,8 +1495,6 @@ const ALL_QUESTIONS = [
 { q: "You can swap lives with anyone for a day:", opts: ["Someone famous", "Someone in a different country", "My pet", "No one, I like my life"] },
 { q: "In another life you were probably:", opts: ["An artist in Paris", "A pirate", "A librarian", "A wandering philosopher"] },
 { q: "Pick a video game world to live in:", opts: ["Animal Crossing — peaceful", "Zelda — adventurous", "Stardew Valley — cozy farm life", "Minecraft — build anything"] },
-
-// ═══════════════ SEASONAL ACTIVITIES DEEP ═══════════════
 { q: "Pick a January activity:", opts: ["Vision board for the year", "Cozy reading marathon", "New Year's resolution gym", "Recovering from December"] },
 { q: "Your February vibe?", opts: ["Valentine's energy", "Cabin fever setting in", "Counting days until spring", "Super Bowl party"] },
 { q: "Choose a March mood:", opts: ["Spring is almost here!", "March Madness", "Still feels like winter", "Planning spring trips"] },
@@ -1802,8 +1507,6 @@ const ALL_QUESTIONS = [
 { q: "Pick an October essential:", opts: ["Halloween costume planning", "Haunted house visits", "Fall foliage trips", "Scary movie marathon"] },
 { q: "Your November tradition?", opts: ["Friendsgiving", "Black Friday shopping", "Gratitude practice", "Eating too much pie"] },
 { q: "Choose a December priority:", opts: ["Gift shopping", "Quality time with loved ones", "Holiday parties", "Reflecting on the year"] },
-
-// ═══════════════ HANDWRITING & STATIONERY ═══════════════
 { q: "Pick a pen type:", opts: ["Ballpoint", "Gel pen", "Felt tip", "Fountain pen"] },
 { q: "Your notebook preference?", opts: ["Lined", "Blank", "Dot grid", "Graph paper"] },
 { q: "Choose a stationery guilty pleasure:", opts: ["Fancy pens I don't need", "Beautiful notebooks I'm afraid to use", "Washi tape collection", "Stickers for everything"] },
@@ -1812,8 +1515,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a sticky note color:", opts: ["Yellow classic", "Pink", "Blue", "Neon variety pack"] },
 { q: "Pick a handwriting vibe:", opts: ["Neat and consistent", "Artistic and loopy", "Tiny and cramped", "Doctor-level illegible"] },
 { q: "Your relationship with thank-you notes?", opts: ["Always write them", "Meant to, forget", "Text instead", "Do people still do this?"] },
-
-// ═══════════════ AIRPORT & FLIGHT ═══════════════
 { q: "Your airport arrival time?", opts: ["3 hours early minimum", "2 hours — standard", "Just enough to make it", "I've missed a flight before"] },
 { q: "Pick an airport activity:", opts: ["Duty-free browsing", "Lounge access", "Work on my laptop", "Wander and people watch"] },
 { q: "Your in-flight entertainment?", opts: ["Watch two movies", "Sleep the entire time", "Read a book", "Stare out the window"] },
@@ -1822,9 +1523,6 @@ const ALL_QUESTIONS = [
 { q: "Your turbulence reaction?", opts: ["Barely notice", "Grip the armrest", "Full anxiety mode", "I actually enjoy it"] },
 { q: "Choose a layover length:", opts: ["1 hour — tight but efficient", "2-3 hours — comfortable", "6+ hours — explore the city", "No layovers ever"] },
 { q: "Pick an arrival ritual:", opts: ["Find food immediately", "Head straight to the hotel", "Start exploring right away", "Check into WiFi and update everyone"] },
-
-// ═══════════════ APOLOGY STYLES ═══════════════
-{ q: "How do you apologize?", opts: ["Direct and sincere", "Over-explain everything", "Actions speak louder than words", "Struggle to say the words"] },
 { q: "Pick an apology gift:", opts: ["Flowers", "Their favorite food", "A handwritten note", "Quality time together"] },
 { q: "Your forgiveness timeline?", opts: ["Quick to forgive", "Need time to process", "Depends on the offense", "Forgive but never forget"] },
 { q: "Choose an apology language:", opts: ["'I'm sorry, I was wrong'", "'What can I do to make it right?'", "'I understand how that made you feel'", "A hug and changed behavior"] },
@@ -1832,8 +1530,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a thing that's hardest to apologize for:", opts: ["Being wrong about a fact", "Hurting someone's feelings", "Breaking a promise", "Being late"] },
 { q: "Your grudge-holding ability?", opts: ["I don't hold grudges", "Short-term only", "Depends on the person", "I have a few forever grudges"] },
 { q: "Choose a make-up method:", opts: ["Talking it through", "Doing something nice", "Giving space then reconnecting", "Pretending it never happened"] },
-
-// ═══════════════ LIFE HACKS ═══════════════
 { q: "Pick a life hack you actually use:", opts: ["Meal prepping", "Everything has a designated spot", "Calendar blocking", "The 2-minute rule (do it now)"] },
 { q: "Your organizational system?", opts: ["Apps for everything", "Physical notebooks and lists", "Mental notes only", "I'm disorganized and surviving"] },
 { q: "Choose a morning hack:", opts: ["Prep everything the night before", "Same breakfast every day", "Outfit decided in advance", "I wing every morning"] },
@@ -1842,8 +1538,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a social hack:", opts: ["Remember one detail about everyone", "Ask people about themselves", "Use their name in conversation", "I'm naturally social, no hacks needed"] },
 { q: "Pick a travel hack:", opts: ["Pack a carry-on only", "Google Flights alerts", "Travel on off-peak days", "Book everything last minute"] },
 { q: "Your sleep hack?", opts: ["No screens before bed", "Same bedtime every night", "Cool room temperature", "I don't have a hack, I just hope for the best"] },
-
-// ═══════════════ CONVERSATION DEALBREAKERS ═══════════════
 { q: "Pick a conversation red flag:", opts: ["Never lets you speak", "Only talks about themselves", "Always negative", "Checks phone constantly"] },
 { q: "Your boredom tell in conversation?", opts: ["Short answers", "Eyes wander", "Change the subject", "I'm good at faking interest"] },
 { q: "Choose a topic you could discuss forever:", opts: ["Music", "Travel", "Food", "Human behavior"] },
@@ -1852,8 +1546,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a conversation style you admire:", opts: ["Great storytellers", "Active listeners", "People who ask amazing questions", "People who make you feel heard"] },
 { q: "Pick a sign of a great conversation:", opts: ["Time flies", "Both people are laughing", "You learn something new", "You leave feeling energized"] },
 { q: "Your conversation ender?", opts: ["'Well, I should get going'", "A natural pause", "Abruptly — I'm bad at endings", "Let the other person end it"] },
-
-// ═══════════════ COWORKER DYNAMICS ═══════════════
 { q: "Pick a coworker you need:", opts: ["The one who always has snacks", "The one who explains things patiently", "The one who makes boring things fun", "The one who tells you to go home on time"] },
 { q: "Your work friendship level?", opts: ["Close friends outside of work too", "Friendly at work only", "Professional and distant", "My work bestie is my lifeline"] },
 { q: "Choose a Slack message energy:", opts: ["Friendly with emojis", "Short and direct", "Professional tone", "GIFs for everything"] },
@@ -1862,8 +1554,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a work celebration:", opts: ["Team lunch", "Happy hour drinks", "Simple Slack shoutout", "Bonus (just pay me)"] },
 { q: "Pick a coworker pet peeve:", opts: ["Scheduling meetings that could be emails", "Eating my clearly labeled food", "Not responding to messages for days", "Taking credit for group work"] },
 { q: "Your work communication style?", opts: ["Over-communicator — no surprises", "Need-to-know basis", "Read receipts and instant replies", "I'll respond when I respond"] },
-
-// ═══════════════ THRIFT & VINTAGE ═══════════════
 { q: "Your thrift store strategy?", opts: ["Straight to a specific section", "Browse everything methodically", "Go for the weird stuff", "I don't thrift"] },
 { q: "Pick a vintage decade to shop:", opts: ["70s — boho and bell bottoms", "80s — bold and bright", "90s — grunge and denim", "Y2K — low-rise and butterfly clips"] },
 { q: "Choose a thrift find you'd love:", opts: ["A vintage leather jacket", "A unique piece of art", "Retro kitchenware", "A band tee from a great concert"] },
@@ -1872,8 +1562,6 @@ const ALL_QUESTIONS = [
 { q: "Your secondhand shopping philosophy?", opts: ["Sustainable and smart", "You find the best stuff secondhand", "Only for certain things", "I prefer new"] },
 { q: "Choose a vintage accessory:", opts: ["Retro sunglasses", "A vintage watch", "Antique brooch or pin", "Old-school camera bag"] },
 { q: "Pick a garage sale find:", opts: ["First edition book", "Vintage board game", "Retro clothing piece", "Quirky home decor"] },
-
-// ═══════════════ PHONE HABITS ═══════════════
 { q: "Your phone home screen?", opts: ["Minimal — few apps showing", "Organized folders", "Everything on one page", "Chaotic — apps everywhere"] },
 { q: "Pick a phone charging habit:", opts: ["Charge every night", "Wait until it's almost dead", "Carry a portable charger", "Always near an outlet"] },
 { q: "Your screenshot situation?", opts: ["Organized in albums", "Hundreds with no system", "Delete them immediately", "Mostly memes and recipes I'll never make"] },
@@ -1882,8 +1570,6 @@ const ALL_QUESTIONS = [
 { q: "Your voicemail status?", opts: ["Always check and delete", "42 unheard messages", "My voicemail is full", "Who leaves voicemails anymore?"] },
 { q: "Choose a phone storage crisis:", opts: ["Delete old photos (painful)", "Remove apps I'll redownload", "Buy more storage", "Live with 'storage full' forever"] },
 { q: "Pick a phone etiquette rule:", opts: ["No phones at dinner", "Don't look at someone else's screen", "Respond within a day", "Keep it on silent in public"] },
-
-// ═══════════════ WEEKEND ENERGY ═══════════════
 { q: "Your perfect Saturday morning?", opts: ["Sleeping until noon", "Early farmers market", "Coffee and a slow start", "Already out doing something"] },
 { q: "Pick a Sunday vibe:", opts: ["Meal prep and organize", "Brunch with friends", "Full couch potato", "Nature walk or hike"] },
 { q: "Your weekend planning style?", opts: ["Planned by Wednesday", "Decide Friday night", "No plans — see what happens", "One anchor event, rest is flexible"] },
@@ -1892,8 +1578,6 @@ const ALL_QUESTIONS = [
 { q: "Your Friday night energy?", opts: ["Go out and celebrate", "Quiet dinner and early bed", "Game night at home", "Honestly, I'm exhausted"] },
 { q: "Choose a weekend breakfast:", opts: ["Pancakes or waffles", "Eggs and bacon", "Smoothie bowl", "Whatever I can eat in bed"] },
 { q: "Pick a lazy weekend essential:", opts: ["Comfort show on repeat", "Snack spread on the coffee table", "Phone on Do Not Disturb", "A really long nap"] },
-
-// ═══════════════ GARDEN & PLANTS ═══════════════
 { q: "Your plant parent status?", opts: ["Thriving plant collection", "A few survivors", "Everything I touch dies", "Fake plants look great"] },
 { q: "Pick a houseplant:", opts: ["Monstera", "Pothos", "Snake plant", "Succulent"] },
 { q: "Your garden dream?", opts: ["Herb garden I actually use", "Flower garden for beauty", "Vegetable garden for food", "I'll admire other people's gardens"] },
@@ -1902,8 +1586,6 @@ const ALL_QUESTIONS = [
 { q: "Your relationship with yard work?", opts: ["Find it therapeutic", "Do it when I must", "Hire someone", "Apartment life, no yard"] },
 { q: "Choose a garden feature:", opts: ["A bird feeder", "String lights", "A small fountain", "A hammock"] },
 { q: "Pick a plant you've killed:", opts: ["Succulent (the 'easy' one)", "Basil (lasted a week)", "A fern", "I haven't killed a plant yet"] },
-
-// ═══════════════ PHOTO & MEMORIES ═══════════════
 { q: "Your camera roll is mostly:", opts: ["Screenshots and memes", "Food photos", "Selfies and group shots", "Nature and scenery"] },
 { q: "Pick a photo style:", opts: ["Candid and natural", "Posed and curated", "Funny and goofy", "I avoid being in photos"] },
 { q: "Your photo printing habit?", opts: ["Print and frame favorites", "All digital", "One printed photo book", "I keep meaning to print some"] },
@@ -1912,8 +1594,6 @@ const ALL_QUESTIONS = [
 { q: "Your selfie confidence?", opts: ["Take one and post it", "Take 30, post one", "Avoid selfies", "Only in group photos"] },
 { q: "Choose a throwback photo reaction:", opts: ["Nostalgia rush", "Why did I dress like that?", "I look the same honestly", "Cringe but endearing"] },
 { q: "Pick a way to display photos:", opts: ["Gallery wall", "Digital frame that rotates", "Fridge magnets", "They live on my phone only"] },
-
-// ═══════════════ WORK FROM HOME ═══════════════
 { q: "Your WFH productivity?", opts: ["More productive at home", "About the same", "Less productive honestly", "Depends on the day"] },
 { q: "Pick a WFH perk:", opts: ["No commute time", "Comfort of my own space", "Better food options", "Flexible schedule"] },
 { q: "Your WFH challenge?", opts: ["Loneliness", "Distractions", "Never feeling 'off'", "Missing the social aspect"] },
@@ -1922,8 +1602,6 @@ const ALL_QUESTIONS = [
 { q: "Your video call background?", opts: ["Carefully curated bookshelf", "Blur filter always", "Whatever's behind me", "A virtual background"] },
 { q: "Choose a WFH lunch:", opts: ["Actually cook something", "Leftovers heated up", "Delivery ordered at 11:30", "Snack my way through the afternoon"] },
 { q: "Pick a WFH boundary:", opts: ["Close laptop at 5pm sharp", "Separate workspace from living space", "Get dressed every morning", "I'm still working on boundaries"] },
-
-// ═══════════════ PODCAST CULTURE ═══════════════
 { q: "Pick a podcast genre:", opts: ["True crime", "Comedy", "Educational/science", "Interviews/conversation"] },
 { q: "Your podcast listening time?", opts: ["Commute", "Working out", "Doing chores", "Falling asleep"] },
 { q: "Choose a podcast length:", opts: ["Under 30 min — quick hit", "30-60 min — just right", "2+ hours — deep dive", "I don't listen to podcasts"] },
@@ -1932,8 +1610,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a podcast topic you'd host:", opts: ["Deep conversations with friends", "Reviewing food/restaurants", "Explaining random topics", "Interviewing interesting people"] },
 { q: "Pick a podcast speed:", opts: ["1x — I savor it", "1.25x — slightly faster", "1.5x — efficient", "2x — I'm built different"] },
 { q: "Your podcast recommendation style?", opts: ["Send specific episodes", "Talk about it until they listen", "Mention it once and drop it", "Nobody I know listens to podcasts"] },
-
-// ═══════════════ DATING APP CULTURE ═══════════════
 { q: "Your dating app photo strategy?", opts: ["Curated best photos", "Casual and authentic", "Group photo (controversial)", "I don't use dating apps"] },
 { q: "Pick a dating app dealbreaker:", opts: ["No bio written", "Only group photos", "Fish pic / car pic", "I don't use them"] },
 { q: "Your first message style?", opts: ["Comment on something specific in their profile", "Simple 'hey'", "A creative question or joke", "Wait for them to message first"] },
@@ -1942,9 +1618,6 @@ const ALL_QUESTIONS = [
 { q: "Your texting before a first date?", opts: ["Daily conversation", "A few messages to confirm", "Don't over-text before meeting", "I need constant reassurance they're real"] },
 { q: "Choose a profile prompt answer energy:", opts: ["Funny and lighthearted", "Genuine and thoughtful", "Short and mysterious", "I struggled to fill these out"] },
 { q: "Pick a dating app success story belief:", opts: ["They definitely happen", "More rare than people think", "It's all luck", "My story will be different"] },
-
-// ═══════════════ SMALL BUSINESS & SIDE HUSTLES ═══════════════
-{ q: "Pick a side hustle:", opts: ["Sell stuff online", "Freelance creative work", "Content creation", "Tutoring or teaching"] },
 { q: "Your entrepreneurial spirit?", opts: ["Always thinking of business ideas", "One specific dream", "Prefer stability of a job", "Side hustle curious"] },
 { q: "Choose a small business to start:", opts: ["Coffee shop", "Online store", "Consulting firm", "Food truck"] },
 { q: "Pick a business name style:", opts: ["My name + what I do", "Something clever and catchy", "One-word brand", "An acronym"] },
@@ -1952,8 +1625,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a business mentor type:", opts: ["Industry veteran", "Young disruptor", "Family member who succeeded", "Books and podcasts"] },
 { q: "Pick a passive income dream:", opts: ["Rental property", "Digital product", "Investments", "Royalties from creative work"] },
 { q: "Your hustle culture stance?", opts: ["Grind now, rest later", "Balance is key", "Anti-hustle, pro-living", "I go in phases"] },
-
-// ═══════════════ PARENTING & KIDS (FOR ANYONE) ═══════════════
 { q: "Your kid-name taste?", opts: ["Classic and timeless", "Unique and modern", "Family/traditional name", "I haven't thought about this"] },
 { q: "Pick a parenting style you admire:", opts: ["Laid-back and trusting", "Structured with clear boundaries", "The fun parent", "Supportive and encouraging"] },
 { q: "Choose a thing you'd teach a kid:", opts: ["How to cook basics", "Emotional intelligence", "Financial literacy", "To always be curious"] },
@@ -1962,8 +1633,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a lesson from your own childhood:", opts: ["More freedom to explore", "More structure would've helped", "Wouldn't change much", "Still processing it honestly"] },
 { q: "Pick a bedtime story type:", opts: ["Classic fairy tales", "Make up stories on the spot", "Read whatever they love", "Audiobooks while I rest my eyes"] },
 { q: "Your school involvement level would be:", opts: ["PTA president energy", "Show up for the important stuff", "Support from the sidelines", "Let them figure it out"] },
-
-// ═══════════════ SIBLING ENERGY ═══════════════
 { q: "Your sibling position?", opts: ["Oldest — the trailblazer", "Middle — the diplomat", "Youngest — the baby", "Only child — solo star"] },
 { q: "Pick a sibling dynamic:", opts: ["Best friends who bicker", "Competitive but loving", "Totally different people", "Barely in touch"] },
 { q: "Choose a sibling activity:", opts: ["Road trips together", "Inside jokes nobody else gets", "Competitive games", "Sharing childhood memories"] },
@@ -1972,9 +1641,6 @@ const ALL_QUESTIONS = [
 { q: "How often do you talk to siblings?", opts: ["Every day", "A few times a week", "When something happens", "Holiday gatherings only"] },
 { q: "Choose a sibling bonding moment:", opts: ["Surviving childhood together", "An inside joke that still lands", "A trip as adults", "Being there during a tough time"] },
 { q: "Pick an only-child or sibling perk:", opts: ["Having a built-in best friend", "Having all the attention", "Learning to share (eventually)", "Independence from a young age"] },
-
-// ═══════════════ MUSEUM & ART ═══════════════
-{ q: "Pick a museum type:", opts: ["Natural history", "Modern art", "Science and technology", "Interactive/children's (no judgment)"] },
 { q: "Your museum pace?", opts: ["Read every placard", "Hit the highlights", "Wander until something catches my eye", "Speed run and gift shop"] },
 { q: "Choose an art style:", opts: ["Renaissance — classical beauty", "Surrealism — dream-like weird", "Street art — urban and raw", "Photography — capturing reality"] },
 { q: "Pick a famous artwork to see in person:", opts: ["Starry Night", "The Great Wave", "Girl with a Pearl Earring", "I'd rather discover something unknown"] },
@@ -1982,8 +1648,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a museum exhibit:", opts: ["Dinosaur skeletons", "Egyptian artifacts", "Space exploration", "Fashion through the decades"] },
 { q: "Pick a museum city:", opts: ["Paris — the Louvre", "New York — the Met", "London — British Museum", "Tokyo — teamLab"] },
 { q: "Your gift shop behavior?", opts: ["Buy something every time", "Browse but rarely buy", "Postcards and magnets", "Skip it entirely"] },
-
-// ═══════════════ BATHROOM OPINIONS ═══════════════
 { q: "Your shower temperature?", opts: ["Scalding hot", "Warm and comfortable", "Cool and refreshing", "Start hot, end cold"] },
 { q: "Pick a bathroom essential:", opts: ["Great water pressure", "Fluffy towels", "Good lighting", "A speaker for music"] },
 { q: "Your bath vs shower stance?", opts: ["Shower — quick and efficient", "Bath — relaxation time", "Both for different moods", "Baths are just sitting in your own soup"] },
@@ -1992,8 +1656,6 @@ const ALL_QUESTIONS = [
 { q: "Your towel replacement frequency?", opts: ["After every use", "Every few uses", "Once a week", "When it stops smelling fresh"] },
 { q: "Choose a shower product:", opts: ["Fancy body wash", "Bar soap classic", "Whatever's on sale", "The hotel mini bottles I collected"] },
 { q: "Pick a bathroom reading situation:", opts: ["Phone always", "A book or magazine", "Nothing — in and out", "The shampoo bottle ingredients"] },
-
-// ═══════════════ CHILDHOOD FOOD MEMORIES ═══════════════
 { q: "Pick a childhood food you still love:", opts: ["Mac and cheese from a box", "PB&J", "Chicken nuggets", "Pizza rolls"] },
 { q: "Your after-school snack:", opts: ["Fruit snacks or gummies", "Microwave pizza", "Cereal as a snack", "Whatever I found in the pantry"] },
 { q: "Choose a childhood drink:", opts: ["Capri Sun", "Chocolate milk", "Hi-C or Sunny D", "Juice box"] },
@@ -2002,8 +1664,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a childhood cooking memory:", opts: ["Helping a parent bake", "Making something by myself for the first time", "Easy-Bake Oven era", "I didn't cook as a kid"] },
 { q: "Pick a food you hated as a kid but love now:", opts: ["Vegetables in general", "Mushrooms", "Spicy food", "I still hate the same things"] },
 { q: "Your childhood birthday cake?", opts: ["Store-bought with characters", "Homemade by a parent", "Ice cream cake", "Funfetti every year"] },
-
-// ═══════════════ COMMUTE & DAILY TRANSIT ═══════════════
 { q: "Your commute method?", opts: ["Drive", "Public transit", "Walk or bike", "Work from home"] },
 { q: "Pick a commute length preference:", opts: ["Under 15 minutes", "15-30 minutes with good music", "30-60 minutes if I can read", "No commute is the best commute"] },
 { q: "Your commute mood?", opts: ["Productive — listen and learn", "Zen — decompress time", "Frustrated — traffic stress", "Autopilot — barely conscious"] },
@@ -2012,8 +1672,6 @@ const ALL_QUESTIONS = [
 { q: "Your rush hour strategy?", opts: ["Leave early to beat it", "Leave late to avoid it", "It doesn't affect me", "Suffer through it daily"] },
 { q: "Choose a commute upgrade:", opts: ["Teleportation", "Comfortable express train", "Scenic route with no traffic", "Company shuttle with WiFi"] },
 { q: "Pick a commute pet peeve:", opts: ["Slow walkers on sidewalks", "Traffic that makes no sense", "Packed subway cars", "My own inability to leave on time"] },
-
-// ═══════════════ RESTAURANT BEHAVIOR ═══════════════
 { q: "Your restaurant ordering strategy?", opts: ["Know what I want before sitting down", "Ask the server's recommendation", "Take forever to decide", "Order what someone else is having"] },
 { q: "Pick a table preference:", opts: ["Booth always", "Window seat", "Bar seating", "Wherever they seat us"] },
 { q: "Your leftovers policy?", opts: ["Always take a box", "Only if there's a lot left", "Feel weird asking", "Clean plate every time"] },
@@ -2022,8 +1680,6 @@ const ALL_QUESTIONS = [
 { q: "Your bread basket discipline?", opts: ["Fill up on bread, no regrets", "One piece to pace myself", "Avoid it to save room", "Bread is the whole reason I'm here"] },
 { q: "Choose a restaurant deal-maker:", opts: ["Incredible reviews", "A friend's recommendation", "The aesthetic/vibe", "An interesting menu"] },
 { q: "Pick a restaurant pet peeve:", opts: ["Long wait with a reservation", "Loud music I can't talk over", "Rude staff", "Tiny portions for big prices"] },
-
-// ═══════════════ HOLIDAY SPECIFIC ═══════════════
 { q: "Your Thanksgiving contribution?", opts: ["I cook the main dish", "I bring a side", "I bring dessert", "I bring my appetite"] },
 { q: "Pick a Christmas/holiday gift approach:", opts: ["Thoughtful and personal", "Practical and useful", "Gift cards for everyone", "DIY/handmade"] },
 { q: "Your New Year's kiss stance?", opts: ["Must have one at midnight", "If it happens, great", "Kiss my drink instead", "I'm asleep by midnight"] },
@@ -2032,8 +1688,6 @@ const ALL_QUESTIONS = [
 { q: "Your holiday decoration level?", opts: ["Every surface decorated", "A few key pieces", "Just a tree or wreath", "Bah humbug, no decor"] },
 { q: "Choose a holiday tradition to keep:", opts: ["Specific family recipe", "Gift exchange game", "Watching the same movie every year", "Volunteering or giving back"] },
 { q: "Pick a holiday stress:", opts: ["Gift shopping", "Family dynamics", "Travel logistics", "I actually love the holidays stress-free"] },
-
-// ═══════════════ HOBBY DEEP DIVES ═══════════════
 { q: "Pick a hobby rabbit hole:", opts: ["Mechanical keyboards", "Sourdough bread baking", "Houseplant collecting", "Vinyl record hunting"] },
 { q: "Your hobby budget?", opts: ["Invest heavily", "Moderate spending", "Minimal — creativity over cost", "What budget?"] },
 { q: "Choose a creative hobby:", opts: ["Watercolor painting", "Film photography", "Embroidery or sewing", "Ceramics/pottery"] },
@@ -2042,8 +1696,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a social hobby:", opts: ["Board game group", "Sports league", "Book club", "Cooking class"] },
 { q: "Pick a solo hobby:", opts: ["Journaling", "Puzzle building", "Model building", "Gardening"] },
 { q: "Your hobby origin story?", opts: ["Inspired by someone I admire", "Stumbled into it randomly", "Always been interested", "Got it as a gift and stuck with it"] },
-
-// ═══════════════ LANGUAGE & ACCENT ═══════════════
 { q: "Pick an accent you love hearing:", opts: ["British", "Australian", "Southern American", "Irish"] },
 { q: "Your foreign language experience?", opts: ["Fluent in another language", "Can get by in one", "Took classes but forgot it all", "English only"] },
 { q: "Choose a word from another language you love:", opts: ["Hygge (Danish — coziness)", "Saudade (Portuguese — bittersweet longing)", "Schadenfreude (German — joy at others' misfortune)", "Meraki (Greek — doing with soul)"] },
@@ -2052,9 +1704,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a sign language opinion:", opts: ["Should be taught in all schools", "I'd love to learn", "I know a few signs", "Never thought about it"] },
 { q: "Pick a language barrier solution:", opts: ["Translation app", "Pointing and gesturing", "Drawing pictures", "Learning key phrases before traveling"] },
 { q: "Your code-switching ability?", opts: ["Effortless between groups", "Somewhat adaptable", "I'm the same everywhere", "What's code-switching?"] },
-
-// ═══════════════ COMPETITIVE NATURE ═══════════════
-{ q: "How competitive are you?", opts: ["Extremely — I play to win", "Moderately — but I care", "Barely — I'm here for fun", "Only about specific things"] },
 { q: "Pick a thing you're secretly competitive about:", opts: ["Board games", "Trivia knowledge", "Who can cook better", "Step counts or fitness"] },
 { q: "Your reaction to losing a bet?", opts: ["Pay up immediately", "Grudgingly honor it", "Demand a rematch", "I don't bet on things"] },
 { q: "Choose a competition format:", opts: ["Head-to-head", "Team-based", "Solo performance judged", "I prefer collaborative over competitive"] },
@@ -2062,8 +1711,6 @@ const ALL_QUESTIONS = [
 { q: "Your competitive origin:", opts: ["Siblings made me this way", "Sports as a kid", "Natural personality", "I'm not competitive at all"] },
 { q: "Choose a competitive weakness:", opts: ["I'm a sore loser", "I talk too much trash", "I over-prepare", "Competition gives me anxiety"] },
 { q: "Pick a reality competition you'd try:", opts: ["Cooking show", "Survival show", "Talent show", "None — too much pressure"] },
-
-// ═══════════════ SCRAPBOOK MOMENTS ═══════════════
 { q: "Pick a life moment to scrapbook:", opts: ["First apartment", "A trip that changed me", "Graduation day", "A random Tuesday that was perfect"] },
 { q: "Your photo organization:", opts: ["Albums by event", "Chronological dump", "Faces/people albums", "Zero organization"] },
 { q: "Choose a memory format:", opts: ["Photo collage on the wall", "Digital album I scroll through", "Physical scrapbook", "My brain is the only scrapbook I need"] },
@@ -2072,18 +1719,13 @@ const ALL_QUESTIONS = [
 { q: "Choose a way to remember a trip:", opts: ["Buy a local piece of art", "Collect magnets or keychains", "Take a million photos", "Journal about it after"] },
 { q: "Pick a memory trigger:", opts: ["A specific song", "A certain smell", "A place I walk past", "A photo I see randomly"] },
 { q: "Your nostalgia expression?", opts: ["Tell stories about it often", "Keep it private", "Look at old photos quietly", "Create something inspired by it"] },
-
-// ═══════════════ SPONTANEITY SPECTRUM ═══════════════
 { q: "How spontaneous are you?", opts: ["I live for spontaneity", "In small doses", "Need some warning first", "Spontaneity gives me anxiety"] },
 { q: "Pick a spontaneous yes:", opts: ["Last-minute road trip", "Trying a new restaurant tonight", "Saying yes to a random invite", "Buying something impulsive"] },
 { q: "Your impulse control?", opts: ["Strong — I think before I act", "Usually good with exceptions", "Weak and I know it", "Depends on what it is"] },
 { q: "Choose a planned vs spontaneous preference:", opts: ["Plans give me comfort", "Spontaneity gives me energy", "A mix of both", "I plan but want it to feel spontaneous"] },
-{ q: "Pick a spontaneous activity:", opts: ["Drive with no destination", "Cook something I've never tried", "Message someone I haven't talked to in years", "Book a trip for next week"] },
 { q: "Your response to 'want to do something right now?':", opts: ["Let's go!", "What is it first?", "I need 30 minutes to get ready", "I need 24 hours notice minimum"] },
 { q: "Choose a spontaneous purchase limit:", opts: ["Under $20 — anytime", "Under $50 — sometimes", "Over $100 — I need to think about it", "I never buy spontaneously"] },
 { q: "Pick a surprise you'd love:", opts: ["Surprise trip planned by someone", "Surprise party", "Surprise gift for no reason", "I don't love surprises honestly"] },
-
-// ═══════════════ MEAL CULTURE ═══════════════
 { q: "How many meals a day?", opts: ["Three structured meals", "Two big ones", "Constant grazing", "I forget to eat sometimes"] },
 { q: "Pick a meal that's non-negotiable:", opts: ["Breakfast — sets the day", "Lunch — midday fuel", "Dinner — the main event", "Snacks between meals"] },
 { q: "Your food delivery app usage?", opts: ["Multiple times a week", "Occasional treat", "Only when desperate", "I don't use them"] },
@@ -2092,8 +1734,6 @@ const ALL_QUESTIONS = [
 { q: "Your breakfast philosophy?", opts: ["Most important meal", "Coffee is breakfast", "I'm not hungry in the morning", "Big weekend breakfasts only"] },
 { q: "Choose a food pairing:", opts: ["Wine and cheese", "Coffee and pastry", "Beer and pizza", "Tea and biscuits"] },
 { q: "Pick a meal you'd eat every day:", opts: ["Tacos", "Pasta", "Sushi", "A great sandwich"] },
-
-// ═══════════════ AMUSEMENT PARKS ═══════════════
 { q: "Your theme park strategy?", opts: ["Hit the biggest ride first", "Follow a planned route", "Wander and see what's short", "I'm here for the food and vibes"] },
 { q: "Pick a theme park ride:", opts: ["Roller coaster — the faster the better", "Water ride — splash zone", "Dark ride — themed experience", "Ferris wheel — enjoy the view"] },
 { q: "Your funnel cake or churro?", opts: ["Funnel cake", "Churro", "Both", "Neither — save room for real food"] },
@@ -2102,8 +1742,6 @@ const ALL_QUESTIONS = [
 { q: "Your souvenir move?", opts: ["Magnet for the collection", "A fun hat I'll never wear again", "Overpriced photo from the ride", "Skip souvenirs, save money"] },
 { q: "Choose a theme park meal:", opts: ["Giant turkey leg", "Whatever themed food they have", "Leave the park to eat somewhere better", "Funnel cake counts as a meal"] },
 { q: "Pick a theme park mood:", opts: ["Kid-in-a-candy-store excited", "Strategic optimizer", "Go-with-the-flow", "Overwhelmed but happy"] },
-
-// ═══════════════ MORNING ROUTINES EXTENDED ═══════════════
 { q: "Your alarm relationship?", opts: ["One alarm, up immediately", "5+ alarms, 3 snoozes each", "Wake up before it goes off", "No alarm — vibes only"] },
 { q: "Pick a morning drink ritual:", opts: ["Pour-over coffee ceremony", "Quick espresso shot", "Tea with honey", "Glass of water first"] },
 { q: "Your shower time — morning or night?", opts: ["Morning — can't function without it", "Night — go to bed clean", "Both if possible", "Depends on the day"] },
@@ -2112,18 +1750,13 @@ const ALL_QUESTIONS = [
 { q: "Your 'get ready' time?", opts: ["Under 20 minutes", "30-45 minutes", "An hour plus", "I was ready before I woke up (slept in my outfit)"] },
 { q: "Choose a morning mood:", opts: ["Bright and chatty", "Silent until coffee", "Anxious about the day", "Neutral and steady"] },
 { q: "Pick a morning view:", opts: ["City waking up through the window", "Trees and nature", "My phone screen (honest)", "Eyes still closed"] },
-
-// ═══════════════ FRIENDSHIP TESTS ═══════════════
 { q: "A true friend would:", opts: ["Tell me I have something in my teeth", "Help me move apartments", "Keep my secrets forever", "Pick me up at 2am no questions asked"] },
 { q: "Pick a friendship-ending offense:", opts: ["Betraying a secret", "Talking behind my back", "Ghosting without explanation", "It would take a lot to end a friendship"] },
 { q: "Your friendship maintenance:", opts: ["Regular check-ins", "Pick up right where we left off", "Quality over quantity of hangouts", "I'm bad at this honestly"] },
 { q: "Choose a friendship flex:", opts: ["Matching energy in any situation", "Always knowing the right thing to say", "Showing up when it matters", "Making boring things fun together"] },
 { q: "Pick a platonic love language:", opts: ["Long voice memos", "Sending memes that remind me of them", "Planning hangs", "Just being reliable and consistent"] },
 { q: "Your friend group chat energy?", opts: ["Planning machine", "Meme central", "Daily life updates", "Dead for weeks then suddenly 200 messages"] },
-{ q: "Choose a friendship milestone:", opts: ["First trip together", "Meeting each other's families", "Having a real fight and surviving it", "A random Tuesday that became a core memory"] },
 { q: "Pick a thing you value most in a friendship:", opts: ["Trust", "Laughter", "Loyalty", "Growth together"] },
-
-// ═══════════════ NIGHTTIME ENERGY ═══════════════
 { q: "Your 10pm energy?", opts: ["Wide awake, night is young", "Winding down", "Already in bed", "Second wind hitting"] },
 { q: "Pick a late-night activity:", opts: ["Deep conversation with someone", "Binge-watching a show", "Creating something", "Doom-scrolling until I pass out"] },
 { q: "Your midnight to 2am vibe:", opts: ["Most creative and alive", "Should be asleep", "AM asleep", "Existential thoughts territory"] },
@@ -2132,8 +1765,6 @@ const ALL_QUESTIONS = [
 { q: "Your insomnia coping?", opts: ["Read something boring", "Put on a calm podcast", "Just lie there and accept fate", "Get up and do something"] },
 { q: "Choose a late-night conversation topic:", opts: ["Life's big questions", "Silly hypotheticals", "Personal confessions", "Nothing — I'm a quiet night person"] },
 { q: "Pick a stargazing emotion:", opts: ["Wonder and awe", "Peaceful and grounded", "Existentially small", "I've never really done this"] },
-
-// ═══════════════ BEACH CULTURE ═══════════════
 { q: "Your beach setup?", opts: ["Umbrella, chairs, cooler — full camp", "Towel and sunscreen — minimal", "Find a spot in the shade", "I'm going straight in the water"] },
 { q: "Pick a beach activity:", opts: ["Swimming in the waves", "Reading on the sand", "Building sandcastles (any age)", "Walking along the shoreline"] },
 { q: "Your ocean comfort level?", opts: ["Go deep, love the ocean", "Waist-deep is my limit", "Ankle-deep, watching the waves", "Pool over ocean every time"] },
@@ -2142,8 +1773,6 @@ const ALL_QUESTIONS = [
 { q: "Your sand tolerance?", opts: ["Part of the experience", "Annoying but worth it", "Rinse off immediately after", "Sand is the enemy"] },
 { q: "Choose a beach companion:", opts: ["A big group of friends", "One person for quality time", "Solo with a good book", "My dog"] },
 { q: "Pick a beach playlist:", opts: ["Reggae and island vibes", "Indie summer anthems", "Classic rock cruisers", "Just the sound of the waves"] },
-
-// ═══════════════ SELF-CARE SUNDAYS ═══════════════
 { q: "Your self-care non-negotiable?", opts: ["Skincare routine", "A long walk", "Quality sleep", "Complete alone time"] },
 { q: "Pick a self-care splurge:", opts: ["Massage or spa day", "A really nice meal", "New clothes or shoes", "A full day off from everything"] },
 { q: "Your pamper night includes:", opts: ["Face mask and bath", "Comfort show and snacks", "Journaling and tea", "Just going to bed early"] },
@@ -2152,8 +1781,6 @@ const ALL_QUESTIONS = [
 { q: "Your self-care evolution?", opts: ["Always been good about it", "Recently started prioritizing it", "Know I should do more", "Does coffee count?"] },
 { q: "Choose a digital self-care:", opts: ["Unfollow accounts that drain me", "Screen-time limits", "No phone for a few hours", "Delete social media periodically"] },
 { q: "Pick a self-care mantra:", opts: ["Rest is productive", "I am enough", "Progress, not perfection", "It's okay to say no"] },
-
-// ═══════════════ GAMES ON YOUR PHONE ═══════════════
 { q: "Pick a phone game genre:", opts: ["Puzzle (Wordle, crossword)", "Strategy (Clash of Clans type)", "Casual (Candy Crush type)", "I don't play phone games"] },
 { q: "Your gaming session length?", opts: ["Quick 5 minutes", "A solid 30 minutes", "Hours if I'm hooked", "I only play waiting in line"] },
 { q: "Choose a classic mobile game:", opts: ["Angry Birds", "Flappy Bird", "Temple Run", "Fruit Ninja"] },
@@ -2162,8 +1789,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a multiplayer mobile game:", opts: ["Something cooperative", "Something competitive", "Turn-based with friends", "I play alone"] },
 { q: "Pick a phone game guilty pleasure:", opts: ["Merge/organizing games", "Simulation games", "Word games", "I genuinely don't play games"] },
 { q: "Your game notification setting?", opts: ["All notifications on", "Off — I play when I want", "I've forgotten about games I have installed", "I delete games after a week"] },
-
-// ═══════════════ SURPRISE & DELIGHT ═══════════════
 { q: "Best surprise you could get?", opts: ["A planned trip I didn't know about", "Flowers or a gift for no reason", "An old friend showing up unexpectedly", "A handwritten letter"] },
 { q: "Pick a way to surprise someone:", opts: ["Cook their favorite meal", "Plan an experience", "A gift that shows I listen", "Show up when they need someone"] },
 { q: "Your reaction to surprises?", opts: ["Genuinely thrilled every time", "Happy but slightly uncomfortable", "I prefer to know what's coming", "Depends entirely on the surprise"] },
@@ -2172,8 +1797,6 @@ const ALL_QUESTIONS = [
 { q: "Your surprise tolerance?", opts: ["Love them — bring it on", "Small surprises only", "Only from people who know me well", "I'm a control freak, please don't"] },
 { q: "Choose a daily delight:", opts: ["Perfect weather on a free day", "A great parking spot", "An email canceling a meeting", "No line at the coffee shop"] },
 { q: "Pick a surprise you'd plan:", opts: ["Birthday scavenger hunt", "Fly a friend in for the weekend", "Decorate their space while they're gone", "A simple heartfelt card"] },
-
-// ═══════════════ BODY LANGUAGE ═══════════════
 { q: "Your default facial expression?", opts: ["Resting nice face", "Resting focused face", "Resting confused face", "I've been told I look unapproachable"] },
 { q: "Pick a nervous habit:", opts: ["Fidgeting with something", "Touching my face/hair", "Talking faster", "Going very still"] },
 { q: "Your eye contact level?", opts: ["Steady and confident", "Natural back and forth", "I look away a lot", "Too intense sometimes"] },
@@ -2182,8 +1805,6 @@ const ALL_QUESTIONS = [
 { q: "Your listening posture?", opts: ["Leaning forward, engaged", "Nodding along", "Still and quiet", "Fidgeting but still listening"] },
 { q: "Choose a comfort gesture:", opts: ["Pat on the back", "Full hug", "Reassuring words", "Just sit close by"] },
 { q: "Pick a thing you do when thinking:", opts: ["Look up or to the side", "Steeple my fingers", "Pace around", "Stare into space"] },
-
-// ═══════════════ COLOR YOUR MOOD ═══════════════
 { q: "What color is your Monday?", opts: ["Gray — slow start", "Blue — calm focus", "Red — intensity", "Yellow — optimism"] },
 { q: "Pick a color for happiness:", opts: ["Yellow — sunshine", "Orange — warmth", "Pink — joy", "Green — alive"] },
 { q: "Your sadness color?", opts: ["Blue", "Gray", "Purple", "Dark green"] },
@@ -2192,8 +1813,6 @@ const ALL_QUESTIONS = [
 { q: "Your current mood as a color?", opts: ["Something warm and bright", "Something cool and calm", "Something neutral", "Honestly can't pick just one"] },
 { q: "Choose a color for friendship:", opts: ["Yellow — sunny and warm", "Green — growing together", "Orange — fun energy", "Purple — deep connection"] },
 { q: "Pick a color for ambition:", opts: ["Red — passion", "Gold — success", "Black — power", "Navy — authority"] },
-
-// ═══════════════ VOICE & TALKING ═══════════════
 { q: "Your speaking speed?", opts: ["Fast — keep up!", "Normal pace", "Slow and deliberate", "Changes with my energy"] },
 { q: "Pick a compliment about your voice:", opts: ["Soothing and calm", "Energetic and warm", "Clear and confident", "I've never thought about my voice"] },
 { q: "Your public speaking confidence?", opts: ["Surprisingly good at it", "Nervous but capable", "Avoid it at all costs", "Getting better with practice"] },
@@ -2202,8 +1821,6 @@ const ALL_QUESTIONS = [
 { q: "Your 'thinking out loud' habit?", opts: ["I process by talking", "I think silently first", "I mumble to myself", "I need to write it down"] },
 { q: "Choose a speaking situation you're good at:", opts: ["One-on-one deep talks", "Group presentations", "Quick introductions", "Telling stories at dinner"] },
 { q: "Pick a verbal tic:", opts: ["'Um' and 'uh'", "'You know what I mean?'", "'Like' every other word", "I'm actually pretty clean"] },
-
-// ═══════════════ GROCERY STORE ADVENTURES ═══════════════
 { q: "Your grocery store vibe?", opts: ["Mission: get in, get out", "Browse every aisle leisurely", "Buy way more than planned", "Stressed the whole time"] },
 { q: "Pick a grocery store section:", opts: ["Produce — fresh everything", "Bakery — bread and pastries", "Snack aisle — my weakness", "Frozen — convenience is king"] },
 { q: "Your cart vs basket decision?", opts: ["Cart — I'll fill it", "Basket — staying disciplined", "I carry everything in my arms", "Online order pickup"] },
@@ -2212,8 +1829,6 @@ const ALL_QUESTIONS = [
 { q: "Your grocery list obedience?", opts: ["Strictly follow the list", "List plus a few extras", "What list?", "The list is in my head"] },
 { q: "Choose a checkout lane:", opts: ["Self-checkout — antisocial", "Shortest line — calculated", "Lane with the friendliest cashier", "Online order — skip the store entirely"] },
 { q: "Pick a produce-picking skill:", opts: ["I can pick a perfect avocado", "I knock on watermelons", "I have no idea what I'm doing", "I buy pre-cut everything"] },
-
-// ═══════════════ HIDDEN GEMS ═══════════════
 { q: "Pick a hidden gem discovery:", opts: ["A tiny restaurant with incredible food", "A secret beach or viewpoint", "A song nobody else seems to know", "A book that changed my perspective"] },
 { q: "Your hidden gem sharing policy?", opts: ["Tell everyone I know", "Only share with close friends", "Keep it to myself forever", "Post about it then regret it when it gets crowded"] },
 { q: "Choose a way to find hidden gems:", opts: ["Wander and explore", "Local recommendations", "Deep internet research", "Happy accidents"] },
@@ -2222,8 +1837,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a travel hidden gem type:", opts: ["Off-the-beaten-path town", "A local market tourists miss", "A restaurant only locals know", "A viewpoint you have to hike to"] },
 { q: "Pick a hidden gem you'd share:", opts: ["An incredible movie nobody watched", "A podcast that deserves more listeners", "A recipe that changed my cooking", "A life hack that actually works"] },
 { q: "Your hidden gem instinct?", opts: ["Always looking for something new", "Stumble into them naturally", "Stick to what I know works", "Other people find them for me"] },
-
-// ═══════════════ COMFORT ZONES EXTENDED ═══════════════
 { q: "Last time you left your comfort zone?", opts: ["This week", "This month", "Can't remember", "I live outside my comfort zone"] },
 { q: "Pick a comfort zone exit:", opts: ["Talking to a stranger", "Trying a new food", "Going somewhere alone", "Being vulnerable with someone"] },
 { q: "Your growth vs comfort ratio?", opts: ["80% growth, 20% comfort", "50/50 balance", "Mostly comfort with occasional growth", "Comfort zone is my whole zone"] },
@@ -2232,8 +1845,6 @@ const ALL_QUESTIONS = [
 { q: "Your advice on comfort zones?", opts: ["Push past them often", "Expand them gently", "They exist for a reason", "Life starts at the edge of them"] },
 { q: "Choose a comfort zone challenge:", opts: ["Take a class in something new", "Travel alone", "Have a difficult conversation I've been avoiding", "Post something vulnerable online"] },
 { q: "Pick a thing that pushes you:", opts: ["New social situations", "Physical challenges", "Creative risks", "Career moves"] },
-
-// ═══════════════ POP CULTURE OPINIONS ═══════════════
 { q: "Your reboot/remake opinion?", opts: ["Some are better than the original", "Leave classics alone", "I'll give anything a chance", "Depends on the franchise"] },
 { q: "Pick a pop culture hill to die on:", opts: ["The book is always better", "A specific movie is underrated", "A popular show is overrated", "I don't have strong pop culture opinions"] },
 { q: "Your streaming subscription count?", opts: ["1-2 services", "3-4 services", "5+ (I know)", "I share other people's accounts"] },
@@ -2242,8 +1853,6 @@ const ALL_QUESTIONS = [
 { q: "Your sequel vs original stance?", opts: ["Originals are sacred", "Some sequels surpass the original", "I judge each on its own merits", "I've stopped caring about this debate"] },
 { q: "Choose a pop culture memory:", opts: ["A show everyone watched together", "A song that defined a year", "A movie premiere I was excited for", "A viral moment that united the internet"] },
 { q: "Pick a fandom you'd join:", opts: ["One with great fan theories", "One with a welcoming community", "One with lots of content", "I observe fandoms from the outside"] },
-
-// ═══════════════ KINDNESS & GENEROSITY ═══════════════
 { q: "Your random act of kindness style:", opts: ["Pay for the next person's coffee", "Leave a generous tip", "Write someone a kind note", "Help without being asked"] },
 { q: "Pick a charitable cause:", opts: ["Education access", "Environmental conservation", "Hunger relief", "Animal welfare"] },
 { q: "How do you respond to a stranger needing help?", opts: ["Help immediately", "Assess the situation first", "Help if I feel safe", "I want to but sometimes freeze"] },
@@ -2252,8 +1861,6 @@ const ALL_QUESTIONS = [
 { q: "Your volunteer interest?", opts: ["Working with kids", "Environmental cleanup", "Food bank/soup kitchen", "I want to but haven't started"] },
 { q: "Choose a way to make someone's day:", opts: ["Genuine unexpected compliment", "Bring them their favorite snack", "Send a thoughtful text", "Just really listen to them"] },
 { q: "Pick a kindness philosophy:", opts: ["Be kind to everyone always", "Be kind but set boundaries", "Match the energy I receive", "Kindness is quiet — no need to announce it"] },
-
-// ═══════════════ RAIN CULTURE ═══════════════
 { q: "Your rain personality?", opts: ["Love it — soothing", "Like it from inside", "It ruins my plans", "Depends on the type of rain"] },
 { q: "Pick a rainy day outfit:", opts: ["Rain boots and a coat", "Whatever — I'm getting wet", "Stay home and avoid it", "An umbrella is all I need"] },
 { q: "Your umbrella brand loyalty?", opts: ["I have a good one I keep track of", "I lose one a month", "I refuse to carry an umbrella", "I use a rain jacket instead"] },
@@ -2262,8 +1869,6 @@ const ALL_QUESTIONS = [
 { q: "Your rain driving comfort?", opts: ["Fine — just slow down", "Nervous — grip the wheel", "Pull over in heavy rain", "Love driving in rain at night"] },
 { q: "Choose a rain sound preference:", opts: ["Light drizzle on leaves", "Heavy downpour on a roof", "Thunder rolling in the distance", "Rain on a car windshield"] },
 { q: "Pick a thing to do when caught in the rain:", opts: ["Run for cover", "Walk and embrace it", "Dance in it", "Stand under an awning and wait"] },
-
-// ═══════════════ FUTURE SELF ═══════════════
 { q: "Your future self is probably:", opts: ["More confident", "More relaxed", "More successful", "Exactly the same but older"] },
 { q: "Pick a letter to your future self topic:", opts: ["Reminders of what matters now", "Goals I hope you've achieved", "Questions about how things turned out", "A list of things I'm grateful for"] },
 { q: "Choose a thing you're building toward:", opts: ["Financial security", "Deeper relationships", "A creative dream", "Self-acceptance"] },
@@ -2272,8 +1877,6 @@ const ALL_QUESTIONS = [
 { q: "Your time capsule for 2035:", opts: ["Current photos and playlists", "A letter about my current worries", "My favorite possessions right now", "A USB drive of my life"] },
 { q: "Choose a thing you want to leave behind:", opts: ["Self-doubt", "A bad habit", "A toxic pattern", "Caring too much what others think"] },
 { q: "Pick a future you'd hope for:", opts: ["Peaceful and content", "Adventurous and exciting", "Impactful and meaningful", "All of the above honestly"] },
-
-// ═══════════════ TEXTURES & TACTILE ═══════════════
 { q: "Pick a fabric to touch:", opts: ["Silk — smooth and cool", "Cashmere — soft and warm", "Linen — crisp and natural", "Velvet — plush and rich"] },
 { q: "Your fidget item?", opts: ["Click a pen", "Smooth stone in my pocket", "Phone case edges", "I don't fidget"] },
 { q: "Choose a tactile comfort:", opts: ["Running fingers through sand", "Warm mug in both hands", "Petting a soft animal", "Freshly dried warm laundry"] },
@@ -2282,8 +1885,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a satisfying texture:", opts: ["Popping bubble wrap", "Running hands through rice or beans", "Smooth river stone", "Fresh crisp paper"] },
 { q: "Pick a cozy texture:", opts: ["Fuzzy blanket", "Chunky knit sweater", "Warm towel from the dryer", "A worn-in hoodie"] },
 { q: "Your paper preference?", opts: ["Smooth and glossy", "Textured and thick", "Recycled and natural", "I don't notice paper texture"] },
-
-// ═══════════════ RISK VS REWARD ═══════════════
 { q: "Your risk appetite?", opts: ["High — big risks, big rewards", "Moderate — calculated gambles", "Low — play it safe", "Depends entirely on the stakes"] },
 { q: "Pick a risk you'd take:", opts: ["Quit my job to travel", "Start a business with savings", "Move to a new city knowing no one", "Tell someone exactly how I feel"] },
 { q: "Your investment style?", opts: ["Aggressive growth", "Balanced portfolio", "Safe and stable", "I don't invest (yet)"] },
@@ -2292,8 +1893,6 @@ const ALL_QUESTIONS = [
 { q: "Your response to 'worst case scenario':", opts: ["I can handle it", "I'd rather not find out", "I've thought through every bad outcome", "What's life without a little risk?"] },
 { q: "Choose a career risk:", opts: ["Ask for a raise directly", "Switch industries entirely", "Start a side project", "Speak up in a meeting I normally wouldn't"] },
 { q: "Pick a social risk:", opts: ["Introduce myself to someone I admire", "Share a vulnerable truth with a group", "Host a party despite not being a host type", "Post something authentic on social media"] },
-
-// ═══════════════ COMFORT FOOD DEEP DIVE ═══════════════
 { q: "Your ultimate comfort food?", opts: ["Mac and cheese", "Chicken soup", "Pizza", "Something from my childhood"] },
 { q: "Pick a comfort food situation:", opts: ["Bad day — I need something warm", "Celebrating — I deserve this", "Lazy weekend — not cooking for real", "Any day honestly"] },
 { q: "Choose a comfort carb:", opts: ["Fresh bread and butter", "Mashed potatoes", "Pasta in any form", "Rice with something saucy"] },
@@ -2302,8 +1901,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a comfort food upgrade:", opts: ["Fancy truffle mac and cheese", "Gourmet burger with all the toppings", "Wood-fired pizza from a great spot", "Keep it simple — the original recipe is best"] },
 { q: "Pick a breakfast comfort food:", opts: ["Pancakes with butter and syrup", "Biscuits and gravy", "A big bowl of oatmeal", "Bacon, eggs, and toast"] },
 { q: "Your ice cream comfort order?", opts: ["Classic vanilla", "Chocolate — rich and deep", "Cookie dough or cookies and cream", "Something seasonal or unique"] },
-
-// ═══════════════ MICRO ADVENTURES ═══════════════
 { q: "Pick a micro adventure:", opts: ["Sunrise hike", "Explore a neighborhood I've never been to", "Try a random restaurant", "Sleep on the roof or backyard"] },
 { q: "Your adventure budget?", opts: ["Free — the best adventures cost nothing", "Under $50", "Worth spending for the experience", "I'll figure out money later"] },
 { q: "Choose an urban adventure:", opts: ["Rooftop with a view", "Underground bar or speakeasy", "Street food tour", "Get lost in a new neighborhood"] },
@@ -2312,8 +1909,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a solo micro adventure:", opts: ["Museum solo date", "Movie alone (yes, it's great)", "Café with a book in a new area", "Morning walk with no route planned"] },
 { q: "Pick a seasonal adventure:", opts: ["Spring — cherry blossom hunting", "Summer — spontaneous beach trip", "Fall — foliage drive", "Winter — hot springs or cozy cabin"] },
 { q: "Your adventure recovery?", opts: ["Plan the next one immediately", "Rest and savor the memory", "Share every photo and story", "Need a week to recharge"] },
-
-// ═══════════════ BOOKSHELF PERSONALITY ═══════════════
 { q: "Your bookshelf says about you:", opts: ["Eclectic interests", "One genre obsession", "More decor than books", "Overflowing — I need more shelves"] },
 { q: "Pick a coffee table book topic:", opts: ["Architecture and design", "Travel photography", "Food and recipes", "Art and culture"] },
 { q: "Your book buying habit:", opts: ["Buy faster than I read", "Only buy what I'll read soon", "Library for everything", "E-books take up no space"] },
@@ -2322,18 +1917,13 @@ const ALL_QUESTIONS = [
 { q: "Your DNF (did not finish) policy:", opts: ["Always finish what I start", "Give it 50 pages then decide", "Life's too short for bad books", "I have many unfinished books"] },
 { q: "Choose a reading goal:", opts: ["Read more books this year", "Read more diversely", "Reread old favorites", "Actually start reading again"] },
 { q: "Pick a bookstore activity:", opts: ["Browse for hours", "Go for one book, leave with five", "Read in the store", "Buy a coffee and wander"] },
-
-// ═══════════════ DINNER PARTY GAMES ═══════════════
 { q: "Pick a dinner party game:", opts: ["Two truths and a lie", "Would you rather", "Hot takes lightning round", "We don't need games, conversation flows"] },
 { q: "Your dinner party seating strategy:", opts: ["Sit next to someone new", "Sit next to my person", "Wherever I land first", "Strategic — put interesting people together"] },
-{ q: "Choose a dinner party contribution:", opts: ["Host and cook everything", "Bring the best wine", "Be the entertainment", "Show up with dessert and charm"] },
 { q: "Pick a dinner conversation rule:", opts: ["No work talk", "Ask everyone a question", "Share one highlight of your week", "Just let it happen naturally"] },
 { q: "Your dinner party hosting anxiety?", opts: ["None — I love hosting", "Moderate — is everything perfect?", "High — what if no one has fun?", "I don't host, I attend"] },
 { q: "Choose a dinner party playlist:", opts: ["Jazz and bossa nova", "Indie folk", "R&B and soul", "Curated by guests"] },
 { q: "Pick a dinner party theme:", opts: ["Cuisine from a specific country", "Decades costume theme", "Potluck where everyone brings their best dish", "No theme — just come and eat"] },
 { q: "Your end-of-dinner-party move:", opts: ["Linger for hours talking", "Help clean up", "First to leave", "Suggest we do this again"] },
-
-// ═══════════════ PARALLEL LIVES ═══════════════
 { q: "If you lived in a different country:", opts: ["Same personality, different accent", "I'd become a completely different person", "I'd miss home constantly", "I'd thrive anywhere honestly"] },
 { q: "Pick an alternate career you'd crush:", opts: ["Musician", "Architect", "Marine biologist", "Stand-up comedian"] },
 { q: "Your name if you could choose it:", opts: ["Keep my name — it suits me", "Something cooler and edgier", "Something classic and elegant", "I've actually thought about this..."] },
@@ -2342,8 +1932,6 @@ const ALL_QUESTIONS = [
 { q: "Pick a parallel universe job:", opts: ["Farmer with a simple life", "Astronaut exploring space", "Artist in a bohemian city", "Nothing — I don't want to work in any universe"] },
 { q: "Your alternate-universe style:", opts: ["Completely different fashion", "Same style, different setting", "More adventurous than now", "My style transcends universes"] },
 { q: "Choose a different major/study:", opts: ["Something creative I was afraid to pursue", "Something practical I avoided", "Something completely random", "I'd choose the same path again"] },
-
-// ═══════════════ DAILY DECISIONS ═══════════════
 { q: "Coffee order consistency?", opts: ["Same order every single time", "Seasonal rotating menu", "Ask the barista to choose", "Different every day — I'm chaotic"] },
 { q: "Pick a morning decision struggle:", opts: ["What to wear", "What to eat", "Whether to hit snooze", "All of the above simultaneously"] },
 { q: "Your outfit repeat policy?", opts: ["Rewear everything, who cares", "Not in the same week", "Not around the same people", "Every outfit is unique"] },
@@ -2352,8 +1940,6 @@ const ALL_QUESTIONS = [
 { q: "Your 'what do you want to eat?' response:", opts: ["I always have an answer", "'I don't care' (I do care)", "Counter with options to narrow down", "This question stresses me out"] },
 { q: "Choose a daily micro-decision:", opts: ["Stairs or elevator", "Cook or order in", "Text or call", "Read or scroll"] },
 { q: "Pick a decision you overthink:", opts: ["What gift to buy someone", "Whether to post something online", "How to word a text", "What to order at a new restaurant"] },
-
-// ═══════════════ SEASONAL WARDROBE ═══════════════
 { q: "Your summer essential:", opts: ["Good sunglasses", "Comfortable sandals", "A go-to tank top", "Linen everything"] },
 { q: "Pick a fall staple:", opts: ["Flannel shirt", "Ankle boots", "A great jacket", "Oversized scarf"] },
 { q: "Your winter non-negotiable:", opts: ["A warm coat", "Thick socks", "Beanie or ear warmers", "Gloves — my hands are always cold"] },
@@ -2362,8 +1948,6 @@ const ALL_QUESTIONS = [
 { q: "Your seasonal color palette:", opts: ["Neutrals year-round", "Bright in summer, dark in winter", "Earth tones always", "Whatever catches my eye"] },
 { q: "Choose a vacation wardrobe:", opts: ["Over-pack for every scenario", "Capsule wardrobe in a carry-on", "Buy clothes there", "Same stuff I'd wear at home"] },
 { q: "Pick a getting-cold moment:", opts: ["Stubborn — refuse a jacket", "Always prepared with layers", "Borrow someone else's hoodie", "Turn around and go inside"] },
-
-// ═══════════════ GRATITUDE & APPRECIATION ═══════════════
 { q: "Pick something you're grateful for today:", opts: ["A specific person", "My health", "Where I live", "Something small that went right"] },
 { q: "Your gratitude practice?", opts: ["Write it down", "Say it out loud", "Think about it before sleep", "I should start one"] },
 { q: "Choose a thing you don't appreciate enough:", opts: ["Clean water and hot showers", "The people in my daily life", "My own abilities", "Free time"] },
@@ -2372,8 +1956,6 @@ const ALL_QUESTIONS = [
 { q: "Choose something you'd thank your past self for:", opts: ["Taking a risk", "Ending something that wasn't right", "Starting a good habit", "Being patient during a hard time"] },
 { q: "Pick a gratitude focus:", opts: ["People", "Experiences", "Health", "Small everyday moments"] },
 { q: "Your appreciation of ordinary days?", opts: ["I try to notice the beauty in them", "They blur together honestly", "They're my favorite kind of day", "I'm working on being more present"] },
-
-// ═══════════════ CONSPIRACY THEORIES (FUN) ═══════════════
 { q: "Pick a fun conspiracy to believe:", opts: ["Birds aren't real", "Mattress stores are fronts", "Finland doesn't exist", "Denver Airport is suspicious"] },
 { q: "Your conspiracy theory tolerance?", opts: ["Love hearing them for entertainment", "Some might be true", "All ridiculous but fun to discuss", "I don't engage with them"] },
 { q: "Choose a conspiracy deep dive:", opts: ["Bermuda Triangle", "Ancient alien theories", "Simulation theory", "Celebrity clone theories (hilarious)"] },
@@ -2382,8 +1964,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a mystery creature:", opts: ["Bigfoot", "Loch Ness Monster", "Mothman", "None of them are real but I want them to be"] },
 { q: "Pick a conspiracy theory source:", opts: ["YouTube rabbit holes at 3am", "Reddit threads", "That one friend who believes everything", "I find them organically"] },
 { q: "Your reaction to a wild conspiracy theory:", opts: ["Tell me more", "That's ridiculous (but interesting)", "I need evidence", "Please stop talking"] },
-
-// ═══════════════ ENERGY VAMPIRES & BOUNDARIES ═══════════════
 { q: "Your energy vampire detector?", opts: ["Spot them immediately", "Takes a few interactions", "I realize too late", "I might be one (working on it)"] },
 { q: "Pick a boundary you've set:", opts: ["No phones during meals", "Not responding to texts after a certain hour", "Saying no to plans when I'm tired", "Limiting time with draining people"] },
 { q: "Your boundary communication style:", opts: ["Direct and clear", "Gentle but firm", "Hint and hope they get it", "Still learning to set them"] },
@@ -2392,8 +1972,6 @@ const ALL_QUESTIONS = [
 { q: "Your people-pleasing recovery?", opts: ["Fully recovered", "In active recovery", "I know I do it but can't stop", "I don't have this problem"] },
 { q: "Choose a boundary mantra:", opts: ["No is a complete sentence", "Not my circus, not my monkeys", "I can't pour from an empty cup", "It's not selfish to prioritize myself"] },
 { q: "Pick a boundary win:", opts: ["Saying no without guilt", "Leaving a party when I wanted to", "Not apologizing for my needs", "Protecting my time effectively"] },
-
-// ═══════════════ DOCUMENTARY VIBES ═══════════════
 { q: "Pick a documentary topic:", opts: ["Nature and wildlife", "True crime", "Music and culture", "Food and cooking"] },
 { q: "Your documentary watching style:", opts: ["Full attention, no phone", "Background while doing something", "Binge the whole series", "Fall asleep by episode 2"] },
 { q: "Choose a nature documentary narrator:", opts: ["David Attenborough", "Morgan Freeman", "Anyone with a calming voice", "I prefer no narration — just visuals"] },
@@ -2402,8 +1980,6 @@ const ALL_QUESTIONS = [
 { q: "Choose a documentary format:", opts: ["Feature-length film", "Multi-part series", "Short 30-minute episodes", "Interactive choose-your-own"] },
 { q: "Pick a documentary mood:", opts: ["Inspiring and hopeful", "Dark and thought-provoking", "Funny and surprising", "Educational and eye-opening"] },
 { q: "Your post-documentary reaction:", opts: ["Deep conversation about it", "Research everything related", "Sit in silence processing", "Immediately start the next one"] },
-
-// ═══════════════ PACKING & MOVING ═══════════════
 { q: "Your packing personality:", opts: ["Everything labeled and organized", "Throw it all in boxes last minute", "Purge everything before packing", "Someone else can pack for me"] },
 { q: "Pick a moving strategy:", opts: ["Professional movers", "Friend favor + pizza + beer", "Multiple car trips", "Start fresh — sell everything"] },
 { q: "Your 'things I find while moving' reaction:", opts: ["Oh wow, I forgot about this!", "Why did I keep this?", "I'm keeping everything (it's sentimental)", "Donate pile grows larger than keep pile"] },
@@ -2412,8 +1988,6 @@ const ALL_QUESTIONS = [
 { q: "Your relationship with moving:", opts: ["Exciting fresh start", "Stressful nightmare", "Necessary evil", "I've moved too many times"] },
 { q: "Choose a thing you always lose during a move:", opts: ["Phone charger", "Scissors or tape", "That one box with everything important", "My sanity"] },
 { q: "Pick a new home first purchase:", opts: ["A good candle to make it smell like home", "New bedding", "A plant for life", "Cleaning supplies"] },
-
-// ═══════════════ SLEEP DREAMS ═══════════════
 { q: "Your recurring dream theme:", opts: ["Being chased", "Flying or floating", "Teeth falling out", "I don't have recurring dreams"] },
 { q: "Pick a dream control level:", opts: ["I've had lucid dreams", "I wish I could control them", "I just go along for the ride", "I barely remember my dreams"] },
 { q: "Your dream journaling?", opts: ["Write them down sometimes", "Try to remember but forget", "Never thought to journal them", "They're too weird to write down"] },
@@ -2422,841 +1996,595 @@ const ALL_QUESTIONS = [
 { q: "Your dream interpretation stance:", opts: ["They mean something deep", "They're just brain noise", "Sometimes meaningful, sometimes random", "I love analyzing them either way"] },
 { q: "Choose a dream you'd want to have:", opts: ["Flying over beautiful landscapes", "Meeting someone I miss", "Achieving a big goal", "A perfectly peaceful nothing dream"] },
 { q: "Pick a thing your dreams do:", opts: ["Predict weird coincidences", "Process my stress", "Replay my day in weird ways", "Feature celebrities for no reason"] },
-
-// ═══════════════ PARALLEL UNIVERSES ═══════════════
 { q: "In a parallel universe, you're famous for:", opts: ["Inventing something weird", "A viral video", "Writing a best-seller", "Being a competitive eater"] },
 { q: "Your alternate-universe job:", opts: ["Spy", "Marine biologist", "Street magician", "Diplomat"] },
 { q: "In another life, you'd be born in:", opts: ["Medieval Europe", "Ancient Egypt", "1960s San Francisco", "2200 on Mars"] },
 { q: "Your parallel self's biggest flex:", opts: ["Speaks 12 languages", "Olympic athlete", "Grammy winner", "Retired at 30"] },
 { q: "Alternate-you's fatal flaw:", opts: ["Too trusting", "Way too stubborn", "Dangerously impulsive", "Overthinks everything even more"] },
-
-// ═══════════════ AIRPORT & FLYING ═══════════════
 { q: "Your airport personality:", opts: ["3 hours early, relaxed", "Exactly on time", "Running through the terminal", "Already at the lounge"] },
 { q: "Pick a plane seat:", opts: ["Window — I need the view", "Aisle — I need freedom", "Middle — I'll survive", "I avoid flying altogether"] },
 { q: "Long flight survival strategy:", opts: ["Sleep the whole way", "Movie marathon", "Read a book", "Chat with strangers"] },
 { q: "Airport food move:", opts: ["Overpriced sit-down meal", "Grab a sandwich", "Snacks from the shop", "I eat before I arrive"] },
 { q: "Worst thing about flying:", opts: ["Turbulence", "Crying babies", "No legroom", "The wait at baggage claim"] },
-
-// ═══════════════ SMALL TALK & SOCIAL ═══════════════
 { q: "Your small talk skill level:", opts: ["Actually enjoy it", "Can fake it well", "Actively avoid it", "Only good one-on-one"] },
 { q: "Stuck in an elevator with a stranger — you:", opts: ["Start a conversation", "Smile and stay quiet", "Make a joke about it", "Pretend to be on your phone"] },
 { q: "At a party where you know nobody:", opts: ["Find the dog or cat", "Hover near the food", "Introduce myself to someone", "Leave within 20 minutes"] },
 { q: "Someone waves at you but you're not sure it's for you:", opts: ["Wave back confidently", "Half wave, half look around", "Pretend I didn't see", "Wave back then die inside"] },
 { q: "Your go-to conversation starter:", opts: ["Ask about their weekend", "Compliment something they're wearing", "Mention the weather honestly", "Jump straight into a deep topic"] },
-
-// ═══════════════ DRIVING & CARS ═══════════════
 { q: "Your driving personality:", opts: ["Calm and careful", "Aggressive but safe", "Singing at full volume", "Anxious and cautious"] },
 { q: "Road trip role:", opts: ["Driver always", "Navigator/DJ", "Backseat sleeper", "Snack distributor"] },
 { q: "Pick a car color:", opts: ["Black — classic", "White — clean", "Red — bold", "Something unusual"] },
 { q: "GPS says 2 routes — same time. You pick:", opts: ["The highway", "The scenic route", "Whichever avoids traffic", "I'll figure it out myself"] },
 { q: "Driving pet peeve:", opts: ["People who don't signal", "Slow drivers in the fast lane", "Tailgaters", "Backseat drivers"] },
-
-// ═══════════════ MONEY MINDSET ═══════════════
 { q: "You find $20 on the ground:", opts: ["Pocket it — lucky day", "Try to find the owner", "Leave it for someone else", "Donate it somewhere"] },
 { q: "Your savings style:", opts: ["Auto-save, don't touch it", "Save when I remember", "What savings?", "Invest everything"] },
 { q: "Impulse buy you can't resist:", opts: ["Food", "Clothes", "Tech gadgets", "Books or games"] },
 { q: "Split the bill or separate checks:", opts: ["Always split evenly", "Separate checks", "I'll just cover it", "Depends on the group"] },
 { q: "If you won $10,000 today:", opts: ["Save most of it", "Take a trip", "Pay off something", "Treat myself and others"] },
-
-// ═══════════════ TEXTING CULTURE EXTENDED ═══════════════
 { q: "Double texting:", opts: ["Do it without shame", "Wait exactly 24 hours", "Only if it's urgent", "I'll just call instead"] },
 { q: "Your emoji usage:", opts: ["Every single message", "Sparingly but intentionally", "Almost never", "I use emoticons like :) instead"] },
 { q: "Someone leaves you on read:", opts: ["Spiral quietly", "Assume they're busy", "Send a follow-up", "Honestly don't notice"] },
 { q: "Your typing speed in arguments:", opts: ["Lightning fast paragraphs", "Slow and measured", "I call instead", "I disengage entirely"] },
 { q: "Group chat energy:", opts: ["Always contributing", "Lurker who reacts", "Mute it immediately", "Only respond when tagged"] },
-
-// ═══════════════ WEATHER MOODS ═══════════════
 { q: "Your ideal weather:", opts: ["Sunny and warm", "Overcast and cool", "Rainy and moody", "Crisp and cold"] },
 { q: "Thunderstorm hits — you:", opts: ["Watch from the window", "Sleep even better", "Get a little nervous", "Go stand outside in it"] },
 { q: "Snow day reaction:", opts: ["Pure childhood joy", "Dread the commute", "Hot cocoa immediately", "Build something outside"] },
 { q: "Humidity opinion:", opts: ["Absolutely miserable", "Don't mind it at all", "Prefer it to dry cold", "I never notice weather"] },
 { q: "Pick a weather superpower:", opts: ["Summon rain anytime", "Clear skies on command", "Perfect temperature bubble", "Control the wind"] },
-
-// ═══════════════ SLEEP HABITS ═══════════════
 { q: "How many alarms do you set:", opts: ["One — I trust myself", "3-5 just in case", "10+ and still struggle", "I wake up naturally"] },
 { q: "Ideal sleeping temperature:", opts: ["Freezing cold room, heavy blankets", "Warm and cozy", "Cool with a fan", "Window open, whatever happens"] },
 { q: "You wake up at 3am:", opts: ["Back to sleep instantly", "Check my phone", "Lie awake overthinking", "Get up and do something"] },
 { q: "Sleep position:", opts: ["Side sleeper always", "On my back", "Stomach sleeper", "I rotate all night"] },
 { q: "Nap philosophy:", opts: ["Naps are essential", "I can't nap even if I try", "Only on weekends", "I nap too long and ruin my night"] },
-
-// ═══════════════ HOUSEHOLD & CLEANING ═══════════════
 { q: "Cleaning style:", opts: ["Clean as I go", "One big deep clean", "Only when guests are coming", "Organized chaos works for me"] },
 { q: "Dishes strategy:", opts: ["Wash immediately after use", "Let them soak a while", "Dishwasher only", "Wait until there are no clean ones"] },
 { q: "Your junk drawer:", opts: ["Don't have one, everything has a place", "One drawer, it's manageable", "Multiple drawers of mystery", "My whole space is a junk drawer"] },
 { q: "Making the bed:", opts: ["Every single morning", "Most days", "What's the point?", "Only if someone's coming over"] },
 { q: "Laundry approach:", opts: ["Sorted by color, on schedule", "One big load, hope for the best", "Wash when I run out of clothes", "I actually enjoy laundry"] },
-
-// ═══════════════ RESTAURANT BEHAVIOR ═══════════════
 { q: "At a restaurant, you order:", opts: ["The same thing every time", "Something new each visit", "Whatever the server recommends", "The most expensive thing I can justify"] },
 { q: "The food arrives and it's wrong:", opts: ["Send it back politely", "Eat it anyway", "Mention it but say it's fine", "Depends how wrong it is"] },
 { q: "Tipping philosophy:", opts: ["Always 20%+", "Based on service quality", "Standard 15-18%", "Wish tipping culture would end"] },
 { q: "Waiting for a table:", opts: ["Happy to wait for good food", "10 minutes max", "Go somewhere else", "I always make reservations"] },
 { q: "Dessert at a restaurant:", opts: ["Always, obviously", "Only if someone else wants to", "Too full but I'll have a bite", "Never, I'm done after the main"] },
-
-// ═══════════════ WORK FROM HOME ═══════════════
 { q: "WFH outfit:", opts: ["Full real clothes", "Nice top, pajama bottoms", "Sweats all day", "Literally whatever I slept in"] },
 { q: "WFH productivity honest take:", opts: ["More productive at home", "Way less productive", "Same either way", "Depends on the day"] },
 { q: "Camera on or off in meetings:", opts: ["Always on", "On only when I have to", "Off unless presenting", "I forgot what my coworkers look like"] },
 { q: "WFH snack frequency:", opts: ["Constant grazing", "Scheduled meal breaks", "I forget to eat", "More coffee than food"] },
 { q: "Best WFH perk:", opts: ["No commute", "Flexible schedule", "Comfortable environment", "Being near my fridge"] },
-
-// ═══════════════ CHILDHOOD REVISITED ═══════════════
 { q: "Playground pick:", opts: ["Swings always", "Monkey bars", "Slides", "I invented my own games"] },
 { q: "Childhood cereal of choice:", opts: ["Something sugary and bright", "Something chocolate", "Something healthy-ish", "I was a toast kid"] },
 { q: "School subject you secretly liked:", opts: ["Math", "Art", "Science", "English/Writing"] },
 { q: "Your lunchbox situation:", opts: ["Packed lunch always", "Cafeteria food", "Mix of both", "I traded food like currency"] },
 { q: "Recess strategy:", opts: ["Organized sports", "Running around wildly", "Talking with friends", "Reading or drawing somewhere"] },
-
-// ═══════════════ CONSPIRACY & MYSTERIES ═══════════════
 { q: "Pick a mystery you wish was solved:", opts: ["What's at the bottom of the ocean", "Are we alone in the universe", "What happens after death", "Where my missing socks go"] },
 { q: "Your stance on aliens:", opts: ["Definitely exist", "Probably exist somewhere", "Doubtful", "They've already visited us"] },
 { q: "Unexplained thing that fascinates you most:", opts: ["Bermuda Triangle", "Déjà vu", "Dreams that predict things", "Animal migration patterns"] },
 { q: "Time travel paradox — you'd:", opts: ["Go back and observe only", "Change one small thing", "Go to the future instead", "Stay put, too risky"] },
 { q: "Pick a conspiracy to live in:", opts: ["Simulation theory", "Secret underground cities", "Time travelers among us", "The multiverse is real"] },
-
-// ═══════════════ SELF-CARE ═══════════════
 { q: "Your self-care looks like:", opts: ["Long bath or shower", "Ordering my favorite food", "Being completely alone", "Doing something creative"] },
 { q: "Mental health day activity:", opts: ["Stay in bed all day", "Go outside and walk", "Binge a comfort show", "Clean and reorganize everything"] },
 { q: "Stress relief method:", opts: ["Exercise", "Talking to someone", "Music full blast", "Zoning out on my phone"] },
 { q: "Treat yourself budget:", opts: ["No budget, I deserve it", "Small things frequently", "Big splurge rarely", "I feel guilty spending on myself"] },
 { q: "Pick a self-care cliché you actually do:", opts: ["Journal", "Face masks", "Gratitude lists", "None — I just nap"] },
-
-// ═══════════════ GEOGRAPHY & PLACES ═══════════════
 { q: "Continent you'd explore first:", opts: ["Asia", "South America", "Africa", "Europe"] },
 { q: "City vs countryside forever:", opts: ["City — I need the energy", "Countryside — peace and quiet", "Suburbs — best of both", "I'd rotate between all three"] },
 { q: "Pick a body of water:", opts: ["Ocean", "Lake", "River", "Waterfall"] },
 { q: "Dream climate to live in:", opts: ["Tropical", "Mediterranean", "Four seasons", "Arctic — I like extremes"] },
 { q: "You'd move to a country where:", opts: ["The food is incredible", "The nature is stunning", "The culture is fascinating", "The cost of living is low"] },
-
-// ═══════════════ OFFICE DYNAMICS ═══════════════
 { q: "In a meeting, you're the one who:", opts: ["Takes notes", "Asks questions", "Zones out creatively", "Watches the clock"] },
 { q: "Email sign-off style:", opts: ["Best,", "Thanks!", "Cheers,", "No sign-off, just send"] },
 { q: "Office kitchen etiquette:", opts: ["I clean up after myself always", "I mostly try", "I avoid the kitchen entirely", "I'm the one cleaning everyone else's mess"] },
 { q: "Work friend dynamic:", opts: ["I have a tight work bestie", "Friendly with everyone equally", "I keep work and personal separate", "I befriend everyone by accident"] },
 { q: "Monday morning energy:", opts: ["Actually motivated", "Functioning on caffeine", "Mentally still in bed", "Depends entirely on Sunday night"] },
-
-// ═══════════════ INTROVERT VS EXTROVERT ═══════════════
 { q: "After a social event:", opts: ["Energized and happy", "Need alone time immediately", "Depends on the event", "I'm already planning the next one"] },
 { q: "Phone rings from an unknown number:", opts: ["Answer it confidently", "Let it go to voicemail", "Google the number first", "Stare at it in panic"] },
 { q: "Ideal Friday night:", opts: ["Out with a group", "One-on-one hang", "Solo at home", "Asleep by 9pm"] },
 { q: "Being alone is:", opts: ["Essential for my sanity", "Nice sometimes", "Something I avoid", "My default state honestly"] },
 { q: "You prefer plans that are:", opts: ["Organized in advance", "Spontaneous", "Flexible with a loose plan", "Canceled last minute honestly"] },
-
-// ═══════════════ MANNERS & ETIQUETTE ═══════════════
 { q: "Someone holds the door for you from too far away:", opts: ["Awkward speed walk", "Normal pace, thank them warmly", "Jog a little", "Wave them off — don't wait for me"] },
 { q: "Phone at the dinner table:", opts: ["Never, that's rude", "Quick glance is fine", "If the conversation's boring, sure", "I'm always on my phone, sorry"] },
 { q: "Thank you card person?", opts: ["Always send them", "For big occasions only", "I mean to but forget", "Texts count, right?"] },
 { q: "Someone cuts in line:", opts: ["Say something directly", "Give them a look", "Silently judge", "Let it go completely"] },
 { q: "You burp in public:", opts: ["Excuse myself immediately", "Pretend it didn't happen", "Own it confidently", "Die a little inside"] },
-
-// ═══════════════ FASHION & STYLE ═══════════════
 { q: "Getting dressed philosophy:", opts: ["Outfit planned the night before", "First clean thing I grab", "Depends on my mood that day", "Rotating uniform of favorites"] },
 { q: "Your signature accessory:", opts: ["Watch or bracelet", "Hat or cap", "Sunglasses", "I don't do accessories"] },
 { q: "Shopping approach:", opts: ["In store, I like trying things on", "Online only", "Thrift and secondhand", "Someone else picks for me"] },
 { q: "Shoe collection:", opts: ["One pair for everything", "A few key pairs", "Way too many", "Organized by occasion"] },
 { q: "Comfort vs style:", opts: ["Comfort always wins", "Style always wins", "I've found both", "Depends where I'm going"] },
-
-// ═══════════════ GROCERY SHOPPING ═══════════════
 { q: "Grocery list approach:", opts: ["Detailed list, stick to it", "General list, flexible", "No list, vibes only", "I order delivery"] },
 { q: "Grocery store behavior:", opts: ["In and out efficiently", "Browse every aisle", "Too many impulse buys", "Forget the one thing I came for"] },
-{ q: "Pick a grocery store section:", opts: ["Produce — I'll be healthy today", "Snack aisle", "Bakery", "Frozen foods"] },
 { q: "You see free samples:", opts: ["Try every single one", "Only if it looks good", "Avoid eye contact", "Circle back for seconds"] },
 { q: "Self-checkout or cashier:", opts: ["Self-checkout always", "Cashier — I like the chat", "Whichever is faster", "Self-checkout but I always need help"] },
-
-// ═══════════════ ARGUMENTS & DISAGREEMENTS ═══════════════
 { q: "In an argument, you tend to:", opts: ["Get passionate and loud", "Go quiet and internal", "Try to find middle ground", "Use logic and facts"] },
 { q: "After a fight, you need:", opts: ["Time alone to process", "Resolution right now", "A distraction first, then talk", "Physical comfort — a hug fixes it"] },
 { q: "The hill you'll die on:", opts: ["Being on time matters", "Music taste is personal", "Pineapple on pizza is fine", "Reply to texts within a day"] },
 { q: "You realize you're wrong mid-argument:", opts: ["Admit it immediately", "Slowly back down", "Redirect the conversation", "Double down anyway"] },
 { q: "Apology love language:", opts: ["Words — a sincere 'I'm sorry'", "Actions — showing change", "Gifts — a peace offering", "Time — just being present after"] },
-
-// ═══════════════ AGING & TIME ═══════════════
 { q: "Age you'd go back to:", opts: ["Childhood — no responsibilities", "Teens — the energy", "Early 20s — the freedom", "I'd stay right here"] },
 { q: "How you feel about getting older:", opts: ["Excited for what's ahead", "A little scared honestly", "Just trying to enjoy now", "I don't think about it much"] },
 { q: "The decade you romanticize most:", opts: ["The 60s", "The 80s", "The 90s", "The 2000s"] },
 { q: "You feel most like yourself at:", opts: ["Morning", "Afternoon", "Evening", "Late night"] },
 { q: "Aging priority:", opts: ["Health first", "Experiences first", "Relationships first", "Financial security first"] },
-
-// ═══════════════ STREAMING & CONTENT ═══════════════
 { q: "How you pick what to watch:", opts: ["Browse for 30 minutes", "Rewatch something familiar", "Ask someone for a rec", "Algorithm decides"] },
 { q: "Binge or one episode at a time:", opts: ["Full binge, no control", "One a day like a civilized person", "2-3 then force myself to stop", "Depends on the show"] },
 { q: "Subtitles:", opts: ["Always on, even in English", "Only for foreign language", "They distract me", "I didn't know people watched without them"] },
 { q: "A show gets bad in season 3:", opts: ["I finish what I started", "Drop it immediately", "Hate-watch to the end", "Skip to the finale"] },
 { q: "Your comfort rewatch:", opts: ["A sitcom", "An animated show", "A drama series", "A reality show"] },
-
-// ═══════════════ SOCIAL MEDIA BEHAVIOR ═══════════════
 { q: "Social media posting frequency:", opts: ["Multiple times a day", "A few times a week", "Once in a while", "I only lurk"] },
 { q: "You post something and it gets no likes:", opts: ["Delete it quietly", "Leave it up unbothered", "Check back 100 times", "I don't post so this doesn't apply"] },
 { q: "Instagram vs reality:", opts: ["My profile is curated", "Pretty authentic honestly", "I barely post enough to tell", "I don't have social media"] },
 { q: "Someone you know IRL follows you:", opts: ["Follow back immediately", "Check their profile first", "Accept but don't follow back", "I'm private, they can wait"] },
 { q: "Doomscrolling confession:", opts: ["Hours daily, send help", "Sometimes I catch myself", "I've gotten better about it", "My screen time is fine actually"] },
-
-// ═══════════════ ROOMMATE LIFE ═══════════════
 { q: "Ideal roommate quality:", opts: ["Clean and organized", "Fun and social", "Quiet and respectful", "Good at cooking"] },
 { q: "Sharing food policy:", opts: ["What's mine is yours", "Ask first always", "Labeled shelves, no sharing", "I'll share if you replace it"] },
 { q: "Noise tolerance at home:", opts: ["I need silence", "Background noise is fine", "Music playing always", "I adapt to whatever"] },
 { q: "Guests at the apartment:", opts: ["The more the merrier", "With advance notice", "Rarely please", "Only close mutual friends"] },
 { q: "Thermostat battles:", opts: ["I always want it colder", "I always want it warmer", "I don't touch it", "I wear layers to avoid the fight"] },
-
-// ═══════════════ COOKING CONFIDENCE ═══════════════
 { q: "Your cooking level:", opts: ["I can follow a recipe", "I freestyle everything", "I burn water", "Actually pretty talented"] },
 { q: "Cooking for someone else:", opts: ["Love it, it's an act of love", "Stressful but I try", "I'll order in instead", "Only my signature dish"] },
 { q: "Spice tolerance:", opts: ["The spicier the better", "Medium is my sweet spot", "Mild please", "Black pepper is spicy to me"] },
 { q: "Leftover philosophy:", opts: ["Eat them for days", "They taste better the next day", "I forget they exist", "I never make enough for leftovers"] },
 { q: "Pick a kitchen gadget:", opts: ["Air fryer", "Instant Pot", "Blender", "I just need a good knife"] },
-
-// ═══════════════ CELEBRATIONS & TRADITIONS ═══════════════
 { q: "Birthday preference:", opts: ["Big party with everyone", "Small gathering of close ones", "Solo treat-yourself day", "Pretend it's not happening"] },
 { q: "New Year's Eve ideal:", opts: ["Huge party countdown", "Cozy night with close friends", "Reflective solo evening", "Asleep before midnight"] },
 { q: "Holiday gift approach:", opts: ["Thoughtful and personal", "Gift cards — let them choose", "Experience-based gifts", "I'm terrible at gift giving"] },
 { q: "Your holiday season vibe:", opts: ["Decorations up November 1st", "Festive but chill", "Kind of over it honestly", "I celebrate in my own way"] },
 { q: "Traditions you actually keep:", opts: ["Family recipes", "Annual trips or events", "Movie rewatches", "I make new ones each year"] },
-
-// ═══════════════ FEAR & BRAVERY ═══════════════
 { q: "Scariest everyday thing:", opts: ["Making phone calls", "Parallel parking", "Networking events", "Checking my bank account"] },
 { q: "Haunted house reaction:", opts: ["Screaming and laughing", "Eerily calm", "Grabbing onto whoever's nearest", "I refuse to go in"] },
 { q: "You hear a noise at night:", opts: ["Investigate immediately", "Freeze and listen", "Pull the covers over my head", "It's probably nothing, back to sleep"] },
 { q: "Biggest non-physical fear:", opts: ["Failure", "Being forgotten", "Missing out", "Being misunderstood"] },
 { q: "Pick a brave thing to try:", opts: ["Skydiving", "Public speaking to thousands", "Moving to a new country alone", "Starting a business"] },
-
-// ═══════════════ ANIMAL KINGDOM ═══════════════
 { q: "Spirit animal honest pick:", opts: ["Cat — independent and moody", "Dog — loyal and excitable", "Bear — sleepy and strong", "Bird — restless and free"] },
-{ q: "Pick an ocean creature:", opts: ["Dolphin", "Octopus", "Sea turtle", "Whale"] },
 { q: "If animals could talk:", opts: ["I'd talk to my pet all day", "I'd interview a crow", "I'd apologize to every spider", "I'd avoid geese even more"] },
 { q: "Zoo or aquarium:", opts: ["Zoo — land animals win", "Aquarium — the vibes are better", "Both equally", "Neither — let them be free"] },
 { q: "Pick a mythical creature to ride:", opts: ["Dragon", "Pegasus", "Giant wolf", "Phoenix"] },
-
-// ═══════════════ LANGUAGE & COMMUNICATION ═══════════════
 { q: "Your vocabulary in real life:", opts: ["Pretty casual and slangy", "Accidentally formal", "Code-switch constantly", "I make up my own words"] },
 { q: "You say 'sorry' how often:", opts: ["Constantly, even when it's not my fault", "Only when I mean it", "Rarely", "I'm Canadian-level sorry"] },
 { q: "Sarcasm usage:", opts: ["It's my first language", "Sometimes, when it lands", "I'm too sincere for sarcasm", "I can never tell when others are sarcastic"] },
 { q: "When someone mispronounces your name:", opts: ["Correct them every time", "Correct them once, then give up", "Doesn't bother me", "I answer to literally anything"] },
 { q: "Voicemail — you:", opts: ["Leave a detailed message", "Hang up and text instead", "Leave a confused ramble", "Who leaves voicemails?"] },
-
-// ═══════════════ MUSIC MOMENTS ═══════════════
 { q: "You hear your favorite song in public:", opts: ["Sing along openly", "Subtle head bop", "Point it out to whoever I'm with", "Internal joy, no external signs"] },
 { q: "Shower singing:", opts: ["Full concert performance", "Light humming", "I don't sing in the shower", "I have a shower playlist on speaker"] },
 { q: "Music for focus:", opts: ["Instrumental only", "Familiar songs I can ignore", "Complete silence", "Loud music helps me concentrate"] },
 { q: "Your music taste in one word:", opts: ["Eclectic", "Nostalgic", "Underground", "Mainstream and proud"] },
 { q: "Concert behavior:", opts: ["Front row energy", "Vibing in the middle", "Way in the back", "I prefer listening at home"] },
-
-// ═══════════════ HEALTH & BODY ═══════════════
 { q: "Headache first response:", opts: ["Immediately take medicine", "Drink water and wait", "Nap it off", "Complain until it leaves"] },
 { q: "How's your posture:", opts: ["Actually pretty good", "I try to remember", "Terrible, don't remind me", "I have a standing desk so... maybe better?"] },
 { q: "Stretching frequency:", opts: ["Every morning ritual", "When something hurts", "Never honestly", "Does reaching for snacks count?"] },
 { q: "Sunscreen philosophy:", opts: ["Every day, rain or shine", "Only at the beach", "When I remember", "I live dangerously"] },
 { q: "Pick a wellness trend:", opts: ["Cold plunges", "Meditation apps", "Green smoothies", "10,000 steps"] },
-
-// ═══════════════ BOOKS & READING ═══════════════
 { q: "Reading format preference:", opts: ["Physical books always", "E-reader", "Audiobooks", "I'll read anything in any format"] },
 { q: "Bookstore behavior:", opts: ["Leave with 5 books I don't need", "Browse for an hour, buy nothing", "Go in for one specific book", "I get overwhelmed by choices"] },
 { q: "You don't like a book 50 pages in:", opts: ["Push through anyway", "Give it 100 more pages", "Life's too short, put it down", "Skip to the ending"] },
 { q: "Favorite reading spot:", opts: ["In bed", "A coffee shop", "Outside somewhere", "The couch with a blanket"] },
 { q: "Your bookshelf says:", opts: ["Organized by genre", "Color-coded", "Chaotic but I know where everything is", "I don't have enough shelf space"] },
-
-// ═══════════════ PHILOSOPHICAL QUESTIONS ═══════════════
 { q: "Free will or destiny:", opts: ["Totally free will", "Some things are meant to be", "A mix of both", "I try not to think about it"] },
 { q: "Would you want to know the future:", opts: ["Yes, all of it", "Just the good parts", "Absolutely not", "Only if I could change it"] },
 { q: "What makes a good life:", opts: ["Meaningful relationships", "Personal achievement", "Freedom and adventure", "Inner peace"] },
 { q: "Humanity's best trait:", opts: ["Creativity", "Resilience", "Compassion", "Curiosity"] },
 { q: "You'd rather be remembered as:", opts: ["Kind", "Brilliant", "Brave", "Funny"] },
-
-// ═══════════════ PHOTOGRAPHY & MEMORIES ═══════════════
 { q: "Camera roll is mostly:", opts: ["Selfies and people", "Food photos", "Scenery and travel", "Screenshots I'll never look at"] },
 { q: "Photo taking frequency:", opts: ["Document everything", "Only special moments", "I always forget to take photos", "Someone else takes them for me"] },
 { q: "You see a beautiful sunset:", opts: ["Take 30 photos", "One quick photo then enjoy it", "Just watch, no phone", "Post it immediately"] },
 { q: "Old photos make you feel:", opts: ["Nostalgic and warm", "Cringe at my old self", "Grateful for growth", "Time moves too fast"] },
 { q: "Group photo position:", opts: ["Center and smiling", "Edge of the group", "Behind the camera", "Silly face always"] },
-
-// ═══════════════ MORNING ROUTINE ═══════════════
 { q: "First thing you do when you wake up:", opts: ["Check my phone", "Stretch or exercise", "Make coffee or tea", "Lie there regretting consciousness"] },
 { q: "Breakfast timing:", opts: ["Right away, I'm starving", "After I've been up for a while", "I skip breakfast entirely", "Just coffee counts as breakfast"] },
 { q: "Morning shower or night shower:", opts: ["Morning — wake me up", "Night — go to bed clean", "Both sometimes", "When I remember"] },
 { q: "Getting ready takes you:", opts: ["15 minutes flat", "30-45 minutes", "Over an hour", "Depends where I'm going"] },
 { q: "Morning person confession:", opts: ["I genuinely love mornings", "I've trained myself to tolerate them", "I'm barely functional before noon", "I peak around 10am"] },
-
-// ═══════════════ SPORTS & COMPETITION ═══════════════
 { q: "Board game personality:", opts: ["In it to win it", "Just here for fun", "The sore loser", "The rule-explainer"] },
 { q: "Pick a sport to be amazing at:", opts: ["Tennis", "Basketball", "Swimming", "Soccer"] },
 { q: "Competition in daily life:", opts: ["I compete with myself", "I compete with everyone", "I avoid competition", "Only when it's fun"] },
 { q: "You're losing badly at a game:", opts: ["Try harder", "Accept it gracefully", "Get suspiciously quiet", "Start bending the rules"] },
 { q: "Sports to watch vs play:", opts: ["Better to watch", "Better to play", "Both equally fun", "Neither honestly"] },
-
-// ═══════════════ GIFT GIVING & RECEIVING ═══════════════
 { q: "You give gifts that are:", opts: ["Practical and useful", "Sentimental and personal", "Funny or ironic", "Expensive because I panicked"] },
 { q: "Receiving a gift you don't like:", opts: ["Perfect poker face", "Grateful for the thought", "Bad at hiding it honestly", "I genuinely appreciate everything"] },
 { q: "Best gift you could receive:", opts: ["Something money can't buy", "A tech gadget", "An experience or trip", "A handwritten letter"] },
 { q: "Wrapping presents:", opts: ["Beautifully wrapped, ribbon and all", "Decent attempt", "Gift bag, done", "Unwrapped, here you go"] },
 { q: "When do you buy gifts:", opts: ["Plan months ahead", "A week before", "Last-minute dash", "Throughout the year when I see something"] },
-
-// ═══════════════ ORGANIZATION & PLANNING ═══════════════
 { q: "Calendar situation:", opts: ["Every minute scheduled", "Big events only", "I should use one but don't", "Everything's in my head"] },
 { q: "Packing for a trip:", opts: ["List-based, days in advance", "Night before, very stressed", "I overpack every time", "I underpack and buy what I need"] },
 { q: "Digital files:", opts: ["Organized in labeled folders", "Desktop is chaos", "I search for everything", "I've given up"] },
 { q: "To-do list style:", opts: ["Written on paper", "App on my phone", "Mental list only", "I don't do lists"] },
 { q: "You're running 5 minutes late:", opts: ["Text ahead immediately", "Speed up and hope no one notices", "I'm never late", "5 minutes late is basically on time"] },
-
-// ═══════════════ CREATIVE EXPRESSION ═══════════════
 { q: "If you had to make art:", opts: ["Painting or drawing", "Music or songwriting", "Writing or poetry", "Photography or film"] },
 { q: "Creativity comes to you:", opts: ["Late at night", "In the shower", "While exercising", "When I should be doing something else"] },
 { q: "Your doodle style:", opts: ["Geometric shapes", "Flowers and nature", "Random words and letters", "I don't doodle"] },
 { q: "Creative block solution:", opts: ["Push through it", "Take a break and return", "Try something completely different", "Consume other people's art for inspiration"] },
 { q: "Pick a creative skill to wake up with:", opts: ["Drawing photorealistic portraits", "Writing hit songs", "Dancing professionally", "Directing films"] },
-
-// ═══════════════ DATING & ROMANCE ═══════════════
 { q: "Best first date:", opts: ["Coffee and walking", "Dinner somewhere nice", "An activity together", "Something spontaneous"] },
 { q: "Green flag you notice first:", opts: ["How they treat service workers", "Their sense of humor", "They ask good questions", "They're genuinely passionate about something"] },
 { q: "Love language you speak:", opts: ["Words of affirmation", "Physical touch", "Acts of service", "Quality time"] },
 { q: "Texting in early dating:", opts: ["Text all day every day", "A few good texts a day", "Mainly to make plans", "I'd rather just see them in person"] },
 { q: "Relationship dealbreaker:", opts: ["No sense of humor", "Bad communication", "Different life goals", "Unkind to animals"] },
-
-// ═══════════════ SCENTS & SENSES ═══════════════
-{ q: "Pick a scent:", opts: ["Fresh laundry", "Coffee brewing", "Rain on pavement", "Campfire"] },
 { q: "Candle person?", opts: ["My home is a candle store", "A few favorites", "They stress me out — fire hazard", "I prefer incense or diffusers"] },
 { q: "Smell that takes you back:", opts: ["Sunscreen — beach memories", "Baking — childhood kitchen", "A specific cologne or perfume", "Fresh-cut grass — summer"] },
 { q: "Fragrance preference:", opts: ["Light and fresh", "Warm and musky", "Sweet and floral", "I don't wear fragrance"] },
 { q: "Most satisfying texture:", opts: ["Warm sand", "Cool smooth stone", "Soft velvet or fur", "Bubble wrap"] },
-
-// ═══════════════ DIGITAL LIFE ═══════════════
 { q: "Phone storage is mostly:", opts: ["Photos and videos", "Apps I never use", "Music and podcasts", "Somehow always full"] },
 { q: "Notification style:", opts: ["Everything on, all sounds", "Important ones only", "Everything on silent", "I have 10,000 unread emails"] },
 { q: "Password strategy:", opts: ["Password manager", "Same few passwords recycled", "Variations of one good one", "Reset it every time I log in"] },
 { q: "How many browser tabs right now:", opts: ["Under 5", "10-20", "50+", "I don't want to talk about it"] },
 { q: "Tech support for family:", opts: ["That's literally my role", "I try but I'm not much better", "I Google it alongside them", "I pretend I don't know"] },
-
-// ═══════════════ HYPOTHETICAL RICHES ═══════════════
 { q: "Millionaire first purchase:", opts: ["Dream house", "Pay off all debts", "Travel the world", "Invest it all"] },
 { q: "Would you rather have:", opts: ["Unlimited flights anywhere", "Unlimited restaurant meals", "Unlimited concert tickets", "Unlimited book budget"] },
 { q: "Rich person hobby you'd adopt:", opts: ["Sailing", "Art collecting", "Horse riding", "Philanthropy galas"] },
 { q: "You'd hire someone to:", opts: ["Clean my house", "Cook my meals", "Do my taxes", "Drive me everywhere"] },
 { q: "Money or time:", opts: ["More money, same time", "More time, same money", "I'd find balance", "I need both desperately"] },
-
-// ═══════════════ SEASONS DEEP DIVE ═══════════════
 { q: "Fall activity pick:", opts: ["Apple picking", "Watching leaves change", "Halloween prep", "Cozy indoor day"] },
 { q: "Summer anthem energy:", opts: ["Windows down, music loud", "Lazy poolside vibes", "Festival and concert season", "AC on full blast indoors"] },
 { q: "Winter comfort:", opts: ["Fireplace and blankets", "Hot chocolate", "Snow activities", "Planning a warm vacation"] },
 { q: "Spring feeling:", opts: ["Fresh start energy", "Allergies mostly", "Happy the cold is ending", "Best weather of the year"] },
 { q: "Seasonal wardrobe shift:", opts: ["I love layering season", "I live for summer clothes", "I wear the same thing year-round", "Every season is hoodie season"] },
-
-// ═══════════════ PRODUCTIVITY & FOCUS ═══════════════
 { q: "Focus technique:", opts: ["Pomodoro timer", "Music and flow state", "Deadline panic", "I just sit down and do it"] },
 { q: "Procrastination style:", opts: ["Clean my entire house first", "Scroll endlessly", "Start 12 other projects", "Convince myself I work best under pressure"] },
 { q: "Peak productivity time:", opts: ["Early morning", "Late morning", "Afternoon", "Late at night"] },
 { q: "Multitasking:", opts: ["I thrive on it", "One thing at a time", "I think I can but I really can't", "Depends on the tasks"] },
 { q: "Motivational strategy:", opts: ["Reward myself after", "Accountability buddy", "Visualize the end result", "Fear of consequences"] },
-
-// ═══════════════ COZY VIBES ═══════════════
 { q: "Coziest fabric:", opts: ["Fleece", "Cashmere", "Flannel", "Chunky knit"] },
 { q: "Rainy day drink:", opts: ["Hot chocolate", "Tea with honey", "Soup in a mug", "Regular coffee — rain doesn't change my order"] },
 { q: "Comfort show genre:", opts: ["90s-2000s sitcom", "Baking/cooking show", "Nature documentary", "Animated movie"] },
 { q: "Your blanket situation:", opts: ["One perfect blanket", "Nest of multiple blankets", "Weighted blanket convert", "I run hot, no blankets"] },
 { q: "Coziest sound:", opts: ["Rain on a window", "Fireplace crackling", "Cat purring", "Pages turning"] },
-
-// ═══════════════ PET PEEVES EXTENDED ═══════════════
 { q: "Biggest daily annoyance:", opts: ["Loud chewing", "People walking slowly", "Unsolicited advice", "Wi-Fi cutting out"] },
 { q: "Grammar pet peeve:", opts: ["Your vs you're", "Could of instead of could have", "Irregardless", "I genuinely don't care about grammar"] },
 { q: "This ruins a restaurant meal:", opts: ["Bad service", "Too loud", "Food is cold", "Long wait for the check"] },
 { q: "Pick a minor inconvenience that enrages you:", opts: ["Tangled earbuds", "Wet socks", "A wobbly table", "Forgetting why I walked into a room"] },
 { q: "Public transit pet peeve:", opts: ["Manspreading", "Loud music without headphones", "Eating on the bus/train", "Blocking the doors"] },
-
-// ═══════════════ FICTIONAL WORLDS ═══════════════
 { q: "Pick a fictional school:", opts: ["Hogwarts", "Xavier's School for Mutants", "Jedi Academy", "The School for Good and Evil"] },
 { q: "Fictional best friend:", opts: ["A sarcastic robot", "A loyal sidekick type", "A mysterious wizard", "A talking animal companion"] },
 { q: "Pick a fictional villain you relate to a little:", opts: ["The overworked one", "The one with a point", "The dramatic one", "The one who just wanted to be left alone"] },
 { q: "Your role in a heist movie:", opts: ["The mastermind", "The tech person", "The wildcard", "The one who didn't know it was a heist"] },
 { q: "Fictional job you'd want:", opts: ["Pokémon trainer", "Starship captain", "Willy Wonka's chocolate factory taste tester", "Jurassic Park scientist (pre-disaster)"] },
-
-// ═══════════════ FOOD OPINIONS ═══════════════
 { q: "Controversial food opinion:", opts: ["Breakfast for dinner is superior", "Ketchup goes on eggs", "Boneless wings are just nuggets", "Cereal is soup"] },
 { q: "Pizza topping stance:", opts: ["Classic pepperoni", "Load it up with everything", "White pizza, no tomato sauce", "I'll eat any pizza honestly"] },
 { q: "Cooking or ordering:", opts: ["I love cooking", "Ordering is self-care", "Depends on my energy", "Meal prep so I don't have to decide"] },
 { q: "Food texture you can't handle:", opts: ["Slimy", "Crunchy in soft food", "Too chewy", "I eat everything"] },
 { q: "Breakfast ranking:", opts: ["Savory always — eggs, bacon", "Sweet — pancakes, waffles", "I switch it up", "Coffee IS breakfast"] },
-
-// ═══════════════ TRAVEL STYLE ═══════════════
 { q: "Travel planning:", opts: ["Every hour planned", "Rough itinerary, stay flexible", "No plan, figure it out there", "Someone else plans, I show up"] },
 { q: "Hotel vs Airbnb:", opts: ["Hotel — I want to be pampered", "Airbnb — I want to feel local", "Hostel — meet people", "Camping — no walls needed"] },
 { q: "Best travel souvenir:", opts: ["Fridge magnet", "Local food or drink", "Photos and memories", "I don't buy souvenirs"] },
 { q: "Travel companion preference:", opts: ["My best friend", "Solo travel", "A romantic partner", "A small group"] },
 { q: "You get lost in a new city:", opts: ["Adventure begins!", "Mild panic but I'll manage", "Immediately open maps", "I never get lost — I always prepare"] },
-
-// ═══════════════ SCHOOL & LEARNING ═══════════════
 { q: "Learning style for real:", opts: ["Visual — show me", "Hands-on — let me try", "Reading — give me the docs", "Listening — explain it to me"] },
 { q: "Pop quiz announced — you:", opts: ["Confident, I was paying attention", "Nervous but I'll manage", "Immediate regret about not studying", "I thrive under surprise pressure"] },
 { q: "Group project role:", opts: ["The one who does everything", "The organizer", "The presenter", "The one who shows up to collect credit"] },
 { q: "Favorite school supply:", opts: ["Fresh notebooks", "Good pens", "Highlighters in every color", "My laptop"] },
 { q: "If you went back to school:", opts: ["I'd study something completely different", "I'd take it more seriously", "I'd enjoy it more", "Absolutely not going back"] },
-
-// ═══════════════ ENERGY & MOTIVATION ═══════════════
 { q: "What energizes you:", opts: ["Being around people", "Accomplishing something", "Learning something new", "Complete rest and doing nothing"] },
 { q: "Motivation source:", opts: ["Proving people wrong", "Making people proud", "Personal satisfaction", "Fear of regret"] },
 { q: "Energy crashes at:", opts: ["2pm, like clockwork", "After socializing", "After eating", "I'm always tired honestly"] },
 { q: "Pick a power-up for real life:", opts: ["+2 hours of energy daily", "Perfect sleep every night", "Instant focus on command", "Never getting sick again"] },
 { q: "Your recharge activity:", opts: ["Being in nature", "Creating something", "Physical exercise", "Complete solitude and quiet"] },
-
-// ═══════════════ UNEXPECTED SCENARIOS ═══════════════
 { q: "You're the last person on Earth:", opts: ["Explore everything freely", "Try to find signs of others", "Have an existential crisis", "Finally read all my books"] },
 { q: "A stranger compliments you — you:", opts: ["Light up and thank them", "Get awkwardly flustered", "Compliment them back immediately", "Wonder if they want something"] },
 { q: "You find a door that leads anywhere:", opts: ["A tropical beach", "A library with every book", "Outer space safely", "My happiest memory"] },
 { q: "Someone is singing badly in public:", opts: ["Love the confidence", "Cringe internally", "Join in", "Put my headphones in"] },
 { q: "You accidentally wave at a stranger:", opts: ["Commit and say hi", "Pretend I was stretching", "Laugh it off", "Think about it for 3 days"] },
-
-// ═══════════════ DAILY PREFERENCES ═══════════════
 { q: "Preferred way to get news:", opts: ["Social media", "News apps or websites", "Podcasts", "Someone tells me"] },
 { q: "Wallet or phone case:", opts: ["Minimalist — just the essentials", "Stuffed with everything", "Phone case with card holder", "I forget my wallet constantly"] },
 { q: "Watch style:", opts: ["Analog classic", "Smart watch", "I use my phone for the time", "I don't track time"] },
 { q: "Pen or pencil:", opts: ["Pen — commitment", "Pencil — I make mistakes", "Whatever's closest", "I type everything"] },
 { q: "Handwriting assessment:", opts: ["Actually pretty nice", "Legible on a good day", "Doctors would be proud", "I print in all caps"] },
-
-// ═══════════════ DEEP TALK ═══════════════
 { q: "What do you think about most:", opts: ["The future", "The past", "Other people", "Random hypotheticals"] },
 { q: "Your inner monologue:", opts: ["Non-stop narration", "Mostly music playing", "Quiet until needed", "Multiple conversations at once"] },
 { q: "Existential thought frequency:", opts: ["Daily", "Weekly", "Rarely", "Only at 3am"] },
 { q: "You believe people are:", opts: ["Mostly good", "Mostly self-interested", "Complicated — case by case", "A mystery I'll never solve"] },
 { q: "The meaning of life is:", opts: ["Connection with others", "Personal growth", "Enjoying the moment", "There isn't one and that's okay"] },
-
-// ═══════════════ MEMORY & NOSTALGIA ═══════════════
 { q: "You remember things by:", opts: ["Visual memory — I can picture it", "Emotional memory — I remember how I felt", "Verbal memory — I remember what was said", "I have terrible memory honestly"] },
 { q: "Nostalgia is:", opts: ["One of my favorite feelings", "Bittersweet", "Something I try to avoid", "A constant state of being"] },
 { q: "Object you'd save from a fire:", opts: ["Photo albums or hard drive", "Something with sentimental value", "My phone", "Nothing — it's all replaceable"] },
 { q: "A song from 10 years ago plays:", opts: ["Instant time travel", "I sing every word", "Cringe at who I was", "I barely remember it"] },
 { q: "Pick a memory type to have perfectly:", opts: ["Names and faces", "Conversations word for word", "Where I put my things", "Important dates and events"] },
-
-// ═══════════════ WEIRD HYPOTHETICALS ═══════════════
 { q: "You can only eat one cuisine forever:", opts: ["Italian", "Mexican", "Japanese", "American comfort food"] },
 { q: "You have to teach a class on something:", opts: ["My niche hobby", "Life skills nobody taught us", "Pop culture deep dives", "How to do nothing productively"] },
-{ q: "You wake up as the opposite gender for a day:", opts: ["Explore the differences", "Try to get through the day normally", "Experiment with fashion", "Call in sick and process it"] },
 { q: "You can talk to one species:", opts: ["Dogs — what are they thinking", "Cats — what's the attitude about", "Crows — they seem to know things", "Whales — ocean secrets"] },
 { q: "You discover you have a clone:", opts: ["Send them to work", "Existential crisis", "Become best friends", "Fight to determine the original"] },
-
-// ═══════════════ COMFORT ZONE ═══════════════
 { q: "Most outside your comfort zone:", opts: ["Karaoke in front of strangers", "Eating alone at a restaurant", "Cold approaching someone", "Sharing something personal publicly"] },
 { q: "You grow most from:", opts: ["Failure", "Travel", "Relationships", "Uncomfortable conversations"] },
 { q: "Trying new food:", opts: ["I'll try anything once", "I need to see someone else eat it first", "Only if it looks familiar enough", "I'm very picky, no thanks"] },
 { q: "Comfort zone you've pushed:", opts: ["Social situations", "Physical challenges", "Career risks", "Emotional vulnerability"] },
 { q: "What holds you back most:", opts: ["Fear of judgment", "Fear of failure", "Lack of motivation", "Overthinking everything"] },
-
-// ═══════════════ JUSTICE & FAIRNESS ═══════════════
 { q: "Someone cuts you off in traffic:", opts: ["Honk and move on", "Silently rage for 10 minutes", "Assume they're having a bad day", "I don't drive so can't relate"] },
 { q: "You overhear someone telling a lie:", opts: ["Call it out", "Mind my business", "Tell someone else", "Depends on the lie"] },
 { q: "Someone gets credit for your work:", opts: ["Speak up immediately", "Let it go this time", "Bring it up later privately", "Silently seethe"] },
 { q: "Fairness or mercy:", opts: ["Fairness — rules exist for a reason", "Mercy — context matters", "Balance of both", "Depends on the situation entirely"] },
 { q: "You find someone's lost wallet:", opts: ["Return it immediately", "Mail it to their address", "Turn it in to a nearby business", "Take the cash and return the wallet (just kidding... right?)"] },
-
-// ═══════════════ HOME DÉCOR ═══════════════
 { q: "Wall art preference:", opts: ["Photography prints", "Abstract art", "Posters and pop culture", "I keep my walls bare"] },
 { q: "Lighting vibe:", opts: ["Warm and dim — lamps only", "Bright and well-lit", "String lights everywhere", "Natural light is king"] },
 { q: "Plant parent status:", opts: ["My home is a jungle", "A few survivors", "I've killed everything I've tried", "Fake plants count right?"] },
 { q: "Bookshelf purpose:", opts: ["Actual books", "Display and décor", "Storage for random stuff", "I don't have a bookshelf"] },
 { q: "Pick a home scent:", opts: ["Vanilla and warm", "Fresh linen", "Citrus and clean", "Whatever my last meal smells like"] },
-
-// ═══════════════ PODCAST & AUDIO ═══════════════
 { q: "Podcast genre:", opts: ["True crime", "Comedy and chat", "Educational or science", "Interviews and stories"] },
 { q: "When do you listen to podcasts:", opts: ["Commuting", "Working out", "Doing chores", "Falling asleep"] },
 { q: "Podcast length preference:", opts: ["Under 30 minutes", "30-60 minutes", "Over an hour deep dive", "I don't listen to podcasts"] },
 { q: "Audio preference:", opts: ["Podcasts over music", "Music over podcasts", "Equal rotation", "Silence is golden"] },
 { q: "You'd host a podcast about:", opts: ["My random opinions", "Interviewing interesting people", "Deep dives into niche topics", "I'd be a terrible host"] },
-
-// ═══════════════ INTERNET CULTURE ═══════════════
 { q: "Meme literacy:", opts: ["I get every reference", "Mostly keep up", "I'm always a week behind", "I don't understand meme culture"] },
 { q: "Online shopping at 2am:", opts: ["It's my cardio", "Occasionally, no regrets", "I add to cart and abandon", "I'm disciplined, never impulsive"] },
 { q: "Your YouTube rabbit hole:", opts: ["Video essays", "Cooking or DIY", "Fail compilations", "Oddly specific documentaries"] },
 { q: "Wiki rabbit hole:", opts: ["Obscure historical events", "Celebrity drama timelines", "Medical conditions (bad idea)", "I can stop anytime I want"] },
 { q: "Pick a viral internet era:", opts: ["Early YouTube and forums", "Vine era", "TikTok era", "Whatever comes next"] },
-
-// ═══════════════ PERSONAL QUIRKS ═══════════════
 { q: "Your most irrational habit:", opts: ["Checking the door is locked multiple times", "Setting 10 alarms", "Rehearsing conversations in my head", "Avoiding stepping on cracks"] },
 { q: "Secret talent nobody knows about:", opts: ["I can sing", "I'm weirdly flexible", "I remember useless trivia", "I have no secret talents"] },
 { q: "Your walk speed:", opts: ["New York fast", "Leisurely stroll", "Depends who I'm with", "I didn't know people noticed walk speed"] },
 { q: "You zone out during:", opts: ["Long meetings", "Driving familiar routes", "Conversations honestly", "Never — I'm always present"] },
 { q: "Weird comfort activity:", opts: ["Organizing something", "Watching the same movie again", "Driving with no destination", "Sitting in a parking lot in my car"] },
-
-// ═══════════════ NEIGHBORHOOD & LOCAL ═══════════════
 { q: "Favorite local spot:", opts: ["The coffee shop", "The park", "A specific restaurant", "My couch"] },
 { q: "Do you know your neighbors:", opts: ["We're basically family", "Wave and smile", "I've seen them, that's about it", "I actively avoid them"] },
 { q: "Ideal neighborhood vibe:", opts: ["Walkable with shops and cafes", "Quiet residential streets", "Downtown energy", "Rural — no neighbors in sight"] },
 { q: "Local event you'd attend:", opts: ["Farmers market", "Street fair or festival", "Community game night", "None — I like staying home"] },
 { q: "You bump into someone you sort of know at the store:", opts: ["Stop and chat", "Quick smile and wave", "Pretend I didn't see them", "Avoid their aisle entirely"] },
-
-// ═══════════════ SOCIAL DYNAMICS ═══════════════
 { q: "In a group, you naturally:", opts: ["Lead the conversation", "Listen and observe", "Make jokes from the side", "Float between conversations"] },
 { q: "You notice a friend is being left out:", opts: ["Actively include them", "Pull them into my conversation", "Check on them later privately", "Assume they're fine"] },
 { q: "Gossip level:", opts: ["I know everything about everyone", "I listen but don't spread", "I genuinely don't care about gossip", "I'm always the last to know"] },
 { q: "Conflict in the friend group:", opts: ["I mediate immediately", "I stay out of it", "I take a side quietly", "I didn't even know there was conflict"] },
 { q: "Someone cancels plans last minute:", opts: ["Secretly relieved", "Genuinely disappointed", "Suggest a rain check", "I was going to cancel first"] },
-
-// ═══════════════ NIGHT OWL SPECIFIC ═══════════════
 { q: "What happens after midnight:", opts: ["My best ideas come out", "Snacking increases 300%", "I'm already asleep", "I question all my life choices"] },
 { q: "Late night comfort:", opts: ["YouTube deep dives", "Rearranging my room", "Journaling or reflecting", "Scrolling in silence"] },
 { q: "2am thought:", opts: ["What am I doing with my life", "A million-dollar business idea", "Should I text someone", "I wonder if penguins have knees"] },
 { q: "Night walks:", opts: ["Love them, so peaceful", "Only with someone else", "Too scary for me", "I've never done one"] },
 { q: "Last thing you do before sleep:", opts: ["Phone scroll", "Read a book", "Listen to something", "Overthink with my eyes closed"] },
-
-// ═══════════════ CAREER FANTASIES ═══════════════
 { q: "Dream career if money didn't matter:", opts: ["Travel writer", "Bakery owner", "Wildlife photographer", "Bookshop owner in a small town"] },
 { q: "Worst job you could imagine:", opts: ["Data entry all day", "Cold calling strangers", "Standing outside in bad weather", "Customer service during holidays"] },
 { q: "Work-life balance means:", opts: ["Hard cutoff — no work emails at home", "Flexible blend throughout the day", "What balance?", "I'd work all the time if I loved it enough"] },
 { q: "Office perk that would win you over:", opts: ["Unlimited PTO", "Free meals", "Work from anywhere", "4-day work week"] },
 { q: "You'd rather:", opts: ["Be your own boss, less money", "Work for someone else, more money", "Freelance and travel", "Retire early, live simply"] },
-
-// ═══════════════ TASTE & PALATE ═══════════════
 { q: "Sweet or savory:", opts: ["Sweet always", "Savory wins", "I need both", "It changes daily"] },
 { q: "Spicy food tolerance:", opts: ["Bring on the ghost peppers", "Medium salsa is my limit", "I like flavor, not pain", "Absolutely no spice"] },
 { q: "Food temperature preference:", opts: ["Everything piping hot", "Room temperature is fine", "Cold food is underrated", "Depends on the food"] },
 { q: "Water preference:", opts: ["Ice cold", "Room temperature", "Sparkling", "Hot water — don't judge me"] },
 { q: "Pick a condiment to always have:", opts: ["Hot sauce", "Ranch", "Soy sauce", "Mustard"] },
-
-// ═══════════════ FUTURE PREDICTIONS ═══════════════
 { q: "In 10 years, you'll probably be:", opts: ["Exactly where I planned", "Somewhere unexpected", "More of the same, refined", "I have no idea and that's fine"] },
 { q: "Technology prediction:", opts: ["We'll all have AI assistants", "Social media will decline", "Flying cars will exist", "We'll go back to simpler tech"] },
 { q: "Future you will thank present you for:", opts: ["Saving money", "Taking care of my health", "Nurturing relationships", "Taking more risks"] },
 { q: "The future is:", opts: ["Exciting", "Terrifying", "Whatever we make it", "Better not to think about"] },
 { q: "Pick a future decade to visit:", opts: ["2040s", "2060s", "2100", "I'd rather stay in my time"] },
-
-// ═══════════════ TRUST & VULNERABILITY ═══════════════
 { q: "I open up to people:", opts: ["Easily and quickly", "After a long time of trust-building", "Only to one or two people", "Almost never"] },
 { q: "Trust is:", opts: ["Given until broken", "Earned over time", "Rare and precious", "Something I'm working on"] },
 { q: "Crying in front of others:", opts: ["Totally fine, I'm human", "Only with people I'm very close to", "I'd rather not", "Hasn't happened in years"] },
 { q: "Asking for help:", opts: ["Easy, no ego about it", "I'll try everything myself first", "I struggle with it honestly", "Depends what kind of help"] },
 { q: "Most vulnerable thing:", opts: ["Admitting I don't know something", "Saying 'I love you' first", "Sharing creative work", "Talking about my feelings"] },
-
-// ═══════════════ COLORS & AESTHETICS ═══════════════
 { q: "Your wardrobe color palette:", opts: ["All black everything", "Earth tones", "Bright and colorful", "Neutrals with one pop of color"] },
 { q: "Pick a color for your front door:", opts: ["Classic red", "Bold yellow", "Forest green", "Black or navy"] },
 { q: "Sunset or sunrise:", opts: ["Sunset — I'm actually awake for those", "Sunrise — worth waking up for", "Both are beautiful equally", "I never see either honestly"] },
 { q: "Neon signs or candlelight:", opts: ["Neon — buzzy energy", "Candlelight — warm intimacy", "Both have their place", "Neither — fairy lights"] },
 { q: "Pick an aesthetic for your life:", opts: ["Coastal grandmother", "Dark academia", "Studio Ghibli cottagecore", "Cyberpunk city"] },
-
-// ═══════════════ UNPOPULAR OPINIONS ═══════════════
 { q: "Your unpopular food opinion:", opts: ["Water is the best drink", "Most desserts are too sweet", "Cold pizza beats hot pizza", "Restaurant food is overrated"] },
 { q: "Unpopular life opinion:", opts: ["Being busy isn't a flex", "Not everyone needs to travel", "Small talk has value", "Some traditions should end"] },
 { q: "Unpopular social opinion:", opts: ["We don't need to be available 24/7", "Not all friendships need to last forever", "Silence in conversation is fine", "You can be close without texting often"] },
 { q: "Unpopular comfort opinion:", opts: ["Hotels are better than camping", "Winter is the best season", "Eating alone is peak dining", "Staying home beats any party"] },
 { q: "Unpopular entertainment opinion:", opts: ["Movies are better than TV shows", "The book isn't always better", "Award shows pick the wrong things", "Sequels can be better than originals"] },
-
-// ═══════════════ MICRO DECISIONS ═══════════════
 { q: "Left or right:", opts: ["Left always", "Right always", "I don't have a side preference", "Depends on the context"] },
 { q: "Stairs or elevator:", opts: ["Stairs — I'm active", "Elevator — I'm practical", "Depends on the floor", "Escalator — the compromise"] },
 { q: "Paper or digital:", opts: ["Paper — I'm traditional", "Digital — save the trees", "Both depending on what it is", "Whatever's in front of me"] },
 { q: "Ocean or pool:", opts: ["Ocean — nature's pool", "Pool — no sand, no salt", "Both equally", "I'm not a water person"] },
 { q: "Fiction or nonfiction:", opts: ["Fiction — take me to another world", "Nonfiction — real stories fascinate me", "Equal mix", "I don't read much"] },
-
-// ═══════════════ COMPLIMENTS & PRAISE ═══════════════
 { q: "Compliment that means the most:", opts: ["You're funny", "You're smart", "You're kind", "I feel safe around you"] },
 { q: "Receiving compliments:", opts: ["Thank you, I agree", "Get shy and deflect", "Return one immediately", "I never believe them fully"] },
 { q: "You'd rather be called:", opts: ["Reliable", "Creative", "Brave", "Genuine"] },
 { q: "Praise preference:", opts: ["Public recognition", "Private acknowledgment", "Written — so I can reread it", "Just a knowing nod is enough"] },
 { q: "The best thing someone has said about you (category):", opts: ["About my character", "About my abilities", "About how I make them feel", "About my appearance"] },
-
-// ═══════════════ WEEKEND ENERGY ═══════════════
 { q: "Saturday morning ideal:", opts: ["Farmers market or errands", "Sleep until noon", "Breakfast out somewhere", "Already doing something active"] },
 { q: "Sunday scaries:", opts: ["Hit me hard every week", "A little, manageable", "I don't get them", "Sunday is my best day actually"] },
 { q: "Perfect weekend has:", opts: ["A mix of social and solo time", "One adventure, one rest day", "Zero plans whatsoever", "Non-stop activity"] },
 { q: "Weekend cooking:", opts: ["Big elaborate meal", "Meal prep for the week", "Cereal and leftovers", "I go out to eat both days"] },
 { q: "Weekend screen time:", opts: ["Movie marathon", "Minimal — I try to unplug", "Gaming session", "Catch up on shows I'm behind on"] },
-
-// ═══════════════ INNER WORLD ═══════════════
 { q: "Your inner critic is:", opts: ["Very loud and constant", "Quiet but sharp when it speaks", "I've mostly made peace with it", "I don't really have one"] },
 { q: "You daydream about:", opts: ["Future conversations", "Alternative life paths", "Creative projects", "Absolutely nothing — blissful void"] },
 { q: "When you're alone you:", opts: ["Talk to myself out loud", "Play music and dance", "Deep clean something", "Sit in silence happily"] },
 { q: "Your overthinking topic:", opts: ["Things I've said in conversation", "Decisions I need to make", "What other people think of me", "The future in general"] },
 { q: "Pick an inner peace method:", opts: ["Accept what I can't control", "Stay so busy I don't think", "Talk it through with someone", "Nature and fresh air resets me"] },
-
-// ═══════════════ UNEXPECTED KNOWLEDGE ═══════════════
 { q: "Random topic you know too much about:", opts: ["A specific historical period", "A niche hobby or craft", "Celebrity drama", "A random animal species"] },
 { q: "You'd win a trivia night in:", opts: ["Pop culture", "Science and nature", "History and geography", "Food and drink"] },
 { q: "Skill you have that surprises people:", opts: ["I can cook really well", "I'm great with directions", "I'm secretly athletic", "I know random facts about everything"] },
 { q: "Wikipedia page you'd edit:", opts: ["My hometown's page", "A topic I'm passionate about", "Correct a small error that bothers me", "I'd never edit Wikipedia"] },
 { q: "Dinner party flex topic:", opts: ["Travel stories", "Food knowledge", "Random obscure facts", "I let others talk"] },
-
-// ═══════════════ SURVIVAL INSTINCTS ═══════════════
 { q: "Zombie apocalypse role:", opts: ["The leader", "The medic", "The scavenger", "The one who dies first honestly"] },
 { q: "Stranded on a deserted island, you bring:", opts: ["A knife", "A fire starter", "A friend", "My phone (I know, no signal)"] },
 { q: "Your survival skill:", opts: ["I can build a fire", "I can find food", "I can stay calm", "I would not survive"] },
 { q: "Post-apocalypse job:", opts: ["Farmer — grow food", "Builder — construct shelter", "Negotiator — keep peace", "Wanderer — explore the wasteland"] },
 { q: "You're in a scary movie — you:", opts: ["Make smart decisions and survive", "Investigate the noise (bad idea)", "Run immediately", "Trip over nothing and it's over"] },
-
-// ═══════════════ PATIENCE & WAITING ═══════════════
 { q: "Your patience level:", opts: ["Extremely patient", "Patient when it matters", "Working on it", "I have none"] },
 { q: "Waiting in a long line:", opts: ["I'm chill, I'll scroll my phone", "Internally screaming", "Strike up conversation", "I leave and come back later"] },
 { q: "Slow internet makes you:", opts: ["Frustrated immediately", "Patient for about 30 seconds", "Switch to my phone", "Question my entire existence"] },
 { q: "Delayed flight reaction:", opts: ["Settle in with a book", "Pace around the gate", "Complain to someone nearby", "Use it as unexpected free time"] },
 { q: "Waiting for food at a restaurant:", opts: ["10 minutes is fine", "20 minutes, starting to wonder", "I've tracked down the server", "I'm watching other tables get their food"] },
-
-// ═══════════════ ADVENTURE & ADRENALINE ═══════════════
 { q: "Pick a thrill:", opts: ["Bungee jumping", "White water rafting", "Paragliding", "I'm good on the ground"] },
 { q: "Adventure appetite:", opts: ["Extreme — push every limit", "Moderate — calculated risks", "Mild — gentle adventures", "I adventure through documentaries"] },
 { q: "You'd rather explore:", opts: ["An underwater cave", "An ancient ruin", "A dense jungle", "A frozen glacier"] },
 { q: "Risk tolerance:", opts: ["High — life's short", "Medium — smart risks only", "Low — I like safety", "It depends on the reward"] },
 { q: "Spontaneous road trip — you say:", opts: ["I'm already in the car", "Where are we going first?", "Give me an hour to pack", "Can we plan this for next week instead?"] },
-
-// ═══════════════ HANDYMAN & DIY ═══════════════
 { q: "Something breaks at home:", opts: ["YouTube tutorial time", "Call a professional", "Duct tape and hope", "Ask someone I know who's handy"] },
 { q: "IKEA furniture assembly:", opts: ["I love it, no instructions needed", "Follow the steps carefully", "Frustrating but I'll do it", "I pay for assembly"] },
 { q: "DIY vs buy:", opts: ["DIY everything I can", "Buy most things, DIY when inspired", "I'm not handy at all", "I start DIY projects and never finish"] },
 { q: "Pick a tool you actually own:", opts: ["A good drill", "A hammer and that's it", "A full toolkit", "Does a butter knife count?"] },
 { q: "Home improvement desire:", opts: ["Full kitchen renovation", "A better bathroom", "More storage everywhere", "I'm renting, it's fine as is"] },
-
-// ═══════════════ PARENTING & FAMILY ═══════════════
 { q: "Your patience with kids:", opts: ["I'm great with kids", "In small doses", "I admire parents from afar", "Kids gravitate to me for some reason"] },
 { q: "Family gathering energy:", opts: ["I love big family events", "Small family dinners are better", "I go out of obligation", "I host to control the chaos"] },
 { q: "Pick a family tradition:", opts: ["Game nights", "Annual vacation", "Holiday cooking together", "We don't really have traditions"] },
 { q: "Birth order energy:", opts: ["Oldest — responsible leader", "Middle — peacekeeper", "Youngest — the fun one", "Only child — self-sufficient"] },
 { q: "Family communication style:", opts: ["We talk about everything", "Surface level but loving", "It's complicated", "Group chat does the heavy lifting"] },
-
-// ═══════════════ ASTRONOMY & SPACE ═══════════════
 { q: "Would you go to space:", opts: ["In a heartbeat", "Only if it was proven safe", "I'd watch from Earth", "The ocean floor first"] },
-{ q: "Pick a planet to visit:", opts: ["Mars — the pioneer choice", "Saturn — those rings though", "Jupiter — the scale of it", "I'd rather visit a moon"] },
 { q: "Alien life opinion:", opts: ["They're definitely out there", "Probably microbes somewhere", "I hope we never find out", "They've already been here"] },
 { q: "Night sky activity:", opts: ["Stargazing is romantic", "I can name constellations", "I've never really looked up", "I live where you can't see stars"] },
 { q: "Space fact that gets you:", opts: ["The universe is expanding", "We're made of star stuff", "Light takes time to travel", "The silence of space"] },
-
-// ═══════════════ WATER & SWIMMING ═══════════════
 { q: "Swimming confidence:", opts: ["Strong swimmer", "I can get by", "I stay in the shallow end", "I don't swim"] },
 { q: "Beach day activity:", opts: ["Swim in the waves", "Lay out and tan", "Read under an umbrella", "Beach volleyball or sports"] },
 { q: "Pick a water activity:", opts: ["Kayaking", "Surfing", "Snorkeling", "Sitting by the water with a drink"] },
 { q: "Deep ocean — fascinating or terrifying:", opts: ["Absolutely terrifying", "Fascinating from a distance", "I'd love to explore it", "Both at the same time"] },
 { q: "Rain reaction:", opts: ["Play in it", "Cozy up inside", "Annoyed — ruins my plans", "I love the sound, hate being in it"] },
-
-// ═══════════════ MORNINGS DEEP DIVE ═══════════════
 { q: "Alarm sound preference:", opts: ["Something gentle", "Classic alarm — jarring but effective", "A song I like (then learn to hate)", "I wake naturally, no alarm"] },
 { q: "Morning news or morning silence:", opts: ["Catch up on news right away", "Silence until I'm fully awake", "Music to start the day", "Podcast while getting ready"] },
 { q: "Coffee order:", opts: ["Black — simple", "Something with milk and sugar", "Elaborate latte or specialty drink", "I don't drink coffee"] },
 { q: "Morning motivation:", opts: ["I have things I'm excited about", "Routine carries me", "Caffeine and obligation", "Every morning is a battle"] },
 { q: "First hour awake:", opts: ["Most productive hour", "Warm-up hour — don't talk to me", "Phone scrolling hour", "Workout or movement hour"] },
-
-// ═══════════════ GAMES & GAMING ═══════════════
 { q: "Gaming preference:", opts: ["Story-driven single player", "Competitive multiplayer", "Casual mobile games", "I don't game much"] },
 { q: "Board game night pick:", opts: ["Strategy game", "Party game", "Classic like Monopoly", "Card games"] },
 { q: "You lose a video game level 10 times:", opts: ["Keep trying until I win", "Look up a walkthrough", "Take a break and come back", "Switch to something else"] },
 { q: "Gaming snack:", opts: ["Chips or something salty", "Candy or chocolate", "Nothing — hands need to be clean", "A full meal while gaming"] },
 { q: "Pick a classic game:", opts: ["Chess", "Tetris", "Mario Kart", "Solitaire"] },
-
-// ═══════════════ JOURNALING & REFLECTION ═══════════════
 { q: "Journaling habit:", opts: ["Daily without fail", "When I'm going through something", "I've tried and can't stick with it", "Never — it's not for me"] },
 { q: "If you journaled, it would be:", opts: ["Gratitude and highlights", "Venting and processing", "Goal setting and planning", "Stream of consciousness chaos"] },
 { q: "End of day reflection:", opts: ["Review what went well", "Think about what I'll do tomorrow", "Replay conversations in my head", "I don't reflect, I just sleep"] },
 { q: "You read your old journal:", opts: ["Proud of my growth", "Cringe so hard", "Surprised by what I forgot", "I've never gone back to read them"] },
 { q: "Pick a reflection prompt:", opts: ["What am I grateful for today?", "What would I do differently?", "What's one thing I learned?", "How did I make someone feel today?"] },
-
-// ═══════════════ CULTURAL IDENTITY ═══════════════
 { q: "Cultural tradition you value most:", opts: ["Food and recipes", "Music and dance", "Language and stories", "Holidays and celebrations"] },
 { q: "You feel most connected to your roots when:", opts: ["Cooking a family recipe", "Hearing a song from my culture", "Speaking my family's language", "Visiting where my family is from"] },
 { q: "Cultural mashup you love:", opts: ["Fusion food", "Bilingual conversations", "Mixed holiday celebrations", "Cross-cultural fashion"] },
 { q: "Something from another culture you appreciate:", opts: ["Their food", "Their approach to family", "Their art or music", "Their pace of life"] },
 { q: "Home is:", opts: ["Where I grew up", "Where I live now", "Wherever my people are", "A feeling, not a place"] },
-
-// ═══════════════ SIMPLICITY & MINIMALISM ═══════════════
 { q: "Stuff vs space:", opts: ["I love having things around me", "I prefer empty, clean space", "Organized things are fine", "I'm working on letting go of stuff"] },
 { q: "Closet situation:", opts: ["Capsule wardrobe", "Overflowing", "Seasonal rotation", "I wear 20% of what I own"] },
 { q: "Digital clutter:", opts: ["Inbox zero always", "Thousands of unread emails", "Organized folders everywhere", "I delete nothing and find nothing"] },
 { q: "Simplify one thing:", opts: ["My schedule", "My wardrobe", "My phone apps", "My social circle"] },
 { q: "Less is more applies to:", opts: ["Absolutely everything", "Just my stuff, not my experiences", "Not my life — I want more of everything", "Only my calendar"] },
-
-// ═══════════════ SUPERSTITIONS & LUCK ═══════════════
 { q: "Lucky number:", opts: ["7 obviously", "13 — I'm a rebel", "My birthday number", "I don't believe in lucky numbers"] },
 { q: "Superstition you sort of believe:", opts: ["Don't open umbrellas inside", "Knock on wood", "Broken mirrors — 7 years bad luck", "I'm not superstitious at all"] },
 { q: "Luck belief:", opts: ["You make your own luck", "Some people are luckier", "It's all random chance", "Luck comes to the prepared"] },
 { q: "Black cat crosses your path:", opts: ["Bad omen, change direction", "I pet it", "Doesn't register at all", "That cat is having a good day"] },
 { q: "Pick a good luck charm:", opts: ["A coin", "A piece of jewelry", "A specific item of clothing", "My winning personality"] },
-
-// ═══════════════ SENSORY PREFERENCES ═══════════════
 { q: "Ideal background sound:", opts: ["Coffee shop chatter", "Nature sounds", "Complete silence", "White or brown noise"] },
 { q: "Light sensitivity:", opts: ["I love bright sunny days", "I prefer overcast skies", "I squint at everything", "Give me soft lamp light always"] },
 { q: "Texture you love:", opts: ["Smooth and cool", "Rough and natural", "Soft and plush", "I don't notice textures much"] },
 { q: "Temperature preference:", opts: ["Always running hot", "Always cold", "I'm pretty adaptable", "I'm only comfortable in a 3-degree range"] },
 { q: "Sound that bothers you most:", opts: ["Loud chewing", "Pen clicking", "Alarm clocks", "Construction noise"] },
-
-// ═══════════════ VOLUNTEERING & GIVING BACK ═══════════════
 { q: "Cause you care about most:", opts: ["Environment", "Education", "Hunger and poverty", "Animal welfare"] },
 { q: "How you'd give back:", opts: ["Donate money", "Volunteer time", "Use my skills for a cause", "Raise awareness"] },
 { q: "Community involvement:", opts: ["Very active", "Occasionally", "I'd like to do more", "I keep to myself honestly"] },
 { q: "Random act of kindness style:", opts: ["Pay for someone's coffee", "Leave a generous tip", "Help someone without being asked", "Send an unexpected nice message"] },
 { q: "If you could fix one thing:", opts: ["Climate change", "World hunger", "Loneliness epidemic", "Education inequality"] },
-
-// ═══════════════ TIME MANAGEMENT ═══════════════
 { q: "You're always:", opts: ["Early", "Exactly on time", "Fashionably late", "It varies wildly"] },
 { q: "Time feels fastest when:", opts: ["I'm having fun", "I'm in a flow state working", "I'm scrolling my phone", "I'm with people I love"] },
 { q: "A free unexpected hour:", opts: ["Nap", "Read", "Walk outside", "Catch up on something I've been putting off"] },
 { q: "Time you wish you had more of:", opts: ["Morning time", "Evening time", "Weekend time", "Time in general"] },
 { q: "Deadline approach:", opts: ["Way ahead of schedule", "Steady progress throughout", "Last-minute miracle", "Deadline? What deadline?"] },
-
-// ═══════════════ NOSTALGIA TECH ═══════════════
 { q: "Tech you miss:", opts: ["MP3 players", "Flip phones", "CDs and mixtapes", "I don't miss any of it"] },
 { q: "First social media platform:", opts: ["MySpace", "Facebook", "Tumblr", "Something even older"] },
 { q: "Old internet era you're nostalgic for:", opts: ["AIM and chat rooms", "Early YouTube", "Blogspot era", "I grew up with current internet"] },
 { q: "Bring back one dead technology:", opts: ["Blockbuster video stores", "Physical photo albums", "Paper maps for road trips", "T9 texting"] },
 { q: "Your relationship with your phone:", opts: ["Healthy boundaries", "It's attached to me", "I wish I used it less", "It's just a tool"] },
-
-// ═══════════════ CONFLICT RESOLUTION ═══════════════
 { q: "Someone's mad at you and you don't know why:", opts: ["Ask directly what's wrong", "Give them space", "Replay every interaction in my head", "Assume it'll blow over"] },
 { q: "Constructive criticism:", opts: ["I welcome it always", "Stings at first, then helpful", "Depends who it's from", "I take it way too personally"] },
 { q: "You disagree with a friend's life choice:", opts: ["Share my concerns honestly", "Support them regardless", "Say nothing unless asked", "Depends on the stakes"] },
 { q: "Forgiveness comes:", opts: ["Easily — I don't hold grudges", "Eventually, with effort", "Rarely — I remember everything", "I forgive but never forget"] },
 { q: "After a misunderstanding:", opts: ["Clear it up immediately", "Sleep on it first", "Write out my thoughts", "Wait for the other person to bring it up"] },
-
-// ═══════════════ CREATIVE TASTE ═══════════════
 { q: "Art museum or live concert:", opts: ["Art museum — contemplative", "Live concert — energy", "Both equally", "Neither — I'll stay outside"] },
 { q: "Creative expression you admire most:", opts: ["Visual art", "Music", "Writing", "Dance or performance"] },
 { q: "You notice design in:", opts: ["Buildings and architecture", "Product packaging", "Clothing and fashion", "I don't think about design much"] },
 { q: "Pick a creative era:", opts: ["Renaissance", "Art Deco 1920s", "Psychedelic 60s-70s", "Modern minimalism"] },
 { q: "Aesthetic you're drawn to:", opts: ["Clean and geometric", "Organic and natural", "Bold and colorful", "Moody and textured"] },
-
-// ═══════════════ BOUNDARIES & SELF ═══════════════
 { q: "Setting boundaries is:", opts: ["Something I'm good at", "Getting easier with practice", "Really hard for me", "I overcorrect and wall people off"] },
 { q: "Saying no makes you feel:", opts: ["Empowered", "Guilty", "Relieved after the initial awkwardness", "I just avoid situations where I have to"] },
 { q: "Personal space bubble:", opts: ["Large — give me room", "Normal — arms length", "Small — I'm a hugger", "Depends on who you are"] },
 { q: "You need alone time every:", opts: ["Day", "Few days", "Week", "I rarely need alone time"] },
 { q: "Oversharing level:", opts: ["I'm an open book", "I share when comfortable", "Very private", "I overshare with strangers but not friends"] },
-
-// ═══════════════ HUMOR STYLES ═══════════════
 { q: "What makes you actually laugh out loud:", opts: ["Unexpected absurdity", "Well-timed delivery", "Physical comedy", "Relatable everyday observations"] },
 { q: "Comedy format:", opts: ["Stand-up specials", "Sitcoms", "Sketch comedy", "Memes and online humor"] },
 { q: "You'd describe your humor as:", opts: ["Dry and deadpan", "Silly and goofy", "Self-deprecating", "Quick and witty"] },
 { q: "Joke that's gone too far — you:", opts: ["Laugh anyway", "Get uncomfortable but don't say anything", "Call it out", "Change the subject smoothly"] },
 { q: "Puns:", opts: ["The highest form of comedy", "Groan-worthy but I love them", "Tolerable in small doses", "Please stop"] },
-
-// ═══════════════ NATURE & OUTDOORS ═══════════════
 { q: "Outdoor activity pick:", opts: ["Hiking", "Camping", "Beach day", "Picnic in a park"] },
 { q: "Nature immersion:", opts: ["I need it regularly", "Nice occasionally", "I prefer city life", "I experience nature through windows"] },
 { q: "Ideal hike:", opts: ["Mountain summit with a view", "Forest trail by a river", "Coastal cliff walk", "Flat and easy — I came for the scenery"] },
 { q: "Camping comfort level:", opts: ["Tent on the ground", "Camper or RV", "Glamping with amenities", "A hotel near nature counts"] },
 { q: "Pick a natural wonder:", opts: ["Northern lights", "Grand Canyon", "Great Barrier Reef", "Amazon rainforest"] },
-
-// ═══════════════ CLOTHING & EXPRESSION ═══════════════
 { q: "Outfit confidence:", opts: ["When I'm overdressed", "When I'm perfectly casual", "When no one else is wearing the same thing", "When I'm comfortable regardless of looks"] },
 { q: "Pattern preference:", opts: ["Solid colors only", "Stripes", "Floral", "I'll wear anything"] },
 { q: "Shopping splurge item:", opts: ["Shoes", "A jacket or coat", "Jewelry or watch", "Tech or gadgets"] },
 { q: "Your go-to look:", opts: ["Jeans and a tee", "Athleisure", "Something with layers", "I dress up even for casual"] },
 { q: "Clothing keeps for:", opts: ["Until it falls apart", "A few seasons", "Until the trend passes", "I've had the same clothes for a decade"] },
-
-// ═══════════════ TRANSPORTATION ═══════════════
 { q: "Ideal commute:", opts: ["Walk or bike", "Drive with good music", "Public transit with a book", "Work from home — no commute"] },
 { q: "Road trip length preference:", opts: ["2-3 hours max", "4-6 hours is the sweet spot", "10+ hours — the longer the better", "Flying is better than driving"] },
 { q: "Pick a way to get around a new city:", opts: ["Walking everywhere", "Subway or metro", "Scooter or bike rental", "Taxi or rideshare"] },
 { q: "Car ride — who controls the music:", opts: ["Driver always", "Shotgun picks", "We take turns", "Collaborative playlist"] },
 { q: "Traffic jam reaction:", opts: ["Road rage", "Podcast time", "Zen acceptance", "Explore alternate routes immediately"] },
-
-// ═══════════════ HOLIDAYS SPECIFIC ═══════════════
 { q: "Halloween approach:", opts: ["Elaborate costume planned weeks ahead", "Last-minute something", "I hand out candy at home", "Not really my holiday"] },
 { q: "Valentine's Day:", opts: ["Love it — romance is great", "It's overcommercialized", "Any excuse to celebrate love", "Singles Awareness Day"] },
 { q: "Thanksgiving MVP dish:", opts: ["Turkey or main protein", "Mashed potatoes", "Stuffing or dressing", "Pie — it's all about dessert"] },
 { q: "New Year's resolution track record:", opts: ["I keep them, actually", "Strong start, fizzles by February", "I don't make them anymore", "I set intentions, not resolutions"] },
 { q: "Holiday music tolerance:", opts: ["Play it November through January", "December only", "One week max", "I actively avoid it"] },
-
-// ═══════════════ WORK PERSONALITY ═══════════════
 { q: "Work style under pressure:", opts: ["I thrive — my best work", "I manage but it's stressful", "I freeze and need a minute", "I delegate to survive"] },
 { q: "Feedback preference:", opts: ["Direct and blunt", "Sandwiched with positives", "Written so I can process", "In person and conversational"] },
 { q: "Meeting opinion:", opts: ["Most could be emails", "Useful when short and focused", "I actually like brainstorming meetings", "I tune out after 15 minutes"] },
 { q: "Work motivation:", opts: ["The work itself is interesting", "The paycheck", "The team and people", "Growth and learning opportunities"] },
 { q: "Dream office:", opts: ["Corner office with a view", "Open plan with good energy", "Home office, no question", "Coffee shop rotation"] },
-
-// ═══════════════ MOVIE PREFERENCES ═══════════════
 { q: "Movie snack:", opts: ["Popcorn, classic", "Candy", "Nothing — I focus on the movie", "Full meal, I'm hungry"] },
 { q: "Theater or streaming:", opts: ["Theater for the experience", "Streaming for comfort", "Theater for new releases, streaming for everything else", "I wait for streaming always"] },
 { q: "Sad movie reaction:", opts: ["I cry every time", "I fight back tears", "I'm unmoved honestly", "I avoid sad movies entirely"] },
 { q: "Rewatching movies:", opts: ["I've seen my favorites 20+ times", "Occasionally for comfort", "Why rewatch when there's new stuff?", "I notice new things each time"] },
 { q: "Movie length preference:", opts: ["90 minutes is perfect", "2 hours is the sweet spot", "3+ hour epics, I'm committed", "However long the story needs"] },
-
-// ═══════════════ GARDEN & PLANTS ═══════════════
 { q: "Green thumb status:", opts: ["Everything I touch grows", "Hit or miss", "I've killed succulents", "I admire plants from afar"] },
 { q: "Dream garden:", opts: ["Flower garden — all colors", "Vegetable garden — grow my food", "Herb garden — practical and fragrant", "Wildflower meadow — let nature decide"] },
 { q: "Favorite plant type:", opts: ["Succulents", "Flowering plants", "Big leafy tropicals", "Trees"] },
 { q: "Outdoor space priority:", opts: ["A big yard", "A cozy balcony", "A rooftop terrace", "I don't need outdoor space"] },
-{ q: "Pick a tree:", opts: ["Cherry blossom", "Oak — strong and tall", "Willow — dramatic and graceful", "Pine — evergreen forever"] },
-
-// ═══════════════ ALONE TIME ACTIVITIES ═══════════════
 { q: "Guilty solo activity:", opts: ["Talking to myself", "Singing or dancing alone", "Eating something messy over the sink", "Watching something I'd never admit to"] },
 { q: "Solo dining:", opts: ["Love it — main character energy", "Comfortable with a book or phone", "Feels awkward", "I'd rather cook at home alone"] },
 { q: "Solo travel:", opts: ["The best way to travel", "Scary but rewarding", "I'd rather have company", "I've never tried it"] },
 { q: "Perfect solo evening:", opts: ["Cook a nice meal just for me", "Long walk with headphones", "Deep dive into a hobby", "Early to bed, no guilt"] },
 { q: "Being alone too long makes me:", opts: ["Restless and lonely", "More creative", "Lose track of time", "I never feel alone too long"] },
-
-// ═══════════════ FRIENDSHIP DYNAMICS ═══════════════
 { q: "Making new friends as an adult:", opts: ["Easy — I'm open to it", "Hard but I'm trying", "Nearly impossible", "I have enough friends"] },
 { q: "Friendship maintenance:", opts: ["I reach out regularly", "I'm bad at reaching out but always available", "Out of sight, out of mind honestly", "Social media keeps us loosely connected"] },
 { q: "Friend group role:", opts: ["The planner", "The therapist friend", "The funny one", "The reliable one"] },
 { q: "A friend ghosts you:", opts: ["Reach out to check on them", "Give them space", "Take it personally", "Move on without dwelling"] },
 { q: "Long-distance friendship:", opts: ["I maintain them well", "They fade naturally", "Video calls keep us close", "We pick up right where we left off"] },
-
-// ═══════════════ EDUCATION & WISDOM ═══════════════
 { q: "Best life lesson came from:", opts: ["A parent or family member", "A friend", "A mistake I made", "A stranger or unexpected source"] },
 { q: "Advice you always give:", opts: ["Trust the process", "Communicate more", "You'll figure it out", "Stop overthinking"] },
 { q: "You learn best from:", opts: ["Doing it wrong first", "Watching someone else", "Reading about it", "Having someone guide me"] },
 { q: "Wisdom source:", opts: ["Elders and experience", "Books and research", "My own trial and error", "Conversations with friends"] },
 { q: "Something school didn't teach that it should have:", opts: ["Financial literacy", "Emotional intelligence", "Practical life skills", "How to handle failure"] },
-
-// ═══════════════ HABITS & RITUALS ═══════════════
 { q: "A habit you're proud of:", opts: ["Exercising regularly", "Reading often", "Staying hydrated", "Keeping a clean space"] },
 { q: "A habit you're trying to break:", opts: ["Phone before bed", "Procrastination", "Late nights", "Negative self-talk"] },
 { q: "Morning ritual you won't skip:", opts: ["Coffee or tea", "Skincare routine", "Stretching or exercise", "Checking my phone — I'm working on it"] },
 { q: "Habit formation:", opts: ["Cold turkey works for me", "I build gradually", "I need accountability", "I start strong then fall off"] },
 { q: "End of day ritual:", opts: ["Skincare routine", "Reading", "Planning tomorrow", "Nothing — I just collapse"] },
-
-// ═══════════════ WEATHER & MOOD ═══════════════
 { q: "Weather affects your mood:", opts: ["Heavily — I'm solar powered", "Somewhat", "Not really", "Only extreme weather"] },
 { q: "Perfect temperature in degrees:", opts: ["60-65°F / 15-18°C — crisp", "70-75°F / 21-24°C — perfect", "80-85°F / 27-29°C — warm", "50-55°F / 10-13°C — cozy cold"] },
 { q: "Cloudy day energy:", opts: ["Productive and cozy", "Sleepy and slow", "No different than sunny", "Moody and reflective"] },
 { q: "Wind — pleasant or annoying:", opts: ["Pleasant — I love a breeze", "Annoying — my hair", "Depends on the temperature", "I barely notice wind"] },
 { q: "Weather you'd never live in:", opts: ["Extreme heat", "Extreme cold", "Constant rain", "I could adapt to anything"] },
-
-// ═══════════════ PERSONALITY TESTS ═══════════════
 { q: "Personality test opinion:", opts: ["Scarily accurate", "Fun but not science", "I've taken them all", "I don't believe in categories"] },
 { q: "You're more:", opts: ["Head over heart", "Heart over head", "Equal balance", "It depends on the situation"] },
 { q: "Introvert-extrovert spectrum:", opts: ["Strong introvert", "Ambivert — depends on the day", "Strong extrovert", "Social introvert — outgoing but need recharge"] },
 { q: "Your energy in one word:", opts: ["Calm", "Chaotic", "Warm", "Intense"] },
 { q: "People's first impression of you:", opts: ["Quiet or reserved", "Friendly and approachable", "Funny or entertaining", "Confident or intimidating"] },
-
-// ═══════════════ GROCERY & FOOD SHOPPING ═══════════════
 { q: "Meal planning:", opts: ["Full week planned, list ready", "Vague plan, flexible shopping", "I decide at the store", "I open the fridge and figure it out"] },
 { q: "Brand loyalty:", opts: ["Specific brands only", "Whatever's on sale", "I compare every time", "I don't notice brands"] },
 { q: "Organic/local food:", opts: ["When I can afford it", "Always — it matters", "Never — no difference to me", "For certain things only"] },
 { q: "Frozen food stance:", opts: ["Freezer is fully stocked", "Emergency meals only", "Fresh is always better", "Frozen vegetables are elite"] },
 { q: "Trying a new food brand:", opts: ["Adventurous — always trying new things", "Only if recommended", "Stick to what I know", "I'll try the sample, then decide"] },
-
-// ═══════════════ COMMUNICATION STYLES ═══════════════
 { q: "In an important conversation:", opts: ["I choose my words very carefully", "I speak from the heart", "I listen more than I talk", "I ask a lot of questions"] },
 { q: "Difficult news delivery:", opts: ["Rip the band-aid off", "Build up to it gently", "In writing so they can process", "Face to face, always"] },
 { q: "You explain things by:", opts: ["Analogy and metaphor", "Step by step detail", "Drawing or visual aids", "Just doing it and showing"] },
 { q: "When someone's talking, you:", opts: ["Make eye contact and nod", "Think about what to say next", "Relate it to my experience", "Listen completely before responding"] },
 { q: "Confrontation style:", opts: ["Head on, let's resolve this", "Diplomatic and careful", "I write it down first", "I avoid it until I can't"] },
-
-// ═══════════════ LIFE MILESTONES ═══════════════
 { q: "Milestone that matters most:", opts: ["Career achievements", "Relationship milestones", "Personal growth moments", "Travel and experiences"] },
 { q: "You measure success by:", opts: ["Happiness and peace", "Financial stability", "Impact on others", "Freedom and autonomy"] },
 { q: "Life chapter you're in:", opts: ["Building and grinding", "Finding and exploring", "Settling and deepening", "Reinventing"] },
 { q: "Something you've accomplished that surprised you:", opts: ["A career move", "A personal challenge overcome", "A creative project", "A relationship I nurtured"] },
 { q: "Next big life goal:", opts: ["Something career related", "Something personal or health related", "A creative or passion project", "I'm figuring it out still"] },
-
-// ═══════════════ DINNER PARTY ═══════════════
 { q: "Dinner party role:", opts: ["The host who cooked everything", "The guest who brings great wine", "The storyteller at the table", "The one doing dishes quietly"] },
 { q: "Ideal dinner party size:", opts: ["4 people — intimate", "6-8 — lively but manageable", "12+ — the more the merrier", "2 — just us"] },
 { q: "Dinner conversation topic:", opts: ["Travel stories", "Life philosophies", "Funny recent events", "Deep questions that go late into the night"] },
 { q: "After-dinner activity:", opts: ["Board games", "Music and dancing", "Long conversation over drinks", "Everyone goes home — I'm tired"] },
 { q: "Dream dinner guest (category):", opts: ["A historical figure", "My favorite author", "A comedian", "Someone from my past I've lost touch with"] },
-
-// ═══════════════ VOICE & SOUND ═══════════════
 { q: "Your singing voice:", opts: ["Actually good", "Shower-worthy", "Enthusiastic but terrible", "I don't sing ever"] },
 { q: "Podcast voice or radio voice:", opts: ["I've been told I have one", "My voice sounds weird to me", "I talk too fast for radio", "I talk too quiet for anyone to hear"] },
 { q: "Hearing your own voice recorded:", opts: ["Sounds fine to me", "I hate it", "That's not what I sound like", "I've gotten used to it"] },
 { q: "Speaking volume:", opts: ["I'm naturally loud", "I'm naturally quiet", "I match whoever I'm with", "I get louder with excitement"] },
 { q: "Pick a sound you love:", opts: ["Waves crashing", "A cat purring", "Distant thunder", "The sound of typing"] },
-
-// ═══════════════ COLLECTING ═══════════════
 { q: "You accidentally collect:", opts: ["Mugs", "Books I haven't read", "Random free things", "Tabs on my browser"] },
 { q: "Collecting mentality:", opts: ["I'm a natural collector", "I prefer experiences over things", "I collect then purge", "I wish I could stop accumulating stuff"] },
 { q: "Your most prized possession:", opts: ["Something sentimental with no monetary value", "A tech device", "A piece of clothing or jewelry", "Hard to pick just one"] },
 { q: "Souvenir style:", opts: ["Useful item I'll actually use", "Something that sits on a shelf", "Photo or memory", "I don't collect souvenirs"] },
 { q: "If your house was a museum, it would exhibit:", opts: ["Books and art", "Technology through the ages", "Random eclectic objects", "Nothing — I'm a minimalist"] },
-
-// ═══════════════ WISDOM & PHILOSOPHY ═══════════════
 { q: "Pick a life motto:", opts: ["Be kind, always", "Stay curious", "Done is better than perfect", "This too shall pass"] },
 { q: "You believe change is:", opts: ["Exciting and necessary", "Scary but worth it", "Something I resist but accept", "Constant, so why stress"] },
 { q: "Happiness comes from:", opts: ["Relationships and connection", "Achievement and purpose", "Presence and gratitude", "A mix that changes over time"] },
 { q: "You'd tell your younger self:", opts: ["Worry less", "Take more risks", "Be kinder to yourself", "It gets better"] },
 { q: "Legacy you want to leave:", opts: ["Made people feel loved", "Created something meaningful", "Left the world a little better", "Lived authentically"] },
-
-// === BATCH: Tech & Gadgets ===
 { q: "Your phone battery dies — your reaction:", opts: ["Pure panic", "Sweet freedom", "Mild inconvenience", "Immediate hunt for a charger"] },
 { q: "Smart home devices are:", opts: ["The future, I'm all in", "Cool but I don't trust them", "Unnecessary complexity", "Only useful for music/lights"] },
 { q: "How fast do you adopt new tech?", opts: ["Day one early adopter", "Wait for reviews first", "When my old thing breaks", "Someone has to set it up for me"] },
@@ -3267,8 +2595,6 @@ const ALL_QUESTIONS = [
 { q: "Your computer desktop is:", opts: ["Perfectly organized", "Controlled chaos", "Files everywhere", "I just use the search bar"] },
 { q: "Dark mode or light mode?", opts: ["Dark mode everything", "Light mode loyalist", "Depends on the app", "Whatever the default is"] },
 { q: "When tech doesn't work, you:", opts: ["Troubleshoot methodically", "Turn it off and on again", "Get immediately frustrated", "Ask someone else to fix it"] },
-
-// === BATCH: Ethical Dilemmas ===
 { q: "You find $500 in a parking lot:", opts: ["Turn it in immediately", "Wait to see if someone comes back", "Keep it — finder's keepers", "Post about it online to find the owner"] },
 { q: "A friend asks you to lie for them:", opts: ["Depends on the lie", "No, I won't compromise myself", "Sure, if it's harmless", "I'd need the full story first"] },
 { q: "Someone cuts in line ahead of you:", opts: ["Call them out", "Silently seethe", "Let it go, life's short", "Loudly comment so they hear"] },
@@ -3279,8 +2605,6 @@ const ALL_QUESTIONS = [
 { q: "Is it okay to ghost someone?", opts: ["Never, always communicate", "Sometimes it's the safest option", "After one date, sure", "Only if they're being toxic"] },
 { q: "You disagree with a group decision:", opts: ["Voice my dissent clearly", "Go along to keep peace", "Subtly try to change minds", "Accept it and move on"] },
 { q: "White lies are:", opts: ["Sometimes necessary kindness", "Still lies, avoid them", "A social survival tool", "Fine for small things only"] },
-
-// === BATCH: Retro & Vintage ===
 { q: "Best decade for music:", opts: ["70s — classic rock era", "80s — synth and new wave", "90s — grunge and hip-hop", "2000s — pop and R&B peak"] },
 { q: "You'd survive best in which era?", opts: ["Medieval times — I'm resourceful", "Victorian era — I love manners", "1950s — simpler times", "I need modern medicine, thanks"] },
 { q: "Favorite retro snack energy:", opts: ["Dunkaroos vibes", "Cosmic Brownies energy", "Gushers enthusiasm", "Pizza Lunchables nostalgia"] },
@@ -3291,8 +2615,6 @@ const ALL_QUESTIONS = [
 { q: "Which retro trend should stay gone?", opts: ["Low-rise jeans", "Frosted tips", "Chain wallets", "Butterfly clips"] },
 { q: "Old-school candy you'd revive:", opts: ["Ring Pops", "Push Pops", "Candy cigarettes (the concept, not the product)", "Wax bottles"] },
 { q: "Handwritten letters are:", opts: ["Romantic and meaningful", "A lost art I miss", "Too slow for me", "Something I'd love to receive but never send"] },
-
-// === BATCH: Weather Deep Dive ===
 { q: "Your ideal temperature:", opts: ["60-70°F / 15-21°C", "70-80°F / 21-27°C", "80-90°F / 27-32°C", "Below 60°F / 15°C"] },
 { q: "Thunder and lightning make you feel:", opts: ["Excited and alive", "Cozy if I'm inside", "Anxious", "Indifferent"] },
 { q: "Snow day energy:", opts: ["Build a snowman immediately", "Hot cocoa and movies", "Dread the commute", "Photograph everything"] },
@@ -3303,8 +2625,6 @@ const ALL_QUESTIONS = [
 { q: "Best weather for sleeping:", opts: ["Cold with heavy blankets", "Cool with rain sounds", "Warm with a fan", "Any weather, I sleep hard"] },
 { q: "Seasons should:", opts: ["Stay exactly as they are", "Be only two — warm and cold", "Last longer in my favorite", "Not exist — give me consistency"] },
 { q: "A perfect weather day:", opts: ["Sunny, 75°F, light breeze", "Overcast and cool", "Warm rain", "Crisp fall air with sun"] },
-
-// === BATCH: Urban vs Rural ===
 { q: "Dream setting to live:", opts: ["Downtown big city", "Quiet suburbs", "Small town", "Rural countryside"] },
 { q: "Noise level you prefer:", opts: ["City hum and sirens", "Neighborhood quiet", "Dead silence", "Nature sounds only"] },
 { q: "Your ideal commute:", opts: ["Walking distance", "Short drive under 15 min", "Train or subway ride", "No commute — remote forever"] },
@@ -3315,8 +2635,6 @@ const ALL_QUESTIONS = [
 { q: "You'd miss most about rural life:", opts: ["Quiet and peace", "Starry night skies", "Space and privacy", "Connection to nature"] },
 { q: "If you had to farm, you'd grow:", opts: ["Vegetables — practical", "Flowers — beautiful", "Fruit trees — long game", "Nothing — I'd have animals instead"] },
 { q: "Ideal population of your town:", opts: ["Under 5,000", "5,000-50,000", "50,000-500,000", "500,000+"] },
-
-// === BATCH: Friendship Styles ===
 { q: "Your friendship love language:", opts: ["Quality time together", "Words of affirmation", "Acts of service", "Giving thoughtful gifts"] },
 { q: "How many close friends do you need?", opts: ["1-2 ride or dies", "3-5 solid ones", "A big squad", "I'm good solo"] },
 { q: "A friend cancels plans last minute:", opts: ["Honestly, relieved", "Disappointed but understanding", "Annoyed — I got ready!", "Already making backup plans"] },
@@ -3327,20 +2645,15 @@ const ALL_QUESTIONS = [
 { q: "How honest are you with friends?", opts: ["Brutally honest always", "Honest but tactful", "I sugarcoat a bit", "Depends on the friend"] },
 { q: "A friend succeeds before you — you feel:", opts: ["Genuinely happy for them", "Happy but slightly envious", "Motivated to catch up", "It doesn't affect me"] },
 { q: "Long-distance friendships:", opts: ["Work great for me", "Slowly fade despite effort", "Require intentional maintenance", "Aren't really friendships to me"] },
-
-// === BATCH: Food Culture ===
 { q: "Breakfast for dinner:", opts: ["One of life's greatest joys", "Occasionally hits right", "Meals have their time slots", "Every night if I could"] },
 { q: "Your spice tolerance:", opts: ["Mild is wild enough", "Medium — I like some kick", "Hot — bring the heat", "I want to suffer a little"] },
 { q: "Food truck or sit-down restaurant?", opts: ["Food truck — more authentic", "Sit-down — I want the experience", "Depends on my mood", "Fast casual is the sweet spot"] },
 { q: "Your cooking show persona:", opts: ["Calm and precise", "Chaotic but delicious", "Following the recipe exactly", "Winging it with confidence"] },
 { q: "Best cuisine you've ever had:", opts: ["Italian", "Mexican", "Japanese", "Thai"] },
-{ q: "Grocery store behavior:", opts: ["List and efficiency", "Wander every aisle", "Only grab what I see", "Online order, skip the store"] },
 { q: "Leftovers are:", opts: ["Tomorrow's lunch, always", "Never as good reheated", "Better than the original sometimes", "I cook exact portions"] },
 { q: "You eat the same lunch:", opts: ["Every day — routine is comfort", "Most days with variations", "Never — variety is key", "I skip lunch usually"] },
 { q: "Controversial food opinion you hold:", opts: ["Pineapple on pizza is great", "Ketchup on eggs is fine", "Well-done steak is valid", "Cereal is a soup"] },
 { q: "Late night snack of choice:", opts: ["Something sweet", "Something salty", "Full meal at midnight", "I don't snack late"] },
-
-// === BATCH: Work Habits ===
 { q: "Your email response time:", opts: ["Within minutes", "Within a few hours", "Same day usually", "When I get to it"] },
 { q: "Meetings are:", opts: ["Necessary and productive", "Mostly could be emails", "Fine if they're short", "My personal nightmare"] },
 { q: "You work best:", opts: ["Early morning hours", "Late morning to afternoon", "Evening and night", "In random productive bursts"] },
@@ -3351,8 +2664,6 @@ const ALL_QUESTIONS = [
 { q: "Feedback at work makes you:", opts: ["Grateful — I want to improve", "Anxious even if positive", "Defensive at first, then reflective", "Depends who it's from"] },
 { q: "Ideal work-life balance:", opts: ["Hard boundaries — work stays at work", "Flexible blend throughout the day", "I love my work so it doesn't matter", "Still figuring this out"] },
 { q: "You handle work stress by:", opts: ["Powering through it", "Talking it out with someone", "Exercise or physical activity", "Completely disconnecting after hours"] },
-
-// === BATCH: Seasons Extended ===
 { q: "Fall's best feature:", opts: ["Changing leaves", "Cozy sweater weather", "Halloween and harvest", "Football season"] },
 { q: "Winter's best feature:", opts: ["Holiday celebrations", "Snow and coziness", "Hot drinks season", "Staying inside guilt-free"] },
 { q: "Spring's best feature:", opts: ["Flowers blooming everywhere", "Longer daylight hours", "Fresh start energy", "Perfect mild temperatures"] },
@@ -3363,8 +2674,6 @@ const ALL_QUESTIONS = [
 { q: "Worst thing about summer:", opts: ["The heat and humidity", "Bugs everywhere", "FOMO from social media", "It goes by too fast"] },
 { q: "You'd skip this season entirely:", opts: ["Winter — too cold", "Summer — too hot", "I need all four", "Fall — it's overrated"] },
 { q: "Season that matches your personality:", opts: ["Spring — optimistic and fresh", "Summer — energetic and social", "Fall — reflective and cozy", "Winter — calm and introspective"] },
-
-// === BATCH: Pop Culture Habits ===
 { q: "You discover new music through:", opts: ["Algorithm recommendations", "Friends' suggestions", "Radio or playlists", "I mostly replay old favorites"] },
 { q: "Movie theater or home streaming?", opts: ["Theater — big screen experience", "Home — comfort and pause button", "Theater for big releases only", "I rarely watch movies"] },
 { q: "Your binge-watching style:", opts: ["Entire season in one sitting", "2-3 episodes then stop", "One episode per day", "I can't commit to series"] },
@@ -3375,8 +2684,6 @@ const ALL_QUESTIONS = [
 { q: "Reality TV is:", opts: ["Unironically great", "So bad it's good", "A waste of time", "Background noise"] },
 { q: "Spoilers bother you:", opts: ["Immensely — don't you dare", "A little but I'll survive", "Not really — it's about the journey", "I actively seek them out"] },
 { q: "Award shows are:", opts: ["Must-watch events", "Fun for the fashion", "Irrelevant to what I enjoy", "Good for background noise"] },
-
-// === BATCH: Life Philosophy Extended ===
 { q: "Free will or destiny?", opts: ["Free will — we make our path", "Destiny — things happen for a reason", "A combination of both", "Neither — it's just chaos"] },
 { q: "What matters more — intent or impact?", opts: ["Intent — heart matters most", "Impact — results are what count", "Both equally", "Depends on the situation"] },
 { q: "Is ignorance really bliss?", opts: ["Sometimes, yes", "No — knowledge is always better", "Only for trivial things", "It's complicated"] },
@@ -3386,22 +2693,14 @@ const ALL_QUESTIONS = [
 { q: "Your biggest motivator:", opts: ["Fear of failure", "Desire for achievement", "Love for what I do", "Responsibility to others"] },
 { q: "Time or money — which is more valuable?", opts: ["Time, always", "Money enables time", "Depends on life stage", "They're equally important"] },
 { q: "Regret is:", opts: ["A useful teacher", "A waste of energy", "Inevitable but manageable", "My constant companion"] },
-{ q: "The meaning of life is:", opts: ["Connection with others", "Finding your purpose", "Enjoying the experience", "There isn't one — make your own"] },
-
-// === BATCH: Travel Preferences Extended ===
 { q: "Packing style:", opts: ["Minimal — carry-on only", "Prepared for everything", "Overpack then stress about it", "Last minute chaos"] },
 { q: "Best travel companion trait:", opts: ["Flexible and easygoing", "Great at planning", "Adventurous and spontaneous", "Comfortable with silence"] },
 { q: "Hotel, Airbnb, or hostel?", opts: ["Hotel — I want service", "Airbnb — I want a kitchen", "Hostel — I want to meet people", "Camping — I want nature"] },
 { q: "Travel photography:", opts: ["I take hundreds of photos", "A few meaningful shots", "Mostly mental snapshots", "I forget to take any"] },
-{ q: "You get lost in a new city:", opts: ["Exciting adventure!", "Stressful but I figure it out", "That's why GPS exists", "I planned the route to avoid this"] },
 { q: "Airport arrival time:", opts: ["3+ hours early", "2 hours — standard", "Just in time", "I've missed flights being late"] },
 { q: "Best way to experience a culture:", opts: ["Through the food", "Through the people", "Through the history", "Through getting lost in it"] },
-{ q: "Road trip role:", opts: ["Driver who controls the music", "Navigator and snack distributor", "Sleeping passenger", "DJ and entertainment"] },
 { q: "Souvenir shopping:", opts: ["Meaningful local items", "Fridge magnets and keychains", "I don't buy souvenirs", "Food and drinks to bring home"] },
 { q: "Ideal trip length:", opts: ["Long weekend — 3-4 days", "One full week", "Two weeks minimum", "Months — slow travel"] },
-
-// === BATCH: Wellness & Self-Care ===
-{ q: "Your self-care looks like:", opts: ["Bath and skincare routine", "Exercise and movement", "Alone time doing nothing", "Creative expression"] },
 { q: "Meditation is:", opts: ["A daily practice for me", "Something I keep trying", "Not for my brain", "Helpful but I forget to do it"] },
 { q: "How do you recharge?", opts: ["Total solitude", "Low-key hangout with close people", "Getting into nature", "Doing something creative"] },
 { q: "Your relationship with exercise:", opts: ["Love it — daily habit", "Know I should do more", "Hate it but force myself", "Does walking to the fridge count?"] },
@@ -3411,8 +2710,6 @@ const ALL_QUESTIONS = [
 { q: "Journaling is:", opts: ["A powerful daily habit", "Something I do sporadically", "Not natural for me", "Something I want to start"] },
 { q: "Mental health days should be:", opts: ["Normalized and encouraged", "Used sparingly", "I already take them regularly", "What's a mental health day?"] },
 { q: "Your stress tells you to:", opts: ["Work harder", "Step back and breathe", "Call someone to talk", "Eat comfort food"] },
-
-// === BATCH: Quirky Hypotheticals ===
 { q: "You can only wear one color forever:", opts: ["Black — timeless", "Blue — versatile", "White — clean and fresh", "Green — nature vibes"] },
 { q: "You wake up as a cartoon character — your vibe:", opts: ["Studio Ghibli peaceful", "Looney Tunes chaotic", "Disney musical number", "Anime action hero"] },
 { q: "You're a font:", opts: ["Times New Roman — classic", "Helvetica — clean and modern", "Comic Sans — fun and unashamed", "Handwritten — personal touch"] },
@@ -3423,8 +2720,6 @@ const ALL_QUESTIONS = [
 { q: "Aliens land and want one human to represent Earth:", opts: ["A scientist", "A child", "A comedian", "Definitely not a politician"] },
 { q: "You're a punctuation mark:", opts: ["Exclamation point!", "Question mark?", "Ellipsis...", "Period. Done."] },
 { q: "You can ban one minor inconvenience forever:", opts: ["Slow Wi-Fi", "Getting something stuck in your teeth", "Stepping on a Lego", "Phone dying at 1%"] },
-
-// === BATCH: Home Life ===
 { q: "Ideal home temperature:", opts: ["Cool — under 68°F/20°C", "Comfortable — 68-72°F/20-22°C", "Warm — over 72°F/22°C", "Constantly battling the thermostat"] },
 { q: "Shoes in the house:", opts: ["Absolutely not", "I don't care either way", "Slippers only", "Shoes on until I sit down"] },
 { q: "Your fridge is:", opts: ["Organized and stocked", "Mostly condiments", "Full but chaotic", "Nearly empty — I eat out"] },
@@ -3433,22 +2728,16 @@ const ALL_QUESTIONS = [
 { q: "Ideal living room vibe:", opts: ["Cozy and warm", "Minimal and clean", "Colorful and eclectic", "Practical and comfortable"] },
 { q: "Plants in your home:", opts: ["A full jungle", "A few low-maintenance ones", "They all die on me", "Fake plants count, right?"] },
 { q: "Candles or diffusers?", opts: ["Candles — love the flame", "Diffuser — no fire risk", "Both, everywhere", "Neither — I open windows"] },
-{ q: "Your junk drawer:", opts: ["Doesn't exist — everything has a place", "One drawer, contained chaos", "Multiple drawers of mystery", "My whole house is a junk drawer"] },
 { q: "Laundry routine:", opts: ["Wash, dry, fold, put away — same day", "Gets washed but lives in the basket", "Emergency loads when I need something", "I have a system and it works"] },
-
-// === BATCH: Money Attitudes ===
 { q: "Saving money makes you feel:", opts: ["Secure and proud", "Like I'm missing out", "Responsible but bored", "Anxious I'm not saving enough"] },
 { q: "Impulse purchases:", opts: ["Rare — I sleep on everything", "Occasional but calculated", "More than I'd like to admit", "That's my entire shopping strategy"] },
 { q: "Splitting the bill:", opts: ["Evenly, keep it simple", "Each pay for what they ordered", "I'll just get the whole thing", "Venmo request within the hour"] },
 { q: "Budgeting is:", opts: ["Essential — I track everything", "A good idea I don't follow", "Too restrictive for me", "Something I should start"] },
 { q: "You come into unexpected money:", opts: ["Save most of it", "Treat myself, save the rest", "Pay off debt first", "Spend it — life is short"] },
-{ q: "Tipping philosophy:", opts: ["Always 20%+", "Based on service quality", "Standard 15-18%", "I wish tipping culture didn't exist"] },
 { q: "Subscriptions:", opts: ["Minimal — I audit regularly", "Too many but I use them", "I forget what I'm paying for", "I share everything with someone"] },
 { q: "Financial goal priority:", opts: ["Emergency fund first", "Invest early and often", "Pay off all debt", "Enjoy life now, worry later"] },
 { q: "You negotiate prices:", opts: ["Always — everything is negotiable", "For big purchases only", "Never — too uncomfortable", "Only at places where it's expected"] },
 { q: "The best investment:", opts: ["Real estate", "Stock market", "Education and skills", "Experiences and memories"] },
-
-// === BATCH: Communication Quirks ===
 { q: "You end texts with a period:", opts: ["Always — proper grammar", "Never — it feels aggressive", "Sometimes accidentally", "I didn't know this was an issue"] },
 { q: "Voice messages:", opts: ["Love sending and receiving", "Send but hate receiving", "Never send, sometimes listen", "A crime against humanity"] },
 { q: "Your texting speed:", opts: ["Lightning fast responder", "Thoughtful and deliberate", "I'll get back to you eventually", "Read it now, reply in 3 days"] },
@@ -3459,8 +2748,6 @@ const ALL_QUESTIONS = [
 { q: "Your email sign-off:", opts: ["Best, [name]", "Thanks!", "Cheers,", "No sign-off — just send"] },
 { q: "Video calls — camera on or off?", opts: ["Always on — be present", "Off unless required", "Depends on my appearance that day", "Audio only preferred"] },
 { q: "Autocorrect is:", opts: ["My savior", "My nemesis", "Usually helpful", "Turned off entirely"] },
-
-// === BATCH: Childhood & Growing Up ===
 { q: "Favorite childhood activity:", opts: ["Playing outside until dark", "Reading or drawing", "Video games", "Building and creating things"] },
 { q: "School lunch:", opts: ["Packed from home", "Cafeteria food, no shame", "Traded with friends", "Barely ate — too busy socializing"] },
 { q: "Your childhood bedroom was:", opts: ["Covered in posters", "Neat and organized", "A creative disaster", "Shared with a sibling"] },
@@ -3468,12 +2755,8 @@ const ALL_QUESTIONS = [
 { q: "Childhood dream job:", opts: ["Something creative", "Something adventurous", "Something helpful", "Whatever made the most money"] },
 { q: "Report card reaction:", opts: ["Always good — I was studious", "Mixed — depended on the subject", "Hid it from my parents", "Didn't care much about grades"] },
 { q: "You were the kid who:", opts: ["Followed all the rules", "Questioned everything", "Was the class clown", "Stayed in the background"] },
-{ q: "Recess strategy:", opts: ["Organized games with everyone", "Swings and monkey bars", "Reading or talking with friends", "Whatever the group was doing"] },
 { q: "Snow days meant:", opts: ["Playing outside all day", "Sleeping in", "Watching TV in pajamas", "Hoping school was cancelled tomorrow too"] },
 { q: "Your childhood was:", opts: ["Mostly happy and carefree", "Challenging but character-building", "A mix of highs and lows", "Something I've moved on from"] },
-
-// === BATCH: Night & Evening ===
-{ q: "Ideal Friday night:", opts: ["Out with friends", "Home with a show", "Date night", "Early to bed honestly"] },
 { q: "You can't sleep — you:", opts: ["Scroll my phone", "Read a book", "Stare at the ceiling thinking", "Get up and do something productive"] },
 { q: "Midnight snack frequency:", opts: ["Nightly ritual", "Occasionally when it hits", "Rarely", "I'm asleep by midnight"] },
 { q: "Dreams — you remember them?", opts: ["Vividly, every morning", "Sometimes fragments", "Rarely anything", "I don't dream (that I know of)"] },
@@ -3483,8 +2766,6 @@ const ALL_QUESTIONS = [
 { q: "Sleeping position:", opts: ["Side sleeper", "Back sleeper", "Stomach sleeper", "Human pretzel"] },
 { q: "Alarm clock strategy:", opts: ["One alarm, right up", "Multiple alarms spaced out", "No alarm needed — natural waker", "Snooze button warrior"] },
 { q: "Night sky — you look up:", opts: ["Often — it's grounding", "When someone points something out", "Rarely think about it", "Only during meteor showers"] },
-
-// === BATCH: Hobbies & Interests ===
 { q: "Dream hobby you'd start today:", opts: ["Woodworking or pottery", "Learning an instrument", "Painting or illustration", "Rock climbing or martial arts"] },
 { q: "How many hobbies do you maintain?", opts: ["1-2 that I'm deep into", "3-4 rotating interests", "Too many to count", "Does scrolling count?"] },
 { q: "You approach hobbies by:", opts: ["Going all in with gear and classes", "Casual exploration at my pace", "YouTube tutorials and self-teaching", "Joining a group or community"] },
@@ -3495,8 +2776,6 @@ const ALL_QUESTIONS = [
 { q: "Your competitive level in hobbies:", opts: ["I compete with myself", "Casually competitive", "Intensely competitive", "Not competitive at all"] },
 { q: "A hobby becomes a chore when:", opts: ["Someone expects me to do it", "I have to do it on a schedule", "The fun stops and pressure starts", "That's never happened to me"] },
 { q: "You admire people who can:", opts: ["Play music by ear", "Cook without recipes", "Fix anything mechanical", "Draw or paint realistically"] },
-
-// === BATCH: Social Situations ===
 { q: "At a party, you're most likely:", opts: ["Working the room", "Deep in one conversation", "Near the snacks or pet", "Looking for the exit"] },
 { q: "Someone you barely know opens up to you:", opts: ["I'm honored — I listen well", "Slightly uncomfortable but supportive", "Wonder why they chose me", "Give advice whether asked or not"] },
 { q: "You see someone eating alone:", opts: ["Feel for them, might say hi", "Respect the solo time", "Don't notice honestly", "That's usually me by choice"] },
@@ -3507,32 +2786,21 @@ const ALL_QUESTIONS = [
 { q: "You disagree with someone at dinner:", opts: ["Engage in healthy debate", "Keep it to myself", "Change the subject", "Depends on how wrong they are"] },
 { q: "Dancing in public:", opts: ["Any time, anywhere", "Only if everyone else is", "With enough encouragement", "Absolutely not"] },
 { q: "Someone mispronounces your name:", opts: ["Correct them immediately", "Let it slide — not worth it", "Correct them gently later", "It happens so often I'm numb to it"] },
-
-// === BATCH: Personality & Identity ===
 { q: "You know yourself:", opts: ["Very well — self-aware", "Mostly, still discovering", "I surprise myself often", "I'm a mystery to myself"] },
 { q: "Your energy type:", opts: ["Calm and steady", "Enthusiastic and vibrant", "Quiet but intense", "Depends entirely on context"] },
 { q: "How do you process emotions?", opts: ["Talk them out with someone", "Write or journal about them", "Physical activity", "Internally — I need time alone"] },
 { q: "Change comes to you — you:", opts: ["Embrace it eagerly", "Resist then adapt", "Plan for it obsessively", "Pretend it's not happening"] },
-{ q: "Your inner critic is:", opts: ["Loud and relentless", "Present but manageable", "Mostly quiet — I'm kind to myself", "My primary motivator"] },
-{ q: "You're more:", opts: ["Head over heart", "Heart over head", "Balanced between both", "Changes day to day"] },
 { q: "Comfort zone — you:", opts: ["Actively push outside it", "Stay in it gladly", "Leave it when forced to", "What comfort zone?"] },
-{ q: "Your patience level:", opts: ["Very patient — I can wait", "Patient with people, not situations", "Depends on my mood", "Admittedly low"] },
 { q: "You apologize:", opts: ["Quickly and genuinely", "Only when I'm clearly wrong", "Too much honestly", "It takes me a while to come around"] },
 { q: "Your stubbornness level:", opts: ["Immovable when I believe something", "Flexible on most things", "Stubborn about weird specific things", "I change my mind easily"] },
-
-// === BATCH: Random Preferences ===
-{ q: "Window or aisle seat?", opts: ["Window — the view!", "Aisle — easy access", "Middle — said no one ever", "Whichever is cheapest"] },
 { q: "Toilet paper — over or under?", opts: ["Over — the only correct way", "Under — fight me", "I don't notice or care", "I've switched to a bidet"] },
 { q: "Socks to bed:", opts: ["Always — warm feet, warm heart", "Never — my feet need freedom", "Only in winter", "One on, one off somehow"] },
 { q: "You squeeze toothpaste from:", opts: ["The bottom, rolled up neatly", "The middle — chaos agent", "Wherever my hand lands", "I didn't know this was a personality test"] },
 { q: "Shower time:", opts: ["Morning — wakes me up", "Night — wash the day off", "Both ideally", "Whenever I remember"] },
 { q: "Your go-to comfort drink:", opts: ["Coffee", "Tea", "Water honestly", "Something with bubbles"] },
 { q: "Shopping preference:", opts: ["In-store — I need to see/touch things", "Online — efficient and easy", "In-store for clothes, online for everything else", "I avoid shopping entirely"] },
-{ q: "Pen or pencil?", opts: ["Pen — commitment", "Pencil — I make mistakes", "Digital — why use either", "Whatever's available"] },
 { q: "Your relationship with plants:", opts: ["Green thumb — they all thrive", "I try and sometimes succeed", "Plant serial killer", "I admire them from a distance"] },
 { q: "The correct way to cut a sandwich:", opts: ["Diagonally — triangles", "Straight down the middle", "Don't cut it at all", "Into four squares"] },
-
-// === BATCH: Hypothetical Powers ===
 { q: "Pick a mundane superpower:", opts: ["Always find parking immediately", "Never wait in line", "Always have the right amount of cash", "Perfect phone battery forever"] },
 { q: "You can talk to one type of animal:", opts: ["Dogs — confirm they love me", "Cats — find out what they're plotting", "Birds — get aerial intel", "Fish — explore the ocean secrets"] },
 { q: "You can eat one food with zero consequences:", opts: ["Pizza forever", "Unlimited desserts", "Fried everything", "Cheese in all forms"] },
@@ -3543,8 +2811,6 @@ const ALL_QUESTIONS = [
 { q: "Your dream weather power:", opts: ["Summon rain whenever", "Create a personal sunshine bubble", "Make it snow on command", "Control wind for dramatic effect"] },
 { q: "You can pause time for 1 hour daily — you:", opts: ["Sleep more", "Get work done in peace", "Enjoy a moment longer", "Use it for mischief"] },
 { q: "A genie offers you a perfect memory OR perfect luck:", opts: ["Perfect memory — knowledge is power", "Perfect luck — why work hard?", "I'd negotiate for both", "Neither — I like my imperfect life"] },
-
-// === BATCH: Relationships & Dating ===
 { q: "Most attractive quality in someone:", opts: ["Sense of humor", "Intelligence and curiosity", "Kindness and empathy", "Confidence and ambition"] },
 { q: "First date preference:", opts: ["Coffee — low pressure", "Dinner — invest the time", "Activity — do something fun", "Drinks — keep it casual"] },
 { q: "Love language you receive best:", opts: ["Words of affirmation", "Quality time", "Physical touch", "Acts of service"] },
@@ -3555,8 +2821,6 @@ const ALL_QUESTIONS = [
 { q: "How important is texting frequency?", opts: ["Very — stay connected throughout the day", "Some check-ins are nice", "Not at all — quality over quantity", "Depends on the stage of the relationship"] },
 { q: "Meeting the friends/family:", opts: ["Exciting — I want to know everyone", "Nerve-wracking but important", "Prefer to wait a while", "I'll meet them when it happens naturally"] },
 { q: "Your view on long-distance:", opts: ["Can work with effort", "Not for me personally", "Did it and it's hard", "Depends on the person"] },
-
-// === BATCH: Health & Body ===
 { q: "Your relationship with mornings:", opts: ["Natural early bird", "Forced early bird", "Night owl pretending", "I peak around noon"] },
 { q: "Vitamins and supplements:", opts: ["Take them daily religiously", "On and off — I try", "Don't believe they do much", "I should probably start"] },
 { q: "Your pain tolerance:", opts: ["Very high — barely flinch", "Average — I handle it", "Low — I'm not ashamed to admit it", "Depends on the type of pain"] },
@@ -3567,8 +2831,6 @@ const ALL_QUESTIONS = [
 { q: "Sunscreen:", opts: ["Every single day, rain or shine", "When I'll be outside a while", "When I remember to pack it", "I forget it exists"] },
 { q: "Your energy level throughout the day:", opts: ["Steady and consistent", "Morning peak, afternoon crash", "Slow start, evening peak", "Wildly unpredictable"] },
 { q: "Naps are:", opts: ["Essential to functioning", "A rare luxury I treasure", "Disorienting — I wake up confused", "I can't nap even if I try"] },
-
-// === BATCH: Taste & Aesthetics ===
 { q: "Your color palette:", opts: ["Earth tones — warm and natural", "Black and neutrals — classic", "Bold and bright — stand out", "Pastels — soft and calming"] },
 { q: "Interior design style:", opts: ["Minimalist — less is more", "Maximalist — more is more", "Mid-century modern", "Eclectic — a little of everything"] },
 { q: "Art you're drawn to:", opts: ["Abstract — open to interpretation", "Realism — show me skill", "Photography — capture moments", "Street art — raw and accessible"] },
@@ -3579,20 +2841,15 @@ const ALL_QUESTIONS = [
 { q: "Book cover design matters:", opts: ["Absolutely — I judge covers", "Somewhat — it catches my eye", "Not at all — content is king", "I read digitally so it's irrelevant"] },
 { q: "Architecture that speaks to you:", opts: ["Modern and glass", "Historic and ornate", "Natural and organic", "Industrial and raw"] },
 { q: "Your social media aesthetic:", opts: ["Carefully curated", "Authentic and unfiltered", "I barely post", "What aesthetic?"] },
-
-// === BATCH: Opinions & Hot Takes ===
 { q: "Breakfast is:", opts: ["The most important meal", "Overrated — I skip it", "Only good on weekends", "Good anytime of day"] },
 { q: "The Oxford comma:", opts: ["Essential and non-negotiable", "Unnecessary clutter", "What's an Oxford comma?", "I use it sometimes, not others"] },
 { q: "Reclining your airplane seat:", opts: ["It's my right — always recline", "Only on long flights", "Never — too considerate", "I didn't know it was controversial"] },
 { q: "Putting ice in wine:", opts: ["Totally fine", "A crime against grapes", "For white wine only", "I don't drink wine"] },
-{ q: "Double texting:", opts: ["No shame — text what you need to", "Only after reasonable time passes", "Shows desperation", "I triple text minimum"] },
 { q: "Crocs are:", opts: ["Actually comfortable and valid", "Never acceptable in public", "Fine for gardening only", "I own multiple pairs"] },
 { q: "The best pizza is:", opts: ["New York style — thin and foldable", "Chicago deep dish", "Neapolitan — traditional", "Whatever's hot and available"] },
 { q: "Audiobooks count as reading:", opts: ["Absolutely — same content", "It's listening, not reading", "Yes, and the debate is silly", "Depends on the context"] },
 { q: "Toilet seat lid:", opts: ["Always closed — it's hygiene", "Doesn't matter to me", "Down before flushing", "I never thought about this before"] },
 { q: "GIF pronunciation:", opts: ["Hard G like 'gift'", "Soft G like 'jif'", "I refuse to say it out loud", "Both are fine honestly"] },
-
-// === BATCH: Learning & Growth ===
 { q: "You learn best by:", opts: ["Reading and researching", "Watching and observing", "Doing and practicing", "Discussing with others"] },
 { q: "A subject you'd study just for fun:", opts: ["Psychology or philosophy", "History or archaeology", "Astronomy or physics", "Art or music theory"] },
 { q: "Your attention span:", opts: ["Laser focused when interested", "Short but intense bursts", "Consistently moderate", "What was the question?"] },
@@ -3602,9 +2859,6 @@ const ALL_QUESTIONS = [
 { q: "When you don't know something:", opts: ["Research it thoroughly", "Ask someone who knows", "Admit it and move on", "Fake it until I make it"] },
 { q: "Your memory works best for:", opts: ["Facts and numbers", "Faces and people", "Experiences and emotions", "Random useless information"] },
 { q: "You'd go back to school for:", opts: ["A completely different field", "To deepen what I already know", "The social experience", "Nothing — I'm done with school"] },
-{ q: "Constructive criticism:", opts: ["Welcome it — I want to grow", "Appreciate it from the right people", "Sting at first, helpful later", "Depends on how it's delivered"] },
-
-// === BATCH: Daily Routines ===
 { q: "First thing you do in the morning:", opts: ["Check my phone", "Use the bathroom", "Make coffee/tea", "Lay there questioning existence"] },
 { q: "Your morning mood:", opts: ["Bright and chatty", "Quiet — don't talk to me yet", "Functional but not friendly", "Depends on sleep quality"] },
 { q: "Breakfast choice:", opts: ["Something quick — granola bar, fruit", "Full breakfast — eggs, toast, the works", "Coffee is breakfast", "I don't eat until noon"] },
@@ -3615,8 +2869,6 @@ const ALL_QUESTIONS = [
 { q: "Bedtime:", opts: ["Before 10 PM", "10 PM - midnight", "After midnight", "Whenever my body gives up"] },
 { q: "Weekend mornings:", opts: ["Same routine as weekdays", "Sleep in as long as possible", "Lazy morning, productive afternoon", "Packed with plans early"] },
 { q: "Your daily non-negotiable:", opts: ["Coffee or tea", "Exercise or movement", "Time alone", "Connecting with someone I care about"] },
-
-// === BATCH: Entertainment Choices ===
 { q: "Movie genre of choice:", opts: ["Comedy — I want to laugh", "Thriller — keep me guessing", "Drama — make me feel", "Sci-fi or fantasy — take me elsewhere"] },
 { q: "You prefer stories that are:", opts: ["Happy endings guaranteed", "Realistic and bittersweet", "Twists I never see coming", "Character-driven over plot-driven"] },
 { q: "Background entertainment while doing chores:", opts: ["True crime podcast", "Music playlist", "A show I've seen before", "Silence — I'm thinking"] },
@@ -3627,32 +2879,23 @@ const ALL_QUESTIONS = [
 { q: "Re-reading books:", opts: ["I do it often for comfort", "Occasionally if it was life-changing", "Never — too many new ones to read", "I don't read much at all"] },
 { q: "Comedy style preference:", opts: ["Dry and deadpan", "Slapstick and physical", "Observational and relatable", "Dark humor"] },
 { q: "Your music listening:", opts: ["Nonstop — always something playing", "Mood-dependent", "Specific genres on repeat", "I prefer silence more often than music"] },
-
-// === BATCH: Nature & Animals ===
 { q: "If you were an animal:", opts: ["Cat — independent and curious", "Dog — loyal and energetic", "Bird — free and adventurous", "Bear — strong and chill"] },
 { q: "Ocean or mountains for a week:", opts: ["Ocean — waves and sand", "Mountains — trails and views", "A lake that gives me both", "City — I'm not outdoorsy"] },
 { q: "Your hiking style:", opts: ["Challenging summit or bust", "Moderate with good views", "Flat trail with nice scenery", "I hike to the fridge"] },
-{ q: "Camping comfort level:", opts: ["Tent on the ground, true camping", "Glamping — nature with comfort", "RV or cabin only", "Hotel with a nature documentary"] },
 { q: "Garden or wild nature?", opts: ["Manicured garden — peaceful order", "Wild nature — untouched beauty", "A bit of both", "Indoor plants are nature enough"] },
-{ q: "Sunrise or sunset?", opts: ["Sunrise — fresh starts", "Sunset — golden endings", "Both if I can", "I sleep through one and miss the other"] },
 { q: "Your favorite weather to walk in:", opts: ["Crisp and cool fall day", "Warm sunny afternoon", "Light drizzle", "Any weather — I walk regardless"] },
 { q: "Bug tolerance:", opts: ["I coexist peacefully", "Keep them outside and we're fine", "They terrify me", "I relocate them carefully"] },
 { q: "Houseplant or garden plant?", opts: ["Houseplant — I like indoor green", "Garden — I want to grow food", "Both — maximize the green", "Artificial — no maintenance needed"] },
 { q: "Stars fascinate you:", opts: ["Deeply — I could stargaze for hours", "Somewhat — they're beautiful", "I never really look up", "Only when I'm away from city lights"] },
-
-// === BATCH: Decision Making ===
 { q: "Big decisions — you:", opts: ["Analyze all options extensively", "Go with my gut", "Ask everyone for their opinion", "Delay as long as possible"] },
 { q: "Menu at a restaurant:", opts: ["I know what I want immediately", "Narrow it to two, ask the server", "Read everything, panic, pick last second", "Get what I always get"] },
 { q: "You regret decisions:", opts: ["Rarely — I commit and move on", "Only the big ones occasionally", "More than I'd like to admit", "I try not to look back"] },
 { q: "Someone gives you conflicting advice:", opts: ["Go with the person I trust more", "Research on my own", "Go with what feels right", "Get paralyzed by indecision"] },
-{ q: "Risk tolerance:", opts: ["High — calculated risks are exciting", "Moderate — weigh the odds first", "Low — I prefer certainty", "Depends on what's at stake"] },
 { q: "You overthink:", opts: ["Everything, constantly", "Big decisions only", "Rarely — I'm pretty decisive", "Only at 2 AM"] },
 { q: "Choosing where to eat with friends:", opts: ["I always have a suggestion", "I go along with the group", "This is the hardest decision in life", "I'll eat anywhere honestly"] },
 { q: "Buyer's remorse hits:", opts: ["Almost never", "Only for expensive purchases", "Frequently — I second-guess everything", "I return things constantly"] },
 { q: "When faced with two good options:", opts: ["Pick the more exciting one", "Pick the safer one", "Spend too long deciding", "Flip a coin — the universe decides"] },
 { q: "You trust your instincts:", opts: ["Completely — they're usually right", "Mostly, with some logic checks", "Not really — I need data", "Only for people, not situations"] },
-
-// === BATCH: Social Media & Internet ===
 { q: "Social media usage:", opts: ["Daily — multiple platforms", "Occasional check-ins", "I've deleted most of my accounts", "Lurker — I consume but don't post"] },
 { q: "You post on social media:", opts: ["Multiple times a week", "A few times a month", "A few times a year", "Basically never"] },
 { q: "Your online persona vs real life:", opts: ["Exactly the same", "Slightly curated version", "Completely different", "I don't have an online persona"] },
@@ -3663,8 +2906,6 @@ const ALL_QUESTIONS = [
 { q: "You google yourself:", opts: ["Occasionally — just curious", "Never — ignorance is bliss", "I have alerts set up", "I did once and that was enough"] },
 { q: "Online shopping carts:", opts: ["Add and buy immediately", "Save it, think about it, buy later", "Fill the cart, abandon the cart", "Wait for a sale notification"] },
 { q: "Email inbox:", opts: ["Inbox zero — always clean", "Under 50 — manageable", "Hundreds of unread — it's fine", "Thousands — I've given up"] },
-
-// === BATCH: Future & Aspirations ===
 { q: "In 10 years, you hope to be:", opts: ["Doing something I love daily", "Financially secure and comfortable", "Living somewhere entirely new", "Surrounded by people I cherish"] },
 { q: "Retirement dream:", opts: ["Travel the world slowly", "Quiet life in nature", "Active community involvement", "I never want to fully retire"] },
 { q: "A skill you wish you'd started earlier:", opts: ["A musical instrument", "A second language", "Financial literacy", "A physical discipline like yoga or dance"] },
@@ -3675,10 +2916,7 @@ const ALL_QUESTIONS = [
 { q: "Biggest thing holding you back:", opts: ["Fear of failure", "Lack of time", "Lack of money", "My own self-doubt"] },
 { q: "You believe your best years are:", opts: ["Ahead of me", "Right now", "Behind me honestly", "Every year is what you make it"] },
 { q: "The world in 50 years:", opts: ["Better — humanity will figure it out", "Worse — we're on a bad path", "Radically different in unpredictable ways", "About the same — history repeats"] },
-
-// === BATCH: Household Dynamics ===
 { q: "Who controls the remote?", opts: ["Me — I have taste", "Whoever grabs it first", "We take turns fairly", "I watch on my phone anyway"] },
-{ q: "Thermostat battles:", opts: ["I'm always cold — turn it up", "I'm always hot — turn it down", "I'm pretty adaptable", "This is a constant negotiation"] },
 { q: "Cleaning motivation:", opts: ["I clean when it's messy", "I have a regular schedule", "I clean when someone's coming over", "I wait until it's unbearable"] },
 { q: "Shared bathroom etiquette:", opts: ["Everything has its place", "As long as it's clean, I'm flexible", "I need my own bathroom", "I barely notice the state of it"] },
 { q: "Grocery shopping together:", opts: ["Efficient team — in and out", "Fun bonding activity", "I'd rather go alone", "We divide and conquer the list"] },
@@ -3687,8 +2925,6 @@ const ALL_QUESTIONS = [
 { q: "Noise levels at home:", opts: ["Quiet — I need peace", "Background music always", "TV on for white noise", "Whatever's natural — I adapt"] },
 { q: "Taking out the trash:", opts: ["I do it before it's full", "When it's overflowing", "Whoever notices first", "I'll balance one more thing on top"] },
 { q: "Unexpected guests:", opts: ["Love it — the more the merrier", "Give me 30 minutes warning", "I need at least a day's notice", "Please text before you come over"] },
-
-// === BATCH: Miscellaneous Fun ===
 { q: "You find a secret room in your house:", opts: ["Immediate exploration", "Get backup first", "Assume it's haunted", "Turn it into my personal space"] },
 { q: "Escalator or stairs?", opts: ["Escalator — save energy", "Stairs — free exercise", "Escalator but I walk up it", "Depends on how many floors"] },
 { q: "Your car (real or dream) says about you:", opts: ["Practical and reliable", "Fast and flashy", "Vintage with character", "I don't want a car — give me transit"] },
@@ -3699,8 +2935,6 @@ const ALL_QUESTIONS = [
 { q: "You're running late — your move:", opts: ["Text ahead, stay calm", "Rush and stress the whole way", "I'm never late honestly", "Arrive late, act like I'm on time"] },
 { q: "Compliments make you:", opts: ["Happy and grateful", "Awkward — I deflect immediately", "Suspicious — what do they want?", "Depends who's giving them"] },
 { q: "Your catchphrase would be:", opts: ["It is what it is", "We'll figure it out", "That's wild", "I mean..."] },
-
-// === BATCH: Imagination & Creativity ===
 { q: "Daydreaming frequency:", opts: ["Constantly — my mind wanders", "Often during boring tasks", "Rarely — I'm present-focused", "Only before falling asleep"] },
 { q: "If your life were a book genre:", opts: ["Comedy — absurd things happen to me", "Adventure — I've lived some stories", "Slice of life — quiet and meaningful", "Mystery — even I'm confused"] },
 { q: "Creative expression you connect with:", opts: ["Writing — words capture me", "Visual art — seeing is feeling", "Music — sounds move me", "Movement — dance or physical expression"] },
@@ -3711,8 +2945,6 @@ const ALL_QUESTIONS = [
 { q: "If you wrote a book, it'd be:", opts: ["Fiction — a world I invented", "Memoir — my story matters", "Self-help — share what I've learned", "Cookbook — food is my language"] },
 { q: "Inspiration strikes you:", opts: ["At the worst possible times", "When I'm relaxed and free", "During conversations with others", "I have to actively seek it"] },
 { q: "Blank canvas — you feel:", opts: ["Excited by the possibilities", "Overwhelmed — where to start?", "I'd need a prompt first", "I'd rather improve something existing"] },
-
-// === BATCH: Micro Moments ===
 { q: "The elevator arrives — you:", opts: ["Hold the door for anyone coming", "Let it close — I'm in a rush", "Pretend I didn't see them", "It depends on my mood honestly"] },
 { q: "Someone waves at you but maybe not at you:", opts: ["Wave back — no risk", "Look behind me first", "Awkward half-wave", "Pretend I didn't see it"] },
 { q: "Finding money in your pocket:", opts: ["Best surprise ever", "Happens often — I'm forgetful", "I always know what's in my pockets", "I don't use cash"] },
@@ -3723,8 +2955,6 @@ const ALL_QUESTIONS = [
 { q: "The first sip of your morning drink:", opts: ["Transcendent — best moment of the day", "Nice but I'm still half asleep", "Functional — caffeine delivery system", "I don't drink morning beverages"] },
 { q: "A pen that writes perfectly:", opts: ["I will guard this pen with my life", "Satisfying but I'll lose it soon", "A pen is a pen", "I notice and appreciate good pens"] },
 { q: "Fresh sheets on the bed:", opts: ["One of life's greatest pleasures", "Nice but not life-changing", "I should wash mine more often", "I don't notice a difference honestly"] },
-
-// === BATCH: Pet Life ===
 { q: "Dream pet:", opts: ["Dog — loyal companion", "Cat — independent spirit", "Something exotic — reptile, bird", "No pets — too much responsibility"] },
 { q: "Talking to animals:", opts: ["Full conversations, different voices", "Baby talk exclusively", "Normal speaking voice", "I don't talk to animals"] },
 { q: "Pet sleeping arrangements:", opts: ["In the bed, obviously", "In the room but not the bed", "Their own designated spot", "Wherever they want"] },
@@ -3735,8 +2965,6 @@ const ALL_QUESTIONS = [
 { q: "Pet Halloween costumes:", opts: ["Absolutely — it's adorable", "Only if the pet is comfortable", "That's a bit much", "I've already planned this year's"] },
 { q: "Animals you're secretly afraid of:", opts: ["Birds — unpredictable", "Spiders — all of them", "Deep sea creatures", "I'm not afraid of any animals"] },
 { q: "Watching animal videos online:", opts: ["Daily requirement", "Occasional mood booster", "Not something I seek out", "I could do this for hours"] },
-
-// === BATCH: Conflict & Resolution ===
 { q: "You handle anger by:", opts: ["Expressing it directly", "Going quiet until I process", "Physical activity to burn it off", "Journaling or venting to a friend"] },
 { q: "During an argument, you:", opts: ["Stay logical and calm", "Get emotional and passionate", "Shut down and retreat", "Try to find a compromise quickly"] },
 { q: "Holding grudges:", opts: ["I forgive easily", "I forgive but never forget", "I hold them longer than I should", "Depends on the severity"] },
@@ -3747,8 +2975,6 @@ const ALL_QUESTIONS = [
 { q: "After a disagreement, you need:", opts: ["Space and time alone", "A conversation to clear the air", "A distraction — movie, music, walk", "I bounce back quickly"] },
 { q: "Your conflict style:", opts: ["Confront directly and resolve", "Avoid until it blows over", "People-please to end it", "Depends on who it's with"] },
 { q: "Forgiveness is:", opts: ["Essential for my own peace", "Earned, not freely given", "Something I'm working on", "Easy for small things, hard for big ones"] },
-
-// === BATCH: Nostalgia & Memory ===
 { q: "Your strongest nostalgic trigger:", opts: ["A specific song", "A particular smell", "Visiting a childhood place", "Seeing old photos"] },
 { q: "The 'good old days' were:", opts: ["Actually great — I miss them", "Romanticized — now is better", "A mix — some things were better", "I'm making the good days now"] },
 { q: "Old photos make you:", opts: ["Warm and fuzzy", "A bit sad for time passed", "Cringe at my choices", "Grateful for the journey"] },
@@ -3759,8 +2985,6 @@ const ALL_QUESTIONS = [
 { q: "A toy or item from childhood you'd love to have:", opts: ["That one stuffed animal", "My favorite game or console", "A specific book series", "I still have it actually"] },
 { q: "Time capsule — you'd put in:", opts: ["A letter to future me", "A current playlist", "Photos of my people", "Something ridiculous for confusion"] },
 { q: "Your strongest childhood memory:", opts: ["A family vacation", "A friendship moment", "An achievement I was proud of", "A quiet, simple everyday moment"] },
-
-// === BATCH: Boundaries & Independence ===
 { q: "You need alone time:", opts: ["Daily — non-negotiable", "A few times a week", "Occasionally when overwhelmed", "Rarely — I prefer company"] },
 { q: "Saying no:", opts: ["Easy — I'm direct", "Getting better at it", "Still a struggle", "Depends on who's asking"] },
 { q: "Personal space:", opts: ["I need a wide bubble", "Close is fine with people I know", "I'm a hugger — come closer", "I don't think about it much"] },
@@ -3771,8 +2995,6 @@ const ALL_QUESTIONS = [
 { q: "Sharing food from your plate:", opts: ["Of course — try anything", "Only if you ask nicely", "Order your own", "I'll offer before you ask"] },
 { q: "Your independence level:", opts: ["Fiercely independent", "Independent but I value support", "I prefer doing things with others", "Working on being more independent"] },
 { q: "Cancel culture:", opts: ["Necessary accountability", "Often goes too far", "Depends on what they did", "Too complex for a simple opinion"] },
-
-// === BATCH: Risk & Adventure ===
 { q: "Bungee jumping:", opts: ["Done it and loved it", "On my bucket list", "Not for me but I respect it", "Absolutely terrifying no"] },
 { q: "Trying food you can't identify:", opts: ["Exciting — yes please", "Only if someone recommends it", "Hard no — I need to know", "I'll try a small bite"] },
 { q: "Moving to a new city knowing no one:", opts: ["Thrilling — fresh start", "Scary but I'd do it", "Only with a good reason", "I need my people around me"] },
@@ -3783,8 +3005,6 @@ const ALL_QUESTIONS = [
 { q: "Public karaoke for $100:", opts: ["I'd do it for free", "For $100, absolutely", "No amount of money", "Depends on the song"] },
 { q: "Eat something with a dare:", opts: ["Easily — I'll eat anything", "Depends on what it is", "Absolutely not — I have standards", "Only if the dare is funny enough"] },
 { q: "Your relationship with fear:", opts: ["I chase it — it makes me feel alive", "I acknowledge it and push through", "I avoid what scares me", "Fear and I have an understanding"] },
-
-// === BATCH: Philosophical Quick Hits ===
 { q: "Silence between people is:", opts: ["Comfortable — it means closeness", "Awkward — someone fill it", "Underrated and needed", "Depends entirely on the person"] },
 { q: "Age is:", opts: ["Just a number", "Something I'm increasingly aware of", "A privilege not everyone gets", "Felt in my knees"] },
 { q: "Normal is:", opts: ["A setting on a dryer", "Something I've stopped trying to be", "Comforting and underrated", "Different for everyone"] },
@@ -3795,10 +3015,7 @@ const ALL_QUESTIONS = [
 { q: "Authenticity means:", opts: ["Being the same everywhere", "Showing the real me to safe people", "Not performing for others", "A buzzword that's lost meaning"] },
 { q: "Vulnerability is:", opts: ["Strength — I value it", "Hard but worth practicing", "Something I avoid", "Easy with close people, impossible with others"] },
 { q: "Happiness is:", opts: ["A choice I make daily", "Circumstantial — it depends on life", "Fleeting moments, not a constant state", "Something I'm actively working toward"] },
-
-// === BATCH: Transportation & Movement ===
 { q: "Your walking speed:", opts: ["Fast — I have places to be", "Moderate — enjoying the journey", "Slow — taking it all in", "Depends on who I'm with"] },
-{ q: "Ideal commute:", opts: ["Bike ride", "Train with a good podcast", "Short drive with music", "Walking distance"] },
 { q: "Road rage level:", opts: ["I'm very calm behind the wheel", "I talk to other cars but stay chill", "I've been known to honk aggressively", "I avoid driving for this reason"] },
 { q: "Parallel parking:", opts: ["Nailed it every time", "Takes me a few tries", "I'll find a different spot", "I can't parallel park"] },
 { q: "Long flights:", opts: ["Love them — time to think and watch", "Tolerable with entertainment", "Painful every single time", "Worth it for the destination"] },
@@ -3807,8 +3024,6 @@ const ALL_QUESTIONS = [
 { q: "Walking in the rain:", opts: ["Romantic and refreshing", "Only if I have an umbrella", "I run to avoid it", "One of life's simple pleasures"] },
 { q: "Boat or plane to get somewhere?", opts: ["Plane — efficiency matters", "Boat — the journey IS the destination", "Boat if I have time, plane if I don't", "Neither — I prefer ground travel"] },
 { q: "Getting lost while driving:", opts: ["Adventure!", "Stressful but I figure it out", "GPS prevents this", "I have no sense of direction naturally"] },
-
-// === BATCH: Career & Ambition ===
 { q: "Dream work environment:", opts: ["Remote with flexibility", "Bustling office with people", "Quiet private office", "Coworking space — social but independent"] },
 { q: "What drives your career?", opts: ["Passion for the work itself", "Financial goals and security", "Making an impact", "Growth and learning opportunities"] },
 { q: "Ideal boss:", opts: ["Hands-off — trust me to deliver", "Mentoring and supportive", "Clear expectations and feedback", "A collaborator, not a boss"] },
@@ -3819,8 +3034,6 @@ const ALL_QUESTIONS = [
 { q: "Monday morning feeling:", opts: ["Energized — fresh week", "Dread but functional", "Depends on what's on the calendar", "Every day feels the same to me"] },
 { q: "Office small talk:", opts: ["I actually enjoy it", "Necessary social lubricant", "Painful but I participate", "I dodge it expertly"] },
 { q: "You disagree with your boss:", opts: ["Say it directly and respectfully", "Document my concerns", "Go along and vent later", "Depends on the stakes"] },
-
-// === BATCH: Celebrations & Rituals ===
 { q: "Your birthday — you want:", opts: ["A big party with everyone", "Small dinner with close people", "A solo treat-myself day", "To pretend it's not happening"] },
 { q: "New Year's resolutions:", opts: ["Make them and keep most", "Make them and forget by February", "Don't make them — set goals instead", "Find the whole concept silly"] },
 { q: "Holiday decorating:", opts: ["Go all out — every surface", "Tasteful and selective", "Minimal effort", "I love seeing others' decorations"] },
@@ -3831,22 +3044,16 @@ const ALL_QUESTIONS = [
 { q: "Toasting or speech-giving:", opts: ["I volunteer for this", "I'll do it if asked but I'm nervous", "Please don't call on me", "I've given some legendary toasts"] },
 { q: "Holiday music season:", opts: ["November 1st — start it early", "After Thanksgiving only", "A few favorites, not the whole catalog", "I'd skip it entirely"] },
 { q: "Annual traditions you value:", opts: ["Holiday meals with family", "A specific trip or getaway", "Something just for myself", "I'm still creating my traditions"] },
-
-// === BATCH: Language & Expression ===
 { q: "You express excitement by:", opts: ["Volume — I get LOUD", "Physical movement — jumping, clapping", "Big smile and wide eyes", "Internal joy — calm outside, party inside"] },
 { q: "Swearing:", opts: ["Frequently and expressively", "Occasionally for emphasis", "Rarely — I choose other words", "Only when truly frustrated"] },
 { q: "Sarcasm:", opts: ["My first language", "I use it well with the right people", "I struggle to detect it", "Can be hurtful if overused"] },
-{ q: "You explain things by:", opts: ["Using analogies and examples", "Being direct and concise", "Telling a story", "Showing rather than telling"] },
 { q: "Your vocabulary is:", opts: ["Extensive — I love words", "Normal — I communicate fine", "Casual — I keep it simple", "Depends on the context"] },
 { q: "Accents and dialects:", opts: ["I unconsciously mimic them", "I find them fascinating", "I barely notice them", "I'm self-conscious about my own"] },
 { q: "Song lyrics:", opts: ["I know every word to everything", "I know the vibes but not the words", "I make up words confidently", "Lyrics matter less than the melody"] },
 { q: "Your laugh:", opts: ["Loud and unmistakable", "Quiet and controlled", "Changes depending on how funny it is", "I snort and I'm not sorry"] },
 { q: "You say 'I love you':", opts: ["Freely and often", "Only to specific people", "It's hard for me to say", "Through actions more than words"] },
 { q: "The word that describes you:", opts: ["Resilient", "Curious", "Empathetic", "Driven"] },
-
-// === BATCH: Control & Flexibility ===
 { q: "Plans change last minute — you:", opts: ["Adapt easily — go with the flow", "Get annoyed but adjust", "Internally spiral, externally fine", "Need significant time to recalibrate"] },
-{ q: "Packing for a trip:", opts: ["Days in advance, list checked twice", "Night before with a system", "Morning of — I'll figure it out", "I have a permanent packing list"] },
 { q: "Someone rearranges your stuff:", opts: ["Mildly irritated — I had a system", "Furious — don't touch my things", "I probably won't notice", "I appreciate the help actually"] },
 { q: "Routine disruptions:", opts: ["Throw me off completely", "I recover quickly", "Don't bother me at all", "Secretly exciting"] },
 { q: "Delegating tasks:", opts: ["Hard — I'd rather do it myself", "I'm learning to let go", "Easy — play to people's strengths", "Only if I trust the person completely"] },
@@ -3854,9 +3061,6 @@ const ALL_QUESTIONS = [
 { q: "Itinerary on vacation:", opts: ["Hour by hour planned", "General outline with flexibility", "One or two must-dos, rest is open", "No itinerary — pure spontaneity"] },
 { q: "Group projects — you:", opts: ["Take the lead immediately", "Do my part reliably", "End up doing most of it", "Prefer to work alone honestly"] },
 { q: "Your car's gas tank:", opts: ["Never below half", "Fill up when the light comes on", "I've run out before", "I drive electric — doesn't apply"] },
-{ q: "Meal planning:", opts: ["Week planned out and prepped", "Loose idea of a few meals", "Decide when I'm hungry", "I cycle through the same 5 meals"] },
-
-// === BATCH: Seasons of Life ===
 { q: "Your current chapter title:", opts: ["The Rebuild", "The Adventure", "The Grind", "The Calm"] },
 { q: "Looking back, your twenties were:", opts: ["The best decade so far", "Chaotic but formative", "Harder than expected", "I'm still in them (or haven't had them yet)"] },
 { q: "What age would you relive?", opts: ["Childhood — carefree and simple", "Teens — everything was dramatic and exciting", "My twenties — energy and freedom", "Right now — I like where I am"] },
@@ -3867,11 +3071,8 @@ const ALL_QUESTIONS = [
 { q: "You feel most like yourself:", opts: ["Alone doing something I love", "With my closest people", "When I'm helping others", "In nature or open spaces"] },
 { q: "Your life soundtrack right now:", opts: ["Upbeat and energetic", "Mellow and reflective", "A little chaotic and eclectic", "Cinematic and dramatic"] },
 { q: "The best is yet to come:", opts: ["I genuinely believe that", "I hope so", "The best is happening now", "Every era has its best moments"] },
-
-// === BATCH: Kitchen & Cooking ===
 { q: "Following a recipe:", opts: ["To the letter — precision matters", "As a loose guide — I improvise", "I don't use recipes", "I read it once then wing it"] },
 { q: "Cooking for others:", opts: ["My love language", "Stressful — what if they don't like it", "I'll do it but keep it simple", "I'd rather order in"] },
-{ q: "Your spice tolerance:", opts: ["The hotter the better", "Medium — I like some kick", "Mild please", "I think black pepper is spicy"] },
 { q: "Dishes in the sink:", opts: ["Washed immediately after use", "By end of day", "When I run out of clean ones", "That's what a dishwasher is for"] },
 { q: "Your signature dish:", opts: ["Something impressive I've perfected", "Comfort food classic", "I don't really have one", "Cereal counts right?"] },
 { q: "Grocery shopping style:", opts: ["List and efficiency", "Wander and see what inspires", "Online delivery always", "Quick grab of the same things"] },
@@ -3879,59 +3080,38 @@ const ALL_QUESTIONS = [
 { q: "Kitchen gadgets:", opts: ["I have every tool imaginable", "Just the essentials", "Air fryer changed my life", "I barely use what I have"] },
 { q: "Cooking shows:", opts: ["Competitive ones — love the drama", "Cozy instructional ones", "I watch them but never cook the recipes", "Not my thing"] },
 { q: "Your relationship with meal prep:", opts: ["Sunday prep warrior", "I've tried and failed multiple times", "Too rigid for my lifestyle", "I prep mentally — does that count?"] },
-
-// === BATCH: Weather & Mood ===
 { q: "Thunderstorms:", opts: ["Cozy and exciting", "Scary — I check the weather app", "Great sleeping weather", "I barely notice them"] },
-{ q: "Your ideal temperature:", opts: ["70s and sunny", "Cool and crisp — sweater weather", "Hot — give me 90+", "I like variety and seasons"] },
-{ q: "Snow day energy:", opts: ["Hot cocoa and movies", "Out playing in it immediately", "Annoyed — now I can't drive", "Rare where I live but I'd love one"] },
 { q: "Humidity:", opts: ["My personal nemesis", "Doesn't bother me", "I'm used to it", "A reason I'd move somewhere else"] },
-{ q: "Sunset or sunrise:", opts: ["Sunset — I'm never up for sunrise", "Sunrise — peaceful and hopeful", "Both are magical", "I don't notice either honestly"] },
-{ q: "Weather affects your mood:", opts: ["Dramatically — I need sunshine", "Somewhat — gray days are harder", "Not really — I'm consistent", "I actually love overcast days"] },
 { q: "Windy days:", opts: ["Invigorating and dramatic", "Annoying — my hair", "Perfect for kite flying", "I don't think about wind much"] },
 { q: "Your weather-checking habit:", opts: ["Multiple times a day", "Morning check to plan outfit", "Only when traveling", "I just look outside"] },
 { q: "Fog:", opts: ["Mysterious and beautiful", "Dangerous — I drive slower", "Spooky and I love it", "Makes everything feel like a movie"] },
 { q: "First warm day of spring:", opts: ["Windows down, music up", "Immediately outside", "Suspicious — it'll be cold again tomorrow", "I start planning summer"] },
-
-// === BATCH: Technology Habits ===
 { q: "Phone battery at 20%:", opts: ["Panic mode — find a charger", "I'll manage", "I live dangerously under 10%", "Never happens — I charge preemptively"] },
 { q: "Notification settings:", opts: ["Everything on — I need to know", "Carefully curated", "Almost everything silenced", "I should really organize these"] },
 { q: "Smart home devices:", opts: ["My house is fully automated", "A few key ones", "None — I value privacy", "I want them but haven't set them up"] },
 { q: "Learning new software:", opts: ["Exciting — I dive right in", "Annoying but necessary", "I avoid it until forced", "I become the expert others ask"] },
 { q: "Your email inbox:", opts: ["Zero unread — always", "Organized with folders and filters", "Thousands of unread — it's fine", "Somewhere in between chaos and order"] },
-{ q: "Password management:", opts: ["Password manager — I'm organized", "Same few passwords everywhere", "I reset passwords constantly", "Written on a sticky note somewhere"] },
 { q: "Screen time report:", opts: ["I don't want to see it", "I check it and feel guilty", "It motivates me to reduce", "Surprisingly low — I'm disciplined"] },
 { q: "When tech breaks:", opts: ["I can usually fix it myself", "Immediately frustrated", "I ask someone tech-savvy", "A good excuse to buy new stuff"] },
 { q: "Your typing style:", opts: ["Fast and accurate", "Hunt and peck but efficient", "Mostly thumbs on phone", "I use voice-to-text a lot"] },
 { q: "First thing you check on your phone:", opts: ["Messages and texts", "Social media", "Email", "Weather or news"] },
-
-// === BATCH: Friendship Dynamics ===
 { q: "Your friend group size:", opts: ["Small and tight — 3-5 people", "Medium — 8-12 close friends", "Large — I know everyone", "I have different groups for different things"] },
 { q: "Reaching out first:", opts: ["Usually me — I'm the initiator", "50/50 — it balances out", "I wait for others usually", "I'm bad at this and trying to improve"] },
 { q: "A friend cancels plans:", opts: ["Honestly relieved sometimes", "Disappointed but understanding", "Annoyed — I cleared my schedule", "Depends on how often it happens"] },
-{ q: "Group chat energy:", opts: ["I'm the most active one", "I lurk but react to things", "Muted but I check occasionally", "I contribute when I have something good"] },
 { q: "Your role in the friend group:", opts: ["The planner — I organize everything", "The funny one", "The listener and advisor", "The wild card — unpredictable energy"] },
 { q: "Friends going through tough times:", opts: ["I show up with food and presence", "I give space until they reach out", "I send a long thoughtful message", "I try to solve the problem for them"] },
-{ q: "Making new friends as an adult:", opts: ["Easy — I'm naturally social", "Hard but I'm trying", "I'm content with who I have", "It takes me a long time to open up"] },
 { q: "Friend breakups:", opts: ["Worse than romantic ones sometimes", "Natural and I accept them", "I've been through one and it hurt", "I don't really 'break up' with friends"] },
 { q: "You and your closest friend:", opts: ["Talk every day", "Check in weekly", "Go weeks without talking and pick right up", "See each other more than we text"] },
 { q: "Friends with different political views:", opts: ["We respectfully disagree", "I avoid the topic", "It's caused real tension", "I value diverse perspectives"] },
-
-// === BATCH: Sleep & Dreams ===
 { q: "You fall asleep:", opts: ["Within minutes — out cold", "After some tossing and turning", "Takes me forever", "Depends on my stress level"] },
 { q: "Your dream life:", opts: ["Vivid and I remember them", "Wild but I forget by morning", "I rarely dream", "Lucid dreaming — I can control them sometimes"] },
 { q: "Naps:", opts: ["Essential and glorious", "They make me feel worse", "Only on weekends", "I can't nap even if I try"] },
-{ q: "Sleep position:", opts: ["Side sleeper — always", "Back sleeper", "Stomach sleeper", "I rotate through all of them"] },
 { q: "Alarm strategy:", opts: ["One alarm and I'm up", "Multiple alarms with snooze", "I wake up naturally", "I set an alarm but wake before it"] },
 { q: "Ideal bedtime:", opts: ["Before 10pm — I'm an early bird", "10-11pm — reasonable", "After midnight — night owl life", "It varies wildly"] },
 { q: "White noise or silence:", opts: ["White noise or fan — always", "Complete silence", "Music or podcast to fall asleep", "TV on in the background"] },
 { q: "Recurring dream theme:", opts: ["Being chased or running", "Flying or floating", "Teeth falling out", "I don't have recurring dreams"] },
 { q: "Waking up early on a day off:", opts: ["Enjoy the quiet morning", "Roll over and sleep more", "Annoyed at my body clock", "Use the time productively"] },
 { q: "Sharing a bed:", opts: ["Love it — human warmth", "I need my own space", "Fine if we have a big bed", "I'm a terrible bed partner — I move a lot"] },
-
-// === BATCH: Money & Spending ===
-{ q: "Impulse purchases:", opts: ["Regularly and no regrets", "Sometimes — depends on the price", "Very rarely — I'm disciplined", "I impulse buy then return things"] },
-{ q: "Splitting the bill:", opts: ["Always split evenly", "Pay for what you ordered", "One person treats, rotate next time", "I usually just cover it"] },
-{ q: "Your savings style:", opts: ["Automatic transfers — I don't touch it", "I save what's left at month end", "I'm working on building this habit", "I'm more of a spender honestly"] },
 { q: "Tipping:", opts: ["Generous — 20%+ always", "Standard 18-20%", "Based on service quality", "I wish tipping culture would change"] },
 { q: "Sales and deals:", opts: ["I hunt for the best price always", "I'll buy on sale but don't seek them out", "I buy what I want when I want it", "Black Friday is my Super Bowl"] },
 { q: "Lending money to friends:", opts: ["Happy to if I can afford it", "Only if they ask — and I don't expect it back", "Uncomfortable — it changes dynamics", "I'd rather buy them what they need"] },
@@ -3939,8 +3119,6 @@ const ALL_QUESTIONS = [
 { q: "Financial planning:", opts: ["Spreadsheets, budgets, the works", "General awareness but no strict budget", "I check my account and hope for the best", "An area I know I need to improve"] },
 { q: "Expensive taste:", opts: ["Absolutely — quality matters", "In certain categories only", "I'm perfectly happy with basics", "I appreciate luxury but can't always afford it"] },
 { q: "Charitable giving:", opts: ["Regular and planned", "Spontaneous when moved", "I give time more than money", "Something I want to do more of"] },
-
-// === BATCH: Creativity & Imagination ===
 { q: "Your creative outlet:", opts: ["Writing or journaling", "Visual art — drawing, painting, photos", "Music — playing or listening deeply", "I'm creative in how I solve problems"] },
 { q: "Daydreaming:", opts: ["Constantly — my mind wanders", "Sometimes when I'm bored", "I try to stay present", "It's where my best ideas come from"] },
 { q: "If you wrote a book it would be:", opts: ["Fiction — a wild adventure", "Memoir — my life's been interesting", "Self-help — I have wisdom to share", "A cookbook or how-to guide"] },
@@ -3951,8 +3129,6 @@ const ALL_QUESTIONS = [
 { q: "Your imagination level:", opts: ["Overactive — I live in my head", "Healthy — I use it when needed", "More practical than imaginative", "Creative in specific domains only"] },
 { q: "Photography:", opts: ["I take photos of everything", "Only special moments", "I take them but never look at them again", "I'm more in-the-moment than behind a lens"] },
 { q: "Your aesthetic:", opts: ["Minimalist — clean and simple", "Maximalist — more is more", "Eclectic — a mix of everything", "I don't think about aesthetics much"] },
-
-// === BATCH: Fitness & Movement ===
 { q: "Exercise motivation:", opts: ["Mental health — it's therapy", "Physical goals — I want results", "Social — I like classes or partners", "I struggle with motivation honestly"] },
 { q: "Your workout preference:", opts: ["Lifting weights", "Running or cardio", "Yoga or stretching", "Sports or active hobbies"] },
 { q: "Gym culture:", opts: ["I love the gym — it's my place", "I go but it's not my identity", "I prefer working out alone at home", "I don't go to the gym"] },
@@ -3963,20 +3139,14 @@ const ALL_QUESTIONS = [
 { q: "Post-workout feeling:", opts: ["Euphoric — endorphin high", "Satisfied and accomplished", "Exhausted and questioning my choices", "Ready for a big meal"] },
 { q: "Competitive sports:", opts: ["I love competing", "Fun casually but I'm not intense", "I prefer non-competitive movement", "I'm way too competitive for casual sports"] },
 { q: "Rest days:", opts: ["Essential and guilt-free", "I feel lazy if I rest", "Every day is a rest day", "Active recovery — light movement only"] },
-
-// === BATCH: Home & Living Space ===
 { q: "Your home vibe:", opts: ["Cozy and warm — lots of textures", "Clean and modern", "Cluttered but comfortable", "Still figuring out my style"] },
 { q: "Plants:", opts: ["My house is a jungle", "A few that I somehow keep alive", "I've killed every plant I've owned", "I prefer fake plants — no guilt"] },
-{ q: "Making the bed:", opts: ["Every morning without fail", "Most days", "What's the point — I'll be in it again", "Only when people come over"] },
 { q: "Candles:", opts: ["Always burning — I have a collection", "Occasionally for ambiance", "Fire hazard — I use plug-ins", "I forget to light them"] },
-{ q: "Your junk drawer:", opts: ["Organized chaos — I know where things are", "A disaster I'm afraid to open", "I don't have one — everything has a place", "Multiple junk drawers honestly"] },
 { q: "Home organization:", opts: ["Everything labeled and sorted", "Reasonably organized", "Organized in bursts then chaos returns", "I'm not an organized person"] },
 { q: "Neighbors:", opts: ["We're friendly — wave and chat", "I barely know them", "One good neighbor friend", "I prefer keeping to myself"] },
 { q: "Ideal living situation:", opts: ["House with a yard", "Apartment in the city", "Cabin or rural property", "Wherever my people are"] },
 { q: "Decorating walls:", opts: ["Gallery wall with lots of art", "A few meaningful pieces", "Bare — I haven't gotten to it", "Posters and prints — casual"] },
 { q: "The thermostat:", opts: ["I control it — don't touch", "Set it and forget it", "Constant battle with housemates", "I just put on more layers"] },
-
-// === BATCH: Reading & Learning ===
 { q: "Your reading habits:", opts: ["I always have a book going", "I read in spurts — binge then nothing", "I mostly read articles and online content", "I wish I read more than I do"] },
 { q: "Fiction vs nonfiction:", opts: ["Fiction — I love stories", "Nonfiction — I want to learn", "Both equally", "I lean one way depending on my mood"] },
 { q: "Podcasts:", opts: ["Addicted — I have a rotation", "A few favorites", "I've tried but they're not for me", "Only on road trips or commutes"] },
@@ -3987,8 +3157,6 @@ const ALL_QUESTIONS = [
 { q: "Audiobooks:", opts: ["My preferred way to read", "Good for certain types of books", "I can't focus on them", "I haven't tried them"] },
 { q: "Your attention span for learning:", opts: ["Long — I can focus for hours", "Moderate — I need breaks", "Short — I learn in quick bursts", "Depends entirely on the topic"] },
 { q: "A topic you could lecture on:", opts: ["Something from my career", "A random niche interest", "A specific historical period", "My own life experiences"] },
-
-// === BATCH: Social Scenarios ===
 { q: "You walk into a party alone:", opts: ["Find someone to talk to immediately", "Head to the food or bar first", "Look for someone I know", "I wouldn't go to a party alone"] },
 { q: "Someone remembers your name:", opts: ["Flattered and impressed", "Normal — I expect it", "Surprised — I'm bad with names too", "It makes me feel seen"] },
 { q: "Small talk with strangers:", opts: ["I'm great at it", "Painful but I manage", "I actually enjoy it", "I avoid it when possible"] },
@@ -3999,8 +3167,6 @@ const ALL_QUESTIONS = [
 { q: "Networking events:", opts: ["I thrive in these settings", "Exhausting but necessary", "I'd rather do anything else", "Only if there's good food and drinks"] },
 { q: "When someone cries in front of you:", opts: ["Hug them immediately", "Sit with them quietly", "Try to fix the problem", "Feel uncomfortable but stay present"] },
 { q: "Awkward silences:", opts: ["I fill them every time", "I'm comfortable with them", "I notice them but don't always fill them", "I create them accidentally"] },
-
-// === BATCH: Quirky Preferences ===
 { q: "Toilet paper orientation:", opts: ["Over — this is non-negotiable", "Under — and I'll defend it", "I don't care or notice", "I've flipped it at other people's homes"] },
 { q: "Socks in bed:", opts: ["Always — my feet get cold", "Never — I need freedom", "Depends on the season", "I start with them and kick them off"] },
 { q: "Sleeping with the door open or closed:", opts: ["Closed — always", "Open — I need airflow", "I don't think about it", "Closed for safety reasons"] },
@@ -4011,32 +3177,22 @@ const ALL_QUESTIONS = [
 { q: "The right way to eat a banana:", opts: ["Peel and bite", "Cut into slices", "From the bottom like a civilized person", "I don't eat bananas"] },
 { q: "How you eat a cupcake:", opts: ["Pull off the bottom, make a sandwich", "From the top like normal", "All frosting first", "In as few bites as possible"] },
 { q: "Ice in your drink:", opts: ["Lots of ice always", "A little ice", "No ice — I don't like diluted drinks", "Depends on the drink"] },
-
-// === BATCH: Opinions & Taste ===
 { q: "Best pizza style:", opts: ["New York thin crust", "Chicago deep dish", "Neapolitan", "Whatever's closest and hottest"] },
-{ q: "Breakfast for dinner:", opts: ["One of life's greatest ideas", "Occasionally fun", "Meals have their time slots", "I'd eat breakfast food 24/7"] },
 { q: "The best condiment:", opts: ["Hot sauce", "Ranch", "Garlic aioli", "Sriracha"] },
 { q: "Sparkling water:", opts: ["Obsessed — it's all I drink", "Occasional and refreshing", "Tastes like angry water", "I keep trying to like it"] },
 { q: "Iced coffee vs hot coffee:", opts: ["Iced even in winter", "Hot always", "Depends on the weather", "I don't drink coffee"] },
 { q: "The best meal of the day:", opts: ["Breakfast — fresh start energy", "Lunch — midday reward", "Dinner — the main event", "Snacks between meals honestly"] },
 { q: "Your comfort food:", opts: ["Mac and cheese", "Pizza", "Soup or stew", "Something my family makes"] },
 { q: "Fast food guilty pleasure:", opts: ["I have a specific go-to order", "I eat it and enjoy it — no guilt", "I avoid it", "Late-night drive-through hits different"] },
-{ q: "Water preference:", opts: ["Tap — I'm not picky", "Filtered always", "Specific bottled brand", "I don't drink enough water honestly"] },
 { q: "Cereal with milk:", opts: ["A perfect food at any time", "Childhood nostalgia only", "I eat it dry as a snack", "I've outgrown cereal"] },
-
-// === BATCH: Digital Life ===
 { q: "Your screen wallpaper:", opts: ["A photo of loved ones", "Nature or landscape", "Something aesthetic or abstract", "Default — I never change it"] },
 { q: "Unsubscribing from emails:", opts: ["I do it immediately", "I keep meaning to", "I just delete them", "I'm subscribed to things I forgot exist"] },
-{ q: "Online shopping at 2am:", opts: ["A regular occurrence", "Only when I can't sleep", "I have self-control at that hour", "My best purchases happen then"] },
-{ q: "Your relationship with your phone:", opts: ["Codependent — it's always in my hand", "Healthy — I use it as a tool", "I'm trying to use it less", "I forget where I put it constantly"] },
 { q: "Taking photos of food:", opts: ["Every meal — it's art", "Only if it's really photogenic", "Never — just eat it", "I judge people who do this (then do it myself)"] },
 { q: "Video calls:", opts: ["Prefer them over phone calls", "Necessary evil", "Camera off whenever possible", "I've gotten used to them"] },
 { q: "Texting back speed:", opts: ["Immediately — always", "Within a few hours usually", "I'm a terrible texter", "Depends entirely on who it is"] },
 { q: "Your notes app:", opts: ["Full of random lists and thoughts", "Organized and categorized", "I rarely use it", "It's basically my second brain"] },
 { q: "Social media posting:", opts: ["Regularly — I share my life", "Rarely — more of a lurker", "Stories yes, posts no", "I've quit most platforms"] },
 { q: "Binge-watching:", opts: ["I'll finish a series in a day", "A few episodes then I switch", "I watch one episode at a time", "I start shows and never finish them"] },
-
-// === BATCH: Sensory Preferences ===
 { q: "Loud noises:", opts: ["Don't bother me at all", "Startling but I recover fast", "I'm very sensitive to them", "Depends — music vs construction"] },
 { q: "Your sense of smell:", opts: ["Very strong — I notice everything", "Average", "Weak — I barely smell things", "Smells trigger strong memories for me"] },
 { q: "Textures that bother you:", opts: ["Certain fabrics drive me crazy", "Slimy or sticky foods", "I'm not texture-sensitive", "Styrofoam — don't touch it near me"] },
@@ -4047,20 +3203,14 @@ const ALL_QUESTIONS = [
 { q: "Wearing sunglasses:", opts: ["Always — even on cloudy days", "Only in bright sun", "I lose them too often to bother", "They're a fashion statement"] },
 { q: "Scented products:", opts: ["I love strong fragrances", "Subtle scents only", "Unscented everything", "I have a signature scent"] },
 { q: "Bare feet:", opts: ["Always when I'm home", "I prefer socks or slippers", "Outside too — I'm feral", "Only on carpet or clean floors"] },
-
-// === BATCH: Time & Productivity ===
 { q: "Your most productive time:", opts: ["Early morning — I'm a lark", "Late night — the world is quiet", "Midday — after coffee kicks in", "I'm productive in random bursts"] },
 { q: "To-do lists:", opts: ["I live by them", "I make them but don't always follow", "I keep tasks in my head", "Digital task apps are my thing"] },
 { q: "Procrastination:", opts: ["My constant companion", "Only for things I dread", "I tackle things early", "I do my best work under pressure"] },
 { q: "Time blindness:", opts: ["I have no concept of time passing", "I'm generally aware", "I'm very precise about time", "Only when I'm doing something fun"] },
-{ q: "Multitasking:", opts: ["I think I'm good at it", "I know I'm bad at it", "I do it anyway", "I prefer deep focus on one thing"] },
 { q: "Your calendar:", opts: ["Color-coded and detailed", "Basic appointments only", "I should use one more", "My brain is my calendar"] },
 { q: "Being early vs on time vs late:", opts: ["Always early — it's anxiety-based", "Right on time", "Fashionably late", "Depends on the event"] },
 { q: "Deadline pressure:", opts: ["Motivating — I need it", "Stressful but I meet them", "I finish way before the deadline", "A constant source of anxiety"] },
-{ q: "Sunday scaries:", opts: ["Every single week", "Occasionally", "What are those?", "I've found ways to manage them"] },
 { q: "Your morning routine:", opts: ["Structured and consistent", "Varies day to day", "Chaotic — I'm always rushed", "Slow and intentional"] },
-
-// === BATCH: Values & Priorities ===
 { q: "What matters most right now:", opts: ["Relationships and connection", "Career and financial goals", "Health and wellbeing", "Personal growth and learning"] },
 { q: "Success looks like:", opts: ["Freedom to spend time how I want", "Financial security and comfort", "Making a meaningful impact", "Strong relationships and community"] },
 { q: "Your non-negotiable:", opts: ["Respect in all relationships", "Time for myself", "Honesty — always", "Being able to be creative or curious"] },
@@ -4071,10 +3221,6 @@ const ALL_QUESTIONS = [
 { q: "Your reaction to injustice:", opts: ["Anger that motivates action", "Sadness and empathy", "I try to help where I can", "I feel overwhelmed and unsure how to help"] },
 { q: "Patience:", opts: ["One of my strengths", "Something I'm always working on", "Depends on the situation", "Not my strong suit at all"] },
 { q: "Gratitude practice:", opts: ["Daily and intentional", "I try but forget", "I feel it but don't formalize it", "I want to start one"] },
-
-// === BATCH: Hypothetical Scenarios ===
-{ q: "You can only eat one cuisine forever:", opts: ["Italian", "Mexican", "Japanese", "American comfort food"] },
-{ q: "Zombie apocalypse role:", opts: ["Leader — making the plans", "Scavenger — finding resources", "Medic — keeping people alive", "First to go honestly"] },
 { q: "You win $10 million:", opts: ["Invest most of it carefully", "Travel the world immediately", "Buy property and set up my life", "Give a lot of it away"] },
 { q: "Live in any decade:", opts: ["The 1920s — jazz and glamour", "The 1970s — music and freedom", "The 1990s — simplicity before smartphones", "The future — I want to see what's next"] },
 { q: "Dinner with anyone living:", opts: ["A world leader", "My favorite musician or artist", "A brilliant scientist", "Someone whose story I want to hear"] },
@@ -4083,22 +3229,15 @@ const ALL_QUESTIONS = [
 { q: "Desert island — one luxury item:", opts: ["A musical instrument", "An endless journal and pen", "A hammock", "A way to cook food well"] },
 { q: "If you could master any skill instantly:", opts: ["A musical instrument", "A new language", "A sport", "Cooking at chef level"] },
 { q: "Time travel — past or future:", opts: ["Past — so much I want to see", "Future — curiosity wins", "Neither — I'd mess something up", "Past to observe, never to change"] },
-
-// === BATCH: Self-Awareness ===
 { q: "Your biggest strength:", opts: ["Empathy and understanding others", "Problem-solving and logic", "Creativity and imagination", "Determination and follow-through"] },
 { q: "Your biggest weakness:", opts: ["Overthinking everything", "Being too hard on myself", "Avoiding confrontation", "Taking on too much"] },
-{ q: "Compliments make you:", opts: ["Glow — I love them", "Uncomfortable — I deflect", "Grateful but awkward", "Suspicious — what do they want?"] },
 { q: "You're wrong about something:", opts: ["I admit it quickly", "I need a minute to accept it", "I'll argue longer than I should", "I appreciate being corrected"] },
 { q: "Your inner critic:", opts: ["Loud and constant", "Manageable — I've worked on it", "Quiet — I'm kind to myself", "Depends on the area of my life"] },
 { q: "How well do you know yourself:", opts: ["Very well — I'm self-aware", "Pretty well but still learning", "I surprise myself sometimes", "I'm on a journey of figuring it out"] },
-{ q: "Asking for help:", opts: ["Easy — I'm not too proud", "Hard but I'm getting better", "I'd rather struggle alone", "Only from specific trusted people"] },
 { q: "Your attachment style:", opts: ["Secure — I feel confident in relationships", "Anxious — I need reassurance", "Avoidant — I value independence", "I'm still figuring this out"] },
 { q: "What drains your energy:", opts: ["Too much socializing", "Being alone too long", "Conflict and tension", "Boredom and routine"] },
 { q: "What recharges you:", opts: ["Alone time and quiet", "Being around my favorite people", "Physical activity or nature", "Creative projects or learning something new"] },
-
-// === BATCH: Pop Culture & Entertainment ===
 { q: "Your karaoke go-to:", opts: ["A power ballad", "A crowd-pleasing classic", "Something current and fun", "I don't do karaoke"] },
-{ q: "Movie genre of choice:", opts: ["Comedy — I want to laugh", "Thriller — keep me guessing", "Drama — make me feel things", "Sci-fi or fantasy — take me elsewhere"] },
 { q: "Background noise preference:", opts: ["TV show I've seen before", "Music — always music", "Silence — I prefer quiet", "Podcasts or audiobooks"] },
 { q: "Concert or festival:", opts: ["Concert — focused on one artist", "Festival — the whole experience", "Neither — I prefer recorded music", "Small intimate venue over both"] },
 { q: "You discover a new song you love:", opts: ["Listen on repeat 50 times", "Add to playlist and let it come naturally", "Share it with everyone I know", "Enjoy it in the moment"] },
@@ -4107,8 +3246,6 @@ const ALL_QUESTIONS = [
 { q: "Video games:", opts: ["A major hobby", "Casual — mobile or simple games", "Nostalgic — I play old favorites", "Not really my thing"] },
 { q: "When a movie makes you cry:", opts: ["I let it flow — feels good", "I hold it in — not in public", "It rarely happens", "Animated movies get me every time"] },
 { q: "Live theater:", opts: ["Love it — there's nothing like it", "Enjoy it but rarely go", "I'd rather watch a movie", "I've never been but I'm curious"] },
-
-// === BATCH: Nature & Outdoors ===
 { q: "Your nature preference:", opts: ["Mountains — I need elevation", "Ocean — water heals me", "Forest — trees and trails", "Desert — open space and silence"] },
 { q: "Camping:", opts: ["Love it — the more rugged the better", "Glamping — nature with comfort", "Not for me — I need a real bed", "I haven't been but I'd try it"] },
 { q: "Gardening:", opts: ["My therapy — I love it", "I'd like to learn", "I'm a plant killer", "Not interested honestly"] },
@@ -4119,20 +3256,14 @@ const ALL_QUESTIONS = [
 { q: "National parks:", opts: ["Bucket list goal — visit them all", "I've been to a few and loved them", "On my list but haven't gotten to it", "Not a priority for me"] },
 { q: "Sunburn history:", opts: ["I burn easily — sunscreen is essential", "I tan — rarely burn", "I've had some painful ones", "I stay in the shade or indoors"] },
 { q: "Your favorite weather to be outside in:", opts: ["Warm and sunny", "Cool and overcast", "After a rainstorm — everything fresh", "Snowy — winter wonderland"] },
-
-// === BATCH: Health & Wellness ===
 { q: "Your relationship with doctors:", opts: ["I go for regular checkups", "Only when something is really wrong", "I avoid them — white coat anxiety", "I'm proactive about preventive care"] },
-{ q: "Vitamins and supplements:", opts: ["I take them daily — a whole routine", "A few basics", "I keep forgetting to take them", "I'm skeptical of most supplements"] },
 { q: "How you handle being sick:", opts: ["I'm a dramatic patient", "I push through and deny it", "I rest and take care of myself", "I'm a terrible patient — impatient to recover"] },
 { q: "Mental health days:", opts: ["I take them without guilt", "I want to but feel guilty", "I use sick days but don't call them that", "I don't take them"] },
-{ q: "Water intake:", opts: ["I carry a bottle everywhere — hydration queen/king", "I'm decent but could be better", "I basically only drink other beverages", "I'm a water drinking machine"] },
 { q: "Your stress shows up as:", opts: ["Tension in my body — neck, shoulders", "Trouble sleeping", "Stomach issues", "Irritability and short temper"] },
 { q: "Therapy:", opts: ["Currently in it and it helps", "I've gone and found it valuable", "I'm open to it but haven't tried", "Not for me personally"] },
 { q: "Self-care for you is:", opts: ["Alone time doing nothing", "Physical — baths, skincare, movement", "Social — being with people I love", "Creative — making or learning something"] },
 { q: "How you feel about aging:", opts: ["Embracing it — every year is a gift", "Fighting it — I want to stay young", "Mixed feelings — wisdom but aches", "I don't think about it much yet"] },
 { q: "Your energy level most days:", opts: ["High — I'm always on the go", "Moderate — steady throughout the day", "Low — I'm often tired", "It varies wildly day to day"] },
-
-// === BATCH: Relationship Dynamics ===
 { q: "Your love language:", opts: ["Words of affirmation", "Quality time", "Physical touch", "Acts of service"] },
 { q: "Arguing with someone you love:", opts: ["I want to resolve it immediately", "I need space first then talk", "I avoid the argument entirely", "I'm direct — let's hash it out"] },
 { q: "What you notice first about someone:", opts: ["Their energy and vibe", "Their smile or eyes", "How they treat others", "Their sense of humor"] },
@@ -4143,8 +3274,6 @@ const ALL_QUESTIONS = [
 { q: "Your texting in relationships:", opts: ["Good morning texts every day", "Check in when I think of them", "We talk constantly throughout the day", "I'm not a big texter but I show up in person"] },
 { q: "Space in a relationship:", opts: ["Very important — I need my independence", "Healthy amounts — balance is key", "I prefer being together most of the time", "I'm still learning to balance this"] },
 { q: "Dealbreaker in any relationship:", opts: ["Dishonesty", "Lack of ambition or effort", "Disrespect toward others", "Inability to communicate"] },
-
-// === BATCH: Random Would-You-Rathers ===
 { q: "Always be 10 minutes early or 10 minutes late:", opts: ["Early — every time", "Late — at least I'll be relaxed", "I'm already one of these", "Depends on where I'm going"] },
 { q: "Know how you die or when you die:", opts: ["How — so I can avoid it", "When — so I can plan", "Neither — ignorance is bliss", "Both — give me all the information"] },
 { q: "Only whisper or only shout:", opts: ["Whisper — mysterious energy", "Shout — I'm already loud", "Whisper — I value quiet", "Shout — go big or go home"] },
@@ -4155,20 +3284,14 @@ const ALL_QUESTIONS = [
 { q: "Speak every language or play every instrument:", opts: ["Every language — connect with everyone", "Every instrument — music is universal", "Languages — practical and powerful", "Instruments — I'd start a one-person band"] },
 { q: "Live in a treehouse or a houseboat:", opts: ["Treehouse — forest vibes", "Houseboat — water is calming", "Treehouse — heights don't scare me", "Houseboat — I like the rocking"] },
 { q: "Unlimited travel or unlimited books:", opts: ["Travel — experiences over everything", "Books — my imagination travels for me", "Travel — I can read anywhere", "Books — I'm a homebody anyway"] },
-
-// === BATCH: Everyday Micro Decisions ===
-{ q: "You find $20 on the ground:", opts: ["Pocket it — finder's keepers", "Look around for the owner", "Leave it — someone needs it more", "Pick it up — it's my lucky day"] },
 { q: "The elevator is one floor away:", opts: ["I take the stairs", "I wait for the elevator", "Depends on my energy level", "Stairs are always my default"] },
 { q: "A song you love comes on in public:", opts: ["Sing along — who cares", "Subtle head nod and lip sync", "Resist because people are watching", "Full dance if I'm with the right people"] },
-{ q: "Someone mispronounces your name:", opts: ["Correct them gently", "Let it go — it's not worth it", "Depends on if I'll see them again", "It bothers me but I don't say anything"] },
 { q: "Free sample at the store:", opts: ["Always take it", "Only if I'm interested in buying", "I feel awkward and avoid them", "Take two — no shame"] },
 { q: "An item is slightly damaged at the store:", opts: ["Buy it at full price — it's fine", "Ask for a discount", "Put it back and find a perfect one", "Depends on how damaged"] },
 { q: "You get the wrong order at a restaurant:", opts: ["Send it back politely", "Eat it anyway — I don't want to bother", "Depends on how wrong it is", "I'll mention it but eat whatever comes"] },
 { q: "Someone waves at you and you're not sure it's you:", opts: ["Wave back enthusiastically", "Do a subtle wave just in case", "Look behind me first", "Pretend I didn't see it"] },
 { q: "A fly in your house:", opts: ["Hunt it down immediately", "Open a window and hope for the best", "Ignore it — it'll find its way out", "I can't rest until it's gone"] },
 { q: "The last slice:", opts: ["Take it without hesitation", "Offer it to others first", "Cut it in half to share", "I've been eyeing it but won't make the first move"] },
-
-// === BATCH: Morning vs Night ===
 { q: "Your brain at midnight:", opts: ["Racing with ideas and thoughts", "Already shut down for the night", "My most creative time", "Anxious about tomorrow"] },
 { q: "Early morning sunlight:", opts: ["Energizing — I love mornings", "Offensive — close the blinds", "Beautiful from my bed", "The reason I'm a morning person"] },
 { q: "Night drives:", opts: ["Peaceful and meditative", "Make me sleepy — dangerous", "My favorite time to drive", "I avoid driving at night"] },
@@ -4179,11 +3302,7 @@ const ALL_QUESTIONS = [
 { q: "Your wind-down routine:", opts: ["Structured — same steps each night", "Phone scrolling — I know it's bad", "Reading or watching something", "I don't have one — I just crash"] },
 { q: "Waking up to an alarm:", opts: ["I feel attacked every morning", "I'm used to it — it's fine", "I use a gentle one — sunrise clock", "I haven't used an alarm in years"] },
 { q: "Night owl or early bird:", opts: ["Night owl — I come alive after dark", "Early bird — mornings are magic", "Neither — I'm a mid-day person", "It shifts depending on my life phase"] },
-
-// === BATCH: Travel & Exploration ===
-{ q: "Packing style:", opts: ["Minimal — one bag does it all", "Overpacker — I need options", "Strategic — capsule wardrobe approach", "Chaotic — I'll figure it out there"] },
 { q: "Airport behavior:", opts: ["There 3 hours early — no stress", "Cutting it close — I live on the edge", "Lounge access if possible", "I actually enjoy airports"] },
-{ q: "Souvenir shopping:", opts: ["Something meaningful from each trip", "I skip souvenirs — memories are enough", "Fridge magnets — always", "I bring back food or local goods"] },
 { q: "Traveling with others:", opts: ["I prefer solo travel", "Small group — 2-3 people max", "The more the merrier", "Depends entirely on the people"] },
 { q: "Vacation reading:", opts: ["I bring multiple books", "I read on my phone or tablet", "I'm too busy exploring to read", "Vacation is my prime reading time"] },
 { q: "Lost in a new city:", opts: ["The best way to discover things", "Stressful — I need my map", "I embrace it for a bit then navigate", "I plan specifically to avoid this"] },
@@ -4191,8 +3310,6 @@ const ALL_QUESTIONS = [
 { q: "Jet lag strategy:", opts: ["Power through — stay awake", "Nap and adjust gradually", "Melatonin and strict schedule", "I accept my fate and suffer"] },
 { q: "Tourist attractions:", opts: ["I want to see the famous stuff", "I prefer hidden local spots", "A mix — hit the highlights then explore", "I'm anti-tourist crowds"] },
 { q: "Coming home from vacation:", opts: ["Relieved — I love my bed", "Sad — I want to keep traveling", "Motivated — travel inspires me", "Immediately planning the next trip"] },
-
-// === BATCH: Identity & Expression ===
 { q: "Your clothing style:", opts: ["Casual and comfortable always", "Put-together — I think about outfits", "Changes with my mood", "Function over fashion"] },
 { q: "Tattoos:", opts: ["I have some and want more", "I want one but can't commit", "Not for me personally", "I appreciate them on others"] },
 { q: "Your hair:", opts: ["I change it up frequently", "I've had the same style forever", "Low maintenance — whatever works", "A source of stress or pride depending on the day"] },
@@ -4203,4 +3320,683 @@ const ALL_QUESTIONS = [
 { q: "Cologne or perfume:", opts: ["Daily — I have a signature scent", "For special occasions", "I don't wear fragrance", "I rotate scents by mood or season"] },
 { q: "Glasses or contacts:", opts: ["Glasses — they're part of my look", "Contacts — I prefer them", "I switch between both", "I don't need them"] },
 { q: "Your bag or pockets:", opts: ["I carry everything — just in case", "Phone, keys, wallet — that's it", "A bag with my essentials organized", "I always forget something important"] },
+{ q: "Your childhood breakfast:", opts: ["Cereal — the sugary kind", "Toast or something quick", "A full hot breakfast", "I skipped breakfast as a kid too"] },
+{ q: "School picture day:", opts: ["I cared a lot — outfit planned", "My mom picked my outfit and I hated it", "I never looked good in school photos", "I was the kid making a funny face"] },
+{ q: "The smell that takes you back:", opts: ["Fresh-cut grass", "A specific food cooking", "Sunscreen and summer", "Old books or a library"] },
+{ q: "Your childhood hiding spot:", opts: ["My room — door closed", "A fort I built", "Outside — a specific tree or spot", "I wasn't much of a hider"] },
+{ q: "Sleepovers as a kid:", opts: ["The best nights of my childhood", "Stressful — I got homesick", "I was always the last one awake", "I was the host — my house was the spot"] },
+{ q: "Your first big purchase:", opts: ["A CD or album", "A video game", "Clothes I picked myself", "Something I saved up forever for"] },
+{ q: "Childhood injury badge of honor:", opts: ["A scar I still have", "Broken bone story", "I was a careful kid — nothing dramatic", "Too many to pick one"] },
+{ q: "The game you dominated as a kid:", opts: ["A video game — I was unbeatable", "A sport", "A board or card game", "Hide and seek — master hider"] },
+{ q: "Your childhood pet:", opts: ["A dog that was my best friend", "A cat I loved", "Fish or something small", "I didn't have pets growing up"] },
+{ q: "Saturday morning cartoons:", opts: ["I woke up early just for them", "Background noise while I ate cereal", "I preferred playing outside", "A sacred ritual"] },
+{ q: "Leaving a voice message:", opts: ["I leave detailed ones", "Quick and to the point", "I hang up and text instead", "Nobody leaves voicemails anymore"] },
+{ q: "Your Wi-Fi goes down:", opts: ["Immediate panic", "Good — forced offline time", "I troubleshoot it myself", "I hotspot from my phone instantly"] },
+{ q: "Reply all:", opts: ["I've been a victim of it", "I've accidentally done it", "I live in fear of it", "I use it deliberately sometimes"] },
+{ q: "Online reviews:", opts: ["I always read them before buying", "I write them for good and bad experiences", "I only write them when I'm upset", "I don't trust them much"] },
+{ q: "AutoCorrect:", opts: ["My enemy — it changes real words", "A lifesaver for my spelling", "I've sent embarrassing corrections", "I turned it off"] },
+{ q: "Streaming service loyalty:", opts: ["I rotate based on what's new", "I subscribe to too many", "One or two and that's it", "I borrow someone else's login"] },
+{ q: "Taking a call in public:", opts: ["I'll talk anywhere", "I step away to a quiet spot", "I let it go to voicemail", "Only if it's urgent"] },
+{ q: "Your phone case:", opts: ["Protective and practical", "Cute or stylish", "I go caseless — living dangerously", "I've had the same one forever"] },
+{ q: "Cloud storage:", opts: ["Everything is backed up", "I should organize my files", "I don't trust the cloud", "I'm running out of space constantly"] },
+{ q: "Your sandwich preference:", opts: ["Cold — classic deli style", "Hot — grilled or pressed", "Open-faced — I'm fancy", "Wraps count as sandwiches to me"] },
+{ q: "Cheese opinion:", opts: ["I love all cheese", "Specific favorites only", "I could live without it", "Cheese is its own food group for me"] },
+{ q: "Breakfast sweet or savory:", opts: ["Sweet — pancakes, waffles, pastries", "Savory — eggs, bacon, hash browns", "Both on the same plate", "I don't eat breakfast"] },
+{ q: "Your go-to snack:", opts: ["Something crunchy and salty", "Something sweet", "Fruit or something healthy", "I graze on whatever's around"] },
+{ q: "Spicy food philosophy:", opts: ["I want to feel the burn", "Flavorful heat — not just pain", "Mild is where I live", "I've built my tolerance up over years"] },
+{ q: "Dessert after dinner:", opts: ["Always — even just a small bite", "Only if it's really good", "Rarely — I'm usually full", "Dessert IS dinner sometimes"] },
+{ q: "Your drink order:", opts: ["Same thing every time — I know what I like", "I try something new each time", "Whatever someone recommends", "Water — I keep it simple"] },
+{ q: "Food texture dealbreaker:", opts: ["Mushy — I need some crunch", "Rubbery or chewy", "Slimy — absolutely not", "I'm not picky about textures"] },
+{ q: "Dining out alone:", opts: ["Perfectly comfortable", "Slightly awkward but I do it", "I'd rather get takeout", "One of life's underrated pleasures"] },
+{ q: "The last bite:", opts: ["I save the best part for last", "I eat it normally — no strategy", "I offer it to someone else", "I'm too full and leave it"] },
+{ q: "Delivering bad news:", opts: ["Direct — rip the bandaid off", "Cushioned — ease into it gently", "I procrastinate on it", "I overthink the wording endlessly"] },
+{ q: "Receiving criticism:", opts: ["I welcome it — I want to grow", "It stings but I process it", "I get defensive first, reflective later", "Depends on who it's from"] },
+{ q: "Your texting punctuation:", opts: ["Periods feel aggressive to me", "I punctuate properly always", "Heavy on the exclamation marks!!!", "Lowercase everything no punctuation"] },
+{ q: "Voice notes:", opts: ["I love sending and receiving them", "Send me a text — I won't listen", "Only with certain people", "I send paragraphs-long ones"] },
+{ q: "When someone says 'we need to talk':", opts: ["Immediate anxiety spiral", "Okay — I'm calm and curious", "I assume the worst every time", "I prefer this to surprise confrontation"] },
+{ q: "Your storytelling style:", opts: ["Every detail — I set the scene", "Quick and punchy — get to the point", "I get sidetracked mid-story", "I'm told I'm a great storyteller"] },
+{ q: "Responding to 'how are you':", opts: ["Good! — automatic response", "Actually honest about how I'm doing", "Depends on who's asking", "I deflect and ask them instead"] },
+{ q: "Group text energy:", opts: ["I keep it going — memes and reactions", "I respond when relevant", "I mute most group texts", "I'm the one who starts them"] },
+{ q: "Emoji usage:", opts: ["Heavy — they convey tone", "Occasional and strategic", "Rarely — words are enough", "I have a few favorites I overuse"] },
+{ q: "Laundry day:", opts: ["Scheduled — same day each week", "When I'm running out of clothes", "I wash but never fold promptly", "I actually enjoy doing laundry"] },
+{ q: "Your fridge:", opts: ["Organized with a system", "Full but chaotic", "Mostly empty — I shop as needed", "Contains mystery containers I'm afraid to open"] },
+{ q: "Vacuuming frequency:", opts: ["Multiple times a week", "Weekly — on a schedule", "When I notice it needs it", "When company is coming over"] },
+{ q: "Changing light bulbs:", opts: ["Immediately when they go out", "I live in darkness longer than I should", "A task I weirdly enjoy", "I wait until multiple are out"] },
+{ q: "Your bathroom:", opts: ["Spotless at all times", "Clean but not obsessively", "I deep clean in bursts", "The one room I keep perfect"] },
+{ q: "Mail handling:", opts: ["Opened and sorted same day", "Pile grows until I deal with it", "Everything important is digital", "I dread opening mail honestly"] },
+{ q: "Cooking cleanup:", opts: ["Clean as I go", "Deal with it after eating", "Whoever doesn't cook cleans", "The worst part of cooking"] },
+{ q: "Your pantry:", opts: ["Stocked and organized", "A few staples and random items", "I buy what I need per meal", "I have spices from five years ago"] },
+{ q: "Home maintenance:", opts: ["I fix things myself — YouTube taught me", "I call a professional immediately", "I ignore problems until they're urgent", "I'm handy with some things, not others"] },
+{ q: "Free will:", opts: ["I believe we have it fully", "It's more limited than we think", "An illusion that serves us well", "I go back and forth on this"] },
+{ q: "The meaning of life:", opts: ["To connect with other people", "To create and leave something behind", "To experience as much as possible", "There isn't one — we make our own"] },
+{ q: "An afterlife:", opts: ["I believe in something after", "I hope so but I'm not sure", "I don't think so", "The legacy we leave is our afterlife"] },
+{ q: "Aliens exist:", opts: ["Definitely — the universe is too big", "Probably but we'll never meet them", "I'm skeptical", "I want to believe"] },
+{ q: "Simulation theory:", opts: ["Honestly kind of plausible", "Fun to think about but no", "It wouldn't change how I live", "The ultimate existential question"] },
+{ q: "Nature vs nurture:", opts: ["Mostly nature — we're born who we are", "Mostly nurture — environment shapes us", "An inseparable mix of both", "Nurture can overcome almost any nature"] },
+{ q: "Money and happiness:", opts: ["Money absolutely helps happiness", "Only up to a point — then it plateaus", "The best things in life are free", "Financial stress ruins everything else"] },
+{ q: "Regret:", opts: ["I try not to have any — everything taught me something", "I have a few I think about", "I regret inaction more than action", "Regret is useful for learning"] },
+{ q: "Destiny vs chance:", opts: ["Things happen for a reason", "It's all random — we find patterns", "We create our own destiny", "A mix — some things feel fated"] },
+{ q: "What happens when we sleep:", opts: ["Our brain processes the day", "We enter another dimension", "The most important thing our body does", "I wish I could skip it and have more hours"] },
+{ q: "People watching:", opts: ["One of my favorite pastimes", "I do it without realizing", "I'm too in my own head to notice", "I make up backstories for strangers"] },
+{ q: "First impressions:", opts: ["I'm good at reading people", "I've been wrong enough to stay open", "I form them fast but adjust", "I try not to judge quickly"] },
+{ q: "Your stranger danger level:", opts: ["I trust most people — maybe too much", "Cautiously open", "I don't trust easily at all", "I trust my gut instinct about people"] },
+{ q: "Overhearing conversations:", opts: ["I can't help but listen", "I tune them out easily", "I've heard some incredible things", "I feel guilty for eavesdropping"] },
+{ q: "Seeing someone eat alone:", opts: ["I think nothing of it — it's normal", "I feel a little sad for them", "I admire their independence", "I wonder what their story is"] },
+{ q: "Tipping culture:", opts: ["I over-tip because service work is hard", "Standard percentage — fair is fair", "I wish it weren't expected", "I tip based on service quality"] },
+{ q: "Holding doors for people:", opts: ["Always — no matter how far away", "If they're close behind me", "And then we do the awkward jog", "Common courtesy I don't think about"] },
+{ q: "When someone is wrong:", opts: ["I correct them diplomatically", "I bite my tongue usually", "Depends on how wrong and about what", "I'll die on certain hills"] },
+{ q: "Public displays of affection:", opts: ["Cute — I'm here for it", "Keep it reasonable please", "Makes me uncomfortable", "Depends on the setting"] },
+{ q: "After a bad day:", opts: ["I need to talk it out", "Give me silence and space", "Comfort food and a cozy blanket", "A workout or physical outlet"] },
+{ q: "Your coping mechanism:", opts: ["Humor — I laugh through pain", "Action — I fix what I can", "Distraction — keep busy", "Processing — I sit with my feelings"] },
+{ q: "Comfort movie or show:", opts: ["Something I've seen 100 times", "A feel-good comedy", "An animated movie — always safe", "Whatever my comfort show is at the time"] },
+{ q: "You need a pick-me-up:", opts: ["Music — my instant mood changer", "A call with someone I love", "Something sweet or a treat", "Fresh air and movement"] },
+{ q: "When overwhelmed:", opts: ["I make a list to organize the chaos", "I shut down for a bit", "I tackle the smallest thing first", "I ask someone for help or perspective"] },
+{ q: "Your comfort meal:", opts: ["Something warm — soup, stew, pasta", "Takeout from my favorite place", "Homemade — the act of cooking calms me", "Snacks in bed — no judgment zone"] },
+{ q: "Crying:", opts: ["A healthy release I allow myself", "I try to hold it in", "Happens rarely but intensely", "I cry more than people realize"] },
+{ q: "A hug when you're upset:", opts: ["Exactly what I need", "Only from specific people", "Don't touch me right now", "I'll pretend I don't want one but I do"] },
+{ q: "Asking 'are you okay':", opts: ["I appreciate it even if I say I'm fine", "I wish people would just give me space", "It sometimes makes me cry", "I'm more likely to ask others than admit I'm not"] },
+{ q: "Playground equipment:", opts: ["Swings — the higher the better", "Monkey bars — upper body day", "Slides — speed demon", "I preferred making up my own games"] },
+{ q: "Your board game strategy:", opts: ["I play to win — fiercely competitive", "I'm there for the social time", "I bend the rules creatively", "I get bored halfway through"] },
+{ q: "Pillow forts:", opts: ["I built elaborate ones", "Simple but cozy", "I still build them honestly", "I was more of an outdoor kid"] },
+{ q: "Your playground role:", opts: ["The one organizing games", "The one doing my own thing", "Right in the middle of everything", "Quietly observing from the sidelines"] },
+{ q: "Imaginary friends:", opts: ["I had one or several", "I had imaginary worlds instead", "I didn't have any", "My stuffed animals were alive to me"] },
+{ q: "Childhood dares:", opts: ["I always accepted them", "I dared others more than I participated", "I was the cautious one", "I have a story that still gets told"] },
+{ q: "Tree climbing:", opts: ["Expert climber — the higher the better", "Moderate — I had limits", "I was scared of heights as a kid", "I fell out of a tree once and that was enough"] },
+{ q: "Playing in the rain:", opts: ["One of my best childhood memories", "My parents wouldn't let me", "Puddle jumping specifically", "I preferred staying dry"] },
+{ q: "Your imaginary game:", opts: ["Floor is lava — obviously", "Pretending to be a spy or hero", "Playing house or school", "I had my own original creation"] },
+{ q: "Catching fireflies:", opts: ["Magical — I loved it", "I've never seen a firefly", "I preferred watching them", "A specific summer memory for me"] },
+{ q: "Last thing you do before bed:", opts: ["Check my phone one more time", "Read a book or kindle", "Set my alarm", "Scroll until I fall asleep"] },
+{ q: "Your relationship with news:", opts: ["I stay very informed", "I check headlines but don't deep dive", "I limit it for my mental health", "I find out through social media or conversations"] },
+{ q: "Social media comparison:", opts: ["I'm aware of it and try to resist", "It doesn't affect me much", "I've curated my feed to avoid it", "I struggle with this more than I'd like"] },
+{ q: "Screen-free activities you love:", opts: ["Reading a physical book", "Cooking or baking", "Being outside or exercising", "Talking with people face to face"] },
+{ q: "Your phone during a movie:", opts: ["On silent and away — I'm fully present", "I might check it once", "I'm bad about this", "Only if the movie is boring"] },
+{ q: "Doom scrolling:", opts: ["I catch myself doing it often", "I've broken the habit mostly", "What's doom scrolling?", "Only late at night when I can't sleep"] },
+{ q: "Taking a photo vs being present:", opts: ["I take the photo — I want the memory", "I stay present — my memory is enough", "Quick photo then put the phone away", "I take too many photos and I know it"] },
+{ q: "Your screen time goal:", opts: ["I actively try to reduce it", "I'm not tracking it", "I've accepted my usage", "I replaced bad screen time with good screen time"] },
+{ q: "Notifications on your lock screen:", opts: ["Everything shows — I'm an open book", "Hidden previews — privacy matters", "I've minimized what comes through", "I didn't know you could change this"] },
+{ q: "Fall energy:", opts: ["My absolute favorite season", "Cozy vibes and pumpkin everything", "Beautiful but I dread winter coming", "Just another season to me"] },
+{ q: "Summer plans:", opts: ["Packed — every weekend is something", "Relaxed — I go with the flow", "Travel-focused — I save vacation for summer", "I don't love summer honestly"] },
+{ q: "Winter coping:", opts: ["I embrace it — winter sports, cozy nights", "I hibernate — see me in March", "Vitamin D supplements and a light lamp", "I plan a warm-weather escape"] },
+{ q: "Spring cleaning:", opts: ["I do a major purge every year", "I clean but it's not ceremonial", "More of a concept than a practice for me", "I clean continuously — no seasonal event needed"] },
+{ q: "Holiday season stress:", opts: ["High — I'm managing everything", "Low — I keep it simple", "I love the chaos honestly", "Mixed — joy and stress together"] },
+{ q: "Your summer drink:", opts: ["Iced tea or lemonade", "A frozen cocktail or mocktail", "Cold water — I keep it basic", "Iced coffee no matter what"] },
+{ q: "Snow activities:", opts: ["Skiing or snowboarding", "Building snowmen and snowball fights", "Watching from inside with hot cocoa", "I don't live somewhere with snow"] },
+{ q: "Your seasonal wardrobe:", opts: ["Completely different clothes each season", "A few key swaps — jackets, sandals", "I wear the same things year-round", "Fall and winter are my fashion seasons"] },
+{ q: "New Year's Eve:", opts: ["Big party or event", "Quiet night with close people", "I'm usually asleep before midnight", "It's just another night to me"] },
+{ q: "Daylight savings time:", opts: ["Messes me up for a week", "I adapt quickly", "I wish we'd pick one and stick with it", "I barely notice the change"] },
+{ q: "Your nervous habit:", opts: ["Fidgeting or tapping", "Biting nails or picking at skin", "Talking too much or too fast", "I get very quiet"] },
+{ q: "Talking to yourself:", opts: ["Constantly — full conversations", "When I'm working through something", "In the car — my safe space", "I don't do this"] },
+{ q: "Your sneezing style:", opts: ["Loud and dramatic", "Tiny and quiet", "Multiple sneezes in a row always", "I hold them in — it's a skill"] },
+{ q: "Singing in the shower:", opts: ["Full concert — water is my audience", "Humming maybe", "I use the shower for thinking not singing", "I sing everywhere not just the shower"] },
+{ q: "When you're cold:", opts: ["I complain until I'm warm", "I layer up silently", "I run hot — I'm rarely cold", "I refuse to turn up the heat — grab a blanket"] },
+{ q: "Your posture:", opts: ["Good — I'm conscious of it", "Terrible — I'm working on it", "Only good when I remember", "I've given up honestly"] },
+{ q: "Pen clicking:", opts: ["I do it unconsciously", "It drives me insane when others do it", "Satisfying fidget", "I don't use pens enough for this to apply"] },
+{ q: "Yawning when someone else yawns:", opts: ["Every single time", "Usually — I'm very susceptible", "I can resist it", "I yawned reading this question"] },
+{ q: "Walking into a room and forgetting why:", opts: ["Multiple times a day", "Occasionally — I retrace my steps", "Rarely — I'm focused", "I stand there staring into the void"] },
+{ q: "Your laugh when something is really funny:", opts: ["Silent wheeze — no sound comes out", "Uncontrollable and loud", "I slap my knee or whoever's next to me", "Tears streaming down my face"] },
+{ q: "Your lunch break:", opts: ["I take a real break and step away", "I eat at my desk", "I forget to eat sometimes", "Social — I eat with others"] },
+{ q: "Meetings:", opts: ["I like structured productive ones", "Most could be emails", "I doodle or zone out in long ones", "I run them efficiently"] },
+{ q: "Work inbox zero:", opts: ["Always — I can't function otherwise", "I strive for it but rarely achieve it", "Thousands of unread — it's fine", "I triage — star and ignore the rest"] },
+{ q: "Your desk:", opts: ["Clean and minimal", "Organized chaos — I know where things are", "Covered in sticky notes", "I don't have a fixed desk — I roam"] },
+{ q: "Commute time:", opts: ["I use it productively — podcasts, calls", "I zone out — it's my decompression", "I hate every second of it", "I work from home — what commute?"] },
+{ q: "Work-life balance:", opts: ["I've figured it out — mostly", "A constant struggle", "Work dominates right now", "Life dominates — work is just work"] },
+{ q: "Feedback at work:", opts: ["I seek it out actively", "I appreciate it when it comes", "I take it personally at first", "I prefer specific actionable feedback"] },
+{ q: "Starting a new job:", opts: ["Exciting — fresh start energy", "Terrifying — impostor syndrome", "I try to learn everything immediately", "I focus on building relationships first"] },
+{ q: "End of workday:", opts: ["I shut everything off — done", "I transition slowly", "Work thoughts follow me home", "I have a specific ritual to wind down"] },
+{ q: "Your spirit animal:", opts: ["Something bold — lion, eagle", "Something chill — sloth, cat", "Something clever — fox, crow", "Something social — dolphin, dog"] },
+{ q: "If you were a drink:", opts: ["Coffee — energetic and essential", "Wine — complex and refined", "Sparkling water — refreshing and light", "Hot chocolate — warm and comforting"] },
+{ q: "Your supermarket behavior:", opts: ["In and out — I'm on a mission", "I wander every aisle", "I impulse buy at the checkout", "I price compare everything"] },
+{ q: "Parallel lives — another career:", opts: ["Chef or restaurant owner", "Travel writer or photographer", "Teacher or professor", "Something creative — artist, musician"] },
+{ q: "Your party trick:", opts: ["I can make anyone laugh", "A weird physical talent", "I know a lot of random facts", "I don't have one — I'm the audience"] },
+{ q: "Fortune cookies:", opts: ["I take them seriously", "I read them for fun only", "I add 'in bed' to the end", "I just eat the cookie"] },
+{ q: "Your pizza order:", opts: ["Classic — pepperoni or margherita", "Loaded — the more toppings the better", "Something unique or gourmet", "Plain cheese — I'm a purist"] },
+{ q: "Bubble wrap:", opts: ["Must pop every single bubble", "A few satisfying pops", "I don't care about bubble wrap", "I save it — it's useful packing material"] },
+{ q: "The junk mail pile:", opts: ["Goes straight to recycling", "I flip through it first", "It accumulates on my counter", "Everything is digital — I don't get junk mail"] },
+{ q: "Your elevator behavior:", opts: ["I hold the door for everyone", "Phone out — avoid eye contact", "I'll make small talk", "I take the stairs when I can"] },
+{ q: "Your lunchbox as a kid:", opts: ["Themed — my favorite character", "Brown bag — classic", "I bought school lunch", "I was very picky about what went in"] },
+{ q: "Report cards:", opts: ["Straight A's — I was driven", "Good but could try harder", "I peaked in subjects I liked", "I didn't care about grades much"] },
+{ q: "Your childhood bedroom:", opts: ["Covered in posters", "Neat and organized", "A disaster zone", "Shared with a sibling — no personal space"] },
+{ q: "Library card:", opts: ["My most prized possession", "I had one but barely used it", "I discovered the library late", "I still use one regularly"] },
+{ q: "Field trips:", opts: ["The best days of school", "I got carsick on the bus", "I was the kid who got lost", "I remember a specific one vividly"] },
+{ q: "Childhood fear you've outgrown:", opts: ["The dark", "Thunderstorms", "Monsters under the bed", "I still have it honestly"] },
+{ q: "Your bike as a kid:", opts: ["Freedom — I rode everywhere", "I never learned to ride one", "I wiped out a lot", "Decorated with streamers and a bell"] },
+{ q: "Making friendship bracelets:", opts: ["I was the crafty one making them", "I wore every one I received", "Not really my thing", "A skill I still have"] },
+{ q: "Childhood punishment:", opts: ["Grounded — no TV or games", "Time out or go to your room", "The disappointed parent look", "I was a well-behaved kid — rarely punished"] },
+{ q: "Your show-and-tell item:", opts: ["Something I was genuinely proud of", "My pet if I could bring it", "I dreaded show-and-tell", "I brought the same thing every time"] },
+{ q: "Mirror check:", opts: ["I check myself out often", "Quick glance and go", "I avoid mirrors sometimes", "Only when I'm getting ready"] },
+{ q: "Your confidence level:", opts: ["Steady and quiet", "Fluctuates daily", "High — I've earned it", "Building it — it's a process"] },
+{ q: "Comparing yourself to others:", opts: ["I used to more — I'm better now", "Still my biggest challenge", "I genuinely don't compare much", "Only in specific areas of life"] },
+{ q: "Your relationship with your body:", opts: ["Mostly positive and appreciative", "Up and down — it changes", "I'm working on improving it", "Neutral — my body is functional and that's enough"] },
+{ q: "Self-talk:", opts: ["I'm my own biggest cheerleader", "I'm working on being kinder to myself", "Harsh — I hold myself to high standards", "Depends on the day and situation"] },
+{ q: "Setting goals:", opts: ["Big vision — 5-year plan", "Short-term — what's next", "I prefer going with the flow", "I set them but struggle with follow-through"] },
+{ q: "Your personal growth style:", opts: ["Books and podcasts — always learning", "Therapy and deep conversations", "Trial and error — learning from experience", "I grow through challenges naturally"] },
+{ q: "Celebrating personal wins:", opts: ["I celebrate everything — big and small", "I move to the next thing too quickly", "I'm learning to pause and appreciate", "I celebrate quietly — internal acknowledgment"] },
+{ q: "Museum type:", opts: ["Art museum — I want to feel things", "Science museum — I want to learn", "History museum — context matters", "Interactive or quirky museums"] },
+{ q: "Live music vs recorded:", opts: ["Live — the energy is everything", "Recorded — better sound quality", "Both serve different moods", "I prefer live but rarely go"] },
+{ q: "Your reading format:", opts: ["Physical books — I need the feel", "E-reader — convenience wins", "Audiobooks — listen while doing things", "I rotate between all three"] },
+{ q: "Stand-up comedy:", opts: ["Love it — I watch specials regularly", "Hit or miss — depends on the comedian", "I prefer funny movies or shows", "I've been to a live show and loved it"] },
+{ q: "Poetry:", opts: ["Moves me deeply", "I appreciate it but don't seek it out", "I find it hard to connect with", "I write it sometimes"] },
+{ q: "Your news source:", opts: ["A specific trusted outlet", "Multiple sources — I cross-reference", "Social media aggregation", "Other people tell me what's happening"] },
+{ q: "Dance:", opts: ["I love dancing — anywhere anytime", "Only after a couple drinks", "I'm a terrible dancer but I try", "I don't dance — I'm the watcher"] },
+{ q: "True crime:", opts: ["Obsessed — podcasts and documentaries", "Interesting in small doses", "Too dark for my taste", "I have opinions on specific cases"] },
+{ q: "Anime:", opts: ["I love it — don't get me started", "A few favorites but not deep in it", "Never watched any", "I appreciate the art form"] },
+{ q: "Your relationship with sports:", opts: ["Die-hard fan of my team", "Casual — I'll watch big events", "I play but don't watch", "Not interested in sports"] },
+{ q: "Your social battery:", opts: ["Large — I can go all day", "Medium — I need some recharging", "Small — I max out quickly", "Depends entirely on the people"] },
+{ q: "After a big social event:", opts: ["Energized — that was so fun", "Completely drained — I need a day", "Reviewing every conversation in my head", "Already planning the next one"] },
+{ q: "Making plans:", opts: ["I'm the one always organizing", "I go along with what others plan", "I cancel more than I should", "I prefer spontaneous hangouts over plans"] },
+{ q: "Your ideal Friday night:", opts: ["Out with friends — dinner and drinks", "Home with a movie and snacks", "A mix — early dinner then home", "Doing something active or adventurous"] },
+{ q: "Meeting a friend's friend:", opts: ["Easy — I click with new people", "Awkward at first but I warm up", "I prefer knowing everyone in the group", "I've made great friends this way"] },
+{ q: "FOMO level:", opts: ["High — I want to do everything", "Managed — I'm okay missing things", "Gone — I embrace JOMO (joy of missing out)", "Depends on what I'm missing"] },
+{ q: "Your hosting style:", opts: ["Everything planned — food, activities, vibes", "Casual — come over, we'll figure it out", "I prefer being the guest", "I host rarely but go all out when I do"] },
+{ q: "One-on-one vs group:", opts: ["I prefer one-on-one — deeper connection", "Groups are more fun", "Both serve different needs", "Small group of 3-4 is my sweet spot"] },
+{ q: "Leaving a party:", opts: ["Irish exit — I disappear", "Long goodbye — 30 minutes of leaving", "When I say I'm leaving I mean it", "I'm usually the last to leave"] },
+{ q: "Your energy in new social situations:", opts: ["Outgoing — I introduce myself", "Quiet observer until comfortable", "Anxious but I push through", "I attach to whoever I know"] },
+{ q: "You find a wallet with cash:", opts: ["Turn it in immediately — all of it", "Try to find the owner myself", "Take the cash, turn in the wallet", "Turn it in and hope for good karma"] },
+{ q: "White lies:", opts: ["Sometimes necessary and kind", "I try to always be honest", "I tell them more than I'd like to admit", "Only to protect someone's feelings"] },
+{ q: "Cheating in a board game:", opts: ["I'd never — integrity matters even here", "Only if it's funny", "I've been tempted", "In certain games it's part of the fun"] },
+{ q: "Someone gives you too much change:", opts: ["I give it back — always", "I'd keep it if it's small", "Depends on the business — big chain vs local", "I wouldn't notice honestly"] },
+{ q: "Honesty when asked 'does this look good':", opts: ["Always honest — they asked for a reason", "Honest but tactful", "I lie if the truth would hurt", "I redirect — 'have you tried this instead?'"] },
+{ q: "Standing up for a stranger:", opts: ["I always intervene", "I want to but sometimes freeze", "Only if I feel safe doing so", "I look for someone else to step in"] },
+{ q: "Gossiping:", opts: ["I participate more than I should", "I try hard not to", "I listen but don't spread it", "I'm the vault — things stop with me"] },
+{ q: "Your moral flexibility:", opts: ["Firm principles — very black and white", "Mostly firm with some gray areas", "Context matters — very situational", "I've become more nuanced with age"] },
+{ q: "Returning things you've used:", opts: ["If the policy allows it — yes", "Only if genuinely defective", "I feel too guilty", "I've done it and felt conflicted"] },
+{ q: "Fairness:", opts: ["The most important value to me", "Important but life isn't always fair", "I pick my battles with this", "I fight for fairness in small and big ways"] },
+{ q: "Your handshake:", opts: ["Firm and confident", "Adjusted to the other person", "I prefer a wave or nod", "I've been told it's too strong or too weak"] },
+{ q: "Finding a spider in your home:", opts: ["Catch and release outside", "Immediate removal — any means necessary", "I let it live — it eats other bugs", "I scream for help"] },
+{ q: "Your jeans fit:", opts: ["Skinny or slim", "Relaxed or straight", "Wide leg — comfort first", "I don't wear jeans much"] },
+{ q: "Airport snacks:", opts: ["I bring my own", "Overpriced but I buy them anyway", "I eat before I get there", "Trail mix and water — sensible choices"] },
+{ q: "Hotel room temperature:", opts: ["Arctic — I like it freezing", "Moderate and comfortable", "Warm — I hate being cold", "I adjust it multiple times a night"] },
+{ q: "Trying a new restaurant:", opts: ["I research the menu first", "I ask the server what's good", "I order the thing I'd never make at home", "I stick to what I know I'll like"] },
+{ q: "Waiting in line:", opts: ["Patient — I use my phone", "Impatient — I calculate the wait", "I'll leave if it's too long", "Great time for people watching"] },
+{ q: "Your car:", opts: ["Clean inside and out", "Lived-in and I'm fine with it", "The backseat is a storage unit", "I don't have a car"] },
+{ q: "Popcorn at the movies:", opts: ["Essential — it's part of the experience", "Only if someone else is buying", "I sneak in my own snacks", "I don't eat during movies"] },
+{ q: "City sounds at night:", opts: ["Comforting — I love urban energy", "Too loud — I need quiet", "White noise I've gotten used to", "I prefer nature sounds"] },
+{ q: "Rainy day plans:", opts: ["Stay in — movies and tea", "Go out anyway — I have an umbrella", "Clean or organize the house", "The best day for a nap"] },
+{ q: "Your ideal vacation length:", opts: ["A long weekend — 3-4 days", "One week — enough to unwind", "Two weeks — I need real decompression", "Extended — a month if I could"] },
+{ q: "Morning silence:", opts: ["Sacred — don't talk to me yet", "I'm chatty from the moment I wake up", "I need 30 minutes to become human", "Silence doesn't exist in my house"] },
+{ q: "Window seat or aisle:", opts: ["Window — I need to lean and look", "Aisle — I need to move freely", "Middle — said nobody ever", "Whichever I can get"] },
+{ q: "Your relationship with clutter:", opts: ["It stresses me out — I need clean space", "Creative clutter is different from mess", "I have a higher tolerance than most", "I declutter in intense bursts"] },
+{ q: "Perfect lazy day:", opts: ["Couch, snacks, streaming marathon", "Reading and napping in rotation", "Puttering around — low effort tasks", "I can't do lazy — I'd get restless"] },
+{ q: "The smell of your home:", opts: ["I have a specific candle or diffuser", "Clean laundry — always", "Food — something's always cooking", "I hope it smells okay — I can't tell anymore"] },
+{ q: "Background TV:", opts: ["Always on — even if I'm not watching", "Only when I'm actively watching", "I find it distracting", "Specifically comfort rewatches as background"] },
+{ q: "Your opinion on silence:", opts: ["I love it — my mind needs it", "I fill it with music or podcasts", "It makes me uncomfortable", "I appreciate it in small doses"] },
+{ q: "Minimalism:", opts: ["I aspire to it", "Too extreme — I like my stuff", "I practice it in certain areas", "I'm naturally a minimalist"] },
+{ q: "Sustainability:", opts: ["I try hard — it matters to me", "I do what I can without stressing", "I should do more honestly", "A priority that shapes my purchases"] },
+{ q: "Routine vs spontaneity:", opts: ["Routine — I need structure", "Spontaneity — keeps life exciting", "Routine on weekdays, spontaneous on weekends", "I crave both and struggle to balance"] },
+{ q: "Early retirement:", opts: ["The dream — I'm working toward it", "I'd be bored — I need purpose", "I'd retire to do something I love", "Not realistic for me but sounds nice"] },
+{ q: "Bucket list:", opts: ["I have a detailed one", "A mental list that keeps growing", "I don't have one — I take life as it comes", "I've checked off some big ones already"] },
+{ q: "Your philosophy on stuff:", opts: ["Less is more — experiences over things", "I love my things — they bring me joy", "I'm working on being less attached to stuff", "Different categories get different rules"] },
+{ q: "Journaling:", opts: ["Daily practice I love", "I start and stop constantly", "Not my style — I process differently", "I journal during tough times only"] },
+{ q: "Your approach to aging:", opts: ["Growing old gracefully", "Fighting it every step of the way", "Embracing each decade", "I don't think about it much yet"] },
+{ q: "Decluttering method:", opts: ["Marie Kondo — does it spark joy", "Seasonal purges", "I only declutter when moving", "I'm a sentimental keeper — nothing leaves"] },
+{ q: "Your life if it were a genre:", opts: ["Comedy — absurd things happen to me", "Drama — intense and emotional", "Adventure — always something new", "Slice of life — quiet and meaningful"] },
+{ q: "Crocs:", opts: ["Comfortable and I don't care", "A fashion crime", "Only for gardening or the beach", "They've actually grown on me"] },
+{ q: "Cilantro:", opts: ["Essential — put it on everything", "Tastes like soap to me", "I can take it or leave it", "I genuinely didn't know this was controversial"] },
+{ q: "Reply speed expectations:", opts: ["I expect quick replies", "Everyone has their own pace", "I get anxious waiting", "I'm the slow replier so I can't judge"] },
+{ q: "Arriving at a destination:", opts: ["I need recovery time before doing anything", "I'm ready to go immediately", "Unpack first then explore", "Depends on how long the travel was"] },
+{ q: "Motivational quotes:", opts: ["They actually inspire me", "Cheesy but sometimes hit", "I roll my eyes at them", "I have a favorite I come back to"] },
+{ q: "Your car radio:", opts: ["Same station or playlist always", "I flip constantly", "Podcasts have replaced music in the car", "Silence — I drive in peace"] },
+{ q: "Trying on clothes in stores:", opts: ["Always — I need to know the fit", "Sometimes for bigger purchases", "I buy and return what doesn't work", "I know my sizes and just grab them"] },
+{ q: "Putting gas in someone else's car:", opts: ["A thoughtful gesture I'd do", "I expect the same if they borrow mine", "I've never thought about this", "The love language nobody talks about"] },
+{ q: "Have a rewind button or a pause button for life:", opts: ["Rewind — fix my mistakes", "Pause — savor the moments", "Rewind — relive the good times", "Pause — I need more time in the day"] },
+{ q: "Know every language or play every sport:", opts: ["Every language — connect with anyone", "Every sport — athleticism unlocked", "Languages — more practical", "Sports — I'd love the physical talent"] },
+{ q: "Be able to fly or be invisible:", opts: ["Fly — ultimate freedom", "Invisible — ultimate observer", "Fly — I want the view", "Invisible — introvert dream"] },
+{ q: "Always have to say what you're thinking or never speak again:", opts: ["Say everything — radical honesty", "Never speak — I'll communicate other ways", "Say everything — the chaos would be fun", "Never speak — peace and quiet"] },
+{ q: "Live in the ocean or in space:", opts: ["Ocean — it's beautiful and mysterious", "Space — the final frontier", "Ocean — I love water", "Space — I want to see Earth from above"] },
+{ q: "Unlimited first class flights or $500 for every trip:", opts: ["First class flights — the experience", "$500 per trip — I'll fly economy", "First class — I deserve luxury", "$500 — that adds up fast"] },
+{ q: "Never get stuck in traffic or never get a cold:", opts: ["No traffic — time is precious", "No colds — I hate being sick", "No traffic — daily quality of life", "No colds — I'm a terrible sick person"] },
+{ q: "Be 10 years older or 10 years younger right now:", opts: ["Younger — more time ahead", "Older — skip the hard stuff", "Younger — with my current wisdom", "Older — I'm curious about future me"] },
+{ q: "Perfect memory or perfect creativity:", opts: ["Memory — never forget anything", "Creativity — always have new ideas", "Memory — exams and trivia mastered", "Creativity — that's where magic lives"] },
+{ q: "Never have to clean or never have to cook:", opts: ["Never clean — I enjoy cooking", "Never cook — cleaning is fine", "Never clean — my least favorite chore", "Never cook — I'd eat out anyway"] },
+{ q: "Introvert or extrovert:", opts: ["Introvert through and through", "Extrovert — I need people", "Ambivert — perfectly in the middle", "It depends on my energy that day"] },
+{ q: "Head or heart:", opts: ["Head — I think through decisions", "Heart — I follow my feelings", "Head first, heart validates", "Heart first, head reality-checks"] },
+{ q: "Leader or supporter:", opts: ["Leader — I like being in charge", "Supporter — I empower others", "Both depending on the situation", "I lead from behind — quiet influence"] },
+{ q: "Optimist or realist:", opts: ["Optimist — I believe the best", "Realist — I see things as they are", "Optimistic realist — hopeful but practical", "It shifts depending on my life phase"] },
+{ q: "Thinker or doer:", opts: ["Thinker — I plan extensively", "Doer — I figure it out as I go", "Thinker who forces myself to do", "Doer who wishes I thought more first"] },
+{ q: "Patient or impatient:", opts: ["Patient with people, impatient with things", "Generally patient — I can wait", "Very impatient — I want it now", "I've become more patient with age"] },
+{ q: "Old soul or young spirit:", opts: ["Old soul — I've always been mature", "Young spirit — I refuse to grow up", "Old soul with young energy", "Young spirit with old wisdom"] },
+{ q: "Morning person transformation:", opts: ["Always been one — I love mornings", "I've converted — it changed my life", "Still trying and failing", "Night owl forever — stop asking"] },
+{ q: "Planner or improviser:", opts: ["Planner — structure gives me peace", "Improviser — spontaneity is my thing", "Planner who loves when plans change", "Improviser who wishes they planned more"] },
+{ q: "Your energy archetype:", opts: ["Calm and steady — grounding presence", "High and electric — I bring the energy", "Warm and inviting — people feel safe", "Variable — I match whoever I'm with"] },
+{ q: "Your knife skills:", opts: ["Chef-level — I'm precise", "Functional — things get cut", "Dangerous — I've injured myself", "I use a food processor for everything"] },
+{ q: "Baking vs cooking:", opts: ["Baking — I love the precision", "Cooking — I love the improvisation", "Both equally", "Neither — I order in"] },
+{ q: "Your spice rack:", opts: ["Extensive and organized", "A few essentials", "Salt and pepper is a spice rack right?", "I buy spices for recipes and forget them"] },
+{ q: "Cooking fails:", opts: ["I've set off the smoke alarm", "I've made something inedible", "I learn from every mistake", "I rarely mess up honestly"] },
+{ q: "Your coffee order:", opts: ["Black — I'm a purist", "Something with milk and sweetness", "Elaborate — I have a specific build", "I don't drink coffee"] },
+{ q: "Meal portions:", opts: ["I cook for an army — leftovers for days", "Precise portions — no waste", "I always underestimate", "I eat out of the pot — who needs portions"] },
+{ q: "Kitchen cleanliness while cooking:", opts: ["Clean as I go — always", "War zone until the meal is done", "Someone else cleans while I cook", "I try but chaos takes over"] },
+{ q: "Food presentation:", opts: ["I plate things nicely — it matters", "Function over aesthetics", "Instagram-worthy when I try", "It all looks the same in my stomach"] },
+{ q: "Trying a recipe for the first time:", opts: ["Excited — new adventure", "Anxious — what if I mess up", "I modify it before I even try the original", "I usually nail it on the first try"] },
+{ q: "Trusting new people:", opts: ["I give trust freely until proven wrong", "Trust is earned slowly", "I'm trusting but cautious", "I've been burned enough to be careful"] },
+{ q: "Sharing good news:", opts: ["I tell everyone immediately", "Close circle first then wider", "I wait until it's certain", "I undersell it — don't want to jinx it"] },
+{ q: "Your walls:", opts: ["High but I'm working on lowering them", "Low — I'm an open person", "Selective — down for some, up for others", "I didn't know I had walls until someone pointed it out"] },
+{ q: "Emotional availability:", opts: ["I'm always there for people", "I have limits I respect", "I give too much sometimes", "I'm better at giving than receiving"] },
+{ q: "Receiving gifts:", opts: ["I love it — it's so thoughtful", "Awkward — I never know how to react", "I feel like I need to reciprocate immediately", "The thought matters more than the gift"] },
+{ q: "When someone lets you down:", opts: ["I express my disappointment", "I internalize it and adjust expectations", "I give them another chance", "It depends on the pattern vs one-time"] },
+{ q: "Being vulnerable first:", opts: ["I'll do it — someone has to start", "Only in safe established relationships", "Terrifying but I'm trying", "I wait for the other person to go first"] },
+{ q: "Your secret-keeping ability:", opts: ["Vault — nothing gets out", "Strong but I have one confidant", "I struggle with exciting secrets", "I keep serious ones, share funny ones"] },
+{ q: "Admitting you don't know something:", opts: ["Easy — I have no ego about it", "Depends on the setting", "Hard — I don't like looking uninformed", "I'll say 'I'll find out' instead"] },
+{ q: "Emotional intelligence:", opts: ["A strength of mine", "Something I actively develop", "Higher than people expect", "I'm better with others' emotions than my own"] },
+{ q: "City noise:", opts: ["My lullaby — I sleep better with it", "Tolerable with good windows", "It drives me crazy", "I've lived with it so long I don't hear it"] },
+{ q: "Public transportation etiquette:", opts: ["I always give up my seat", "Headphones on, world off", "I make eye contact and smile", "I follow unspoken rules religiously"] },
+{ q: "Food delivery apps:", opts: ["Use them way too often", "Occasional treat", "I prefer picking up myself", "The fees bother me too much"] },
+{ q: "Street food:", opts: ["Some of the best meals I've had", "I'm cautious but I'll try it", "A travel essential", "I stick to restaurants"] },
+{ q: "Your neighborhood:", opts: ["I know everyone and everything", "I know my immediate neighbors", "I'm pretty anonymous here", "I just moved — still exploring"] },
+{ q: "Coffee shop working:", opts: ["My preferred office", "Occasional change of scenery", "Too distracting for real work", "I go for the atmosphere, not productivity"] },
+{ q: "Jaywalking:", opts: ["I do it constantly", "Only when clearly safe", "Never — I follow the signals", "Depends on the city and traffic"] },
+{ q: "Farmers markets:", opts: ["I go regularly — it's a ritual", "Occasionally on a nice weekend", "I love the idea but never go", "I prefer the supermarket honestly"] },
+{ q: "Urban vs suburban:", opts: ["Urban — walkable and alive", "Suburban — space and quiet", "I've lived in both and prefer urban", "I've lived in both and prefer suburban"] },
+{ q: "Noise-canceling headphones:", opts: ["Essential — I wear them everywhere", "Great for travel and focus", "I prefer hearing my surroundings", "Life-changing purchase"] },
+{ q: "Your memory type:", opts: ["Visual — I remember what I saw", "Auditory — I remember what I heard", "Emotional — I remember how I felt", "Terrible — I don't remember much"] },
+{ q: "Remembering names:", opts: ["I'm great at it", "Terrible — it's embarrassing", "I use tricks to remember", "Good with faces, bad with names"] },
+{ q: "Time goes fastest when:", opts: ["I'm with people I love", "I'm in a flow state working", "I'm having fun or on vacation", "I'm scrolling my phone honestly"] },
+{ q: "Time goes slowest when:", opts: ["I'm waiting for something", "I'm bored or understimulated", "I'm anxious about something", "I'm at work watching the clock"] },
+{ q: "Your sense of time:", opts: ["Very accurate — I know what time it is", "Terrible — I lose track constantly", "Good in the morning, bad at night", "I rely completely on clocks and alarms"] },
+{ q: "Forgetting something important:", opts: ["Rare — I'm organized", "Happens more than I'd like", "I've developed systems to prevent it", "I forgot what this question was asking"] },
+{ q: "Anticipation vs memory:", opts: ["Anticipation is more exciting", "Memories are more valuable", "Both are equally important", "I live more in the present moment"] },
+{ q: "Your concept of 'the past':", opts: ["I visit it fondly", "I've let most of it go", "It shaped me but doesn't define me", "I think about it more than I should"] },
+{ q: "Déjà vu:", opts: ["I experience it frequently", "Occasionally and it's unsettling", "Rarely if ever", "It makes me question reality"] },
+{ q: "Your future self:", opts: ["I think about them constantly", "I'm building a good life for them", "I trust they'll figure it out", "I should probably plan more for them"] },
+{ q: "Your vibe on a scale:", opts: ["Chill — nothing rattles me", "Intense — I feel everything deeply", "Warm — I make people comfortable", "Chaotic — in the best way possible"] },
+{ q: "Theme song for your life:", opts: ["Something upbeat and empowering", "Something chill and introspective", "Something dramatic and cinematic", "It changes every week honestly"] },
+{ q: "Your unconventional skill:", opts: ["I can read a room instantly", "I remember tiny details about people", "I can fall asleep anywhere", "I can make friends with anyone"] },
+{ q: "Favorite time of day:", opts: ["Golden hour — late afternoon", "Late night — the world is quiet", "Early morning — fresh and calm", "Midday — peak energy time"] },
+{ q: "Your happy place:", opts: ["Near water — ocean, lake, river", "In the mountains or woods", "In my own home", "With my favorite people — location doesn't matter"] },
+{ q: "What you'd tell your younger self:", opts: ["It gets better — hang in there", "Take more risks while you can", "The people who matter will stay", "You know more than you think"] },
+{ q: "Today's mood:", opts: ["Grateful and content", "Tired but pushing through", "Excited about something", "Just vibing — no strong feelings"] },
+{ q: "How people describe you:", opts: ["The reliable one", "The funny one", "The thoughtful one", "The adventurous one"] },
+{ q: "Your final answer:", opts: ["I trust my gut", "I need more information", "I go with the safe choice", "I pick the exciting option"] },
+{ q: "This quiz made you feel:", opts: ["Seen — these questions get me", "Curious about what my friends would say", "Ready to overthink my answers", "Like I want to play again tomorrow"] },
+{ q: "Board game night frequency:", opts: ["Weekly — it's tradition", "Monthly with the right group", "Rarely but I enjoy it when it happens", "I'd rather do something else"] },
+{ q: "Your relationship with puzzles:", opts: ["Jigsaw puzzles are meditative", "Crosswords and word puzzles", "I don't have the patience", "Escape rooms are my thing"] },
+{ q: "Craft and DIY:", opts: ["I love making things by hand", "I'm not crafty at all", "Pinterest inspires me but I never follow through", "I have a specific craft I'm into"] },
+{ q: "Your podcast niche:", opts: ["Self-improvement or business", "Comedy and entertainment", "True crime or mystery", "Deep dives into random topics"] },
+{ q: "Thrift stores:", opts: ["I love the hunt for treasures", "Great for certain things", "Not my style — I prefer new", "I've found amazing things secondhand"] },
+{ q: "Maps and navigation:", opts: ["I love maps — old and new", "GPS dependent — no shame", "I have a good sense of direction", "I get lost constantly"] },
+{ q: "Your dream home feature:", opts: ["A huge kitchen", "A library or reading room", "An outdoor space — garden or patio", "A home gym or studio"] },
+{ q: "Paper books smell:", opts: ["Intoxicating — one of life's best smells", "Pleasant but I don't seek it out", "I've never thought about it", "Old books specifically — musty and wonderful"] },
+{ q: "Learning a new language:", opts: ["Currently learning one", "On my bucket list", "I've tried and it's hard", "I speak multiple already"] },
+{ q: "Humanity is:", opts: ["Fundamentally good", "Complicated but hopeful", "A mixed bag — capable of anything", "I go back and forth on this"] },
+{ q: "The news makes me:", opts: ["Informed and engaged", "Anxious and overwhelmed", "Motivated to help or act", "Numb — there's too much"] },
+{ q: "Climate change:", opts: ["My biggest concern for the future", "Important but I feel powerless", "I do what I can in my own life", "A problem I trust science to solve"] },
+{ q: "Technology's impact:", opts: ["More positive than negative", "More negative than positive", "Depends entirely on how we use it", "I'm cautiously optimistic"] },
+{ q: "Your generation:", opts: ["I'm proud of my generation", "I relate more to another generation", "Generational labels are too broad", "We get unfairly stereotyped"] },
+{ q: "The internet overall:", opts: ["Humanity's greatest tool", "A double-edged sword", "Better than worse despite its problems", "Ruining attention spans but connecting people"] },
+{ q: "Kindness in the world:", opts: ["I see it every day", "I wish there were more", "It exists in quiet places", "I try to be a source of it"] },
+{ q: "Life in another country:", opts: ["I'd love to try it", "I've done it and it changed me", "My country is where I belong", "Specific countries interest me"] },
+{ q: "Your hope for the future:", opts: ["More connection between people", "Technological solutions to big problems", "Better equality and justice", "That the next generation does better"] },
+{ q: "The thing the world needs most:", opts: ["More empathy", "Better education", "Stronger community", "More honest leadership"] },
+{ q: "Your energy right now:", opts: ["Chill and content", "Restless — need to do something", "Tired but satisfied", "Curious and open to whatever's next"] },
+{ q: "What you're looking forward to:", opts: ["Something specific coming up", "The weekend — always", "Summer or the next season", "Just seeing what happens"] },
+{ q: "End of a long day:", opts: ["I collapse — fully depleted", "I find a second wind", "I reflect on what went well", "I immediately start planning tomorrow"] },
+{ q: "How you define home:", opts: ["A physical place — my space", "Where my people are", "A feeling more than a place", "Still figuring this out"] },
+{ q: "Your go-to comfort:", opts: ["A specific person — I call them", "A specific activity — it always helps", "My own company and silence", "Varies — I have a toolkit of comforts"] },
+{ q: "Right now you need:", opts: ["Rest — deep, real rest", "Adventure — something new", "Connection — quality time with someone", "Purpose — a project or goal to chase"] },
+{ q: "One word for this chapter:", opts: ["Growth", "Change", "Gratitude", "Discovery"] },
+{ q: "Your parting thought:", opts: ["I'm doing better than I think", "Tomorrow is a new opportunity", "The small moments matter most", "I'm exactly where I need to be"] },
+{ q: "If today were a color:", opts: ["Blue — calm and steady", "Yellow — bright and hopeful", "Gray — meh but okay", "Orange — warm and energetic"] },
+{ q: "This conversation ends with:", opts: ["A smile", "A thought to sit with", "Curiosity about what's next", "Ready to share this with someone"] },
+{ q: "Your relationship with math:", opts: ["I enjoy it — numbers make sense", "It was my worst subject", "Useful but I don't love it", "I'm better at it than I expected"] },
+{ q: "Running late to something:", opts: ["I panic and rush", "I text ahead calmly", "Doesn't happen — I'm always early", "I've accepted my fate and stroll in"] },
+{ q: "Your go-to excuse:", opts: ["Traffic — it's always believable", "I wasn't feeling well", "I just tell the truth", "I lost track of time — and mean it"] },
+{ q: "Taking selfies:", opts: ["I take a lot — I know my angles", "Only for special occasions", "I'm terrible at them", "Someone else always takes my photo"] },
+{ q: "Your ice cream order:", opts: ["Classic — vanilla or chocolate", "Something adventurous — unique flavors", "Toppings are the point", "I prefer another dessert honestly"] },
+{ q: "Assembling furniture:", opts: ["I follow instructions precisely", "I skip the instructions and figure it out", "A relationship test with whoever's helping", "I pay someone to do it"] },
+{ q: "Your reaction to a jump scare:", opts: ["Full scream — every time", "Quick flinch then I'm fine", "I barely react", "I grab whoever's next to me"] },
+{ q: "Pressing the crosswalk button:", opts: ["Once and wait patiently", "Multiple aggressive presses", "I know it's a placebo but I press anyway", "I jaywalk instead"] },
+{ q: "Finding money in old clothes:", opts: ["The best surprise", "Happens more than it should", "I check pockets before washing", "I don't carry cash so it never happens"] },
+{ q: "Hotel breakfast buffet:", opts: ["I go hard — plate is stacked", "Modest and reasonable", "I eat like it's my last meal", "I usually skip hotel breakfast"] },
+{ q: "Your relationship with camping bugs:", opts: ["Part of the experience — I don't mind", "The reason I prefer glamping", "Mosquitoes find me irresistible", "Bug spray is non-negotiable"] },
+{ q: "Sending food back at a restaurant:", opts: ["Only if something is really wrong", "I'd rather suffer in silence", "I do it politely when needed", "I've never done it"] },
+{ q: "Your umbrella strategy:", opts: ["I always carry one — prepared", "I own many but forget them all", "I'd rather get wet than carry one", "I check weather and bring one if needed"] },
+{ q: "Sorting laundry:", opts: ["Lights and darks — always separate", "Everything goes in together", "I separate sometimes", "Cold water and hope for the best"] },
+{ q: "Checking the time:", opts: ["Phone — always", "Watch — I'm old school", "I ask someone else", "I have an internal clock"] },
+{ q: "Your snacking schedule:", opts: ["Constant grazer throughout the day", "One strategic snack between meals", "I wait for meals — no snacking", "Late night is my snacking time"] },
+{ q: "Seeing your reflection in a window:", opts: ["Quick check — how do I look", "I don't notice", "I avoid looking", "I make faces at myself"] },
+{ q: "Your ringtone:", opts: ["Default — I never changed it", "A specific song I chose", "Always on silent — who calls anymore", "Vibrate only"] },
+{ q: "Bookmarks vs dog-ears:", opts: ["Bookmarks — respect the book", "Dog-ears — the book is mine", "I remember my page somehow", "E-reader saves my spot"] },
+{ q: "Opening a package you ordered:", opts: ["Immediate excitement — rip it open", "Carefully with scissors", "I let it sit for a day sometimes", "The unboxing is half the fun"] },
+{ q: "Your staple takeout order:", opts: ["Chinese food", "Pizza", "Thai or Indian", "Something different every time"] },
+{ q: "Wearing the same outfit twice in a week:", opts: ["Nobody notices — I do it often", "I'd be self-conscious", "Jeans repeat but tops don't", "I have a small wardrobe — it's inevitable"] },
+{ q: "Your ideal desk snack:", opts: ["Something crunchy — nuts or pretzels", "Fruit or something healthy", "Chocolate or candy", "I don't snack at my desk"] },
+{ q: "Reaction to a compliment about your cooking:", opts: ["Thank you — I worked hard on it", "Deflect — it was nothing", "Ask if they want seconds", "Internally thrilled, externally humble"] },
+{ q: "Your shower singing genre:", opts: ["Power ballads — full performance", "Current hits — whatever's stuck in my head", "I hum more than sing", "I don't sing in the shower"] },
+{ q: "Wearing headphones in public:", opts: ["Always — my personal bubble", "Only for music or podcasts", "One ear in, one out — stay aware", "I prefer speakers when appropriate"] },
+{ q: "Your feelings about olives:", opts: ["Love them — green and black", "Absolutely not — pick them off", "I've come around to liking them", "Only in specific dishes"] },
+{ q: "Checking out at a store:", opts: ["Self-checkout always", "Cashier — I prefer human interaction", "Whichever line is shorter", "I use my phone to pay"] },
+{ q: "Reaction when your team loses:", opts: ["Genuinely upset — I'm invested", "Disappointing but I move on", "I make excuses for them", "I don't follow sports closely enough to care"] },
+{ q: "Your relationship with silence in conversation:", opts: ["I'm comfortable with pauses", "I fill them with whatever comes to mind", "I interpret silence as awkward", "Silence can say more than words"] },
+{ q: "Using coupons:", opts: ["Always — saving money is smart", "If I happen to have one", "I forget about them until they expire", "It feels like too much effort"] },
+{ q: "Finding a hair in your food:", opts: ["Instant appetite loss", "Remove it and keep eating", "Depends on where I am", "I'd send the dish back"] },
+{ q: "Your sock drawer:", opts: ["Organized — matched and folded", "A tangled mess of singles", "I don't use a drawer — they're in a pile", "All the same socks so matching doesn't matter"] },
+{ q: "Taking medicine:", opts: ["I take it right on schedule", "I need reminders", "I avoid it unless absolutely necessary", "I'm good with pills, bad with liquid medicine"] },
+{ q: "Your reaction to tourists in your city:", opts: ["Happy to help — I'll give directions", "Mildly annoyed — they walk too slow", "I was a tourist once too — patience", "I blend in and ignore them"] },
+{ q: "Waking up before your alarm:", opts: ["I feel accomplished — bonus time", "Annoyed — I wanted those extra minutes", "My body knows the routine", "I lie there waiting for the alarm anyway"] },
+{ q: "Your weekend alarm:", opts: ["None — I sleep until I wake", "Same as weekdays — consistency", "Later than weekdays — I earn this", "I set one just in case"] },
+{ q: "Sneezing in public:", opts: ["Cover my face and die of embarrassment", "Loud and proud — excuse me", "I try to hold it in", "Multiple sneezes — I make a scene every time"] },
+{ q: "Using the last of something:", opts: ["I replace it immediately", "I put the empty container back", "I'll get to it eventually", "I tell someone else to replace it"] },
+{ q: "Stepping on a Lego:", opts: ["The most painful thing known to humanity", "I have experience — I'm desensitized", "Hasn't happened to me", "I organize Legos specifically to avoid this"] },
+{ q: "Your approach to Black Friday:", opts: ["I'm in the trenches — give me deals", "Online only — I avoid the crowds", "I don't participate", "I buy one or two things max"] },
+{ q: "Wrapping leftovers:", opts: ["Proper containers — labeled and dated", "Plastic wrap or foil — whatever works", "I eat everything so there are no leftovers", "They go in the fridge and I forget about them"] },
+{ q: "Your seat on the couch:", opts: ["I have MY spot — don't sit there", "Wherever's open — I'm flexible", "The corner — maximum comfort", "I rotate — no commitment"] },
+{ q: "Daylight savings spring forward:", opts: ["I lose that hour for a week", "I adjust quickly — it's fine", "I love the extra evening light", "My sleep schedule is already chaotic"] },
+{ q: "Your reaction to autocorrect fails:", opts: ["I've sent some disasters", "I proofread everything — no fails", "I laugh at them", "They've caused genuine misunderstandings"] },
+{ q: "Bathroom reading material:", opts: ["My phone — always", "An actual book or magazine", "Nothing — I'm efficient", "Whatever's within arm's reach"] },
+{ q: "Loading the dishwasher:", opts: ["There's a correct way and I know it", "Just get it in there", "A source of household debate", "I hand wash — no dishwasher"] },
+{ q: "Your feelings about buffets:", opts: ["Love them — variety and value", "Overwhelmed — too many choices", "I eat way too much every time", "Germaphobe concerns"] },
+{ q: "Returning a shopping cart:", opts: ["Always — to the corral or store", "Usually unless I'm far away", "It tells you everything about a person", "I park near the cart return strategically"] },
+{ q: "Your thermostat wars:", opts: ["I always want it colder", "I always want it warmer", "I'm usually the one adjusting it", "I just put on or take off layers"] },
+{ q: "Watching someone parallel park:", opts: ["I'm silently judging their technique", "Rooting for them", "I look away — the secondhand stress", "I could do it better"] },
+{ q: "The Sunday paper:", opts: ["A tradition I love", "I read news digitally now", "I like the idea but never do it", "The comics section specifically"] },
+{ q: "Your stance on napping:", opts: ["A 20-minute power nap is perfect", "I can't nap without ruining my sleep", "An art form I've mastered", "Napping is for weekends only"] },
+{ q: "Eating the crusts:", opts: ["Always — it's part of the bread", "Cut them off — no thanks", "Depends on the bread quality", "I didn't know adults skipped crusts"] },
+{ q: "Your relationship with spiders:", opts: ["I catch and release them", "I want them gone immediately", "They're fine if they stay in their corner", "I actually think they're cool"] },
+{ q: "Being on camera:", opts: ["I'm comfortable — I photograph well", "Awkward — I never know what to do", "Better in candid than posed shots", "I avoid cameras when I can"] },
+{ q: "Your attitude toward mornings:", opts: ["Bright-eyed — mornings are a gift", "Slow but functional", "Hostile until coffee", "Mornings are a social construct"] },
+{ q: "Eating before grocery shopping:", opts: ["Essential — I buy too much if hungry", "I always forget to and regret it", "It doesn't affect my shopping", "Hungry shopping is a financial risk"] },
+{ q: "Your driving playlist:", opts: ["Upbeat bangers — road trip energy", "Chill vibes — relaxing drive", "A mix of everything on shuffle", "Podcasts replaced my driving music"] },
+{ q: "Using the express lane:", opts: ["Only when I'm under the item limit", "I've counted someone else's items before", "Close enough is fine", "I avoid it — too much pressure"] },
+{ q: "Free Wi-Fi:", opts: ["I connect everywhere — always", "Only at trusted places", "I use my data — security concerns", "The first thing I look for at a new place"] },
+{ q: "Folding a fitted sheet:", opts: ["I can do it — someone taught me", "I ball it up and move on", "A mystery I've accepted I'll never solve", "YouTube tutorials haven't helped"] },
+{ q: "Your attitude toward lines:", opts: ["Patient — I wait my turn", "I calculate the fastest line", "I'll leave if it's too long", "I find something to do while waiting"] },
+{ q: "Tasting food while cooking:", opts: ["Constantly — it's essential", "Once or twice before serving", "I trust the recipe and skip it", "Half the food is gone before it's done"] },
+{ q: "Your approach to New Year's:", opts: ["Reflect on the past year intentionally", "Set resolutions I'll actually keep", "Party and celebrate — it's a holiday", "Just another day — no big deal"] },
+{ q: "Getting blood drawn:", opts: ["I'm fine with it — no problem", "I look away but manage", "I'm genuinely afraid of needles", "The anticipation is worse than the actual thing"] },
+{ q: "Cleaning the car:", opts: ["Regular washes — inside and out", "When it's visibly dirty", "Rarely — it'll just get dirty again", "I pay for car washes — worth the money"] },
+{ q: "Your feelings about avocado:", opts: ["I put it on everything", "Overrated honestly", "Good in guacamole only", "The window of ripeness is too small"] },
+{ q: "Fire pit or fireplace:", opts: ["Fire pit — outdoor vibes", "Fireplace — indoor cozy", "Both — different moods", "I enjoy watching fire regardless"] },
+{ q: "Waking up to snow:", opts: ["Pure magic — I feel like a kid again", "Beautiful from inside — I'm not going out", "Means shoveling and I dread it", "I don't live somewhere it snows"] },
+{ q: "Road trip bathroom strategy:", opts: ["I go at every stop", "I can hold it for hours", "I plan stops around gas stations", "The source of most road trip tension"] },
+{ q: "Your jeans situation:", opts: ["I have a favorite pair I wear constantly", "Multiple pairs for different occasions", "I don't wear jeans often", "I'm still searching for the perfect pair"] },
+{ q: "Using a straw:", opts: ["Always — I don't like ice on my teeth", "Only for certain drinks", "Never — I drink from the cup", "Reusable straw — I carry one"] },
+{ q: "Midnight snack:", opts: ["Cereal — the classic choice", "Whatever's easiest to grab", "I make something proper", "I don't eat after dinner"] },
+{ q: "Your feeling about heights:", opts: ["I love them — the view is worth it", "Nervous but I'll do it", "Hard no — my stomach drops", "I've gotten better about them with time"] },
+{ q: "Singing happy birthday:", opts: ["I sing loudly and proudly", "I mouth the words", "The most uncomfortable song to be sung to", "I harmonize — I can't help it"] },
+{ q: "Your stance on reclining airplane seats:", opts: ["My right — I paid for the seat", "I never recline — it's rude", "Only on long flights", "I check behind me before reclining"] },
+{ q: "Using the snooze button:", opts: ["Multiple times — it's a ritual", "Once max", "I never snooze — I get up immediately", "I moved my alarm across the room to stop this"] },
+{ q: "Beach or pool:", opts: ["Beach — ocean waves and sand", "Pool — clean and controlled", "Beach for the views, pool for swimming", "I'm not much of a water person"] },
+{ q: "Wearing a watch:", opts: ["Every day — it's part of my outfit", "Only for dressy occasions", "I stopped when I got a phone", "A smartwatch — it does more than tell time"] },
+{ q: "Starting a jigsaw puzzle:", opts: ["Edges first — the classic approach", "I sort by color first", "I just start and figure it out", "I lose patience halfway through every time"] },
+{ q: "Going to the dentist:", opts: ["No big deal — I go regularly", "I procrastinate on scheduling", "Anxiety-inducing every time", "The clean feeling after makes it worth it"] },
+{ q: "Your pillow count:", opts: ["One — I'm practical", "Two — one for my head, one to hold", "Five or more — I build a nest", "I've stolen them all from the other side of the bed"] },
+{ q: "Your guilty pleasure meal:", opts: ["Fast food I'd never admit to", "A specific snack I could eat forever", "Breakfast for dinner counts", "I don't feel guilty about food"] },
+{ q: "Sitting in an empty theater:", opts: ["The dream — I love it", "Slightly eerie but I'll take it", "I wonder if I'm in the wrong place", "I picked the perfect time"] },
+{ q: "Your relationship with surprises:", opts: ["Love them — the bigger the better", "Only good surprises", "I prefer knowing what's coming", "I enjoy surprising others more than being surprised"] },
+{ q: "Hotel room pillows:", opts: ["I use all of them", "I toss most on the floor", "I request extra", "Hotel pillows are always wrong for me"] },
+{ q: "Your go-to greeting:", opts: ["Hey! — casual and warm", "A hug — I'm a hugger", "A wave — minimal contact", "It changes depending on who I'm greeting"] },
+{ q: "When the WiFi is slow:", opts: ["I reset the router immediately", "I wait impatiently for it to fix itself", "I switch to cellular data", "Technology hates me personally"] },
+{ q: "Trying on shoes:", opts: ["I walk around the store in them", "Quick try-on — I know my size", "I buy online based on reviews", "I need to wear them for a day to really know"] },
+{ q: "Getting a haircut:", opts: ["I love it — it's self-care time", "Anxiety-inducing — small talk required", "I go to the same person every time", "I cut my own hair sometimes"] },
+{ q: "Your feelings about mayonnaise:", opts: ["Essential condiment", "Absolutely not — keep it away", "In moderation and specific uses", "I didn't know it was controversial"] },
+{ q: "Receiving a phone call:", opts: ["Answer it — someone needs me", "Screen it — text me instead", "Heart rate spikes immediately", "Depends entirely on who's calling"] },
+{ q: "Eating leftovers cold:", opts: ["Some things are better cold", "Everything gets reheated", "Only pizza — cold pizza is elite", "I'd rather make something fresh"] },
+{ q: "Your couch pillow situation:", opts: ["Carefully arranged — aesthetic matters", "Functional — I lean on them", "Too many — I have to remove some to sit", "I don't have throw pillows"] },
+{ q: "Coffee shop order confidence:", opts: ["I order the same thing every time", "I try new things regularly", "I panic and pick something random", "I read the menu five times then get the usual"] },
+{ q: "Taking vitamins:", opts: ["Daily without fail", "When I remember — so like twice a week", "I don't take any", "I have a full supplement routine"] },
+{ q: "Your shower playlist:", opts: ["Upbeat — I'm performing", "Chill — this is relaxation time", "Whatever's trending", "Silence — the shower is my thinking space"] },
+{ q: "Choosing a seat at a restaurant:", opts: ["I have strong preferences — booth please", "Wherever the host seats me", "I want to face the room", "Near a window or outside if possible"] },
+{ q: "Finding a parking spot:", opts: ["I circle until I get a close one", "First spot I see — I'll walk", "I have a strategy that always works", "Parking stresses me out every time"] },
+{ q: "Your closet organization:", opts: ["Color-coded or categorized", "Somewhat organized — I know where things are", "A disaster I've accepted", "I reorganize it every few months"] },
+{ q: "Eating the free samples at a store:", opts: ["Every single one — I make a loop", "Only if it looks good", "I feel too awkward", "I go back for seconds if it's great"] },
+{ q: "Candles in your home:", opts: ["Multiple burning at all times", "A few favorites for special occasions", "I forget to light them", "I prefer diffusers or incense"] },
+{ q: "Your relationship with receipts:", opts: ["I save every one — just in case", "Digital receipts only", "They accumulate in my wallet and pockets", "I throw them away immediately"] },
+{ q: "Watching cooking shows:", opts: ["I get inspired and try new recipes", "Pure entertainment — I'll never make that", "I learn actual techniques from them", "I watch them while eating takeout"] },
+{ q: "Your approach to sunscreen:", opts: ["SPF every day — rain or shine", "Only at the beach or pool", "I always forget and regret it", "I reapply religiously"] },
+{ q: "Dealing with a flat tire:", opts: ["I can change it myself", "I'd call roadside assistance", "I'd YouTube it in the moment", "I'd call someone I know to help"] },
+{ q: "Your wallet or purse:", opts: ["Organized — everything has a slot", "Overstuffed with things I don't need", "Minimal — phone case wallet", "I should clean it out more often"] },
+{ q: "Waiting room behavior:", opts: ["Phone scrolling the entire time", "People watching quietly", "I brought a book or something to do", "Anxious — counting the minutes"] },
+{ q: "Your feelings about small dogs:", opts: ["I love all dogs regardless of size", "I prefer big dogs honestly", "Small dogs have the biggest personalities", "They're cute but I wouldn't own one"] },
+{ q: "Charging your phone:", opts: ["I plug in before it hits 20%", "I live dangerously in the red zone", "It's always charging somewhere", "I carry a portable charger everywhere"] },
+{ q: "Eating a banana:", opts: ["Peel from the top like most people", "Peel from the bottom — it's easier", "I break it in half", "I only eat them in smoothies or on cereal"] },
+{ q: "Your approach to lost things:", opts: ["Retrace my steps methodically", "Panic and look everywhere at once", "I ask someone else if they've seen it", "It'll turn up eventually — I move on"] },
+{ q: "Buying things on sale:", opts: ["I only buy what I need on sale", "I buy things I don't need because they're on sale", "I research sales and plan purchases", "Sales don't influence my decisions much"] },
+{ q: "Your towel usage after a shower:", opts: ["Fresh towel every time", "Same towel for a few days — I'm clean", "I have a rotation system", "I air dry when I can"] },
+{ q: "Watching a sequel without seeing the original:", opts: ["I'd never — I need the full story", "I'll figure it out as I go", "Only if someone fills me in first", "I've done it and been fine"] },
+{ q: "Your stapler:", opts: ["I know exactly where it is", "I haven't used one in years", "I borrow everyone else's", "I have strong brand loyalty for office supplies"] },
+{ q: "Walking barefoot:", opts: ["At home always — shoes off immediately", "Outdoors too — I love it", "Only in the house", "I prefer wearing socks or slippers"] },
+{ q: "Your pencil grip:", opts: ["Correct — I was taught properly", "Unconventional but it works", "I hold it so weird people comment", "I switched to typing and never looked back"] },
+{ q: "Decorating for holidays:", opts: ["I go all out — every surface", "Minimal tasteful touches", "Only for the big ones", "I appreciate others' decorations — I don't do my own"] },
+{ q: "Your nightstand:", opts: ["Organized — water, book, phone charger", "Cluttered with random things", "I don't use a nightstand", "Whatever I was holding before falling asleep"] },
+{ q: "Cleaning the microwave:", opts: ["When it needs it — I notice splatters", "Regularly — it's part of my routine", "When someone else points it out", "The steam trick with a bowl of water"] },
+{ q: "Your attitude toward yard work:", opts: ["Therapeutic — I enjoy it", "A necessary chore", "I'd rather pay someone", "I don't have a yard"] },
+{ q: "Eating cereal:", opts: ["Milk first is a crime — cereal first", "I eat it dry as a snack", "I haven't had cereal in years", "I eat it at all hours not just breakfast"] },
+{ q: "Passing someone on the sidewalk:", opts: ["Smile and nod", "Full hello or good morning", "Headphones in — I avoid interaction", "I move over and keep walking"] },
+{ q: "Your feelings about camping showers:", opts: ["Part of roughing it — I adapt", "The worst part of camping", "Baby wipes are my friend", "I don't camp somewhere without showers"] },
+{ q: "Peeling a sticker off cleanly:", opts: ["Deeply satisfying when it works", "I never get it clean — residue always", "I use heat or oil to help", "I don't notice either way"] },
+{ q: "Choosing a checkout lane:", opts: ["Fewest items wins", "I read the cashier's speed", "Self-checkout if available", "I always pick the slowest one somehow"] },
+{ q: "Your tea preference:", opts: ["I don't drink tea", "Hot tea with a specific brew", "Iced tea — sweet or unsweetened", "Herbal before bed is my ritual"] },
+{ q: "Squeezing the toothpaste:", opts: ["From the bottom — properly", "Middle squeeze — I'm chaotic", "I roll it up as it empties", "I buy a new one before the old one's done"] },
+{ q: "Your feelings about karaoke:", opts: ["I love it — give me the mic", "Only after some liquid courage", "I enjoy watching others", "My worst nightmare"] },
+{ q: "Airplane armrest:", opts: ["Middle seat gets both — it's the rule", "I claim mine early", "I avoid conflict — take it", "This is why I get the window or aisle"] },
+{ q: "Organizing photos:", opts: ["I sort them into albums regularly", "Thousands in my camera roll unsorted", "I've been meaning to organize them", "I delete as I go — curated collection"] },
+{ q: "Your type of tired:", opts: ["Physically tired — body needs rest", "Mentally tired — brain is fried", "Emotionally tired — I need space", "All three at once honestly"] },
+{ q: "Grocery list discipline:", opts: ["I stick to the list strictly", "The list is a suggestion at best", "I don't make a list — I wing it", "I make a list and still forget something on it"] },
+{ q: "Getting into a cold pool:", opts: ["Jump in — rip the bandaid off", "Inch by inch — torture method", "I only go in heated pools", "Cannonball — make a splash"] },
+{ q: "Your relationship with escalators:", opts: ["I walk up them — they're faster stairs", "I stand and enjoy the ride", "I take the stairs next to them", "I pick a side — walkers vs standers is serious"] },
+{ q: "Reacting to a wrong food order:", opts: ["I eat it anyway — it's fine", "I politely mention the mistake", "Silently disappointed", "It depends on how wrong it is"] },
+{ q: "Your approach to packing a suitcase:", opts: ["Rolling method — maximizes space", "Folding neatly in layers", "Everything gets shoved in", "I use packing cubes — game changer"] },
+{ q: "Seeing a dog in public:", opts: ["I ask to pet it every time", "I admire from a distance", "I talk to the dog not the owner", "My entire day improves"] },
+{ q: "Your password strategy:", opts: ["Password manager — unique for everything", "Variations of the same password", "I forget them constantly", "Written down somewhere supposedly safe"] },
+{ q: "Eating in bed:", opts: ["Regularly and shamelessly", "Only when I'm sick", "Never — crumbs are my enemy", "Snacks yes, full meals no"] },
+{ q: "When someone doesn't text back:", opts: ["I assume they're busy — no worries", "I spiral a little internally", "I double text after a reasonable wait", "I match their energy next time"] },
+{ q: "Forgetting someone's name mid-conversation:", opts: ["I confess immediately — it's less awkward", "I avoid using their name the entire time", "I ask someone else quietly", "I've developed tricks to get them to say it"] },
+{ q: "Gas station snacks:", opts: ["Specific favorites — it's a ritual", "Only on road trips", "I avoid them — overpriced", "The best part of stopping for gas"] },
+{ q: "Eating the last slice:", opts: ["I ask if anyone wants it first", "I take it — survival of the hungriest", "I split it with someone", "I want it but I won't take it"] },
+{ q: "Your morning face wash:", opts: ["Full skincare routine", "Splash of water and go", "Whatever soap is in the shower", "I have a routine but skip it too often"] },
+{ q: "Your go-to board game:", opts: ["Strategy — Settlers, Risk, Chess", "Party game — Codenames, Cards Against Humanity", "Classic — Monopoly, Clue, Scrabble", "I'd rather play a card game"] },
+{ q: "Setting an out-of-office reply:", opts: ["Detailed — who to contact and when I'm back", "Brief — I'm away, talk soon", "I forget to set one", "I secretly love the freedom of being OOO"] },
+{ q: "Your approach to stretching:", opts: ["Daily routine — my body needs it", "Only before exercise", "I know I should but I don't", "Yoga counts as stretching right"] },
+{ q: "Eating at a food court:", opts: ["I walk the entire loop before deciding", "I know exactly where I'm going", "Everyone gets something different — that's the point", "I bring my own food to the mall"] },
+{ q: "Hearing your recorded voice:", opts: ["Hate it — that doesn't sound like me", "I've gotten used to it", "It's fine — I don't mind", "I avoid hearing it when possible"] },
+{ q: "Your feelings about condiments:", opts: ["Ketchup on everything", "Hot sauce is my condiment of choice", "Ranch dressing — the universal dip", "I like my food without extra sauces"] },
+{ q: "Taking stairs vs elevator:", opts: ["Stairs when it's a few floors", "Elevator always — save my energy", "Stairs — it's free exercise", "Depends on if I'm carrying things"] },
+{ q: "Grocery store when hungry:", opts: ["Everything looks good — budget ruined", "I resist and stick to my list", "I buy snacks I'll eat in the car", "I've learned to eat first"] },
+{ q: "Your sleep position:", opts: ["Side sleeper — specifically one side", "Back sleeper — proper alignment", "Stomach sleeper — face down", "I rotate all night like a rotisserie"] },
+{ q: "Tying a tie:", opts: ["I can do it with my eyes closed", "I need a YouTube tutorial every time", "I keep one pre-tied", "I avoid wearing ties entirely"] },
+{ q: "Your favorite room in the house:", opts: ["Kitchen — it's the heart of the home", "Bedroom — my sanctuary", "Living room — where life happens", "Bathroom — underrated alone time"] },
+{ q: "Using the last paper towel:", opts: ["I replace the roll immediately", "I leave the empty tube for the next person", "I switch to a regular towel", "I didn't notice it was the last one"] },
+{ q: "Your approach to sunburns:", opts: ["Aloe vera immediately", "I tan through it — it'll be fine", "Prevention — I don't get them", "I peel and it's weirdly satisfying"] },
+{ q: "Movie theater candy:", opts: ["I sneak my own in", "I buy the overpriced stuff — it's tradition", "Popcorn only — I don't need candy", "I share someone else's"] },
+{ q: "Your feelings about wind:", opts: ["Refreshing on a hot day", "It ruins my hair and I hate it", "Windy days are cozy inside days", "I enjoy a strong breeze honestly"] },
+{ q: "Telling someone they have food in their teeth:", opts: ["Immediately — I'd want to know", "Subtle signal — touch my own teeth", "Only if I know them well", "I don't say anything — too awkward"] },
+{ q: "Your backup plan tendency:", opts: ["Always have one — or three", "I wing it and hope for the best", "I plan so well I don't need one", "I make a backup plan for my backup plan"] },
+{ q: "Eating an orange:", opts: ["Peel it by hand — the traditional way", "Cut it into slices", "I prefer mandarins or clementines", "Too much work — I'd rather have an apple"] },
+{ q: "When the power goes out:", opts: ["Candle-lit adventure — I love it", "Immediately check my phone battery", "I'm useless without electricity", "I find the flashlight and wait it out"] },
+{ q: "Your relationship with Mondays:", opts: ["Fresh start energy — I like them", "Dread them every Sunday night", "They're fine — just another day", "I've made peace with Mondays"] },
+{ q: "Walking and texting:", opts: ["I do it and bump into things", "I stop walking to text properly", "I'm skilled at it — peripheral vision", "A hazard I'm trying to stop"] },
+{ q: "Your approach to hangers:", opts: ["All matching — aesthetic matters", "Whatever I have — function over form", "I've upgraded and it changed my closet", "I didn't know people had opinions about hangers"] },
+{ q: "Eating soup:", opts: ["Comfort food perfection", "Only when I'm sick", "Year-round — not just a winter thing", "I prefer stews — I want more substance"] },
+{ q: "When someone waves and it's not at you:", opts: ["The most embarrassing moment possible", "I wave anyway and own it", "I pretend I was reaching for something", "I've been on both sides of this disaster"] },
+{ q: "Your feelings about camping:", opts: ["Love it — nature resets me", "Glamping is more my speed", "I've tried it and it's not for me", "I want to love it more than I do"] },
+{ q: "Finishing a really good book:", opts: ["Immediate sadness — I need more", "I sit with it for a while", "I recommend it to everyone immediately", "I start a new one right away"] },
+{ q: "Wearing mismatched socks:", opts: ["On purpose — it's my thing", "Only happens by accident in the dark", "It would bother me all day", "Nobody sees my socks so who cares"] },
+{ q: "Your approach to icebreakers:", opts: ["I enjoy them — they serve a purpose", "Tolerate them — just get through it", "I dread them physically", "I'm the one making them fun for everyone"] },
+{ q: "Eating fries:", opts: ["Ketchup is mandatory", "I dip in something unexpected", "Plain — I want to taste the fry", "I steal them from other people's plates"] },
+{ q: "When an elevator is taking too long:", opts: ["I press the button again repeatedly", "I take the stairs instead", "I wait patiently", "I check if I'm on the right floor"] },
+{ q: "Your reaction to plot twists:", opts: ["I gasp out loud — full reaction", "I saw it coming", "I need to talk about it immediately", "I rewind and watch the clues I missed"] },
+{ q: "Shopping cart etiquette:", opts: ["I stay to one side of the aisle", "I park it and browse on foot", "I'm probably blocking someone right now", "I go fast — in and out"] },
+{ q: "Your attitude toward leftovers:", opts: ["Tomorrow's lunch — I plan for them", "Some things are better the next day", "I rarely have leftovers", "They sit in the fridge until I throw them out"] },
+{ q: "Reacting to a really bad movie:", opts: ["I finish it anyway — I committed", "I walk out or turn it off", "I enjoy bad movies honestly", "I complain about it for days"] },
+{ q: "Your reaction to getting a compliment from a stranger:", opts: ["It makes my whole day", "Suspicious — what do they want", "I return one immediately", "Flustered but grateful"] },
+{ q: "Flossing:", opts: ["Daily — my dentist would be proud", "When I remember or before the dentist", "I use those floss pick things", "I should do it more honestly"] },
+{ q: "Picking a movie to watch:", opts: ["I decide quickly — let's go", "I scroll for longer than the movie itself", "I let someone else decide", "I have a watchlist I work through"] },
+{ q: "Your approach to thank you notes:", opts: ["I write them for everything — handwritten", "For big things — gifts, interviews", "I thank people verbally instead", "I've been meaning to send one for weeks"] },
+{ q: "When someone pronounces your name wrong:", opts: ["I correct them immediately", "I let it slide — it's not worth it", "Depends on if I'll see them again", "It happens so often I've given up"] },
+{ q: "Your relationship with ironing:", opts: ["I iron everything — wrinkles bother me", "The dryer is my iron", "I own an iron but rarely use it", "Steamer convert — never going back"] },
+{ q: "Eating pizza crust:", opts: ["The best part — I save it", "Dip it in sauce and then eat it", "I leave it on the plate", "It depends on the crust quality"] },
+{ q: "Your approach to gift cards:", opts: ["I use them immediately", "They expire before I remember them", "The perfect gift to give and receive", "I forget I have them"] },
+{ q: "Wearing new shoes:", opts: ["Break them in at home first", "Wear them out immediately and suffer", "I buy comfortable shoes so breaking in isn't needed", "Blisters are the price of fashion"] },
+{ q: "Your relationship with to-do lists:", opts: ["I live by them — multiple lists", "I make them and ignore them", "Mental lists only — nothing written", "I add things I've already done just to cross them off"] },
+{ q: "Eating popcorn:", opts: ["Butter and salt — classic", "Plain — I actually prefer it", "Loaded with toppings", "I eat it one piece at a time"] },
+{ q: "When a song comes on you love:", opts: ["Volume up immediately", "I sing along — full performance", "I tell everyone to listen", "I just enjoy it quietly"] },
+{ q: "Your stance on pineapple on pizza:", opts: ["Absolutely yes — sweet and savory", "A crime against pizza", "I don't care either way", "I've changed my mind on this over time"] },
+{ q: "Sharing your location:", opts: ["With close people always — safety", "Only when meeting up", "I'm private about my location", "I forget it's on and sharing with everyone"] },
+{ q: "Your feelings about pigeons:", opts: ["City wildlife — I appreciate them", "Rats with wings — stay away", "I feed them when no one's looking", "I've never thought about pigeons this much"] },
+{ q: "When a store employee asks if you need help:", opts: ["No thanks I'm just looking — always", "Yes actually — I need to find something", "I avoid eye contact so they don't ask", "I appreciate it even when I don't need it"] },
+{ q: "Your pencil case:", opts: ["Organized with specific tools", "A zipper bag with random pens", "I haven't had one since school", "I use one pen for everything"] },
+{ q: "Your go-to salad dressing:", opts: ["Ranch — the crowd pleaser", "Vinaigrette — light and tangy", "Caesar — I'm a classic person", "I rotate depending on the salad"] },
+{ q: "Eating chips from a bag:", opts: ["I pour them into a bowl like a civilized person", "Straight from the bag — no dishes", "I share the bag", "I eat the whole bag in one sitting"] },
+{ q: "When your favorite show ends:", opts: ["I'm in mourning — nothing fills the void", "I immediately search for something similar", "I rewatch it from the beginning", "I move on quickly to the next thing"] },
+{ q: "Your relationship with sticky notes:", opts: ["They're everywhere — my system", "Occasional reminders only", "Digital notes replaced them for me", "I buy them but never use them"] },
+{ q: "Your feelings about roller coasters:", opts: ["The bigger the better — I love the rush", "A few favorites but nothing too extreme", "I watch from the ground", "I've overcome my fear and now enjoy them"] },
+{ q: "Eating watermelon:", opts: ["Seeds don't bother me — I spit them", "Seedless only — no negotiations", "I cut it into cubes like an adult", "The best summer food there is"] },
+{ q: "When you trip in public:", opts: ["I look back at what tripped me", "I pretend it didn't happen and walk faster", "I laugh at myself", "I check if anyone saw"] },
+{ q: "Your feelings about board games that take hours:", opts: ["I'm in — the longer the better", "Two hours max — then I'm done", "I lose interest after an hour", "Only with the right group of people"] },
+{ q: "Making your bed:", opts: ["Every morning — non-negotiable", "Only when someone's coming over", "What's the point — I'm getting back in", "I pull the covers up and call it made"] },
+{ q: "Your approach to birthdays:", opts: ["I love celebrating mine", "I downplay mine but celebrate others", "Age is just a number — no big deal", "I plan my own birthday events"] },
+{ q: "Eating a taco:", opts: ["It falls apart and I accept the mess", "I've mastered the head-tilt technique", "Soft tortilla — structural integrity", "I eat the filling that falls out with a fork"] },
+{ q: "Your feelings about roundabouts:", opts: ["Efficient — better than traffic lights", "Stressful — I never know when to go", "I've gotten used to them", "I'll take the long way to avoid one"] },
+{ q: "Using a public restroom:", opts: ["No problem — when you gotta go", "Only in emergencies", "I have standards — some I won't use", "I scope out the cleanest option"] },
+{ q: "Your feelings about thunderstorms:", opts: ["I love watching them", "They make me anxious", "Perfect sleeping weather", "I'm fascinated by the science"] },
+{ q: "When you see a rainbow:", opts: ["I stop and appreciate it", "I try to take a photo", "I point it out to everyone around me", "Nice but I keep moving"] },
+{ q: "Your approach to potlucks:", opts: ["I bring my signature dish", "I buy something and pretend I made it", "I bring drinks — safest option", "I stress about what to bring for days"] },
+{ q: "Eating peanut butter:", opts: ["By the spoonful — straight from the jar", "Only on sandwiches or toast", "With apples or celery — healthy combo", "I'm not a peanut butter person"] },
+{ q: "Your feelings about piggyback rides:", opts: ["Fun at any age", "I'm too self-conscious for that", "I'll give one but not receive", "A core memory from childhood"] },
+{ q: "When your phone dies in public:", opts: ["Mild panic — I'm disconnected", "Freeing honestly — forced presence", "I always have a charger so this doesn't happen", "I feel naked without my phone"] },
+{ q: "Drinking water:", opts: ["I'm always hydrated — I track it", "I forget and then chug a bunch", "I only drink when I'm thirsty", "I carry a water bottle everywhere"] },
+{ q: "Your thoughts on garage sales:", opts: ["Love the treasure hunt", "I've found incredible deals", "I prefer selling to buying", "Not worth the effort for either side"] },
+{ q: "Cooking with a recipe:", opts: ["I follow it exactly the first time", "It's more of a guideline", "I look at it once and improvise", "I only use recipes for baking"] },
+{ q: "Getting a new phone:", opts: ["Exciting — I set it up immediately", "Dreading the data transfer", "I keep phones until they die", "I stay up to date with new releases"] },
+{ q: "When you accidentally wave at a stranger:", opts: ["Commit to it — we're friends now", "Pretend I was stretching", "Laugh it off", "My face goes completely red"] },
+{ q: "Your opinion on breakfast in bed:", opts: ["Romantic and lovely in theory", "Crumbs in the sheets — no thanks", "I'd rather eat at a table", "I've done it and loved it"] },
+{ q: "Your approach to tipping at coffee shops:", opts: ["Always — even for a basic drip", "For complicated drinks or great service", "I feel guilted by the screen flip", "I tip in the jar when I use cash"] },
+{ q: "Eating a cinnamon roll:", opts: ["Unroll it and eat layer by layer", "Bite right in — no technique", "Center first — it's the best part", "With extra frosting on top"] },
+{ q: "When you remember something embarrassing:", opts: ["Physical cringe — I wince", "I think about it for the rest of the day", "I've learned to laugh at myself", "It hits me right before sleep"] },
+{ q: "Your thoughts on meal prepping:", opts: ["I do it weekly — saves time and money", "I've tried it but it doesn't stick", "I admire people who do it", "The containers alone would stress me out"] },
+{ q: "Seeing a full moon:", opts: ["I always notice and appreciate it", "I take a photo even though it never looks right", "It affects my energy honestly", "I don't look up enough to notice"] },
+{ q: "Your approach to road rage:", opts: ["I stay calm — it's not worth it", "I have a few choice words for bad drivers", "Deep breaths and let it go", "I've gotten much better about this"] },
+{ q: "When you finish a TV series:", opts: ["I read fan theories and discussions", "I need a few days before starting something new", "I rewatch my favorite episodes", "Post-show emptiness is real"] },
+{ q: "Your relationship with Post-its on a computer monitor:", opts: ["Covered — it's my dashboard", "One or two reminders max", "I use digital equivalents", "They fall off and I lose the information"] },
+{ q: "Your approach to eye contact:", opts: ["Natural and steady — I'm engaged", "I have to remind myself to do it", "Too much feels intense", "It depends on the conversation and person"] },
+{ q: "Eating ice cream:", opts: ["Cone — the only way", "Cup — less mess and more toppings", "Straight from the container at home", "I let it melt a little first"] },
+{ q: "When someone holds the elevator:", opts: ["I jog to it — don't waste their kindness", "I wave them off — take the next one", "Grateful — I always thank them", "I hold it for others more than people hold it for me"] },
+{ q: "Your favorite kind of silence:", opts: ["After a long day — earned quiet", "Nature sounds — not true silence but close", "Middle of the night — the world is asleep", "Shared silence with someone comfortable"] },
+{ q: "Your approach to trying new foods:", opts: ["I'll try anything once", "Cautiously adventurous", "I stick to what I know", "I've been expanding my palate recently"] },
+{ q: "When you lose at something:", opts: ["Competitive fire — I want a rematch", "Good game — I'm gracious about it", "Quietly frustrated but I hide it", "I analyze what went wrong"] },
+{ q: "Your approach to sunsets:", opts: ["I stop what I'm doing to watch", "Beautiful but I don't go out of my way", "I've chased a sunset for the perfect view", "Sunrise is more my thing"] },
+{ q: "When someone recommends a restaurant:", opts: ["I save it and go within a week", "It goes on a list I rarely reference", "I need multiple people to recommend it", "I trust certain people's taste more than others"] },
+{ q: "When someone asks what you do for fun:", opts: ["I have a quick answer ready", "I draw a blank every time", "I list too many things", "Fun? I'm still figuring that out"] },
+{ q: "Your relationship with ladders:", opts: ["No problem — I climb without thinking", "I hold on tight and don't look down", "Someone has to hold it or I won't go", "I avoid them completely"] },
+{ q: "Eating while walking:", opts: ["A skill I've perfected", "I prefer to sit down for meals", "Only snacks — not a full meal", "A necessary part of a busy life"] },
+{ q: "Your photo pose:", opts: ["I have a go-to angle", "Peace sign without thinking", "I never know what to do with my hands", "Candid shots are my best ones"] },
+{ q: "When you can't sleep:", opts: ["I lie there and overthink everything", "I get up and do something", "I count down from 100", "I listen to something calming"] },
+{ q: "Your approach to souvenirs:", opts: ["I buy something from every trip", "I prefer photos as souvenirs", "Magnets or small tokens only", "I never buy souvenirs — I have the memories"] },
+{ q: "Eating the whipped cream first:", opts: ["Always — it's the best part", "I mix it in", "I skip whipped cream", "I add more before I start"] },
+{ q: "Your relationship with rubber bands:", opts: ["I snap them on my wrist without thinking", "I shoot them at people", "I use them for actual organizing", "I collect them from produce and never use them"] },
+{ q: "Using public gym equipment:", opts: ["I wipe it down before and after", "Before only — I trust the system", "I don't think about it honestly", "I prefer working out at home"] },
+{ q: "Your handshake vs hug decision:", opts: ["I read the other person's body language", "Defaulting to hug — I'm warm", "Handshake unless we're close", "The awkward moment when you pick wrong"] },
+{ q: "Smelling a book:", opts: ["One of life's great pleasures", "Only old books specifically", "I've never done this intentionally", "New book smell is better than old book smell"] },
+{ q: "When someone sneezes:", opts: ["Bless you — every time without fail", "Gesundheit — I keep it interesting", "I say nothing — it's just a sneeze", "I say it up to three times then stop"] },
+{ q: "Your approach to potluck sizing:", opts: ["I make way too much — better safe", "I ask how many people are coming", "I always underestimate", "I bring a store-bought item sized for the group"] },
+{ q: "Eating a donut:", opts: ["One clean bite at a time", "It crumbles everywhere and I accept it", "I lick the glaze first", "Dunked in coffee — the only way"] },
+{ q: "When a stranger smiles at you:", opts: ["I smile back automatically", "I wonder why they're smiling at me", "It brightens my day", "I might not notice honestly"] },
+{ q: "Your feelings about jury duty:", opts: ["Civic duty — I take it seriously", "I'll do it but I'm not excited", "I try to get out of it", "I've never been called somehow"] },
+{ q: "Dropping something in public:", opts: ["I pick it up quickly and hope no one saw", "I loudly narrate — whoops!", "Someone helps before I can get it", "The five second rule applies to food"] },
+{ q: "Your typing speed:", opts: ["Very fast — I learned early", "Hunt and peck — but efficient", "Fast on my phone, slower on a keyboard", "I don't think about it — muscle memory"] },
+{ q: "When the check comes at dinner:", opts: ["I grab it first", "I offer to split", "I wait for someone else to make the move", "I calculate exact amounts per person"] },
+{ q: "Your approach to sunglasses:", opts: ["I lose every pair I buy", "One good pair that I protect", "I buy cheap ones because I lose them", "Prescription sunglasses — essential"] },
+{ q: "Eating a burrito:", opts: ["Structurally challenging but I commit", "I eat it as a bowl — fork and knife", "Tin foil technique — unwrap as you go", "One of the perfect foods"] },
+{ q: "When you hear someone laugh really hard:", opts: ["I start laughing too — it's contagious", "I want to know what's funny", "It makes me smile automatically", "I'm probably the reason they're laughing"] },
+{ q: "Eating lunch at your desk:", opts: ["Most days honestly", "I try to take a real break", "I eat fast and get back to work", "I don't have a desk job"] },
+{ q: "When someone asks for a restaurant recommendation:", opts: ["I have a list ready for every category", "I think too long and then recommend something basic", "I always say my current favorite", "I recommend based on what I know they like"] },
+{ q: "Your approach to getting dressed:", opts: ["I plan outfits the night before", "I grab what's clean and go", "I change three times before leaving", "Weather determines everything"] },
+{ q: "Using paper maps:", opts: ["A lost art I appreciate", "I'd be lost without GPS", "I can read them but prefer digital", "I've never used one seriously"] },
+{ q: "When you hit every green light:", opts: ["Best feeling in the world", "I feel chosen — universe aligned", "I drive carefully to maintain the streak", "I don't notice usually"] },
+{ q: "Your feelings about wet socks:", opts: ["The absolute worst sensation", "Uncomfortable but I push through", "I carry spare socks for this reason", "I avoid puddles like the plague"] },
+{ q: "Making small talk with a taxi or rideshare driver:", opts: ["I enjoy it — every driver has a story", "Polite basics then silence", "Headphones in — universal do not disturb", "I follow their lead on conversation"] },
+{ q: "Your relationship with ice:", opts: ["I chew it — can't help myself", "Lots of ice in every drink", "No ice — I want my drink full", "Crushed ice or nothing"] },
+{ q: "Grocery shopping at multiple stores:", opts: ["I have different stores for different things", "One stop — I don't have time for multiple", "Two at most — one for basics, one for specialty", "I'll go wherever has the best deals that week"] },
+{ q: "When a vending machine eats your money:", opts: ["I shake it — gently at first", "I walk away accepting the loss", "I find someone to complain to", "I try to exact revenge on the machine"] },
+{ q: "Your relationship with quesadillas:", opts: ["A comfort food staple", "Underrated — so simple but so good", "I make them when I'm too lazy to really cook", "I add too many ingredients and they fall apart"] },
+{ q: "When your phone buzzes during a meal:", opts: ["I check it immediately", "I ignore it — meal time is sacred", "Quick glance to see who it is", "I left my phone in another room on purpose"] },
+{ q: "Your feelings about yard sales:", opts: ["I love browsing — you never know what you'll find", "I only stop if something catches my eye", "I prefer selling over buying", "I've never been to one"] },
+{ q: "Eating chips and salsa:", opts: ["I eat the salsa with a spoon when chips run out", "I'm the one who finishes the chips first", "Moderate dipping — no double dips", "I judge restaurants by their salsa quality"] },
+{ q: "When you remember a dream vividly:", opts: ["I tell someone about it immediately", "I try to interpret its meaning", "I write it down before I forget", "I enjoy the weirdness and move on"] },
+{ q: "Your approach to returns:", opts: ["I return things promptly within the window", "I keep the tags on just in case", "I've missed return windows too many times", "I rarely return anything — I commit to purchases"] },
+{ q: "When the barista spells your name wrong:", opts: ["I don't care — just give me my coffee", "I correct them gently", "I've stopped giving my real name", "The misspelling is part of the experience"] },
+{ q: "Your feelings about garden gnomes:", opts: ["Charming — I want some", "Creepy — they're watching me", "A harmless lawn decoration", "I have strong opinions about lawn decor in general"] },
+{ q: "When you realize you've been singing the wrong lyrics:", opts: ["My version was better anyway", "Embarrassed — how long have I been wrong", "I keep singing my version", "I look up the real lyrics and feel betrayed"] },
+{ q: "Your approach to Black Friday alternatives:", opts: ["Small Business Saturday — support local", "Cyber Monday — online from my couch", "I avoid all of it — anti-consumerism", "Buy Nothing Day is my move"] },
+{ q: "When you find an old photo of yourself:", opts: ["Nostalgic — I love looking back", "I cringe at my fashion choices", "I show it to people for laughs", "I appreciate how much I've changed"] },
+{ q: "Your feelings about fountains:", opts: ["I throw a coin in every time", "They're beautiful but I walk past", "The sound of water is soothing", "I used to play in them as a kid"] },
+{ q: "When your computer freezes:", opts: ["Ctrl+Alt+Delete — I know the drill", "I stare at it willing it to unfreeze", "I start stress-clicking everywhere", "I walk away and come back in five minutes"] },
+{ q: "Your feelings about hot dogs:", opts: ["Classic comfort food — I love them", "Only at specific events — ballgames, cookouts", "I'd rather have a burger", "I have a specific topping combination"] },
+{ q: "When someone uses your mug:", opts: ["Mildly territorial — that's MY mug", "I don't care — it's just a mug", "I have a favorite but I won't say anything", "I wash it immediately after they use it"] },
+{ q: "Your feelings about sparklers:", opts: ["I love them — instant happiness", "They make me nervous honestly", "The best part of any celebration", "I write my name in the air every time"] },
+{ q: "When a show gets cancelled on a cliffhanger:", opts: ["Betrayed — I invested my time", "I write the ending in my head", "I petition for it to come back", "It's happened too many times — I'm numb"] },
+{ q: "Your approach to loose change:", opts: ["I save it in a jar and cash it in", "It ends up everywhere — couch, car, drawers", "I round up and donate it digitally", "I barely use cash so I don't have change"] },
+{ q: "When you see someone reading a book you love:", opts: ["I want to talk to them about it", "I smile to myself knowingly", "I check how far along they are", "I resist the urge to spoil anything"] },
+{ q: "Your feelings about hand dryers vs paper towels:", opts: ["Paper towels — hand dryers take forever", "Hand dryers — better for the environment", "I wipe my hands on my pants honestly", "The Dyson ones are the only acceptable dryers"] },
+{ q: "When you accidentally like an old photo while scrolling:", opts: ["Immediate unlike and panic", "They'll never notice — it's fine", "My biggest social media fear realized", "I've learned to scroll more carefully"] },
+{ q: "Your approach to sunrises:", opts: ["Worth waking up for", "I'm never awake to see them", "I appreciate them when they happen naturally", "I've set alarms specifically to watch one"] },
+{ q: "When you realize you've been walking the wrong way:", opts: ["Smooth pivot — I check my phone like I meant to stop", "I turn around immediately — no shame", "I keep walking and take the long way", "I pretend to take a call before turning around"] },
+{ q: "Your feelings about hammocks:", opts: ["Peak relaxation — I want one always", "I can't get in or out gracefully", "I fall asleep in them immediately", "Nice in theory — uncomfortable in practice"] },
+{ q: "When you finish assembling something:", opts: ["Leftover screws give me anxiety", "I feel accomplished — maybe even proud", "I check if it's stable by leaning on it", "I took three times longer than the instructions said"] },
+{ q: "Your approach to road trip playlists:", opts: ["I curate them for days before the trip", "Everyone gets DJ turns", "One person controls the music — preferably me", "We argue about music more than we listen"] },
+{ q: "When you see a shooting star:", opts: ["I make a wish every time", "I get excited and point it out", "I appreciate the rarity of the moment", "I try to figure out what it actually was"] },
+{ q: "Your feelings about cotton candy:", opts: ["Pure joy — I'm a kid again", "Too sweet — I can't finish it", "The process of making it is the fun part", "I associate it with specific memories"] },
+{ q: "When you wave goodbye and the person is still walking next to you:", opts: ["The most awkward social situation", "I laugh and say see you for real this time", "I've learned to say goodbye only at the actual split", "This happens to me more than it should"] },
+{ q: "Your approach to puzzles with missing pieces:", opts: ["Devastating — the whole thing is ruined", "I finish it and accept the gap", "I contact the manufacturer", "Reason enough to never start a puzzle"] },
+{ q: "Your opinion on waking up naturally vs with an alarm:", opts: ["Naturally is the dream — literally", "I need an alarm or I'll sleep all day", "My body wakes me before the alarm anyway", "Multiple alarms or I'm not getting up"] },
+{ q: "When someone holds the door from too far away:", opts: ["I do the awkward jog to not waste their time", "I maintain my pace — they chose this", "I appreciate the gesture regardless", "I've been both the jogger and the holder"] },
+{ q: "Your feelings about sandcastles:", opts: ["I still build them at the beach", "An art form I respect", "I prefer to watch the waves knock them down", "A childhood activity I've outgrown"] },
+{ q: "When you bite your tongue while eating:", opts: ["A betrayal by my own body", "I keep eating through the pain", "It ruins the meal for me", "It always happens with the best food"] },
+{ q: "Your approach to holiday cards:", opts: ["I send them every year — it's tradition", "I mean to but never get around to it", "Digital cards count", "I love receiving them but don't send them"] },
+{ q: "When a pen runs out of ink mid-sentence:", opts: ["I scribble furiously to revive it", "I find a new pen immediately", "I switch to a pencil", "I shake it like it'll magically work again"] },
+{ q: "Your opinion on garage organization:", opts: ["Everything has a place — pegboard life", "The garage is where chaos lives", "I've reorganized it and it lasted one week", "I don't have a garage"] },
+{ q: "Your feelings about building sandwiches:", opts: ["I layer with intention — order matters", "I throw everything on and hope for the best", "I have a signature sandwich", "I prefer when someone else makes it"] },
+{ q: "When you notice a stranger's zipper is down:", opts: ["I tell them discreetly — I'd want to know", "I say nothing — too awkward", "Depends on how I'd tell them without it being weird", "I've been that stranger and wish someone told me"] },
+{ q: "Your feelings about rocking chairs:", opts: ["Instantly relaxing — I could sit for hours", "They remind me of someone specific", "I've never sat in one and thought about it", "Front porch essential"] },
+{ q: "When you hear your alarm in a song:", opts: ["Instant anxiety — even outside of morning", "I had to change my alarm because of this", "My body tenses up involuntarily", "I've never had this happen"] },
+{ q: "Your approach to finishing shampoo bottles:", opts: ["I add water to get the last bit out", "I buy a new one before the old one runs out", "I let it sit upside down for days", "I use whatever's in the shower — brand loyalty is dead"] },
+{ q: "Your feelings about trampolines:", opts: ["Pure joy — I'll jump right now", "Fun but my body can't handle it anymore", "A core childhood memory", "They make me nervous — too bouncy"] },
+{ q: "When someone yells your name across a room:", opts: ["I wave back enthusiastically", "I pretend I didn't hear and hope they stop", "Depends on how many people are watching", "I yell back louder — I'm competitive about this"] },
+{ q: "Your opinion on gravy:", opts: ["It makes everything better", "Only on mashed potatoes and turkey", "I could drink it honestly", "I'm not a gravy person"] },
+{ q: "When you run into someone you vaguely know:", opts: ["Full friendly conversation — fake it till you make it", "Quick hello and keep moving", "I pretend I didn't see them", "I agonize over whether they recognize me too"] },
+{ q: "Your approach to fortune tellers:", opts: ["Fun entertainment — I don't take it seriously", "I'm genuinely curious what they'd say", "I avoid them — I don't want to know", "I went once and something they said stuck with me"] },
+{ q: "When you finish a puzzle:", opts: ["Satisfied — time for the next one", "I glue it and hang it up", "I break it up and put it back in the box", "I leave it on the table for a few days to admire"] },
+{ q: "Your approach to learning dance moves:", opts: ["I pick them up quickly — natural rhythm", "I need someone to teach me step by step", "I make up my own moves", "I avoid situations where dance moves are needed"] },
+{ q: "Your feelings about bubble baths:", opts: ["The ultimate self-care", "I'm a shower person through and through", "Great in theory but I get bored", "With a book and a candle — perfection"] },
+{ q: "When you spot a typo in something published:", opts: ["I notice every one — it bothers me", "I only notice obvious ones", "I feel oddly satisfied finding them", "I email the publisher or author sometimes"] },
+{ q: "Your feelings about campfire smoke:", opts: ["Follows me no matter where I sit", "I love the smell — it's nostalgic", "My eyes water immediately", "Part of the experience — I don't mind"] },
+{ q: "When you almost drop your phone:", opts: ["My reflexes save it every time", "Heart stops for a full second", "I've bobbled it and caught it mid-air", "I've failed the catch and cracked the screen"] },
+{ q: "Your approach to wearing matching outfits:", opts: ["With a partner or friend — it's cute", "Absolutely not — I'm an individual", "Group events only — matching jerseys etc", "I do it accidentally and notice later"] },
+{ q: "Your relationship with the moon:", opts: ["I look up at it often and feel connected", "I notice full moons specifically", "I track moon phases intentionally", "It's a rock in space — I don't think about it"] },
+{ q: "When you forget why you opened the fridge:", opts: ["I stare into it hoping it'll remind me", "I close it and walk away", "I grab something random while I'm there", "This happens multiple times a day"] },
+{ q: "Your feelings about hand-written letters:", opts: ["I treasure every one I've received", "A dying art I wish I practiced more", "I write them for special occasions", "Email and texts have replaced them for me"] },
+{ q: "Your approach to picking lottery numbers:", opts: ["Same numbers every time — loyalty", "Quick pick — let fate decide", "Birthdays and meaningful numbers", "I don't play the lottery"] },
+{ q: "Your relationship with cardboard boxes:", opts: ["I break them down immediately for recycling", "I keep them just in case I need to ship something", "Moving day PTSD", "I save the good ones — you never know"] },
+{ q: "When you walk into a glass door:", opts: ["I pretend it didn't happen and keep moving", "I laugh at myself loudly", "I clean the smudge my face left", "I've done it more than once at the same door"] },
+{ q: "Your opinion on ball pits:", opts: ["Still fun — I'd jump in right now", "Germaphobe nightmare", "A treasured childhood memory", "I never got to play in one"] },
+{ q: "When you step on a wet spot in socks:", opts: ["The worst sensation known to humanity", "I change socks immediately", "I just accept my fate", "I investigate what I stepped in"] },
+{ q: "Your approach to office snack drawers:", opts: ["I contribute and partake generously", "I'm the one who stocks it", "I eat more than I contribute honestly", "I keep my snacks to myself"] },
+{ q: "When you see a plane in the sky:", opts: ["I wonder where it's going", "I wave even though no one can see me", "It makes me want to travel", "I don't look up often enough to notice"] },
+{ q: "Your feelings about revolving doors:", opts: ["I time my entry perfectly", "I've been trapped in one", "Anxiety-inducing — what if it stops", "I take the regular door next to it"] },
+{ q: "When someone parks too close to your car:", opts: ["I squeeze in and seethe silently", "I wait for them to move", "I leave a passive aggressive note in my mind", "I climb in from the other side"] },
+{ q: "Your approach to greeting cards:", opts: ["I write long heartfelt messages", "I sign my name and that's it", "I pick the card that says what I feel", "I make my own cards sometimes"] },
+{ q: "When you drop food on the floor:", opts: ["Five second rule — I'm eating it", "It depends on the floor and the food", "Gone forever — I mourn it", "My pet gets to it before I can decide"] },
+{ q: "Your feelings about paper airplanes:", opts: ["I still make them and test new designs", "I was the kid who could make them fly far", "A simple joy I'd forgotten about", "I can't fold one to save my life"] },
+{ q: "When you realize you have spinach in your teeth:", opts: ["How long has that been there — betrayed by my friends", "I laugh it off", "I wish someone had told me sooner", "I become hyper-aware of my teeth for the rest of the day"] },
+{ q: "Your feelings about glitter:", opts: ["The herpes of craft supplies — it never leaves", "I love it — sparkle is a personality trait", "Banned from my home", "Acceptable only on greeting cards"] },
+{ q: "When you drop an ice cube on the floor:", opts: ["I kick it under the fridge — problem solved", "I pick it up and put it in the sink", "I eat it — five second rule applies to ice", "I leave it to melt and forget about it"] },
+{ q: "Your approach to picking fruit at the grocery store:", opts: ["I squeeze and sniff everything", "I grab what looks good and go", "I have specific criteria for ripeness", "I ask a produce employee for help"] },
+{ q: "When someone says they've never seen your favorite movie:", opts: ["We're watching it right now", "I explain why they absolutely must see it", "I'm shocked and slightly offended", "I respect their choices but internally judge"] },
+{ q: "Your approach to blanket sharing:", opts: ["Separate blankets — the only civilized way", "I'm a blanket hog and I know it", "I'll share but I need most of it", "I run hot so take the whole thing"] },
+{ q: "When you can't find your keys:", opts: ["Check the same three places repeatedly", "I have a designated spot so this rarely happens", "I dump my entire bag on the counter", "I once found them in the fridge"] },
+{ q: "Your feelings about tangled headphone cords:", opts: ["One of life's greatest unsolvable mysteries", "I switched to wireless to avoid this forever", "I can untangle them patiently", "I have a system for wrapping them"] },
+{ q: "When the internet rabbit hole gets deep:", opts: ["Suddenly it's 3am and I'm reading about medieval farming", "I set time limits that I completely ignore", "The best part of having access to information", "I emerge knowing random things no one asked about"] },
+{ q: "Your opinion on dandelions:", opts: ["Weeds that I pull immediately", "I blow the seeds and make a wish", "They're wildflowers and I let them be", "My lawn is a battlefield against them"] },
+{ q: "When you accidentally call someone:", opts: ["I hang up and text sorry butt dial", "I commit to the call — hey what's up", "It always happens to the worst possible person", "I've disabled pocket calling somehow"] },
+{ q: "Your approach to complimenting strangers:", opts: ["I do it often — everyone deserves kindness", "Only when something really stands out", "I think the compliment but don't say it", "I'm better at it online than in person"] },
+{ q: "When you find a good pen:", opts: ["I guard it with my life", "I lend it out and never see it again", "I buy 10 more of the same one", "A good pen changes everything"] },
+{ q: "Your opinion on sleeping with the door open or closed:", opts: ["Closed — always, no exceptions", "Open — I need airflow", "Open at home, closed anywhere else", "I never thought about this until right now"] },
+{ q: "When you hear a song from your childhood:", opts: ["Instant time travel — I'm a kid again", "I know every word still", "I show it to younger people and feel old", "The nostalgia is almost overwhelming"] },
+{ q: "Your approach to holiday leftovers:", opts: ["The best part of the holiday — I plan meals around them", "Turkey sandwiches for a week", "I send people home with containers", "They don't last long in my house"] },
+{ q: "When you realize you've been muted on a video call:", opts: ["I've been passionately talking to myself", "I check mute status before speaking now", "The most humbling moment of remote work", "I handled it gracefully — said it was intentional"] },
+{ q: "Your feelings about kites:", opts: ["I love flying them — pure freedom", "Harder than they look — mine never stays up", "A beautiful thing to watch", "I haven't flown one since I was a kid"] },
+{ q: "When you see a rainbow from inside:", opts: ["I go outside to get a better look", "I point it out to everyone in the room", "I appreciate it from the window", "I try to photograph it through the glass"] },
+{ q: "Your approach to stretching after sitting too long:", opts: ["I set reminders to stand and stretch", "I crack everything — spine, neck, knuckles", "I forget until my body hurts", "A full standing stretch with sound effects"] },
+{ q: "Your feelings about going to the movies alone:", opts: ["One of life's underrated pleasures", "I've done it and loved it", "I'd feel self-conscious", "I prefer having someone to discuss it with after"] },
+{ q: "When you realize you wore your shirt inside out:", opts: ["I've been walking around like this all day?!", "Quick bathroom flip — crisis averted", "I own it — new fashion statement", "I check my clothes more carefully now"] },
+{ q: "Your opinion on puddles:", opts: ["I still jump in them — age is a number", "I walk around them carefully", "Rain boots were made for puddle jumping", "I associate them with being a kid"] },
 ];
