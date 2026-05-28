@@ -69,17 +69,20 @@
     to { transform: rotate(360deg); }
   }
 
+  #app {
+    width: 100%;
+    max-width: 560px;
+  }
+  #app:has(.card.wide) { max-width: 660px; }
+
   .card {
-    width: 500px;
-    min-width: 320px;
-    max-width: 100%;
+    width: 100%;
     padding: 32px 28px;
     border-radius: 20px;
     background: var(--bg-surface);
     box-shadow: var(--card-shadow);
     text-align: center;
   }
-  .card.wide { width: 660px; }
 
   @media (max-width: 600px) {
     body { padding: 12px; align-items: flex-start; padding-top: 16px; }
