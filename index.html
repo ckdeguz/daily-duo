@@ -70,15 +70,21 @@
   }
 
   .card {
-    width: 100%;
-    min-width: 500px;
+    width: 500px;
+    max-width: 100%;
     padding: 32px 28px;
     border-radius: 20px;
     background: var(--bg-surface);
     box-shadow: var(--card-shadow);
     text-align: center;
   }
-  .card.wide { min-width: 600px; }
+  .card.wide { width: 660px; }
+
+  @media (max-width: 600px) {
+    body { padding: 12px; align-items: flex-start; padding-top: 16px; }
+    .card { padding: 24px 16px; border-radius: 16px; }
+    #theme-toggle { top: 8px; right: 8px; width: 34px; height: 34px; font-size: 15px; }
+  }
 
   .logo-icon { font-size: 44px; margin-bottom: 4px; display: block; }
 
@@ -135,7 +141,7 @@
     font-weight: 700;
     flex-shrink: 0;
   }
-  .step-text { font-size: 14px; color: #d1d5db; }
+  .step-text { font-size: 14px; color: var(--text-secondary); }
 
   .name-input {
     width: 100%;
