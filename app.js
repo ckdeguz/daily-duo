@@ -599,6 +599,9 @@ function renderResults() {
   });
   $("#replayBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
   $("#shareResultsBtn").addEventListener("click", shareResultsImage);
+
+  setTimeout(showResultsAd, 400);
+  setTimeout(injectAdBlockBanner, 400);
 }
 
 function renderError() {
