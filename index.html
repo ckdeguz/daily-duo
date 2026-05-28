@@ -1084,7 +1084,7 @@ function shareResultsImage() {
 function renderResults() {
   const r = state.results;
   if (!r) return;
-  const qs = getDailyQuestions();
+  const qs = r.questions || getDailyQuestions();
   const p1Score = r.p1Guesses.reduce((s, g, i) => s + (g === r.p2Answers[i] ? 1 : 0), 0);
   const p2Score = r.p2Guesses.reduce((s, g, i) => s + (g === r.p1Answers[i] ? 1 : 0), 0);
   const totalScore = p1Score + p2Score;
@@ -1213,6 +1213,7 @@ async function saveP1() {
     p1Name: state.p1Name,
     p1Answers: state.p1Answers,
     p1Guesses: state.p1Guesses,
+    questions: state.questions,
     dateSeed: getDateSeed(),
     createdAt: Date.now(),
   };
@@ -1259,6 +1260,7 @@ async function init() {
         state.screen = "results";
       } else {
         state.p1Name = data.p1Name || "Player 1";
+        if (data.questions) state.questions = data.questions;
         state.screen = "p2-intro";
       }
     } else {
