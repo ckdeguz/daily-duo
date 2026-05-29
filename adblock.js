@@ -3,7 +3,7 @@
 // Adblockers target elements with class names like "ad-banner", "adsbox" etc.
 // If the element gets hidden or has zero height, an adblocker is active.
 
-(function () {
+window._adBlockDetectedPromise = new Promise((resolve) => {
   const bait = document.createElement("div");
   bait.className = "ad-banner ads adsbox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads";
   bait.style.cssText = "width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;";
@@ -20,16 +20,20 @@
 
     document.body.removeChild(bait);
 
-    if (blocked) {
-      window._adBlockDetected = true;
-    }
+    window._adBlockDetected = blocked;
+    resolve(blocked);
   }, 200);
-})();
+});
 
 // Call this on the results screen to inject the banner if adblock is detected
 function injectAdBlockBanner() {
-  if (!window._adBlockDetected) return;
+  window._adBlockDetectedPromise.then((blocked) => {
+    if (!blocked) return;
+    _doInjectAdBlockBanner();
+  });
+}
 
+function _doInjectAdBlockBanner() {
   // Don't inject twice
   if (document.getElementById("adblock-banner")) return;
 
