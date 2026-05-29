@@ -44,6 +44,7 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
@@ -445,7 +446,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px 16px;
-  padding-left: 24px;
 }
 .result-col-header {
   font-size: 12px;

@@ -155,6 +155,7 @@ function renderHome() {
   const btn = $("#startBtn");
   inp.addEventListener("input", () => { state.p1Name = inp.value; btn.disabled = !inp.value.trim(); });
   btn.addEventListener("click", () => { state.screen = "play"; state.currentQ = 0; state.phase = "own"; render(); });
+  setTimeout(() => showAd("ad-home-slot"), 400);
 
   if (hasNativeShare) {
     $("#nativeShareBtn").addEventListener("click", () => {
@@ -203,6 +204,7 @@ function renderPlay() {
       ${canGoBack ? '<button class="back-btn" id="backBtn">← Go Back</button>' : ''}
     </div>`;
   bindP1Options();
+  setTimeout(() => showAd("ad-play-slot"), 400);
   if (canGoBack) {
     $("#backBtn").addEventListener("click", () => {
       if (state.animating) return;
