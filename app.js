@@ -13,16 +13,23 @@ function showAd(id) {
 }
 function showResultsAd() { showAd("ad-results-slot"); }
 
+function getDateKey() {
+  const d = new Date();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${mm}-${dd}`;
+}
+
 const fbStorage = {
   async get(key) {
     try {
-      const snap = await db.ref("sessions/" + key).once("value");
+      const snap = await db.ref(`sessions/${getDateKey()}/${key}`).once("value");
       return snap.exists() ? snap.val() : null;
     } catch (e) { console.error("Firebase get error:", e); return null; }
   },
   async set(key, val) {
     try {
-      await db.ref("sessions/" + key).set(val);
+      await db.ref(`sessions/${getDateKey()}/${key}`).set(val);
       return true;
     } catch (e) { console.error("Firebase set error:", e); return false; }
   }
