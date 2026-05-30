@@ -1,5 +1,18 @@
 const db = firebase.database();
 
+function showAd(id) {
+  document.querySelectorAll('[id^="ad-"]').forEach(el => { el.style.display = "none"; });
+  const slot = document.getElementById(id);
+  if (!slot) return;
+  slot.style.display = "block";
+  const ins = slot.querySelector("ins.adsbygoogle");
+  if (ins && !slot.dataset.adPushed) {
+    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    slot.dataset.adPushed = "1";
+  }
+}
+function showResultsAd() { showAd("ad-results-slot"); }
+
 const fbStorage = {
   async get(key) {
     try {
