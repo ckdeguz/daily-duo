@@ -128,12 +128,12 @@ function renderLoading() {
 
 function renderHome() {
   const shareUrl = location.origin + location.pathname;
-  const shareText = "Try Daily Duo! 10 daily questions to see how well you know your friends ⚡";
+  const shareText = "Try Daily Duo! 10 daily questions to see how well you know your friends";
   const hasNativeShare = !!navigator.share;
 
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">⚡</span>
+      <img class="logo-icon" src="logo.png" alt="Daily Duo logo">
       <h1 class="title">Daily Duo</h1>
       <p class="subtitle">10 daily questions. See how well you know each other.</p>
       <div class="date-chip">${getDateString()}</div>
@@ -362,7 +362,7 @@ function renderP2Intro() {
 }
 
 // ─── RESULTS ───
-function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
+async function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
   const W = 1080, H = 1350;
   const canvas = document.createElement("canvas");
   canvas.width = W;
@@ -398,10 +398,18 @@ function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
     ctx.closePath();
   }
 
+  await new Promise((resolve, reject) => {
+    const logoImg = new Image();
+    logoImg.onload = () => {
+      const size = 80;
+      ctx.drawImage(logoImg, W / 2 - size / 2, 80, size, size);
+      resolve();
+    };
+    logoImg.onerror = reject;
+    logoImg.src = "logo.png";
+  });
+
   ctx.textAlign = "center";
-  ctx.font = "80px sans-serif";
-  ctx.fillStyle = "#e8e6e3";
-  ctx.fillText("⚡", W / 2, 160);
 
   ctx.font = "bold 56px 'DM Sans', sans-serif";
   ctx.fillStyle = "#e8e6e3";
@@ -482,7 +490,7 @@ function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
   return canvas;
 }
 
-function shareResultsImage() {
+async function shareResultsImage() {
   const r = state.results;
   const p1Score = r.p1Guesses.reduce((s, g, i) => s + (g === r.p2Answers[i] ? 1 : 0), 0);
   const p2Score = r.p2Guesses.reduce((s, g, i) => s + (g === r.p1Answers[i] ? 1 : 0), 0);
@@ -490,14 +498,14 @@ function shareResultsImage() {
   const emoji = totalScore === 20 ? "🔥" : totalScore >= 16 ? "🔥" : totalScore >= 10 ? "🤝" : "😅";
   const msg = totalScore === 20 ? "Perfect sync!" : totalScore >= 16 ? "Almost telepathic!" : totalScore >= 10 ? "Not bad at all!" : totalScore >= 6 ? "Room to grow!" : "Opposites attract?";
 
-  const canvas = generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg);
+  const canvas = await generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg);
 
   canvas.toBlob(async (blob) => {
     const file = new File([blob], "daily-duo-results.png", { type: "image/png" });
 
     if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
-        await navigator.share({ title: "Daily Duo Results", text: "Check out our Daily Duo score! ⚡", files: [file] });
+        await navigator.share({ title: "Daily Duo Results", text: "Check out our Daily Duo score!", files: [file] });
         return;
       } catch (e) { /* fall through to download */ }
     }

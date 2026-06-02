@@ -83,7 +83,7 @@ body {
   #theme-toggle { top: 8px; right: 8px; width: 34px; height: 34px; font-size: 15px; }
 }
 
-.logo-icon { font-size: 44px; margin-bottom: 4px; display: block; }
+.logo-icon { width: 64px; height: 64px; margin-bottom: 4px; display: block; object-fit: contain; }
 
 .title {
   font-size: 28px;
