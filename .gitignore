@@ -70,3 +70,6 @@ node_modules/
 
 # Files
 config.js
+generation/
+CLAUDE.md
+questions_extra*
