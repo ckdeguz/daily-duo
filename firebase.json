@@ -1,4 +1,8 @@
 {
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "hosting": {
     "public": ".",
     "ignore": [
@@ -7,7 +11,9 @@
       "**/node_modules/**",
       "generation/**",
       "CLAUDE.md",
-      "questions_extra*"
+      "questions_extra*",
+      "firestore.rules",
+      "firestore.indexes.json"
     ],
     "rewrites": [
       {

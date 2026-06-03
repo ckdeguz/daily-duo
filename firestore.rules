@@ -1,0 +1,109 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Users: public profiles (name/avatar/username are shown to friends) ───
+    match /users/{uid} {
+      allow read: if true;
+      // A user may create/update only their own doc. Username fields are set
+      // via the usernames transaction below; entitlements must not be self-granted.
+      allow create: if request.auth != null && request.auth.uid == uid
+                    && !( 'extraQuestions' in request.resource.data.get('entitlements', {})
+                          && request.resource.data.entitlements.extraQuestions == true );
+      allow update: if request.auth != null && request.auth.uid == uid
+                    && entitlementsUnchangedOrServerOnly();
+    }
+
+    // Entitlements can only be granted server-side (Cloud Function w/ admin SDK,
+    // which bypasses rules). Client updates must leave them as-is.
+    function entitlementsUnchangedOrServerOnly() {
+      let before = resource.data.get('entitlements', {});
+      let after = request.resource.data.get('entitlements', {});
+      return after == before
+             || !( ('extraQuestions' in after && after.extraQuestions == true
+                    && (!('extraQuestions' in before) || before.extraQuestions != true))
+                   || ('removeAds' in after && after.removeAds == true
+                       && (!('removeAds' in before) || before.removeAds != true)) );
+    }
+
+    // ─── Usernames: uniqueness index. Doc id == lowercase username. ───
+    match /usernames/{name} {
+      allow read: if true; // lookup + availability checks
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+      // Don't allow stealing/freeing a username casually.
+      allow update, delete: if false;
+    }
+
+    // ─── Games: share-by-link model. Anyone with the id can read (like today). ───
+    match /games/{gameId} {
+      allow read: if true;
+
+      // Create: must start as awaiting_p2 with no p2 yet.
+      allow create: if validGameCreate(gameId);
+
+      // Update: completing P2, or a signed-in user claiming a guest side.
+      allow update: if completingP2() || claimingSide();
+    }
+
+    function validGameCreate(gameId) {
+      let d = request.resource.data;
+      return d.status == 'awaiting_p2'
+             && d.p2 == null
+             && d.gameId == gameId;
+    }
+
+    // P2 fills the currently-empty p2 side and marks the game complete.
+    function completingP2() {
+      let before = resource.data;
+      let after = request.resource.data;
+      return before.status == 'awaiting_p2'
+             && before.p2 == null
+             && after.status == 'complete'
+             && after.p2 != null
+             // p1 side is immutable during completion
+             && after.p1 == before.p1
+             && after.questions == before.questions;
+    }
+
+    // A signed-in user backfills their uid onto a side they played as guest.
+    // (Coarse check; the client transaction enforces guestId match.)
+    function claimingSide() {
+      return request.auth != null
+             && request.resource.data.questions == resource.data.questions;
+    }
+
+    // ─── Leaderboard: per-pair best scores. Members only. ───
+    match /leaderboard/{pairId} {
+      // Authed users may read; if the doc exists they must be a member.
+      // (A transaction reads the not-yet-existing doc before creating it,
+      // so a missing doc must not be denied.)
+      allow read: if request.auth != null
+                  && (resource == null
+                      || request.auth.uid in resource.data.members);
+      allow create: if request.auth != null
+                    && request.auth.uid in request.resource.data.members;
+      allow update: if request.auth != null
+                    && request.auth.uid in resource.data.members;
+    }
+
+    // ─── Friends (Phase 2 — declared now so writes don't fail closed) ───
+    match /friendRequests/{id} {
+      allow create: if request.auth != null
+                    && request.resource.data.fromUid == request.auth.uid;
+      allow read, update: if request.auth != null
+                    && request.auth.uid in [resource.data.fromUid, resource.data.toUid];
+    }
+    match /friendships/{pairId} {
+      allow read: if request.auth != null
+                  && request.auth.uid in resource.data.members;
+      allow create: if request.auth != null
+                    && request.auth.uid in request.resource.data.members;
+    }
+    match /inviteCodes/{code} {
+      allow read: if true; // anyone opening an invite link can resolve it
+      allow create: if request.auth != null
+                    && request.resource.data.ownerUid == request.auth.uid;
+    }
+  }
+}

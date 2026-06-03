@@ -525,6 +525,114 @@ body {
 }
 #theme-toggle:hover { background: var(--surface-hover); }
 
+/* ═══════════════ AUTH CHROME ═══════════════ */
+#auth-chrome {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 999;
+}
+.auth-signin-btn,
+.auth-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 6px 14px 6px 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  transition: background 0.2s, border-color 0.2s;
+}
+.auth-signin-btn:hover,
+.auth-account-btn:hover { background: var(--surface-hover); }
+.auth-signin-btn svg { display: block; }
+.auth-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.auth-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+.auth-account-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.auth-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.auth-menu[hidden] { display: none; }
+.auth-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.auth-menu-item:hover { background: var(--surface-hover); }
+.auth-menu-signout { color: var(--danger); }
+@media (max-width: 600px) {
+  #auth-chrome { top: 8px; left: 8px; }
+  .auth-account-name { max-width: 80px; }
+}
+
+#auth-toast {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  max-width: 90vw;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--danger);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: var(--card-shadow);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#auth-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ═══════════════ ADBLOCK BANNER ═══════════════ */
 #adblock-banner {
   width: 100%;

@@ -1,5 +1,3 @@
-const db = firebase.database();
-
 function showAd(id) {
   document.querySelectorAll('[id^="ad-"]').forEach(el => { el.style.display = "none"; });
   const slot = document.getElementById(id);
@@ -20,19 +18,37 @@ function getDateKey() {
   return `${d.getFullYear()}-${mm}-${dd}`;
 }
 
-const fbStorage = {
-  async get(key) {
-    try {
-      const snap = await db.ref(`sessions/${getDateKey()}/${key}`).once("value");
-      return snap.exists() ? snap.val() : null;
-    } catch (e) { console.error("Firebase get error:", e); return null; }
-  },
-  async set(key, val) {
-    try {
-      await db.ref(`sessions/${getDateKey()}/${key}`).set(val);
-      return true;
-    } catch (e) { console.error("Firebase set error:", e); return false; }
+// ─── Guest identity (persistent across sessions for guest-claim) ───
+function getGuestId() {
+  let id = localStorage.getItem("dd_guest");
+  if (!id) { id = generateId(); localStorage.setItem("dd_guest", id); }
+  return id;
+}
+
+// Pending games a guest finished, to claim on sign-in: [{gameId, side}]
+function getPendingGames() {
+  try { return JSON.parse(localStorage.getItem("dd_pending_games") || "[]"); }
+  catch (e) { return []; }
+}
+function addPendingGame(gameId, side) {
+  const list = getPendingGames().filter((p) => p.gameId !== gameId);
+  list.push({ gameId, side });
+  localStorage.setItem("dd_pending_games", JSON.stringify(list));
+}
+function clearPendingGames() { localStorage.removeItem("dd_pending_games"); }
+
+// Lightweight on-screen toast for auth errors (called by auth.js).
+window.showAuthError = function (msg) {
+  let t = document.getElementById("auth-toast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "auth-toast";
+    document.body.appendChild(t);
   }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(window._authToastTimer);
+  window._authToastTimer = setTimeout(() => t.classList.remove("show"), 7000);
 };
 
 // ═══════════════ UTILITIES ═══════════════
@@ -102,6 +118,10 @@ const state = {
   errorMsg: "",
   questions: getDailyQuestions(),
   resultsTab: "p1",
+  user: null,          // {uid, username, displayName, photoURL, ...} or null (guest)
+  guestId: getGuestId(),
+  pendingRoute: null,  // route to replay after sign-in gate
+  _unsub: null,        // active onSnapshot unsubscribe
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -117,6 +137,8 @@ function render() {
     case "p2-intro": return renderP2Intro();
     case "p2-play": return renderP2Play();
     case "results": return renderResults();
+    case "username": return renderUsernamePrompt();
+    case "signin-gate": return renderSignInGate(state.pendingRoute);
     case "error": return renderError();
     default: app().innerHTML = "";
   }
@@ -328,21 +350,24 @@ function bindP2Options() {
 }
 
 function renderShare() {
-  const url = `${location.origin}${location.pathname}#${state.sessionId}`;
+  const url = `${location.origin}${location.pathname}#g/${state.sessionId}`;
   app().innerHTML = `
     <div class="card">
       <span class="logo-icon">🔗</span>
       <h1 class="title">You're all set!</h1>
-      <p class="subtitle">Send this link to your friend. They'll answer the same questions and guess yours too. Come back to this link to see results!</p>
+      <p class="subtitle">Send this link to your friend. They'll answer the same questions and guess yours too. We'll show your results here automatically once they finish!</p>
       <div class="link-box"><span class="link-text">${esc(url)}</span></div>
       <button class="primary-btn" id="copyBtn">Copy Link</button>
-      <p class="hint">Bookmark or save this link - you'll need it to see results!</p>
+      <p class="hint" id="shareWaiting">Waiting for your friend to play… you can leave this open.</p>
     </div>`;
   $("#copyBtn").addEventListener("click", () => {
     navigator.clipboard.writeText(url).catch(() => {});
     $("#copyBtn").textContent = "✓ Copied!";
     setTimeout(() => { if ($("#copyBtn")) $("#copyBtn").textContent = "Copy Link"; }, 2000);
   });
+
+  // Live: auto-advance to results the moment P2 completes.
+  subscribeForResults(state.sessionId);
 }
 
 function renderP2Intro() {
@@ -627,7 +652,7 @@ function renderResults() {
   document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", () => { state.resultsTab = btn.dataset.tab; render(); });
   });
-  $("#replayBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
+  $("#replayBtn").addEventListener("click", () => { location.hash = "#/"; location.reload(); });
   $("#shareResultsBtn").addEventListener("click", shareResultsImage);
 
   setTimeout(showResultsAd, 400);
@@ -642,25 +667,43 @@ function renderError() {
       <p class="subtitle">${esc(state.errorMsg)}</p>
       <button class="primary-btn" id="homeBtn">Go Home</button>
     </div>`;
-  $("#homeBtn").addEventListener("click", () => { location.hash = ""; location.reload(); });
+  $("#homeBtn").addEventListener("click", () => { location.hash = "#/"; location.reload(); });
+}
+
+// ═══════════════ GAME ↔ RESULTS ADAPTER ═══════════════
+// The renderers (renderResults/shareResultsImage) read a flat shape
+// (r.p1Name, r.p1Answers, r.p1Guesses, r.p2*). Firestore stores a nested
+// shape ({p1:{...}, p2:{...}}). This adapts nested → flat.
+function flattenGame(game) {
+  const p1 = game.p1 || {};
+  const p2 = game.p2 || {};
+  return {
+    p1Name: p1.name || "Player 1",
+    p1Answers: p1.answers || [],
+    p1Guesses: p1.guesses || [],
+    p2Name: p2.name || "Player 2",
+    p2Answers: p2.answers || [],
+    p2Guesses: p2.guesses || [],
+    questions: game.questions,
+  };
 }
 
 // ═══════════════ SAVE FUNCTIONS ═══════════════
 async function saveP1() {
   renderLoading();
   const id = generateId();
-  const payload = {
-    p1Name: state.p1Name,
-    p1Answers: state.p1Answers,
-    p1Guesses: state.p1Guesses,
-    questions: state.questions,
-    dateSeed: getDateSeed(),
-    createdAt: Date.now(),
+  const player = {
+    uid: state.user ? state.user.uid : null,
+    guestId: state.user ? null : state.guestId,
+    name: state.p1Name,
+    answers: state.p1Answers,
+    guesses: state.p1Guesses,
   };
-  const ok = await fbStorage.set(id, payload);
+  const ok = await gameRepo.create(id, player, state.questions);
   state.animating = false;
   if (ok) {
     state.sessionId = id;
+    if (!state.user) addPendingGame(id, "p1");
     state.screen = "share";
   } else {
     state.errorMsg = "Couldn't save your answers. Please check your connection and try again.";
@@ -671,49 +714,203 @@ async function saveP1() {
 
 async function saveP2() {
   renderLoading();
-  const data = await fbStorage.get(state.sessionId);
+  const player = {
+    uid: state.user ? state.user.uid : null,
+    guestId: state.user ? null : state.guestId,
+    name: state.p2Name,
+    answers: state.p2Answers,
+    guesses: state.p2Guesses,
+  };
+  const merged = await gameRepo.completeP2(state.sessionId, player);
   state.animating = false;
-  if (!data) {
+  if (!merged) {
     state.errorMsg = "Session not found.";
     state.screen = "error";
     render();
     return;
   }
-  data.p2Name = state.p2Name;
-  data.p2Answers = state.p2Answers;
-  data.p2Guesses = state.p2Guesses;
-  await fbStorage.set(state.sessionId, data);
-  state.results = data;
+  if (!state.user) addPendingGame(state.sessionId, "p2");
+  state.results = flattenGame(merged);
+  state.p1Name = state.results.p1Name;
+  state.p2Name = state.results.p2Name;
   state.screen = "results";
   render();
 }
 
-// ═══════════════ INIT ═══════════════
-async function init() {
-  const hash = location.hash.replace("#", "");
-  if (hash) {
-    const data = await fbStorage.get(hash);
-    if (data) {
-      state.sessionId = hash;
-      if (data.p2Answers && data.p2Guesses) {
-        state.results = data;
-        state.screen = "results";
-      } else {
-        state.p1Name = data.p1Name || "Player 1";
-        if (data.questions) state.questions = data.questions;
-        state.screen = "p2-intro";
-      }
-    } else {
-      state.errorMsg = "This link doesn't seem to be valid or may have expired.";
-      state.screen = "error";
-    }
-  } else {
-    state.screen = "home";
+// ═══════════════ GAME ROUTE LOADER ═══════════════
+// Called by the router for #g/<id> (and legacy bare hashes).
+async function openGame(gameId) {
+  renderLoading();
+  const game = await gameRepo.get(gameId);
+  if (!game) {
+    state.errorMsg = "This link doesn't seem to be valid or may have expired.";
+    state.screen = "error";
+    render();
+    return;
   }
-  render();
+  state.sessionId = gameId;
+  if (game.questions) state.questions = game.questions;
+  state.p1Name = (game.p1 && game.p1.name) || "Player 1";
+
+  if (game.status === "complete") {
+    state.results = flattenGame(game);
+    state.p2Name = state.results.p2Name;
+    state.screen = "results";
+    render();
+    return;
+  }
+
+  // Still awaiting P2. Is the viewer P1 (the creator) revisiting, or a
+  // genuine P2 here to play? P1 should see a live "waiting" screen that
+  // auto-advances to results — not the answer-the-questions intro.
+  const p1 = game.p1 || {};
+  const viewerIsP1 = state.user
+    ? (p1.uid && p1.uid === state.user.uid)
+    : (p1.guestId && p1.guestId === state.guestId);
+
+  if (viewerIsP1) {
+    renderWaiting(gameId);
+  } else {
+    state.p2Name = "";
+    state.screen = "p2-intro";
+    render();
+  }
 }
 
-init();
+// P1 revisiting their own not-yet-finished game: show a waiting state and
+// subscribe so it flips to results the moment P2 completes.
+function renderWaiting(gameId) {
+  cleanupListeners();
+  const url = `${location.origin}${location.pathname}#g/${gameId}`;
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">⏳</span>
+      <h1 class="title">Waiting for your friend</h1>
+      <p class="subtitle">${esc(state.p1Name)} is all set! As soon as your friend finishes, results will appear here automatically.</p>
+      <div class="link-box"><span class="link-text">${esc(url)}</span></div>
+      <button class="primary-btn" id="copyBtn">Copy Link</button>
+      <p class="hint">You can leave this page open — no need to refresh.</p>
+    </div>`;
+  $("#copyBtn").addEventListener("click", () => {
+    navigator.clipboard.writeText(url).catch(() => {});
+    $("#copyBtn").textContent = "✓ Copied!";
+    setTimeout(() => { if ($("#copyBtn")) $("#copyBtn").textContent = "Copy Link"; }, 2000);
+  });
+  subscribeForResults(gameId);
+}
+
+// Shared live subscription: when the game completes, render results.
+function subscribeForResults(gameId) {
+  if (state._unsub) { try { state._unsub(); } catch (e) {} }
+  state._unsub = gameRepo.subscribe(gameId, (game) => {
+    if (game && game.status === "complete") {
+      if (state._unsub) { try { state._unsub(); } catch (e) {} state._unsub = null; }
+      state.results = flattenGame(game);
+      if (game.questions) state.questions = game.questions;
+      state.p1Name = state.results.p1Name;
+      state.p2Name = state.results.p2Name;
+      state.screen = "results";
+      render();
+    }
+  });
+}
+
+// ═══════════════ SIGN-IN GATE & USERNAME PROMPT ═══════════════
+function renderSignInGate(targetPath) {
+  cleanupListeners();
+  const label = targetPath === "/dashboard" ? "your dashboard"
+    : targetPath === "/friends" ? "your friends"
+    : targetPath === "/leaderboard" ? "leaderboards" : "this page";
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">🔒</span>
+      <h1 class="title">Sign in to continue</h1>
+      <p class="subtitle">Sign in with Google to access ${esc(label)}.</p>
+      <button class="primary-btn" id="gateSignIn">Sign in with Google</button>
+      <button class="back-btn" id="gateHome">← Back home</button>
+    </div>`;
+  $("#gateSignIn").addEventListener("click", () => Auth.signInWithGoogle());
+  $("#gateHome").addEventListener("click", () => navigate("/"));
+}
+
+function renderUsernamePrompt() {
+  cleanupListeners();
+  app().innerHTML = `
+    <div class="card">
+      <span class="logo-icon">✨</span>
+      <h1 class="title">Pick a username</h1>
+      <p class="subtitle">This is how friends find you. 3–20 characters: letters, numbers, underscore.</p>
+      <input class="name-input" type="text" placeholder="username" maxlength="20" id="usernameInput" autocomplete="off">
+      <p class="hint" id="usernameError" style="color:var(--danger);display:none;"></p>
+      <button class="primary-btn" id="usernameSave">Save username</button>
+    </div>`;
+  const inp = $("#usernameInput");
+  const btn = $("#usernameSave");
+  const err = $("#usernameError");
+  const showErr = (m) => { err.textContent = m; err.style.display = m ? "block" : "none"; };
+  inp.focus();
+  btn.addEventListener("click", async () => {
+    if (!state.user) return;
+    const v = Auth.validateUsername(inp.value);
+    if (!v.ok) { showErr(v.error); return; }
+    btn.disabled = true; showErr("");
+    const res = await Auth.claimUsername(state.user.uid, inp.value);
+    btn.disabled = false;
+    if (!res.ok) { showErr(res.error); return; }
+    state.user.username = res.value;
+    state.user.usernameDisplay = res.display;
+    Auth.renderChrome(state.user);
+    // Continue to wherever they were headed, else home.
+    const dest = state.pendingRoute ? "/" + state.pendingRoute.replace(/^\//, "") : "/";
+    state.pendingRoute = null;
+    navigate(dest.startsWith("/") ? dest : "/" + dest);
+  });
+}
+
+// ═══════════════ AUTH WIRING ═══════════════
+// Claim games this browser's guest finished, attaching them to the now
+// signed-in user. Only drops a game from the pending list once it's been
+// successfully claimed — failed/transient claims stay for a later retry.
+async function claimPendingGames(uid) {
+  const pending = getPendingGames();
+  if (!pending.length) return;
+  const remaining = [];
+  for (const p of pending) {
+    const ok = await gameRepo.claimSide(p.gameId, p.side, uid, state.guestId);
+    if (!ok) remaining.push(p);
+  }
+  localStorage.setItem("dd_pending_games", JSON.stringify(remaining));
+}
+
+Auth.onUserChange = async (userObj) => {
+  const wasSignedOut = !state.user;
+  state.user = userObj;
+
+  if (userObj) {
+    if (wasSignedOut) await claimPendingGames(userObj.uid);
+    // First-time user with no username → prompt (unless mid-game).
+    const midGame = ["play", "p2-play"].includes(state.screen);
+    if (!userObj.username && !midGame) {
+      state.screen = "username";
+      render();
+      return;
+    }
+    // Replay a route they were gated from.
+    if (state.pendingRoute) {
+      const dest = "/" + state.pendingRoute.replace(/^\//, "");
+      state.pendingRoute = null;
+      navigate(dest);
+      return;
+    }
+  }
+  // Re-render current page so signed-in/guest UI updates.
+  routeAndRender();
+};
+
+// ═══════════════ BOOT ═══════════════
+// Router drives the first render; Auth.onAuthStateChanged fires async and
+// will re-render once the user is known.
+routeAndRender();
 
 (function() {
   const btn = document.getElementById('theme-toggle');
