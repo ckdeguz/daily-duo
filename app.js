@@ -1048,6 +1048,151 @@ async function handleInvite(code, me) {
   }
 }
 
+// ═══════════════ LEADERBOARD PAGE ═══════════════
+// View state kept across tab/month switches (boards fetched once per visit).
+const lbState = { tab: "allTime", monthKey: null, boards: null };
+
+async function renderLeaderboard() {
+  cleanupListeners();
+  const me = state.user;
+  if (!me) { state.pendingRoute = "leaderboard"; renderSignInGate("/leaderboard"); return; }
+
+  // Reset per-visit state and show skeleton.
+  lbState.tab = "allTime";
+  lbState.monthKey = leaderRepo.currentMonthKey();
+  lbState.boards = null;
+
+  app().innerHTML = `
+    <div class="card wide">
+      <div class="page-head">
+        <button class="back-btn" id="lbHome">← Home</button>
+        <h1 class="title">Leaderboards</h1>
+      </div>
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="allTime" id="tabAllTime">All-Time</button>
+        <button class="tab-btn" data-tab="month" id="tabMonth">Monthly</button>
+      </div>
+      <div id="monthControls" style="display:none;"></div>
+      <div id="lbList"><p class="hint">Loading…</p></div>
+    </div>`;
+
+  $("#lbHome").addEventListener("click", () => navigate("/"));
+  $("#tabAllTime").addEventListener("click", () => setLbTab("allTime"));
+  $("#tabMonth").addEventListener("click", () => setLbTab("month"));
+
+  lbState.boards = await leaderRepo.myBoards(me.uid);
+  renderLbBody();
+}
+
+function setLbTab(tab) {
+  lbState.tab = tab;
+  document.querySelectorAll(".tab-row .tab-btn").forEach((b) =>
+    b.classList.toggle("active", b.dataset.tab === tab));
+  renderLbBody();
+}
+
+function renderLbBody() {
+  const controls = $("#monthControls");
+  const list = $("#lbList");
+  if (!controls || !list) return;
+
+  const boards = lbState.boards || [];
+  if (!boards.length) {
+    controls.style.display = "none";
+    list.innerHTML = `<p class="hint">No leaderboards yet. Play a game with a signed-in friend to start a duo board!</p>`;
+    return;
+  }
+
+  if (lbState.tab === "allTime") {
+    controls.style.display = "none";
+    renderLbRows(boards.map((b) => ({ opponent: b.opponent, entry: b.allTime })));
+    return;
+  }
+
+  // Monthly: build month controls (dropdown of months that have data + typed input).
+  controls.style.display = "block";
+  const months = leaderRepo.monthsAcross(boards);
+  if (!months.includes(lbState.monthKey) && months.length) lbState.monthKey = months[0];
+  const options = months.map((k) =>
+    `<option value="${esc(k)}" ${k === lbState.monthKey ? "selected" : ""}>${esc(leaderRepo.monthKeyToLabel(k))}</option>`
+  ).join("");
+  controls.innerHTML = `
+    <div class="month-controls">
+      <select id="monthSelect" class="month-select">${options || '<option>—</option>'}</select>
+      <span class="month-or">or</span>
+      <input id="monthTyped" class="month-typed" placeholder="MM/YYYY" maxlength="7" value="${esc(leaderRepo.monthKeyToLabel(lbState.monthKey))}">
+      <button id="monthGo" class="share-btn">Go</button>
+    </div>
+    <p class="hint" id="monthError" style="display:none;color:var(--danger);"></p>`;
+
+  const sel = $("#monthSelect");
+  if (sel) sel.addEventListener("change", () => {
+    lbState.monthKey = sel.value;
+    $("#monthTyped").value = leaderRepo.monthKeyToLabel(sel.value);
+    $("#monthError").style.display = "none";
+    renderLbMonthRows();
+  });
+  $("#monthGo").addEventListener("click", applyTypedMonth);
+  $("#monthTyped").addEventListener("keydown", (e) => { if (e.key === "Enter") applyTypedMonth(); });
+
+  renderLbMonthRows();
+}
+
+function applyTypedMonth() {
+  const raw = $("#monthTyped").value;
+  const key = leaderRepo.parseMonthInput(raw);
+  const err = $("#monthError");
+  if (!key) {
+    err.textContent = "Enter a month as MM/YYYY, e.g. 05/2026.";
+    err.style.display = "block";
+    return;
+  }
+  err.style.display = "none";
+  lbState.monthKey = key;
+  const sel = $("#monthSelect");
+  if (sel) { // sync dropdown if the month exists there
+    const has = Array.from(sel.options).some((o) => o.value === key);
+    if (has) sel.value = key;
+  }
+  renderLbMonthRows();
+}
+
+function renderLbMonthRows() {
+  const boards = lbState.boards || [];
+  const key = lbState.monthKey;
+  const rows = boards
+    .map((b) => ({ opponent: b.opponent, entry: (b.months || {})[key] }))
+    .filter((r) => r.entry); // only duos with a score that month
+  if (!rows.length) {
+    $("#lbList").innerHTML = `<p class="hint">No scores for ${esc(leaderRepo.monthKeyToLabel(key))} yet.</p>`;
+    return;
+  }
+  renderLbRows(rows);
+}
+
+function renderLbRows(rows) {
+  // Sort best score desc; tie-break by most recent date.
+  rows.sort((a, b) => (b.entry.bestScore - a.entry.bestScore)
+    || String(b.entry.dateAchieved).localeCompare(String(a.entry.dateAchieved)));
+  $("#lbList").innerHTML = rows.map((r, i) => {
+    const name = esc(r.opponent.usernameDisplay || "(unknown)");
+    const avatar = r.opponent.photoURL
+      ? `<img class="friend-avatar" src="${esc(r.opponent.photoURL)}" alt="">`
+      : `<span class="friend-avatar friend-avatar-fallback">${esc((name[0] || "?").toUpperCase())}</span>`;
+    const score = r.entry.bestScore;
+    const color = score >= 16 ? "var(--success)" : score >= 10 ? "var(--warn)" : "var(--danger)";
+    return `
+      <div class="lb-row">
+        <span class="lb-rank">#${i + 1}</span>
+        <div class="friend-id">${avatar}<span class="friend-name">You &amp; ${name}</span></div>
+        <div class="lb-score-wrap">
+          <span class="lb-score" style="color:${color}">${score}/20</span>
+          <span class="lb-date">${esc(r.entry.dateAchieved || "")}</span>
+        </div>
+      </div>`;
+  }).join("");
+}
+
 // ═══════════════ AUTH WIRING ═══════════════
 // Claim games this browser's guest finished, attaching them to the now
 // signed-in user. Only drops a game from the pending list once it's been
