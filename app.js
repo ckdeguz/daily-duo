@@ -1193,6 +1193,112 @@ function renderLbRows(rows) {
   }).join("");
 }
 
+// ═══════════════ DASHBOARD PAGE ═══════════════
+function dashAvatar(profile, sizeClass) {
+  const label = esc(profile.usernameDisplay || profile.username || profile.displayName || "?");
+  return profile.photoURL
+    ? `<img class="${sizeClass}" src="${esc(profile.photoURL)}" alt="">`
+    : `<span class="${sizeClass} friend-avatar-fallback">${esc((label[0] || "?").toUpperCase())}</span>`;
+}
+
+async function renderDashboard() {
+  cleanupListeners();
+  const me = state.user;
+  if (!me) { state.pendingRoute = "dashboard"; renderSignInGate("/dashboard"); return; }
+
+  const myName = esc(me.usernameDisplay || me.username || me.displayName || "You");
+
+  app().innerHTML = `
+    <div class="card wide">
+      <div class="page-head">
+        <button class="back-btn" id="dashHome">← Home</button>
+        <h1 class="title">Dashboard</h1>
+      </div>
+
+      <div class="dash-profile">
+        ${dashAvatar(me, "dash-avatar")}
+        <div class="dash-profile-info">
+          <div class="dash-username">${myName}</div>
+          <div class="dash-links">
+            <a href="#/friends">Friends</a> · <a href="#/leaderboard">Leaderboards</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="dashStats" class="dash-stats"></div>
+
+      <div class="dash-section">
+        <p class="share-label">By friend</p>
+        <div id="dashByFriend"><p class="hint">Loading…</p></div>
+      </div>
+
+      <div class="dash-section">
+        <p class="share-label">Recent games</p>
+        <div id="dashHistory"><p class="hint">Loading…</p></div>
+      </div>
+    </div>`;
+
+  $("#dashHome").addEventListener("click", () => navigate("/"));
+
+  const rows = await dashRepo.myGames(me.uid);
+  const oppMap = await dashRepo.resolveProfiles(rows.map((r) => r.opponentUid));
+
+  // Stats
+  const s = dashRepo.stats(rows);
+  $("#dashStats").innerHTML = `
+    ${dashStatCard(s.games, "Games")}
+    ${dashStatCard(s.games ? s.avgTotal + "/20" : "—", "Avg score")}
+    ${dashStatCard(s.games ? s.bestTotal + "/20" : "—", "Best game")}
+    ${dashStatCard(s.friends, "Opponents")}`;
+
+  // By friend
+  const byFriendEl = $("#dashByFriend");
+  const groups = dashRepo.byFriend(rows);
+  if (!groups.length) {
+    byFriendEl.innerHTML = `<p class="hint">No games yet — play a round with a signed-in friend!</p>`;
+  } else {
+    byFriendEl.innerHTML = groups.map((grp) => {
+      const p = oppMap.get(grp.opponentUid) || { usernameDisplay: "(unknown)", photoURL: "" };
+      const name = esc(p.usernameDisplay || "(unknown)");
+      return `
+        <div class="friend-row">
+          <div class="friend-id">${dashAvatar(p, "friend-avatar")}<span class="friend-name">${name}</span></div>
+          <div class="dash-friend-meta">
+            <span>${grp.count} game${grp.count === 1 ? "" : "s"}</span>
+            <span class="lb-date">best ${grp.bestTotal}/20</span>
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  // History
+  const histEl = $("#dashHistory");
+  if (!rows.length) {
+    histEl.innerHTML = `<p class="hint">No games yet.</p>`;
+  } else {
+    histEl.innerHTML = rows.map((r) => {
+      const p = oppMap.get(r.opponentUid) || { usernameDisplay: "(unknown)", photoURL: "" };
+      const name = esc(p.usernameDisplay || "(unknown)");
+      const color = r.totalScore >= 16 ? "var(--success)" : r.totalScore >= 10 ? "var(--warn)" : "var(--danger)";
+      return `
+        <button class="dash-history-row" data-gid="${esc(r.gameId)}">
+          <div class="friend-id">${dashAvatar(p, "friend-avatar")}<span class="friend-name">vs ${name}</span></div>
+          <div class="dash-hist-meta">
+            <span class="lb-score" style="color:${color}">${r.totalScore}/20</span>
+            <span class="lb-date">${esc(r.dateKey)}</span>
+            <span class="dash-hist-arrow">›</span>
+          </div>
+        </button>`;
+    }).join("");
+    histEl.querySelectorAll(".dash-history-row").forEach((b) =>
+      b.addEventListener("click", () => navigate("g/" + b.dataset.gid)));
+  }
+}
+
+function dashStatCard(value, label) {
+  return `<div class="dash-stat"><div class="dash-stat-value">${esc(String(value))}</div><div class="dash-stat-label">${esc(label)}</div></div>`;
+}
+
 // ═══════════════ AUTH WIRING ═══════════════
 // Claim games this browser's guest finished, attaching them to the now
 // signed-in user. Only drops a game from the pending list once it's been
