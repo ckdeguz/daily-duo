@@ -165,9 +165,11 @@
         ${avatar}<span class="auth-account-name">${label}</span>
       </button>
       <div class="auth-menu" id="authMenu" hidden>
-        <a class="auth-menu-item" href="#/dashboard">Dashboard</a>
         <a class="auth-menu-item" href="#/friends">Friends</a>
+        <!-- Re-enable each as its phase ships:
+        <a class="auth-menu-item" href="#/dashboard">Dashboard</a>
         <a class="auth-menu-item" href="#/leaderboard">Leaderboards</a>
+        -->
         <button class="auth-menu-item auth-menu-signout" id="authSignOutBtn">Sign out</button>
       </div>`;
     const accBtn = document.getElementById("authAccountBtn");

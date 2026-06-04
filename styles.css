@@ -83,7 +83,7 @@ body {
   #theme-toggle { top: 8px; right: 8px; width: 34px; height: 34px; font-size: 15px; }
 }
 
-.logo-icon { width: 64px; height: 64px; margin-bottom: 4px; object-fit: contain; }
+.logo-icon { width: 64px; height: 64px; border-radius: 20px; margin-bottom: 4px; object-fit: contain; }
 
 .title {
   font-size: 28px;
@@ -631,6 +631,82 @@ body {
 #auth-toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* ═══════════════ FRIENDS PAGE ═══════════════ */
+.page-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.page-head .back-btn { margin-top: 0; }
+.page-head .title { margin: 0; font-size: 24px; }
+
+.friends-section {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: left;
+}
+.friends-section:first-of-type { border-top: none; padding-top: 0; margin-top: 8px; }
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.search-row .name-input { flex: 1; }
+
+.friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-default);
+  margin-top: 8px;
+}
+.friend-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.friend-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.friend-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.friend-name {
+  font-size: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.friend-action {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.friend-action .back-btn { margin-top: 0; }
+.back-btn.confirm-danger {
+  background: rgba(239,68,68,0.15);
+  color: var(--danger);
 }
 
 /* ═══════════════ ADBLOCK BANNER ═══════════════ */

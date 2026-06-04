@@ -867,6 +867,187 @@ function renderUsernamePrompt() {
   });
 }
 
+// ═══════════════ FRIENDS PAGE ═══════════════
+function friendRowHtml(f, actionHtml) {
+  const label = esc(f.usernameDisplay || f.username || "(unknown)");
+  const avatar = f.photoURL
+    ? `<img class="friend-avatar" src="${esc(f.photoURL)}" alt="">`
+    : `<span class="friend-avatar friend-avatar-fallback">${esc((label[0] || "?").toUpperCase())}</span>`;
+  return `
+    <div class="friend-row">
+      <div class="friend-id">${avatar}<span class="friend-name">${label}</span></div>
+      <div class="friend-action">${actionHtml || ""}</div>
+    </div>`;
+}
+
+async function renderFriends(params) {
+  cleanupListeners();
+  const me = state.user;
+  if (!me) { state.pendingRoute = "friends"; renderSignInGate("/friends"); return; }
+
+  // Skeleton first.
+  app().innerHTML = `
+    <div class="card wide">
+      <div class="page-head">
+        <button class="back-btn" id="friendsHome">← Home</button>
+        <h1 class="title">Friends</h1>
+      </div>
+
+      <div class="friends-section">
+        <p class="share-label">Your invite link</p>
+        <div class="link-box"><span class="link-text" id="inviteLink">Generating…</span></div>
+        <button class="share-btn" id="copyInviteBtn" style="margin-top:10px;">Copy invite link</button>
+      </div>
+
+      <div class="friends-section">
+        <p class="share-label">Add by username</p>
+        <div class="search-row">
+          <input class="name-input" id="friendSearch" placeholder="username" maxlength="20" autocomplete="off" style="margin-bottom:0;text-align:left;">
+          <button class="primary-btn" id="friendSearchBtn" style="width:auto;padding:14px 18px;">Search</button>
+        </div>
+        <div id="searchResult"></div>
+      </div>
+
+      <div class="friends-section" id="requestsSection" style="display:none;">
+        <p class="share-label">Friend requests</p>
+        <div id="requestsList"></div>
+      </div>
+
+      <div class="friends-section">
+        <p class="share-label">Your friends</p>
+        <div id="friendsList"><p class="hint">Loading…</p></div>
+      </div>
+    </div>`;
+
+  $("#friendsHome").addEventListener("click", () => navigate("/"));
+
+  // Invite link
+  friendRepo.getOrCreateInviteCode(me).then((code) => {
+    const el = $("#inviteLink");
+    if (!el) return;
+    if (!code) { el.textContent = "Couldn't generate a link."; return; }
+    const url = `${location.origin}${location.pathname}#/friends?invite=${code}`;
+    el.textContent = url;
+    const copyBtn = $("#copyInviteBtn");
+    if (copyBtn) copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(url).catch(() => {});
+      copyBtn.textContent = "✓ Copied!";
+      setTimeout(() => { if ($("#copyInviteBtn")) copyBtn.textContent = "Copy invite link"; }, 2000);
+    });
+  });
+
+  // Username search
+  const doSearch = async () => {
+    const q = $("#friendSearch").value;
+    const out = $("#searchResult");
+    out.innerHTML = `<p class="hint">Searching…</p>`;
+    const found = await friendRepo.findByUsername(q);
+    if (!found) { out.innerHTML = `<p class="hint">No user found with that username.</p>`; return; }
+    if (found.uid === me.uid) { out.innerHTML = `<p class="hint">That's you!</p>`; return; }
+    out.innerHTML = friendRowHtml(found, `<button class="share-btn" id="addFriendBtn">Add</button>`);
+    $("#addFriendBtn").addEventListener("click", async () => {
+      const b = $("#addFriendBtn");
+      b.disabled = true; b.textContent = "Sending…";
+      const res = await friendRepo.sendRequest(me, found, "search");
+      b.textContent = res.ok ? "Request sent ✓" : (res.error || "Failed");
+      if (!res.ok) b.disabled = false;
+    });
+  };
+  $("#friendSearchBtn").addEventListener("click", doSearch);
+  $("#friendSearch").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
+
+  // If arriving via an invite link, handle it.
+  if (params && params.invite) {
+    await handleInvite(params.invite, me);
+  }
+
+  // Pending requests + friends list. Load friends first so we can hide any
+  // requests from people we're already friends with (simultaneous-request case).
+  await refreshFriendsList(me);
+  await refreshRequests(me);
+}
+
+// Cache the current friends' uids so requests can filter against them.
+let _friendUids = new Set();
+
+async function refreshRequests(me) {
+  const reqs = await friendRepo.incomingRequests(me.uid);
+  const section = $("#requestsSection");
+  const list = $("#requestsList");
+  if (!section || !list) return;
+  // Drop requests from people we're already friends with.
+  const visible = reqs.filter((r) => !_friendUids.has(r.fromUid));
+  if (!visible.length) { section.style.display = "none"; return; }
+  section.style.display = "block";
+  list.innerHTML = visible.map((r) => friendRowHtml(
+    { usernameDisplay: r.fromUsername, photoURL: r.fromPhotoURL },
+    `<button class="share-btn req-accept" data-id="${esc(r.id)}">Accept</button>
+     <button class="back-btn req-decline" data-id="${esc(r.id)}" style="margin-top:0;">Decline</button>`
+  )).join("");
+  list.querySelectorAll(".req-accept").forEach((b) => b.addEventListener("click", async () => {
+    b.disabled = true;
+    await friendRepo.acceptRequest(b.dataset.id, me.uid);
+    await refreshFriendsList(me);
+    await refreshRequests(me);
+  }));
+  list.querySelectorAll(".req-decline").forEach((b) => b.addEventListener("click", async () => {
+    b.disabled = true;
+    await friendRepo.declineRequest(b.dataset.id, me.uid);
+    await refreshRequests(me);
+  }));
+}
+
+async function refreshFriendsList(me) {
+  const list = $("#friendsList");
+  if (!list) return;
+  const friends = await friendRepo.listFriends(me.uid);
+  _friendUids = new Set(friends.map((f) => f.uid));
+  if (!friends.length) {
+    list.innerHTML = `<p class="hint">No friends yet — add someone by username or share your invite link.</p>`;
+    return;
+  }
+  list.innerHTML = friends.map((f) => friendRowHtml(
+    f,
+    `<button class="back-btn friend-remove" data-uid="${esc(f.uid)}" data-name="${esc(f.usernameDisplay || "")}" style="margin-top:0;">Remove</button>`
+  )).join("");
+  list.querySelectorAll(".friend-remove").forEach((b) => b.addEventListener("click", async () => {
+    const name = b.dataset.name || "this friend";
+    if (b.dataset.confirm !== "1") {
+      b.dataset.confirm = "1";
+      b.textContent = "Confirm?";
+      b.classList.add("confirm-danger");
+      // Reset if not confirmed within a few seconds.
+      setTimeout(() => {
+        if (b && b.dataset.confirm === "1") {
+          b.dataset.confirm = "0"; b.textContent = "Remove"; b.classList.remove("confirm-danger");
+        }
+      }, 3500);
+      return;
+    }
+    b.disabled = true; b.textContent = "Removing…";
+    await friendRepo.removeFriend(me.uid, b.dataset.uid);
+    await refreshFriendsList(me);
+    await refreshRequests(me);
+  }));
+}
+
+async function handleInvite(code, me) {
+  const owner = await friendRepo.resolveInviteCode(code);
+  const out = $("#searchResult");
+  if (!owner) return;
+  if (owner.uid === me.uid) return; // your own link
+  if (await friendRepo.friendshipExists(me.uid, owner.uid)) {
+    if (out) out.innerHTML = `<p class="hint">You're already friends with ${esc(owner.usernameDisplay)}.</p>`;
+    return;
+  }
+  const res = await friendRepo.sendRequest(me, owner, "invite");
+  if (out) {
+    out.innerHTML = res.ok
+      ? `<p class="hint">Friend request sent to ${esc(owner.usernameDisplay)} ✓</p>`
+      : `<p class="hint">${esc(res.error || "Couldn't send request.")}</p>`;
+  }
+}
+
 // ═══════════════ AUTH WIRING ═══════════════
 // Claim games this browser's guest finished, attaching them to the now
 // signed-in user. Only drops a game from the pending list once it's been
