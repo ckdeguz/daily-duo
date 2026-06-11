@@ -945,3 +945,70 @@ body {
     flex-shrink: 0;
   }
 }
+
+/* ─── Site footer (legal/nav links, survives render()) ─── */
+#site-footer {
+  width: 100%;
+  max-width: 660px;
+  margin: 28px auto 8px;
+  padding: 0 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+#site-footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+#site-footer a:hover { color: var(--text-primary); text-decoration: underline; }
+
+/* ─── Static document pages (about / privacy / terms) ─── */
+body.doc-page {
+  justify-content: flex-start;
+  padding: 32px 20px 48px;
+}
+.doc {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-surface);
+  box-shadow: var(--card-shadow);
+  border-radius: 20px;
+  padding: 40px 36px;
+  text-align: left;
+  line-height: 1.65;
+}
+.doc-logo { width: 56px; height: 56px; border-radius: 18px; object-fit: contain; margin-bottom: 12px; }
+.doc-back { margin-bottom: 18px; font-size: 14px; }
+.doc-back a, .doc a { color: var(--accent); text-decoration: none; }
+.doc-back a:hover, .doc a:hover { text-decoration: underline; }
+.doc h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+.doc h2 { font-size: 19px; font-weight: 700; margin: 28px 0 8px; }
+.doc p { color: var(--text-primary); margin-bottom: 12px; }
+.doc ul { margin: 0 0 12px 22px; color: var(--text-primary); }
+.doc li { margin-bottom: 8px; }
+.doc-updated { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.doc-cta { margin-top: 28px; text-align: center; }
+.doc-cta-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+.doc-nav {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-default);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.doc-nav a { color: var(--text-secondary); }
+
+@media (max-width: 600px) {
+  body.doc-page { padding: 16px 12px 32px; }
+  .doc { padding: 28px 18px; border-radius: 16px; }
+  .doc h1 { font-size: 24px; }
+}

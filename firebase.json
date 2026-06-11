@@ -16,6 +16,9 @@
       "firestore.indexes.json"
     ],
     "rewrites": [
+      { "source": "/privacy", "destination": "/privacy.html" },
+      { "source": "/terms", "destination": "/terms.html" },
+      { "source": "/about", "destination": "/about.html" },
       {
         "source": "**",
         "destination": "/index.html"

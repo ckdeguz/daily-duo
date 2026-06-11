@@ -6,7 +6,9 @@
   <title>Daily Duo</title>
   <link rel="icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
+  <meta name="description" content="Daily Duo is a free two-player daily quiz game. Answer ten questions, guess your friend's answers, share a link, and compare scores with friends.">
+  <link rel="canonical" href="https://daily-duo-quiz.web.app/">
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2609403051184314"
@@ -15,7 +17,23 @@
 <body>
 
 <button id="theme-toggle" aria-label="Toggle theme"></button>
-<div id="app"><div class="card"><div class="spinner"></div><p class="subtitle" style="margin-top:12px">Loading...</p></div></div>
+<div id="app">
+  <div class="card">
+    <h1 class="title">Daily Duo</h1>
+    <p class="subtitle">A free two-player daily quiz game. Answer ten questions, guess your friend's answers, share a link, and compare scores.</p>
+    <p class="subtitle" style="margin-top:14px">Every day brings ten fresh questions. You answer them about yourself and guess how your friend will answer, then share a link so they can do the same. When you both finish, you'll see how well each of you predicted the other. Sign in with Google to add friends, climb per-pair leaderboards, and track your stats on a personal dashboard — or play instantly as a guest.</p>
+    <p class="subtitle" style="margin-top:14px"><a href="/about">Learn more about Daily Duo</a></p>
+    <div class="spinner" style="margin-top:18px"></div>
+    <p class="subtitle" style="margin-top:12px">Loading today's quiz…</p>
+  </div>
+</div>
+<noscript>
+  <div class="card">
+    <h1 class="title">Daily Duo</h1>
+    <p class="subtitle">Daily Duo is a free two-player daily quiz game. Answer ten questions, guess your friend's answers, and compare scores. JavaScript is required to play — please enable it in your browser.</p>
+    <p class="subtitle"><a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+  </div>
+</noscript>
 
 <!-- Ad Slot: Home Screen -->
 
@@ -68,6 +86,10 @@
   </div>
 </div> -->
 
+
+<footer id="site-footer">
+  <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="mailto:dailyduoapp@gmail.com">Contact</a>
+</footer>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
