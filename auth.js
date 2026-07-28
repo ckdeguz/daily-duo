@@ -58,7 +58,11 @@
 
   // ─── User doc: ensure users/{uid} exists; returns the merged profile ───
   // Does NOT create a username — that's a separate, explicit step so we can
-  // prompt the user. Returns { uid, displayName, photoURL, email, username|null }.
+  // prompt the user. Returns { uid, displayName, photoURL, username|null }.
+  //
+  // NOTE: users/{uid} is world-readable (see firestore.rules) so it holds
+  // PUBLIC profile fields only. Never persist email or any other PII here —
+  // Firebase Auth already retains the email server-side as fbUser.email.
   async function loadProfile(fbUser) {
     const ref = fs.collection("users").doc(fbUser.uid);
     let snap;
@@ -66,11 +70,16 @@
 
     if (snap && snap.exists) {
       const d = snap.data();
+      // Self-healing cleanup: older docs stored an `email` field back when this
+      // function persisted it. The doc is world-readable, so strip it on sight.
+      if ("email" in d) {
+        ref.update({ email: firebase.firestore.FieldValue.delete() })
+           .catch((e) => console.error("email cleanup error:", e));
+      }
       return {
         uid: fbUser.uid,
         displayName: d.displayName || fbUser.displayName || "",
         photoURL: d.photoURL || fbUser.photoURL || "",
-        email: d.email || fbUser.email || "",
         username: d.username || null,
         usernameDisplay: d.usernameDisplay || null,
         entitlements: d.entitlements || { extraQuestions: false, removeAds: false },
@@ -81,7 +90,6 @@
     const base = {
       displayName: fbUser.displayName || "",
       photoURL: fbUser.photoURL || "",
-      email: fbUser.email || "",
       username: null,
       usernameDisplay: null,
       entitlements: { extraQuestions: false, removeAds: false },

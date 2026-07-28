@@ -2,7 +2,12 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ─── Users: public profiles (name/avatar/username are shown to friends) ───
+    // ─── Users: PUBLIC profiles (name/avatar/username are shown to friends) ───
+    //
+    // ⚠️  This doc is world-readable and the `usernames` index below is
+    // enumerable, so anything stored here is effectively published. Store
+    // PUBLIC profile fields ONLY — never email, phone, or other PII.
+    // (An `email` field lived here previously; auth.js now strips it.)
     match /users/{uid} {
       allow read: if true;
       // A user may create/update only their own doc. Username fields are set
@@ -46,14 +51,31 @@ service cloud.firestore {
       allow update: if completingP2() || claimingSide();
     }
 
+    // Create: must start as awaiting_p2 with no p2 yet, and the creator may not
+    // forge the game onto someone else's account — p1.uid must be either null
+    // (guest play) or the caller's own uid. Scores stay null until completion.
     function validGameCreate(gameId) {
       let d = request.resource.data;
       return d.status == 'awaiting_p2'
              && d.p2 == null
-             && d.gameId == gameId;
+             && d.gameId == gameId
+             && (d.p1.uid == null
+                 || (request.auth != null && d.p1.uid == request.auth.uid))
+             && d.p1Score == null
+             && d.p2Score == null
+             && d.totalScore == null
+             && d.pairId == null
+             && d.participantUids == (d.p1.uid == null ? [] : [d.p1.uid]);
     }
 
     // P2 fills the currently-empty p2 side and marks the game complete.
+    //
+    // Scores are computed client-side (computeScores in db.js) and rules can't
+    // recompute them — CEL has no loop over the answers array. What rules CAN
+    // do is stop a completion from being forged onto another account, which is
+    // what leaderboard integrity actually rests on: p2.uid must be null (guest)
+    // or the caller's own, and participantUids/pairId must follow from the two
+    // sides rather than being attacker-supplied.
     function completingP2() {
       let before = resource.data;
       let after = request.resource.data;
@@ -63,14 +85,55 @@ service cloud.firestore {
              && after.p2 != null
              // p1 side is immutable during completion
              && after.p1 == before.p1
-             && after.questions == before.questions;
+             && after.questions == before.questions
+             // The completer may only claim themselves (or stay a guest).
+             && (after.p2.uid == null
+                 || (request.auth != null && after.p2.uid == request.auth.uid))
+             // participantUids may only contain the two sides' real uids.
+             && after.participantUids.hasOnly(realUids(after.p1.uid, after.p2.uid))
+             // A pair requires two DIFFERENT signed-in players.
+             && (after.pairId == null
+                 || (after.p1.uid != null && after.p2.uid != null
+                     && after.p1.uid != after.p2.uid));
+    }
+
+    // The non-null uids among the two sides, as a list.
+    function realUids(a, b) {
+      return (a == null ? [] : [a]).concat(b == null ? [] : [b]);
     }
 
     // A signed-in user backfills their uid onto a side they played as guest.
-    // (Coarse check; the client transaction enforces guestId match.)
+    //
+    // Rules cannot verify the guestId match (the claimer proves possession of
+    // the guest id via the client transaction in db.js `claimSide`), but they
+    // MUST prevent a claim from being used as a general-purpose write. So:
+    // exactly one side's previously-null uid may be set to the caller's own
+    // uid, and every other meaningful field is pinned to its current value.
     function claimingSide() {
+      let before = resource.data;
+      let after = request.resource.data;
       return request.auth != null
-             && request.resource.data.questions == resource.data.questions;
+             && after.questions == before.questions
+             && after.status == before.status
+             && after.p1Score == before.p1Score
+             && after.p2Score == before.p2Score
+             && after.totalScore == before.totalScore
+             && after.participantUids.hasOnly(before.participantUids.concat([request.auth.uid]))
+             // Exactly one side is claimed; the other is untouched.
+             && ( (claimedSide(before.p1, after.p1) && after.p2 == before.p2)
+                  || (claimedSide(before.p2, after.p2) && after.p1 == before.p1) );
+    }
+
+    // The claimed side: uid goes null -> caller's uid, nothing else changes.
+    function claimedSide(before, after) {
+      return before != null
+             && after != null
+             && before.uid == null
+             && after.uid == request.auth.uid
+             && after.guestId == before.guestId
+             && after.name == before.name
+             && after.answers == before.answers
+             && after.guesses == before.guesses;
     }
 
     // ─── Leaderboard: per-pair best scores. Members only. ───
