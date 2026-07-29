@@ -25,16 +25,17 @@ Questions rotate daily — everyone who plays on the same day gets the same set 
 - **Firebase Authentication** — Google sign-in (guest play still works without an account)
 - **Cloud Firestore** — games, users, friends, and leaderboards
 - **Firebase Hosting** — static site deployment
-- **Google AdSense** — ad slots on the home, play, and results screens
 - **Canvas API** — generates a shareable results image client-side
+
+> Daily Duo is free to play and currently shows **no ads**. Ad slot markup still exists in `index.html` but is disabled via `ADS_ENABLED = false` in `app.js`.
 
 ## Project Structure
 
 ```
-index.html       — app shell, ad slots, ordered <script> tags
+index.html       — app shell, dormant ad slots, ordered <script> tags
 config.js        — Firebase config (gitignored)
 questions.js     — pool of daily questions
-adblock.js       — adblock detection banner
+adblock.js       — adblock detection banner (currently unused)
 db.js            — Firestore data layer (games, scoring, leaderboard writes)
 auth.js          — Google sign-in, user/username docs, account header
 router.js        — hash router (#/, #g/<id>, #/dashboard, #/friends, #/leaderboard)

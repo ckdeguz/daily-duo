@@ -1,4 +1,10 @@
+// Ads are currently disabled (no active AdSense account). ADS_ENABLED gates the
+// whole path: the slot markup stays in index.html but is never revealed, so no
+// empty ad boxes appear and no requests are made. Flip to true to restore ads.
+const ADS_ENABLED = false;
+
 function showAd(id) {
+  if (!ADS_ENABLED) return;
   document.querySelectorAll('[id^="ad-"]').forEach(el => { el.style.display = "none"; });
   const slot = document.getElementById(id);
   if (!slot) return;
@@ -656,7 +662,9 @@ function renderResults() {
   $("#shareResultsBtn").addEventListener("click", shareResultsImage);
 
   setTimeout(showResultsAd, 400);
-  setTimeout(injectAdBlockBanner, 400);
+  // Adblock banner disabled: no ads are served right now, so nagging about an
+  // adblocker (and offering a "remove ads" purchase) would be misleading.
+  // Re-enable alongside ads: setTimeout(injectAdBlockBanner, 400);
 }
 
 function renderError() {
