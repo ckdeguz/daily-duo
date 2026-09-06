@@ -2,8 +2,8 @@
 // Exposes window.Auth. Guests need none of this — sign-in is additive.
 //
 // Depends on: firebase (compat auth + firestore via db.js's `fs`), esc(),
-// and app.js globals: state, render. Loaded before app.js, but the callbacks
-// it registers run later (after app.js defines state/render).
+// safePhotoURL(), and app.js globals: state, render. Loaded before app.js, but
+// the callbacks it registers run later (after app.js defines state/render).
 
 (function () {
   const auth = firebase.auth();
@@ -165,8 +165,9 @@
       return;
     }
     const label = esc(user.usernameDisplay || user.username || user.displayName || "Account");
-    const avatar = user.photoURL
-      ? `<img class="auth-avatar" src="${esc(user.photoURL)}" alt="">`
+    const photo = safePhotoURL(user.photoURL);
+    const avatar = photo
+      ? `<img class="auth-avatar" src="${esc(photo)}" alt="">`
       : `<span class="auth-avatar auth-avatar-fallback">${esc((label[0] || "?").toUpperCase())}</span>`;
     el.innerHTML = `
       <button class="auth-account-btn" id="authAccountBtn" aria-haspopup="true" aria-expanded="false">

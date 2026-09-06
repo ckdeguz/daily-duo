@@ -101,10 +101,33 @@ function generateId() {
   return id;
 }
 
+// Escapes for BOTH text and attribute contexts. Attribute-safe escaping of
+// " and ' is mandatory: nearly every call site interpolates into a
+// double-quoted HTML attribute (src=, value=, data-*), and the previous
+// textContent/innerHTML round-trip did NOT escape quotes — a user-controlled
+// photoURL of `" onerror="…` broke out and executed. Over-escaping in text
+// context is harmless (&quot; renders as ").
 function esc(str) {
-  const div = document.createElement("div");
-  div.textContent = str || "";
-  return div.innerHTML;
+  return String(str == null ? "" : str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// A photoURL comes from a world-readable, user-writable doc. Escaping makes it
+// inert in src="", but not in every possible sink (href=, CSS url()), so
+// normalize it to an https URL or drop it. Callers all have an initials
+// fallback for the empty case.
+function safePhotoURL(url) {
+  if (!url) return "";
+  try {
+    // No base argument: a relative or malformed value must THROW rather than
+    // silently resolve against our own origin into a bogus same-site URL.
+    const u = new URL(String(url));
+    return u.protocol === "https:" ? u.href : "";
+  } catch (e) { return ""; }
 }
 
 // ═══════════════ APP STATE ═══════════════
@@ -268,7 +291,11 @@ function bindP1Options() {
     btn.addEventListener("click", () => {
       if (state.animating) return;
       state.animating = true;
-      const idx = parseInt(btn.dataset.idx);
+      // A NaN or out-of-range index would persist into the answers array and
+      // on to Firestore, corrupting scores permanently. Every question has
+      // exactly 4 options.
+      const idx = parseInt(btn.dataset.idx, 10);
+      if (!Number.isInteger(idx) || idx < 0 || idx >= 4) { state.animating = false; return; }
       btn.classList.add("selected");
 
       if (state.phase === "own") {
@@ -333,7 +360,10 @@ function bindP2Options() {
     btn.addEventListener("click", () => {
       if (state.animating) return;
       state.animating = true;
-      const idx = parseInt(btn.dataset.idx);
+      // See bindP1Options: guard against a NaN/out-of-range index reaching
+      // the answers array and Firestore.
+      const idx = parseInt(btn.dataset.idx, 10);
+      if (!Number.isInteger(idx) || idx < 0 || idx >= 4) { state.animating = false; return; }
       btn.classList.add("selected");
 
       if (state.phase === "own") {
@@ -753,6 +783,7 @@ async function openGame(gameId) {
   if (!game) {
     state.errorMsg = "This link doesn't seem to be valid or may have expired.";
     state.screen = "error";
+    setTitle("Link not found");
     render();
     return;
   }
@@ -764,6 +795,7 @@ async function openGame(gameId) {
     state.results = flattenGame(game);
     state.p2Name = state.results.p2Name;
     state.screen = "results";
+    setTitle("Results");
     render();
     return;
   }
@@ -777,10 +809,12 @@ async function openGame(gameId) {
     : (p1.guestId && p1.guestId === state.guestId);
 
   if (viewerIsP1) {
+    setTitle("Waiting for your friend");
     renderWaiting(gameId);
   } else {
     state.p2Name = "";
     state.screen = "p2-intro";
+    setTitle(`${state.p1Name} sent you a Daily Duo`);
     render();
   }
 }
@@ -818,6 +852,8 @@ function subscribeForResults(gameId) {
       state.p1Name = state.results.p1Name;
       state.p2Name = state.results.p2Name;
       state.screen = "results";
+      // Live handoff from the waiting screen — retitle, don't leave "Waiting…".
+      setTitle("Results");
       render();
     }
   });
@@ -878,8 +914,9 @@ function renderUsernamePrompt() {
 // ═══════════════ FRIENDS PAGE ═══════════════
 function friendRowHtml(f, actionHtml) {
   const label = esc(f.usernameDisplay || f.username || "(unknown)");
-  const avatar = f.photoURL
-    ? `<img class="friend-avatar" src="${esc(f.photoURL)}" alt="">`
+  const photo = safePhotoURL(f.photoURL);
+  const avatar = photo
+    ? `<img class="friend-avatar" src="${esc(photo)}" alt="">`
     : `<span class="friend-avatar friend-avatar-fallback">${esc((label[0] || "?").toUpperCase())}</span>`;
   return `
     <div class="friend-row">
@@ -1184,8 +1221,9 @@ function renderLbRows(rows) {
     || String(b.entry.dateAchieved).localeCompare(String(a.entry.dateAchieved)));
   $("#lbList").innerHTML = rows.map((r, i) => {
     const name = esc(r.opponent.usernameDisplay || "(unknown)");
-    const avatar = r.opponent.photoURL
-      ? `<img class="friend-avatar" src="${esc(r.opponent.photoURL)}" alt="">`
+    const photo = safePhotoURL(r.opponent.photoURL);
+    const avatar = photo
+      ? `<img class="friend-avatar" src="${esc(photo)}" alt="">`
       : `<span class="friend-avatar friend-avatar-fallback">${esc((name[0] || "?").toUpperCase())}</span>`;
     const score = r.entry.bestScore;
     const color = score >= 16 ? "var(--success)" : score >= 10 ? "var(--warn)" : "var(--danger)";
@@ -1204,8 +1242,9 @@ function renderLbRows(rows) {
 // ═══════════════ DASHBOARD PAGE ═══════════════
 function dashAvatar(profile, sizeClass) {
   const label = esc(profile.usernameDisplay || profile.username || profile.displayName || "?");
-  return profile.photoURL
-    ? `<img class="${sizeClass}" src="${esc(profile.photoURL)}" alt="">`
+  const photo = safePhotoURL(profile.photoURL);
+  return photo
+    ? `<img class="${sizeClass}" src="${esc(photo)}" alt="">`
     : `<span class="${sizeClass} friend-avatar-fallback">${esc((label[0] || "?").toUpperCase())}</span>`;
 }
 
@@ -1354,13 +1393,17 @@ routeAndRender();
 
 (function() {
   const btn = document.getElementById('theme-toggle');
-  const saved = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
+  if (!btn) return;
+  // theme-init.js already applied the theme before first paint, so read it back
+  // off the element rather than hitting localStorage again.
+  const saved = document.documentElement.getAttribute('data-theme') || 'dark';
   btn.textContent = saved === 'light' ? '☀️' : '🌙';
   btn.addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    // Can throw in a private window / with site data blocked; the toggle should
+    // still work for the current page even if the choice can't be persisted.
+    try { localStorage.setItem('theme', next); } catch (e) { /* not persisted */ }
     btn.textContent = next === 'light' ? '☀️' : '🌙';
   });
 })();

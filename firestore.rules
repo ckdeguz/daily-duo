@@ -13,10 +13,55 @@ service cloud.firestore {
       // A user may create/update only their own doc. Username fields are set
       // via the usernames transaction below; entitlements must not be self-granted.
       allow create: if request.auth != null && request.auth.uid == uid
+                    && validUserDoc()
                     && !( 'extraQuestions' in request.resource.data.get('entitlements', {})
                           && request.resource.data.entitlements.extraQuestions == true );
       allow update: if request.auth != null && request.auth.uid == uid
+                    && validUserDoc()
                     && entitlementsUnchangedOrServerOnly();
+    }
+
+    // This doc is world-readable AND its fields are rendered into OTHER users'
+    // pages (friends list, leaderboard, dashboard), so every field here is
+    // untrusted input to someone else's browser. Constrain type, length, and
+    // shape. photoURL must be an https URL because it lands in src="".
+    //
+    // NOTE: a keys().hasOnly() whitelist is deliberately NOT applied yet — on an
+    // update request.resource.data is the merged post-write doc, so any legacy
+    // doc carrying a stray field would become permanently un-updatable
+    // (including auth.js's own email-strip cleanup). Add it once production
+    // docs are confirmed to hold only the expected keys.
+    function validUserDoc() {
+      let d = request.resource.data;
+      return validStr(d, 'displayName', 100)
+             && validStr(d, 'usernameDisplay', 20)
+             && validPhoto(d)
+             && validUsername(d)
+             && (!('entitlements' in d) || d.entitlements is map);
+    }
+
+    // Optional string field: absent, null, or a string within maxLen.
+    function validStr(d, field, maxLen) {
+      return !(field in d)
+             || d[field] == null
+             || (d[field] is string && d[field].size() <= maxLen);
+    }
+
+    // auth.js writes `fbUser.photoURL || ""`, so "" is the no-photo case.
+    function validPhoto(d) {
+      return !('photoURL' in d)
+             || d.photoURL == null
+             || d.photoURL == ''
+             || (d.photoURL is string
+                 && d.photoURL.size() <= 500
+                 && d.photoURL.matches('^https://[^\\s"\'<>]+$'));
+    }
+
+    // Mirrors USERNAME_RE in auth.js, which is client-side only.
+    function validUsername(d) {
+      return !('username' in d)
+             || d.username == null
+             || (d.username is string && d.username.matches('^[a-z0-9_]{3,20}$'));
     }
 
     // Entitlements can only be granted server-side (Cloud Function w/ admin SDK,
@@ -35,7 +80,9 @@ service cloud.firestore {
     match /usernames/{name} {
       allow read: if true; // lookup + availability checks
       allow create: if request.auth != null
-                    && request.resource.data.uid == request.auth.uid;
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.keys().hasOnly(['uid'])
+                    && name.matches('^[a-z0-9_]{3,20}$');
       // Don't allow stealing/freeing a username casually.
       allow update, delete: if false;
     }
@@ -145,15 +192,43 @@ service cloud.firestore {
                   && (resource == null
                       || request.auth.uid in resource.data.members);
       allow create: if request.auth != null
-                    && request.auth.uid in request.resource.data.members;
+                    && request.auth.uid in request.resource.data.members
+                    && validLeaderboardDoc();
       allow update: if request.auth != null
-                    && request.auth.uid in resource.data.members;
+                    && request.auth.uid in resource.data.members
+                    // Members can't be rewritten to rope in a different pair.
+                    && request.resource.data.members == resource.data.members
+                    && validLeaderboardDoc();
+    }
+
+    // Rules can't recompute a score from the game (see completingP2 above), but
+    // they CAN bound it to the achievable range and pin the doc's shape, so a
+    // forged entry can't claim an impossible number or silently rewrite who the
+    // members are.
+    //
+    // `months` is intentionally unchecked: db.js updates it via a dotted field
+    // path (months.<YYYY-MM>), and CEL can't iterate the merged map. allTime is
+    // what the headline "best score" reads. Do NOT add hasOnly() here — the
+    // dotted-path update would make it fail.
+    function validLeaderboardDoc() {
+      let d = request.resource.data;
+      return d.members is list
+             && d.members.size() == 2
+             && d.members[0] != d.members[1]
+             && validEntry(d.get('allTime', null));
+    }
+
+    function validEntry(e) {
+      return e == null
+             || (e is map && 'bestScore' in e
+                 && e.bestScore is int && e.bestScore >= 0 && e.bestScore <= 20);
     }
 
     // ─── Friends (Phase 2 — declared now so writes don't fail closed) ───
     match /friendRequests/{id} {
       allow create: if request.auth != null
-                    && request.resource.data.fromUid == request.auth.uid;
+                    && request.resource.data.fromUid == request.auth.uid
+                    && validFriendRequest();
       // Read split into two single-field conditions so QUERIES are provable:
       // a `where("toUid","==",me)` query satisfies the recipient clause, and a
       // `where("fromUid","==",me)` query satisfies the sender clause. (A combined
@@ -171,6 +246,29 @@ service cloud.firestore {
                     && (resource.data.toUid == request.auth.uid
                         || resource.data.fromUid == request.auth.uid);
     }
+
+    // fromUsername / fromPhotoURL are attacker-chosen and get rendered into the
+    // RECIPIENT's friends page (app.js renderRequests -> friendRowHtml), and a
+    // request can be sent to anyone without an existing friendship. Constrain
+    // them exactly as the profile fields they mirror. hasOnly is safe here:
+    // these docs are only ever created whole, never partially updated.
+    function validFriendRequest() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['id', 'fromUid', 'fromUsername', 'fromPhotoURL',
+                               'toUid', 'toUsername', 'status', 'source', 'createdAt'])
+             && d.status == 'pending'
+             && d.toUid is string && d.toUid.size() <= 128
+             && d.fromUsername is string && d.fromUsername.size() <= 20
+             && d.toUsername is string && d.toUsername.size() <= 20
+             // friends.js writes `me.photoURL || ""`, so "" is the no-photo case.
+             && (d.fromPhotoURL == null
+                 || d.fromPhotoURL == ''
+                 || (d.fromPhotoURL is string
+                     && d.fromPhotoURL.size() <= 500
+                     && d.fromPhotoURL.matches('^https://[^\\s"\'<>]+$')))
+             && d.source is string && d.source.size() <= 20;
+    }
+
     match /friendships/{pairId} {
       // Authed users may probe a (possibly nonexistent) friendship doc; if it
       // exists they must be a member. A missing doc must not be denied so

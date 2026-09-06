@@ -18,6 +18,15 @@
 
 const GUARDED = ["/dashboard", "/friends", "/leaderboard"];
 
+// Every route used to share the single static <title>, making history entries
+// and bookmarks indistinguishable. Titles are a plain-text sink — do NOT run
+// them through esc(), or entities show up literally in the tab.
+const BASE_TITLE = "Daily Duo — 10 daily questions with a friend";
+
+function setTitle(suffix) {
+  document.title = suffix ? `${suffix} — Daily Duo` : BASE_TITLE;
+}
+
 function parseRoute() {
   const raw = location.hash.replace(/^#/, "");
   if (!raw) return { kind: "home", path: "/", params: {} };
@@ -34,7 +43,11 @@ function parseRoute() {
     if (queryPart) {
       queryPart.split("&").forEach((kv) => {
         const [k, v] = kv.split("=");
-        if (k) params[decodeURIComponent(k)] = decodeURIComponent(v || "");
+        if (!k) return;
+        // A malformed %-escape throws URIError; a bad share link must not
+        // blank the whole app, so drop the unparseable param and continue.
+        try { params[decodeURIComponent(k)] = decodeURIComponent(v || ""); }
+        catch (e) { /* ignore this param */ }
       });
     }
     return { kind: "page", path: pathPart || "/", params };
@@ -65,6 +78,8 @@ async function routeAndRender() {
   const route = parseRoute();
 
   if (route.kind === "game") {
+    // Provisional: openGame refines this once it knows the game's state.
+    setTitle("Loading game");
     await openGame(route.gameId);
     return;
   }
@@ -73,30 +88,34 @@ async function routeAndRender() {
     // Auth guard for protected pages.
     if (GUARDED.includes(route.path) && !state.user) {
       state.pendingRoute = location.hash.replace(/^#/, "");
+      setTitle("Sign in");
       renderSignInGate(route.path);
       return;
     }
     switch (route.path) {
       case "/dashboard":
-        if (typeof renderDashboard === "function") return renderDashboard();
+        if (typeof renderDashboard === "function") { setTitle("Dashboard"); return renderDashboard(); }
         break;
       case "/friends":
-        if (typeof renderFriends === "function") return renderFriends(route.params);
+        if (typeof renderFriends === "function") { setTitle("Friends"); return renderFriends(route.params); }
         break;
       case "/leaderboard":
-        if (typeof renderLeaderboard === "function") return renderLeaderboard(route.params);
+        if (typeof renderLeaderboard === "function") { setTitle("Leaderboards"); return renderLeaderboard(route.params); }
         break;
       case "/":
       default:
+        setTitle(null);
         state.screen = "home";
         return render();
     }
     // Page not yet implemented (future phase) — fall back home.
+    setTitle(null);
     state.screen = "home";
     return render();
   }
 
   // Home
+  setTitle(null);
   state.screen = "home";
   render();
 }
