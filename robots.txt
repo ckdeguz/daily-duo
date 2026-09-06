@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# No Disallow needed: every private view (dashboard, friends, leaderboards,
+# individual games) lives behind a "#" fragment, which crawlers never request.
+
+Sitemap: https://daily-duo-quiz.web.app/sitemap.xml

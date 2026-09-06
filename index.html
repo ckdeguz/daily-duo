@@ -3,12 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Duo</title>
+  <title>Daily Duo — 10 daily questions with a friend</title>
   <link rel="icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=9">
   <meta name="description" content="Daily Duo is a free two-player daily quiz game. Answer ten questions, guess your friend's answers, share a link, and compare scores with friends.">
   <link rel="canonical" href="https://daily-duo-quiz.web.app/">
+  <meta name="theme-color" content="#0f0f13">
+  <script src="theme-init.js?v=1"></script>
+
+  <!-- Social preview. Sharing a link IS the game loop, so these matter.
+       og:image must be an absolute URL — scrapers ignore relative paths. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Daily Duo">
+  <meta property="og:title" content="Daily Duo — 10 daily questions. See how well you know each other.">
+  <meta property="og:description" content="A free two-player daily quiz game. Answer ten questions, guess your friend's answers, share a link, and compare scores.">
+  <meta property="og:url" content="https://daily-duo-quiz.web.app/">
+  <meta property="og:image" content="https://daily-duo-quiz.web.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Daily Duo — a two-player daily quiz game">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daily Duo — 10 daily questions. See how well you know each other.">
+  <meta name="twitter:description" content="A free two-player daily quiz game. Answer ten questions, guess your friend's answers, share a link, and compare scores.">
+  <meta name="twitter:image" content="https://daily-duo-quiz.web.app/og-image.png">
 
   <!-- Google AdSense — disabled while no ads are served. Loading this script
        would contact Google and set advertising cookies, which our Privacy
@@ -101,12 +119,12 @@
 <script src="questions.js?v=3"></script>
 <script src="adblock.js?v=3"></script>
 <script src="db.js?v=2"></script>
-<script src="auth.js?v=7"></script>
-<script src="router.js?v=1"></script>
+<script src="auth.js?v=8"></script>
+<script src="router.js?v=3"></script>
 <script src="friends.js?v=3"></script>
 <script src="leaderboard.js?v=1"></script>
 <script src="dashboard.js?v=1"></script>
-<script src="app.js?v=11"></script>
+<script src="app.js?v=13"></script>
 
 </body>
 </html>
