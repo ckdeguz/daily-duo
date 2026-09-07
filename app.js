@@ -130,6 +130,19 @@ function safePhotoURL(url) {
   } catch (e) { return ""; }
 }
 
+// ═══════════════ ICONS ═══════════════
+// Hand-rolled to match the share/link icons further down: 24px viewBox,
+// currentColor stroke, width 2, round caps. No icon library — a CDN tag would
+// be blocked by the CSP, and these few icons don't justify a dependency.
+const ICON = {
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+  link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+  alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+};
+
 // ═══════════════ APP STATE ═══════════════
 const state = {
   screen: "loading",
@@ -185,7 +198,7 @@ function renderHome() {
   app().innerHTML = `
     <div class="card">
       <img class="logo-icon" src="logo.png" alt="Daily Duo logo">
-      <h1 class="title">Daily Duo</h1>
+      <h1 class="title brand-mark">Daily Duo</h1>
       <p class="subtitle">10 daily questions. See how well you know each other.</p>
       <div class="date-chip">${getDateString()}</div>
       <div class="how-it-works">
@@ -389,7 +402,7 @@ function renderShare() {
   const url = `${location.origin}${location.pathname}#g/${state.sessionId}`;
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">🔗</span>
+      <span class="screen-icon">${ICON.link}</span>
       <h1 class="title">You're all set!</h1>
       <p class="subtitle">Send this link to your friend. They'll answer the same questions and guess yours too. We'll show your results here automatically once they finish!</p>
       <div class="link-box"><span class="link-text">${esc(url)}</span></div>
@@ -409,7 +422,7 @@ function renderShare() {
 function renderP2Intro() {
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">👋</span>
+      <img class="logo-icon" src="logo.png" alt="Daily Duo logo">
       <h1 class="title">${esc(state.p1Name)} sent you a Daily Duo!</h1>
       <p class="subtitle">Answer 10 questions, then guess what ${esc(state.p1Name)} picked. See how well you know each other!</p>
       <div class="date-chip">${getDateString()}</div>
@@ -439,8 +452,8 @@ async function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
 
   ctx.save();
   const glow = ctx.createRadialGradient(W / 2, 400, 0, W / 2, 400, 400);
-  glow.addColorStop(0, "rgba(167,139,250,0.15)");
-  glow.addColorStop(1, "rgba(167,139,250,0)");
+  glow.addColorStop(0, "rgba(34,211,238,0.15)");
+  glow.addColorStop(1, "rgba(34,211,238,0)");
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, W, H);
   ctx.restore();
@@ -489,8 +502,8 @@ async function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
 
   ctx.font = "bold 120px 'DM Sans', sans-serif";
   const scoreGrad = ctx.createLinearGradient(W / 2 - 100, 560, W / 2 + 100, 680);
-  scoreGrad.addColorStop(0, "#a78bfa");
-  scoreGrad.addColorStop(1, "#60a5fa");
+  scoreGrad.addColorStop(0, "#22d3ee");
+  scoreGrad.addColorStop(1, "#38bdf8");
   ctx.fillStyle = scoreGrad;
   ctx.fillText(`${totalScore}/20`, W / 2, 660);
 
@@ -535,13 +548,13 @@ async function generateShareImage(r, p1Score, p2Score, totalScore, emoji, msg) {
   const fillW = Math.max(barH, ((W - barPad * 2) * totalScore) / 20);
   roundRect(barPad, barY, fillW, barH, barH / 2);
   const barGrad = ctx.createLinearGradient(barPad, 0, barPad + fillW, 0);
-  barGrad.addColorStop(0, "#a78bfa");
-  barGrad.addColorStop(1, "#60a5fa");
+  barGrad.addColorStop(0, "#22d3ee");
+  barGrad.addColorStop(1, "#38bdf8");
   ctx.fillStyle = barGrad;
   ctx.fill();
 
   ctx.font = "bold 32px 'DM Sans', sans-serif";
-  ctx.fillStyle = "#a78bfa";
+  ctx.fillStyle = "#22d3ee";
   ctx.fillText("Think you know your friends?", W / 2, 1180);
 
   ctx.font = "26px 'DM Sans', sans-serif";
@@ -700,7 +713,7 @@ function renderResults() {
 function renderError() {
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">😕</span>
+      <span class="screen-icon">${ICON.alert}</span>
       <h1 class="title">Oops</h1>
       <p class="subtitle">${esc(state.errorMsg)}</p>
       <button class="primary-btn" id="homeBtn">Go Home</button>
@@ -826,7 +839,7 @@ function renderWaiting(gameId) {
   const url = `${location.origin}${location.pathname}#g/${gameId}`;
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">⏳</span>
+      <span class="screen-icon">${ICON.clock}</span>
       <h1 class="title">Waiting for your friend</h1>
       <p class="subtitle">${esc(state.p1Name)} is all set! As soon as your friend finishes, results will appear here automatically.</p>
       <div class="link-box"><span class="link-text">${esc(url)}</span></div>
@@ -867,7 +880,7 @@ function renderSignInGate(targetPath) {
     : targetPath === "/leaderboard" ? "leaderboards" : "this page";
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">🔒</span>
+      <span class="screen-icon">${ICON.lock}</span>
       <h1 class="title">Sign in to continue</h1>
       <p class="subtitle">Sign in with Google to access ${esc(label)}.</p>
       <button class="primary-btn" id="gateSignIn">Sign in with Google</button>
@@ -881,7 +894,6 @@ function renderUsernamePrompt() {
   cleanupListeners();
   app().innerHTML = `
     <div class="card">
-      <span class="logo-icon">✨</span>
       <h1 class="title">Pick a username</h1>
       <p class="subtitle">This is how friends find you. 3–20 characters: letters, numbers, underscore.</p>
       <input class="name-input" type="text" placeholder="username" maxlength="20" id="usernameInput" autocomplete="off">
@@ -1397,13 +1409,13 @@ routeAndRender();
   // theme-init.js already applied the theme before first paint, so read it back
   // off the element rather than hitting localStorage again.
   const saved = document.documentElement.getAttribute('data-theme') || 'dark';
-  btn.textContent = saved === 'light' ? '☀️' : '🌙';
+  btn.innerHTML = saved === 'light' ? ICON.sun : ICON.moon;
   btn.addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     // Can throw in a private window / with site data blocked; the toggle should
     // still work for the current page even if the choice can't be persisted.
     try { localStorage.setItem('theme', next); } catch (e) { /* not persisted */ }
-    btn.textContent = next === 'light' ? '☀️' : '🌙';
+    btn.innerHTML = next === 'light' ? ICON.sun : ICON.moon;
   });
 })();
