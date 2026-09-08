@@ -14,6 +14,10 @@
     onUserChange: null,   // (userObj|null) => void
   };
 
+  // Document-level listeners for the account menu. Kept here so renderChrome()
+  // can detach the previous pair before attaching new ones.
+  const chromeHandlers = { click: null, keydown: null };
+
   // ─── Sign in / out ───
   async function signInWithGoogle() {
     try {
@@ -181,13 +185,35 @@
       </div>`;
     const accBtn = document.getElementById("authAccountBtn");
     const menu = document.getElementById("authMenu");
+    const setOpen = (open) => {
+      menu.hidden = !open;
+      accBtn.setAttribute("aria-expanded", String(open));
+    };
     accBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const open = !menu.hidden;
-      menu.hidden = open;
-      accBtn.setAttribute("aria-expanded", String(!open));
+      setOpen(menu.hidden);
     });
-    document.addEventListener("click", () => { if (menu && !menu.hidden) menu.hidden = true; }, { once: true });
+    // Dismiss on any click outside the menu. This previously used
+    // { once: true }, so it fired on the FIRST click anywhere — which happened
+    // while the menu was still closed, right after render — and then removed
+    // itself, leaving nothing to close the menu afterwards.
+    // renderChrome() replaces #auth-chrome's innerHTML on every auth change, so
+    // these handlers are re-registered; they're stored on the module so the
+    // previous pair can be detached first and listeners don't accumulate.
+    if (chromeHandlers.click) {
+      document.removeEventListener("click", chromeHandlers.click);
+      document.removeEventListener("keydown", chromeHandlers.keydown);
+    }
+    chromeHandlers.click = (e) => {
+      if (menu.hidden) return;
+      if (menu.contains(e.target) || accBtn.contains(e.target)) return;
+      setOpen(false);
+    };
+    chromeHandlers.keydown = (e) => {
+      if (e.key === "Escape" && !menu.hidden) { setOpen(false); accBtn.focus(); }
+    };
+    document.addEventListener("click", chromeHandlers.click);
+    document.addEventListener("keydown", chromeHandlers.keydown);
     const out = document.getElementById("authSignOutBtn");
     if (out) out.addEventListener("click", () => { signOut(); });
   }

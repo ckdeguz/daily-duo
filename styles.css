@@ -77,6 +77,15 @@
   --text-disabled: #545a63;
 }
 
+/* Theme flips repaint most of the page instantly, but any element with a
+   colour transition (the auth button, inputs, dashboard rows) animates to its
+   new colour over 150-200ms — so it visibly lags behind everything else.
+   app.js sets this class for one frame while swapping data-theme, which kills
+   the animation for the switch only; hover transitions are untouched. */
+.theme-switching, .theme-switching *, .theme-switching *::before, .theme-switching *::after {
+  transition: none !important;
+}
+
 body {
   font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
   font-weight: 400;

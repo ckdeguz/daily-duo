@@ -1411,8 +1411,17 @@ routeAndRender();
   const saved = document.documentElement.getAttribute('data-theme') || 'dark';
   btn.innerHTML = saved === 'light' ? ICON.sun : ICON.moon;
   btn.addEventListener('click', () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    // Suppress colour transitions for this repaint so nothing (notably the
+    // auth button) animates to its new colour after everything else has
+    // already switched. Removed on the next frame so hovers still transition.
+    root.classList.add('theme-switching');
+    root.setAttribute('data-theme', next);
+    // Force a style flush so the class is applied to THIS repaint, not batched
+    // together with its own removal.
+    void root.offsetHeight;
+    requestAnimationFrame(() => root.classList.remove('theme-switching'));
     // Can throw in a private window / with site data blocked; the toggle should
     // still work for the current page even if the choice can't be persisted.
     try { localStorage.setItem('theme', next); } catch (e) { /* not persisted */ }
