@@ -130,6 +130,14 @@ function safePhotoURL(url) {
   } catch (e) { return ""; }
 }
 
+// A signed-in player's display name, in the same preference order used by the
+// friends list and dashboard. Returns "" for guests, who type a name instead.
+function signedInName() {
+  const u = state.user;
+  if (!u) return "";
+  return (u.usernameDisplay || u.username || u.displayName || "").trim();
+}
+
 // ═══════════════ ICONS ═══════════════
 // Hand-rolled to match the share/link icons further down: 24px viewBox,
 // currentColor stroke, width 2, round caps. No icon library — a CDN tag would
@@ -194,6 +202,9 @@ function renderHome() {
   const shareUrl = location.origin + location.pathname;
   const shareText = "Try Daily Duo! 10 daily questions to see how well you know your friends";
   const hasNativeShare = !!navigator.share;
+  // Signed-in players use their account name — no prompt. Guests still type one.
+  const myName = signedInName();
+  if (myName) state.p1Name = myName;
 
   app().innerHTML = `
     <div class="card">
@@ -206,7 +217,9 @@ function renderHome() {
         <div class="step"><span class="step-num">2</span><span class="step-text">Share the link with your friend</span></div>
         <div class="step"><span class="step-num">3</span><span class="step-text">They answer & guess yours — then compare!</span></div>
       </div>
-      <input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p1NameInput" value="${esc(state.p1Name)}">
+      ${myName
+        ? `<p class="playing-as">Playing as <strong>${esc(myName)}</strong></p>`
+        : `<input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p1NameInput" value="${esc(state.p1Name)}">`}
       <button class="primary-btn" id="startBtn" ${state.p1Name.trim() ? '' : 'disabled'}>Start Today's Quiz →</button>
       <div class="share-section">
         <p class="share-label">Invite a friend to play</p>
@@ -237,7 +250,8 @@ function renderHome() {
 
   const inp = $("#p1NameInput");
   const btn = $("#startBtn");
-  inp.addEventListener("input", () => { state.p1Name = inp.value; btn.disabled = !inp.value.trim(); });
+  // No input when signed in — the name comes from the account.
+  if (inp) inp.addEventListener("input", () => { state.p1Name = inp.value; btn.disabled = !inp.value.trim(); });
   btn.addEventListener("click", () => { state.screen = "play"; state.currentQ = 0; state.phase = "own"; render(); });
   setTimeout(() => showAd("ad-home-slot"), 400);
 
@@ -420,18 +434,22 @@ function renderShare() {
 }
 
 function renderP2Intro() {
+  const myName = signedInName();
+  if (myName) state.p2Name = myName;
   app().innerHTML = `
     <div class="card">
       <img class="logo-icon" src="logo.png" alt="Daily Duo logo">
       <h1 class="title">${esc(state.p1Name)} sent you a Daily Duo!</h1>
       <p class="subtitle">Answer 10 questions, then guess what ${esc(state.p1Name)} picked. See how well you know each other!</p>
       <div class="date-chip">${getDateString()}</div>
-      <input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p2NameInput" value="${esc(state.p2Name)}">
+      ${myName
+        ? `<p class="playing-as">Playing as <strong>${esc(myName)}</strong></p>`
+        : `<input class="name-input" type="text" placeholder="Your name" maxlength="20" id="p2NameInput" value="${esc(state.p2Name)}">`}
       <button class="primary-btn" id="p2StartBtn" ${state.p2Name.trim() ? '' : 'disabled'}>Let's Go →</button>
     </div>`;
   const inp = $("#p2NameInput");
   const btn = $("#p2StartBtn");
-  inp.addEventListener("input", () => { state.p2Name = inp.value; btn.disabled = !inp.value.trim(); });
+  if (inp) inp.addEventListener("input", () => { state.p2Name = inp.value; btn.disabled = !inp.value.trim(); });
   btn.addEventListener("click", () => { state.screen = "p2-play"; state.currentQ = 0; state.phase = "own"; render(); });
 }
 
@@ -1373,9 +1391,20 @@ async function claimPendingGames(uid) {
   localStorage.setItem("dd_pending_games", JSON.stringify(remaining));
 }
 
-Auth.onUserChange = async (userObj) => {
+async function handleUserChange(userObj) {
   const wasSignedOut = !state.user;
   state.user = userObj;
+
+  // Names are account-derived while signed in, so drop a name carried over from
+  // the other mode (a stale guest name after sign-in, or the account name after
+  // sign-out). Only ever reset the name belonging to THIS viewer:
+  //   - on "home" the viewer is P1
+  //   - on "p2-intro" the viewer is P2, and p1Name holds the HOST's name from
+  //     the game doc, which must not be touched
+  // A game in progress is left alone entirely — the name is part of its state.
+  const myNameNow = userObj ? signedInName() : "";
+  if (state.screen === "home") state.p1Name = myNameNow;
+  else if (state.screen === "p2-intro") state.p2Name = myNameNow;
 
   if (userObj) {
     if (wasSignedOut) await claimPendingGames(userObj.uid);
@@ -1396,7 +1425,11 @@ Auth.onUserChange = async (userObj) => {
   }
   // Re-render current page so signed-in/guest UI updates.
   routeAndRender();
-};
+}
+
+// Auth exposes onUserChange as a setter only, so keep a named reference for
+// anything that needs to invoke this path directly.
+Auth.onUserChange = handleUserChange;
 
 // ═══════════════ BOOT ═══════════════
 // Router drives the first render; Auth.onAuthStateChanged fires async and

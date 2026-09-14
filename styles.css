@@ -212,6 +212,15 @@ body {
 }
 .step-text { font-size: 14px; color: var(--text-secondary); }
 
+/* Replaces .name-input for signed-in players, who don't type a name.
+   Same 14px bottom margin so the CTA doesn't shift between the two states. */
+.playing-as {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+.playing-as strong { color: var(--text-primary); font-weight: 700; }
+
 .name-input {
   width: 100%;
   padding: 14px 16px;
